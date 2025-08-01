@@ -39,14 +39,18 @@ def polar(lat, lon, distancia_metros, bearing_graus):
 def get_loose_gap(loose_gap, vertices):
     if loose_gap != "SIM":
         return vertices, "NÃO"
-    first_point = vertices[0]
-    second_point = vertices[1]
-    distance_between = distance(first_point[0], first_point[1], second_point[0], second_point[1])
-    if distance_between > 60:
-        angle_between = angle(first_point[0], first_point[1], second_point[0], second_point[1])
-        new_point = polar(first_point[0], first_point[1], 30, angle_between)
-        return [first_point, new_point, second_point] + vertices[2:]
-    return vertices, "SIM"
+    
+    else:
+        first_point = vertices[0]
+        second_point = vertices[1]
+        distance_between = distance(first_point[0], first_point[1], second_point[0], second_point[1])
+
+        if  distance_between > 60:
+            angle_between = angle(first_point[0], first_point[1], second_point[0], second_point[1])
+            new_point = polar(first_point[0], first_point[1], 30, angle_between)
+            return [first_point, new_point, second_point] + vertices[2:], "SIM"
+        return vertices, "NÃO"
+
 
 
 def dividir_tramo(vertices, section_size):
@@ -117,8 +121,8 @@ def main():
         (-17.047725, -49.213698),
         (-17.046803, -49.213231)
     ]
-
-    matriz = gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, vao_frouxo)
+                          
+    matriz = gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste)
 
     
     arquivo_csv = "matriz_resultado.csv"
@@ -165,7 +169,7 @@ def distance_ptos (pto1 , pto2):
 
 def mtz_abaco(str1):
     abacos = {}    
-    abacos["MT7"] = [
+    abacos[""] = [
         
         ["PDT10/300", "UP1", "",  "BS", [(-1.0, 0.0), (-1.0, 217.143), (160.0, 217.143), (160.0, 0.0), (-1.0, 0.0)]], #ms1
         ["UP1","", "PDT10/600", "BC", [(160.0, 0.0), (160.0, 217.143), (350.0, 0.0), (160.0, 0.0)]], #ms2
