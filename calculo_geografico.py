@@ -83,5 +83,35 @@ def distance_ptos(pto1, pto2):
     Returns:
         float: Distância em metros
     """
-    distance_between = distance(pto1[0], pto1[1], pto2[0], pto2[1])
-    return distance_between 
+    return distance(pto1[0], pto1[1], pto2[0], pto2[1])
+
+##################################################################################################################################
+
+def angulo_deflexao(pt1, pt2, pt3):
+    """
+    Calcula o ângulo de deflexão entre três pontos seguindo a lógica LISP.
+    
+    Args:
+        pt1: Tupla (lat1, lon1) - primeiro ponto
+        pt2: Tupla (lat2, lon2) - ponto central (vértice)
+        pt3: Tupla (lat3, lon3) - terceiro ponto
+    
+    Returns:
+        float: Ângulo de deflexão em graus (0 a 180)
+                Sempre positivo
+    """
+    from math import pi
+    
+    # Calcula os ângulos em radianos (como na LISP)
+    ang_p1_p2 = angle(pt1[0], pt1[1], pt2[0], pt2[1]) * pi / 180  # pto1 -> pto2
+    ang_p2_p3 = angle(pt2[0], pt2[1], pt3[0], pt3[1]) * pi / 180  # pto2 -> pto3
+    
+    # Calcula a diferença absoluta (como na LISP: abs(- (angle pto1 pto2) (angle pto2 pto3)))
+    var44 = abs(ang_p1_p2 - ang_p2_p3)
+    
+    # Se maior que 3π/2, ajusta (como na LISP)
+    if var44 > (3 * pi / 2):
+        var44 = (2 * pi) - var44
+    
+    # Converte de volta para graus
+    return var44 * 180 / pi 

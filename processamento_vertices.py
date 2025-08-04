@@ -9,7 +9,7 @@ def get_loose_gap(loose_gap, vertices):
     Adiciona um ponto intermediário se a distância entre os dois primeiros pontos for maior que 60m.
     
     Args:
-        loose_gap: "SIM" ou "NÃO" para aplicar a regra
+        loose_gap: "SIM" ou "NÃO" para aplicar a regra - VÃO FROUXO
         vertices: Lista de vértices [(lat, lon), ...]
     
     Returns:
@@ -41,6 +41,8 @@ def dividir_tramo(vertices, section_size):
     
     Returns:
         list: Nova lista de vértices com pontos intermediários
+
+        GUSTAVO: SEMPRE QUE ADICIONAR UM PONTO, CLASSIFICALO COMO ENCABEÇAMENTO - vertice_encabec
     """
     new_vertices = []
     for i in range(len(vertices) - 1):
@@ -57,6 +59,7 @@ def dividir_tramo(vertices, section_size):
                 new_vertices.append(novo_pto)
     new_vertices.append(vertices[-1])
     return new_vertices
+
 
 ##################################################################################################################################
 
