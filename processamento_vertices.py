@@ -65,11 +65,11 @@ def dividir_tramo(vertices, section_size):
 
 def intercalar_vertices(vertices, lista_nao_intercalar, gap_size):
     """
-    Intercala pontos intermediários nos tramos, exceto nos índices especificados.
+    Intercala pontos intermediários nos tramos, exceto nos pontos cujo terceiro elemento está na lista_nao_intercalar.
     
     Args:
-        vertices: Lista de vértices [(lat, lon), ...]
-        lista_nao_intercalar: Lista de índices onde não intercalar
+        vertices: Lista de vértices [(lat, lon, id), ...]
+        lista_nao_intercalar: Lista de IDs onde não intercalar
         gap_size: Tamanho máximo do gap em metros
     
     Returns:
@@ -81,7 +81,12 @@ def intercalar_vertices(vertices, lista_nao_intercalar, gap_size):
         pto2 = vertices[i + 1]
         new_vertices.append(pto1)
         
-        if i in lista_nao_intercalar:
+        # Verifica se o terceiro elemento da tupla está na lista_nao_intercalar
+        terceiro_elemento_pto1 = None
+        if len(pto1) >= 3:
+            terceiro_elemento_pto1 = pto1[2]
+        
+        if terceiro_elemento_pto1 in lista_nao_intercalar:
             continue
         
         dst = distance(pto1[0], pto1[1], pto2[0], pto2[1])

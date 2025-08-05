@@ -42,7 +42,7 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, estrutura_mt, estrutura_bt, p
     return pontos_matriz
 
 ##################################################################################################################################
-def poste_derivacao( new_vertices, loose_gap, tipo_poste, module_name):  
+def colocar_poste_estrutura( new_vertices, loose_gap, tipo_poste, module_name):  
     """
     Função que processa todos os pontos de new_vertices para determinar estruturas e postes.
     
@@ -65,6 +65,8 @@ def poste_derivacao( new_vertices, loose_gap, tipo_poste, module_name):
         pt2 = new_vertices[i]  # Ponto atual (referência)
         pt1 = new_vertices[i - 1] if i > 0 else None  # Ponto anterior
         pt3 = new_vertices[i + 1] if i < len(new_vertices) - 1 else None  # Ponto posterior
+     
+        
 
         # Calcula a distância maior apenas se existir pt1 e pt3
         if pt1 is not None and pt3 is not None:
@@ -104,6 +106,8 @@ def poste_derivacao( new_vertices, loose_gap, tipo_poste, module_name):
         
         # Para pontos intermediários (i > 0)
         else:
+
+
             if pt3 is not None:
                 # Lógica para pontos intermediários
                 resultado = mosaico(angulo_def, distancia_maior, module_name) 
@@ -144,7 +148,7 @@ def gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_
     #mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base = poste_derivacao (new_vertices, loose_gap, tipo_poste, module_name)
     #pontos_matriz = gravar_pontos_matriz(new_vertices, 0, mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base)
 
-    pontos_matriz = poste_derivacao (new_vertices, loose_gap, tipo_poste, module_name)
+    pontos_matriz = colocar_poste_estrutura (new_vertices, loose_gap, tipo_poste, module_name)
     #print (pontos_matriz)
 
 
@@ -181,12 +185,12 @@ def main():
     gap_size = 80
     num_poste_inicial = "2255555"
     tipo_poste = "EXISTENTE"
-    lista_nao_intercalar = [0, 3] 
+    lista_nao_intercalar = [2, 4] 
 
     vertices = [
         (-17.041935, -49.224541, 1), #0
         (-17.045514, -49.217512, 2), #2
-        (-17.047802, -49.214406, 2), #3
+        (-17.047802, -49.214406, 3), #3
         (-17.047725, -49.213698, 4), #4
         (-17.046803, -49.213231, 5)
     ]                          
