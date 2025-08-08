@@ -25,7 +25,8 @@ def get_loose_gap(loose_gap, vertices):
 
         if distance_between > 60:
             angle_between = angle(first_point[0], first_point[1], second_point[0], second_point[1])
-            new_point = polar(first_point[0], first_point[1], 30, angle_between)
+            new_point_coords = polar(first_point[0], first_point[1], 30, angle_between)
+            new_point = (new_point_coords[0], new_point_coords[1], "", "SIM")  # Adiciona terceiro elemento vazio
             return [first_point, new_point, second_point] + vertices[2:], "SIM"
         return vertices, "NÃO"
 
@@ -56,7 +57,10 @@ def dividir_tramo(vertices, section_size):
             ang = angle(pto1[0], pto1[1], pto2[0], pto2[1])
             for j in range(1, num_divisoes + 1):
                 novo_pto = polar(pto1[0], pto1[1], distancia_por_tramo * j, ang)
-                new_vertices.append(novo_pto)
+
+                new_point = (novo_pto[0], novo_pto[1], "", "SIM") 
+
+                new_vertices.append(new_point)
     new_vertices.append(vertices[-1])
     return new_vertices
 
@@ -96,7 +100,8 @@ def intercalar_vertices(vertices, lista_nao_intercalar, gap_size):
                 distancia_por_tramo = dst / (num_divisoes + 1)
                 ang = angle(pto1[0], pto1[1], pto2[0], pto2[1])
                 for j in range(1, num_divisoes + 1):
-                    novo_pto = polar(pto1[0], pto1[1], distancia_por_tramo * j, ang)
+                    novo_pto_coords = polar(pto1[0], pto1[1], distancia_por_tramo * j, ang)
+                    novo_pto = (novo_pto_coords[0], novo_pto_coords[1], "", "")
                     new_vertices.append(novo_pto)
 
     new_vertices.append(vertices[-1])
