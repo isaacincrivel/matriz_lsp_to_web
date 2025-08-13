@@ -8,7 +8,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
     Também cria uma linha conectando os vértices com informações de poste, estrutura e base.
     
     Args:
-        pontos_matriz: DataFrame com os dados dos pontos
+        pontos_matriz: DataFrame ou dicionário com os dados dos pontos
         nome_arquivo: Nome do arquivo KML a ser gerado
     
     Returns:
@@ -106,19 +106,39 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         # Converte pontos_matriz para lista de coordenadas e dados
         pontos = []
         dados_pontos = []
-        for index, row in pontos_matriz.iterrows():
-            lat = float(str(row['lat']).replace(',', '.'))
-            lon = float(str(row['long']).replace(',', '.'))
-            pontos.append((lat, lon))
-            dados_pontos.append({
-                'sequencia': row['sequencia'],
-                'numero_poste': row['numero_poste'],
-                'tipo_poste': row['tipo_poste'],
-                'estrutura_mt': row['estrutura_mt'],
-                'estrutura_bt': row['estrutura_bt'],
-                'poste': row['poste'],
-                'base': row['base']
-            })
+        
+        # Verifica se é DataFrame ou dicionário
+        if hasattr(pontos_matriz, 'iterrows'):
+            # É um DataFrame
+            for index, row in pontos_matriz.iterrows():
+                lat = float(str(row['lat']).replace(',', '.'))
+                lon = float(str(row['long']).replace(',', '.'))
+                pontos.append((lat, lon))
+                dados_pontos.append({
+                    'sequencia': index,  # Usa o índice do DataFrame
+                    'numero_poste': row['numero_poste'],
+                    'tipo_poste': row['tipo_poste'],
+                    'estrutura_mt': row['estrutura_mt'],
+                    'estrutura_bt': row['estrutura_bt'],
+                    'poste': row['poste'],
+                    'base': row['base']
+                })
+        else:
+            # É um dicionário - precisa converter para o formato esperado
+            vertices_list = list(pontos_matriz.keys())
+            for i, vertex in enumerate(vertices_list):
+                lat, lon = vertex[0], vertex[1]
+                pontos.append((lat, lon))
+                dados_vertex = pontos_matriz.get(vertex, {})
+                dados_pontos.append({
+                    'sequencia': i,  # Usa o índice do loop
+                    'numero_poste': dados_vertex.get('numero_poste', ''),
+                    'tipo_poste': dados_vertex.get('tipo_poste', ''),
+                    'estrutura_mt': dados_vertex.get('estrutura_mt', ''),
+                    'estrutura_bt': dados_vertex.get('estrutura_bt', ''),
+                    'poste': dados_vertex.get('poste', ''),
+                    'base': dados_vertex.get('base', '')
+                })
         
         # Adiciona a linha conectando todos os vértices
         coordenadas_linha = ""
@@ -224,6 +244,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
             <p><strong>Coordenadas:</strong> {pt_atual[0]:.9f}, {pt_atual[1]:.9f}</p>
             <p><strong>Ângulo Anterior:</strong> {angulo_anterior:.2f}°</p>
             <p><strong>Ângulo Posterior:</strong> {angulo_posterior:.2f}°</p>
@@ -233,12 +254,12 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>{dados_atual['sequencia']}</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>{sequencia}</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>{dados_atual['numero_poste'] if dados_atual['numero_poste'] else 'N/A'}</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>{dados_atual['tipo_poste'] if dados_atual['tipo_poste'] else 'N/A'}</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>{dados_atual['estrutura_mt'] if dados_atual['estrutura_mt'] else 'N/A'}</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>{dados_atual['estrutura_bt'] if dados_atual['estrutura_bt'] else 'N/A'}</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>{dados_atual['poste'] if dados_atual['poste'] else 'N/A'}</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>{estrutura_mt}</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>{estrutura_bt}</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>{poste}</td></tr>
                 <tr><td><strong>Base:</strong></td><td>{dados_atual['base'] if dados_atual['base'] else 'N/A'}</td></tr>
             </table>
             ]]>

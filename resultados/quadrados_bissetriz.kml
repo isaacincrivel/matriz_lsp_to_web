@@ -98,26 +98,27 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 1</p>
+            <p><strong>Sequência:</strong> 1</p>
             <p><strong>Coordenadas:</strong> -17.042061825, -49.224291934</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
             <p><strong>Bissetriz:</strong> 118.04°</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
-            <p><strong>Tipo de Poste:</strong> 300</p>
+            <p><strong>Tipo de Poste:</strong> 600</p>
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
                 <tr><td><strong>Sequência:</strong></td><td>1</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
                 <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
             ]]>
         </description>
-        <styleUrl>#poste_300_style</styleUrl>
+        <styleUrl>#poste_600_style</styleUrl>
         <Polygon>
             <outerBoundaryIs>
                 <LinearRing>
@@ -127,17 +128,25 @@
                 </LinearRing>
             </outerBoundaryIs>
 
+            <innerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.22426842657884,-17.042048322132004,0 -49.22431544142531,-17.042075327866637,0 -49.22429333316259,-17.042035639641995,0 -49.22426842657884,-17.042048322132004,0
+                    </coordinates>
+                </LinearRing>
+            </innerBoundaryIs>
+
         </Polygon>
     </Placemark>
 
     <Placemark>
-        <name>Seq:1 | P:PDT10/300 | MT:UP1 | BT:N/A</name>
+        <name>Seq:1 | P:PDT10/600 | MT:UP4 | BT:N/A</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 1</h3>
             <p><strong>Sequência:</strong> 1</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Poste:</strong> PDT10/600</p>
+            <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> N/A</p>
             ]]>
         </description>
@@ -153,6 +162,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 2</p>
+            <p><strong>Sequência:</strong> 2</p>
             <p><strong>Coordenadas:</strong> -17.042349515, -49.223726949</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -208,6 +218,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 3</p>
+            <p><strong>Sequência:</strong> 3</p>
             <p><strong>Coordenadas:</strong> -17.042637203, -49.223161963</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -263,6 +274,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 4</p>
+            <p><strong>Sequência:</strong> 4</p>
             <p><strong>Coordenadas:</strong> -17.042924890, -49.222596974</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -318,6 +330,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 5</p>
+            <p><strong>Sequência:</strong> 5</p>
             <p><strong>Coordenadas:</strong> -17.043212575, -49.222031984</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -373,6 +386,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 6</p>
+            <p><strong>Sequência:</strong> 6</p>
             <p><strong>Coordenadas:</strong> -17.043500258, -49.221466992</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -428,26 +442,27 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 7</p>
+            <p><strong>Sequência:</strong> 7</p>
             <p><strong>Coordenadas:</strong> -17.043787941, -49.220901998</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
             <p><strong>Bissetriz:</strong> 118.04°</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
-            <p><strong>Tipo de Poste:</strong> 300</p>
+            <p><strong>Tipo de Poste:</strong> 600</p>
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
                 <tr><td><strong>Sequência:</strong></td><td>7</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
                 <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
             ]]>
         </description>
-        <styleUrl>#poste_300_style</styleUrl>
+        <styleUrl>#poste_600_style</styleUrl>
         <Polygon>
             <outerBoundaryIs>
                 <LinearRing>
@@ -457,17 +472,25 @@
                 </LinearRing>
             </outerBoundaryIs>
 
+            <innerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.22087849059223,-17.043774437765236,0 -49.22092550541193,-17.04380144423341,0 -49.22090339762248,-17.043761755663834,0 -49.22087849059223,-17.043774437765236,0
+                    </coordinates>
+                </LinearRing>
+            </innerBoundaryIs>
+
         </Polygon>
     </Placemark>
 
     <Placemark>
-        <name>Seq:7 | P:PDT10/300 | MT:UP1 | BT:N/A</name>
+        <name>Seq:7 | P:PDT10/600 | MT:UP4 | BT:N/A</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 7</h3>
             <p><strong>Sequência:</strong> 7</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Poste:</strong> PDT10/600</p>
+            <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> N/A</p>
             ]]>
         </description>
@@ -483,6 +506,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 8</p>
+            <p><strong>Sequência:</strong> 8</p>
             <p><strong>Coordenadas:</strong> -17.044075621, -49.220337003</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -538,6 +562,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 9</p>
+            <p><strong>Sequência:</strong> 9</p>
             <p><strong>Coordenadas:</strong> -17.044363300, -49.219772006</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -593,6 +618,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 10</p>
+            <p><strong>Sequência:</strong> 10</p>
             <p><strong>Coordenadas:</strong> -17.044650977, -49.219207007</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -648,6 +674,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 11</p>
+            <p><strong>Sequência:</strong> 11</p>
             <p><strong>Coordenadas:</strong> -17.044938653, -49.218642006</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -703,6 +730,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 12</p>
+            <p><strong>Sequência:</strong> 12</p>
             <p><strong>Coordenadas:</strong> -17.045226327, -49.218077004</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 118.04°</p>
@@ -758,6 +786,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 13</p>
+            <p><strong>Sequência:</strong> 13</p>
             <p><strong>Coordenadas:</strong> -17.045514000, -49.217512000</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
             <p><strong>Ângulo Posterior:</strong> 127.61°</p>
@@ -821,6 +850,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 14</p>
+            <p><strong>Sequência:</strong> 14</p>
             <p><strong>Coordenadas:</strong> -17.047802000, -49.214406000</p>
             <p><strong>Ângulo Anterior:</strong> 127.61°</p>
             <p><strong>Ângulo Posterior:</strong> 83.51°</p>
@@ -884,6 +914,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 15</p>
+            <p><strong>Sequência:</strong> 15</p>
             <p><strong>Coordenadas:</strong> -17.047725000, -49.213698000</p>
             <p><strong>Ângulo Anterior:</strong> 83.51°</p>
             <p><strong>Ângulo Posterior:</strong> 25.84°</p>
@@ -947,6 +978,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 16</p>
+            <p><strong>Sequência:</strong> 16</p>
             <p><strong>Coordenadas:</strong> -17.046803000, -49.213231000</p>
             <p><strong>Ângulo Anterior:</strong> 25.84°</p>
             <p><strong>Ângulo Posterior:</strong> 21.55°</p>
@@ -1002,6 +1034,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 17</p>
+            <p><strong>Sequência:</strong> 17</p>
             <p><strong>Coordenadas:</strong> -17.046247500, -49.213001499</p>
             <p><strong>Ângulo Anterior:</strong> 21.55°</p>
             <p><strong>Ângulo Posterior:</strong> 21.55°</p>
@@ -1057,6 +1090,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 18</p>
+            <p><strong>Sequência:</strong> 18</p>
             <p><strong>Coordenadas:</strong> -17.045692000, -49.212772000</p>
             <p><strong>Ângulo Anterior:</strong> 381.55°</p>
             <p><strong>Ângulo Posterior:</strong> 352.03°</p>
@@ -1120,6 +1154,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 19</p>
+            <p><strong>Sequência:</strong> 19</p>
             <p><strong>Coordenadas:</strong> -17.045072667, -49.212862667</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
             <p><strong>Ângulo Posterior:</strong> 352.03°</p>
@@ -1175,6 +1210,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 20</p>
+            <p><strong>Sequência:</strong> 20</p>
             <p><strong>Coordenadas:</strong> -17.044453333, -49.212953334</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
             <p><strong>Ângulo Posterior:</strong> 352.03°</p>
@@ -1230,6 +1266,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 21</p>
+            <p><strong>Sequência:</strong> 21</p>
             <p><strong>Coordenadas:</strong> -17.043834000, -49.213044000</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
             <p><strong>Ângulo Posterior:</strong> 336.96°</p>
@@ -1285,6 +1322,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 22</p>
+            <p><strong>Sequência:</strong> 22</p>
             <p><strong>Coordenadas:</strong> -17.043305000, -49.213279335</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
             <p><strong>Ângulo Posterior:</strong> 336.96°</p>
@@ -1340,6 +1378,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 23</p>
+            <p><strong>Sequência:</strong> 23</p>
             <p><strong>Coordenadas:</strong> -17.042776000, -49.213514668</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
             <p><strong>Ângulo Posterior:</strong> 336.96°</p>
@@ -1395,26 +1434,27 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 24</p>
+            <p><strong>Sequência:</strong> 24</p>
             <p><strong>Coordenadas:</strong> -17.042247000, -49.213750000</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
             <p><strong>Bissetriz:</strong> 343.59°</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
-            <p><strong>Tipo de Poste:</strong> 300</p>
+            <p><strong>Tipo de Poste:</strong> 600</p>
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
                 <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
                 <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
             ]]>
         </description>
-        <styleUrl>#poste_300_style</styleUrl>
+        <styleUrl>#poste_600_style</styleUrl>
         <Polygon>
             <outerBoundaryIs>
                 <LinearRing>
@@ -1424,17 +1464,25 @@
                 </LinearRing>
             </outerBoundaryIs>
 
+            <innerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.213776544258536,-17.042240413230296,0 -49.213723455742716,-17.04225358676714,0 -49.21376857019616,-17.042266293287785,0 -49.213776544258536,-17.042240413230296,0
+                    </coordinates>
+                </LinearRing>
+            </innerBoundaryIs>
+
         </Polygon>
     </Placemark>
 
     <Placemark>
-        <name>Seq:24 | P:PDT10/300 | MT:UP1 | BT:N/A</name>
+        <name>Seq:24 | P:PDT10/600 | MT:UP4 | BT:N/A</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 24</h3>
             <p><strong>Sequência:</strong> 24</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Poste:</strong> PDT10/600</p>
+            <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> N/A</p>
             ]]>
         </description>
@@ -1450,6 +1498,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 25</p>
+            <p><strong>Sequência:</strong> 25</p>
             <p><strong>Coordenadas:</strong> -17.041671250, -49.213853877</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
@@ -1505,6 +1554,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 26</p>
+            <p><strong>Sequência:</strong> 26</p>
             <p><strong>Coordenadas:</strong> -17.041095500, -49.213957754</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
@@ -1560,6 +1610,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 27</p>
+            <p><strong>Sequência:</strong> 27</p>
             <p><strong>Coordenadas:</strong> -17.040519750, -49.214061630</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
@@ -1615,26 +1666,27 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 28</p>
+            <p><strong>Sequência:</strong> 28</p>
             <p><strong>Coordenadas:</strong> -17.039944000, -49.214165505</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
             <p><strong>Bissetriz:</strong> 350.21°</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
-            <p><strong>Tipo de Poste:</strong> 300</p>
+            <p><strong>Tipo de Poste:</strong> 600</p>
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
                 <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
                 <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
             ]]>
         </description>
-        <styleUrl>#poste_300_style</styleUrl>
+        <styleUrl>#poste_600_style</styleUrl>
         <Polygon>
             <outerBoundaryIs>
                 <LinearRing>
@@ -1644,17 +1696,25 @@
                 </LinearRing>
             </outerBoundaryIs>
 
+            <innerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21419107648965,-17.03993452831336,0 -49.21413993351105,-17.039953471683976,0 -49.21418627973977,-17.039961115310316,0 -49.21419107648965,-17.03993452831336,0
+                    </coordinates>
+                </LinearRing>
+            </innerBoundaryIs>
+
         </Polygon>
     </Placemark>
 
     <Placemark>
-        <name>Seq:28 | P:PDT10/300 | MT:UP1 | BT:N/A</name>
+        <name>Seq:28 | P:PDT10/600 | MT:UP4 | BT:N/A</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 28</h3>
             <p><strong>Sequência:</strong> 28</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Poste:</strong> PDT10/600</p>
+            <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> N/A</p>
             ]]>
         </description>
@@ -1670,6 +1730,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 29</p>
+            <p><strong>Sequência:</strong> 29</p>
             <p><strong>Coordenadas:</strong> -17.039368250, -49.214269380</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
@@ -1725,6 +1786,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 30</p>
+            <p><strong>Sequência:</strong> 30</p>
             <p><strong>Coordenadas:</strong> -17.038792500, -49.214373254</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
@@ -1780,6 +1842,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 31</p>
+            <p><strong>Sequência:</strong> 31</p>
             <p><strong>Coordenadas:</strong> -17.038216750, -49.214477127</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
@@ -1835,6 +1898,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 32</p>
+            <p><strong>Sequência:</strong> 32</p>
             <p><strong>Coordenadas:</strong> -17.037641000, -49.214581000</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -1898,6 +1962,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 33</p>
+            <p><strong>Sequência:</strong> 33</p>
             <p><strong>Coordenadas:</strong> -17.037403003, -49.215145803</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -1953,6 +2018,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 34</p>
+            <p><strong>Sequência:</strong> 34</p>
             <p><strong>Coordenadas:</strong> -17.037165005, -49.215710604</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -2008,6 +2074,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 35</p>
+            <p><strong>Sequência:</strong> 35</p>
             <p><strong>Coordenadas:</strong> -17.036927005, -49.216275404</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -2063,6 +2130,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 36</p>
+            <p><strong>Sequência:</strong> 36</p>
             <p><strong>Coordenadas:</strong> -17.036689003, -49.216840203</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
