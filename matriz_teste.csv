@@ -51,7 +51,7 @@ sequencia;status;lat;long;num_poste;tipo_poste;estru_mt_nv1;estru_mt_nv2;estru_m
 12;Existente;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 12;Retirar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 12;deslocar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-13;Implantar;-17,045514;-49,217512;;PDT10/1000;UP4;;;;;3EA;;;;;;;;;;;;;;;;;;;;;;bissetriz1
+13;Implantar;-17,045514;-49,217512;;PDT10/1000;UP4;;;;;3EA;;;TRAFO_150KVA;;;;;;;;;;;;;;;;;;bissetriz1
 13;Existente;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 13;Retirar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 13;deslocar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -95,7 +95,7 @@ sequencia;status;lat;long;num_poste;tipo_poste;estru_mt_nv1;estru_mt_nv2;estru_m
 23;Existente;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 23;Retirar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 23;deslocar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-24;Implantar;-17,042247;-49,21375;;PDT10/600;UP4;;;;;3EA;;;;;;;;;;;;;;;;;;;;;;bissetriz1
+24;Implantar;-17,042247;-49,21375;;PDT10/600;UP4;;;;;3EA;;;TRAFO_75KVA;;;;;;;;;;;;;;;;;;bissetriz1
 24;Existente;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 24;Retirar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 24;deslocar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

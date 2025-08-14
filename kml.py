@@ -69,19 +69,19 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         </LineStyle>
     </Style>
     
-    <!-- Estilo padrão para outros tipos -->
-    <Style id="quadrado_style">
-        <PolyStyle>
-            <color>ff0000ff</color>
-            <fill>1</fill>
-            <outline>1</outline>
-        </PolyStyle>
-        <LineStyle>
-            <color>ff0000ff</color>
-            <width>2</width>
-        </LineStyle>
-    </Style>
-    
+         <!-- Estilo padrão para outros tipos -->
+     <Style id="quadrado_style">
+         <PolyStyle>
+             <color>ff0000ff</color>
+             <fill>1</fill>
+             <outline>1</outline>
+         </PolyStyle>
+         <LineStyle>
+             <color>ff0000ff</color>
+             <width>2</width>
+         </LineStyle>
+     </Style>
+     
     <!-- Estilo para a linha conectando os vértices -->
     <Style id="linha_vertices_style">
         <LineStyle>
@@ -211,20 +211,15 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             rotacao_poste = dados_atual.get('rotacao_poste', '').lower().strip()
             angulo_final = bissetriz  # valor padrão
             
-            if rotacao_poste == 'tang':
-                # Tangente: mantém na bissetriz (valor padrão)
+            if rotacao_poste == 'tang' or rotacao_poste == 'tangente':
                 angulo_final = bissetriz
-            elif rotacao_poste == 'bissetriz1':
-                # Bissetriz1: mantém na bissetriz
+            elif rotacao_poste == 'bissetriz1' or rotacao_poste == 'bicetriz1':
                 angulo_final = bissetriz
-            elif rotacao_poste == 'bissetriz2':
-                # Bissetriz2: 90 graus da bissetriz
+            elif rotacao_poste == 'bissetriz2' or rotacao_poste == 'bicetriz2':
                 angulo_final = bissetriz + 90
             elif rotacao_poste == 'topo1':
-                # Topo1: sentido do vértice anterior para o atual + 90 graus
                 angulo_final = angulo_anterior + 90
             elif rotacao_poste == 'topo2':
-                # Topo2: sentido do vértice atual para o posterior + 90 graus
                 angulo_final = angulo_posterior + 90
             
             # Normaliza o ângulo final para ficar entre 0 e 360 graus
@@ -238,8 +233,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             largura = 5.0  # 5 metros
             altura = 3.0   # 3 metros
             
-            # Calcula os quatro vértices do quadrado
-            # Ponto central do quadrado será o vértice atual
+            # Calcula os vértices do quadrado
             centro_lat, centro_lon = pt_atual
             
             # Vértice 1: frente-esquerda
@@ -268,7 +262,26 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             estrutura_bt_nv2 = dados_atual['estrutura_bt_nv2'] if dados_atual['estrutura_bt_nv2'] != '' else 'N/A'
             
             # Cria o texto visível que aparecerá na tela com todas as informações das estruturas
-            texto_visivel = f"Seq:{sequencia} | P:{poste} | MT:{estrutura_mt} | MT2:{estrutura_mt_nv2} | MT3:{estrutura_mt_nv3} | BT:{estrutura_bt} | BT2:{estrutura_bt_nv2}"
+            # Filtra apenas os valores que não são 'nan' ou vazios
+            valores_visiveis = []
+            
+            if sequencia is not None and str(sequencia) != 'N/A':
+                valores_visiveis.append(str(sequencia))
+            if poste and poste != 'N/A' and poste != 'nan':
+                valores_visiveis.append(poste)
+            if estrutura_mt and estrutura_mt != 'N/A' and estrutura_mt != 'nan':
+                valores_visiveis.append(estrutura_mt)
+            if estrutura_mt_nv2 and estrutura_mt_nv2 != 'N/A' and estrutura_mt_nv2 != 'nan':
+                valores_visiveis.append(estrutura_mt_nv2)
+            if estrutura_mt_nv3 and estrutura_mt_nv3 != 'N/A' and estrutura_mt_nv3 != 'nan':
+                valores_visiveis.append(estrutura_mt_nv3)
+            if estrutura_bt and estrutura_bt != 'N/A' and estrutura_bt != 'nan':
+                valores_visiveis.append(estrutura_bt)
+            if estrutura_bt_nv2 and estrutura_bt_nv2 != 'N/A' and estrutura_bt_nv2 != 'nan':
+                valores_visiveis.append(estrutura_bt_nv2)
+            
+            # Junta os valores com | apenas se houver valores válidos
+            texto_visivel = " | ".join(valores_visiveis) if valores_visiveis else "Sem dados"
             
             # Determina o tipo de poste baseado no texto após a "/"
             tipo_poste_numero = "padrao"
@@ -421,7 +434,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         
         print(f"Arquivo KML '{caminho_completo}' gerado com sucesso.")
         print(f"Total de vértices: {len(pontos)}")
-        print(f"Total de quadrados criados: {len(pontos) - 2}")
+        print(f"Total de quadrados criados: {len(pontos)}")
         print(f"Linha conectando vértices criada")
         print(f"Labels visíveis adicionados com informações: Sequência, Poste, Estrutura MT, Estrutura BT")
         return True

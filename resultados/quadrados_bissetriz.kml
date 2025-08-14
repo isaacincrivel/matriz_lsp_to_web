@@ -43,19 +43,19 @@
         </LineStyle>
     </Style>
     
-    <!-- Estilo padrão para outros tipos -->
-    <Style id="quadrado_style">
-        <PolyStyle>
-            <color>ff0000ff</color>
-            <fill>1</fill>
-            <outline>1</outline>
-        </PolyStyle>
-        <LineStyle>
-            <color>ff0000ff</color>
-            <width>2</width>
-        </LineStyle>
-    </Style>
-    
+         <!-- Estilo padrão para outros tipos -->
+     <Style id="quadrado_style">
+         <PolyStyle>
+             <color>ff0000ff</color>
+             <fill>1</fill>
+             <outline>1</outline>
+         </PolyStyle>
+         <LineStyle>
+             <color>ff0000ff</color>
+             <width>2</width>
+         </LineStyle>
+     </Style>
+     
     <!-- Estilo para a linha conectando os vértices -->
     <Style id="linha_vertices_style">
         <LineStyle>
@@ -138,7 +138,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:0 | P:nan | MT:nan | MT2:N3 | MT3:nan | BT:nan | BT2:nan</name>
+        <name>0 | N3</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 0</h3>
@@ -208,7 +208,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:1 | P:PDT11/1000 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>1 | PDT11/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 1</h3>
@@ -270,7 +270,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:2 | P:PDT10/150 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>2 | PDT10/150 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 2</h3>
@@ -332,7 +332,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:3 | P:PDT11/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>3 | PDT11/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 3</h3>
@@ -394,7 +394,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:4 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>4 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 4</h3>
@@ -456,7 +456,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:5 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>5 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 5</h3>
@@ -518,7 +518,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:6 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>6 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 6</h3>
@@ -588,7 +588,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:7 | P:PDT10/600 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>7 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 7</h3>
@@ -650,7 +650,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:8 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>8 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 8</h3>
@@ -712,7 +712,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:9 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>9 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 9</h3>
@@ -774,7 +774,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:10 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>10 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 10</h3>
@@ -836,7 +836,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:11 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>11 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 11</h3>
@@ -898,7 +898,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:12 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>12 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 12</h3>
@@ -926,7 +926,7 @@
             <p><strong>Ângulo Posterior:</strong> 127.61°</p>
             <p><strong>Bissetriz:</strong> 122.83°</p>
             <p><strong>Ângulo Final (Rotação):</strong> 122.83°</p>
-            <p><strong>Rotacao Poste:</strong> BISSETRIZ1</p>
+            <p><strong>Rotacao Poste:</strong> NAN</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
             <p><strong>Tipo de Poste:</strong> 1000</p>
             <hr>
@@ -942,7 +942,7 @@
                 <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
                 <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>BISSETRIZ1</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>NAN</td></tr>
             </table>
             ]]>
         </description>
@@ -968,7 +968,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:13 | P:PDT10/1000 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>13 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 13</h3>
@@ -1038,7 +1038,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:14 | P:PDT10/1000 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>14 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 14</h3>
@@ -1108,7 +1108,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:15 | P:PDT10/1000 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>15 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 15</h3>
@@ -1170,7 +1170,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:16 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>16 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 16</h3>
@@ -1232,7 +1232,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:17 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>17 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 17</h3>
@@ -1302,7 +1302,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:18 | P:PDT10/600 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>18 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 18</h3>
@@ -1364,7 +1364,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:19 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>19 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 19</h3>
@@ -1426,7 +1426,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:20 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>20 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 20</h3>
@@ -1488,7 +1488,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:21 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>21 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 21</h3>
@@ -1550,7 +1550,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:22 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>22 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 22</h3>
@@ -1612,7 +1612,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:23 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>23 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 23</h3>
@@ -1640,7 +1640,7 @@
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
             <p><strong>Bissetriz:</strong> 343.59°</p>
             <p><strong>Ângulo Final (Rotação):</strong> 343.59°</p>
-            <p><strong>Rotacao Poste:</strong> BISSETRIZ1</p>
+            <p><strong>Rotacao Poste:</strong> NAN</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
             <p><strong>Tipo de Poste:</strong> 600</p>
             <hr>
@@ -1656,7 +1656,7 @@
                 <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>BISSETRIZ1</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>NAN</td></tr>
             </table>
             ]]>
         </description>
@@ -1682,7 +1682,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:24 | P:PDT10/600 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>24 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 24</h3>
@@ -1744,7 +1744,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:25 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>25 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 25</h3>
@@ -1806,7 +1806,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:26 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>26 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 26</h3>
@@ -1868,7 +1868,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:27 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>27 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 27</h3>
@@ -1938,7 +1938,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:28 | P:PDT10/600 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>28 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 28</h3>
@@ -2000,7 +2000,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:29 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>29 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 29</h3>
@@ -2062,7 +2062,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:30 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>30 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 30</h3>
@@ -2124,7 +2124,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:31 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>31 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 31</h3>
@@ -2194,7 +2194,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:32 | P:PDT10/600 | MT:UP4 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>32 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 32</h3>
@@ -2256,7 +2256,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:33 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>33 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 33</h3>
@@ -2318,7 +2318,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:34 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>34 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 34</h3>
@@ -2380,7 +2380,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:35 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>35 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 35</h3>
@@ -2442,7 +2442,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:36 | P:PDT10/300 | MT:UP1 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>36 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 36</h3>
@@ -2512,7 +2512,7 @@
     </Placemark>
 
     <Placemark>
-        <name>Seq:37 | P:PDT10/600 | MT:U3 | MT2:nan | MT3:nan | BT:nan | BT2:nan</name>
+        <name>37 | PDT10/600 | U3</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 37</h3>
