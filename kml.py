@@ -117,11 +117,15 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 dados_pontos.append({
                     'sequencia': index,  # Usa o índice do DataFrame
                     'numero_poste': row['numero_poste'],
-                    'tipo_poste': row['tipo_poste'],
+                    'tipo_poste': row.get('tipo_poste', ''),  # Pode não existir mais
                     'estrutura_mt': row['estrutura_mt'],
+                    'estrutura_mt_nv2': row.get('estrutura_mt_nv2', ''),
+                    'estrutura_mt_nv3': row.get('estrutura_mt_nv3', ''),
                     'estrutura_bt': row['estrutura_bt'],
+                    'estrutura_bt_nv2': row.get('estrutura_bt_nv2', ''),
                     'poste': row['poste'],
-                    'base': row['base']
+                    'base': row['base'],
+                    'rotacao_poste': row.get('rotacao_poste', '')
                 })
         else:
             # É um dicionário - precisa converter para o formato esperado
@@ -135,9 +139,13 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                     'numero_poste': dados_vertex.get('numero_poste', ''),
                     'tipo_poste': dados_vertex.get('tipo_poste', ''),
                     'estrutura_mt': dados_vertex.get('estrutura_mt', ''),
+                    'estrutura_mt_nv2': dados_vertex.get('estrutura_mt_nv2', ''),
+                    'estrutura_mt_nv3': dados_vertex.get('estrutura_mt_nv3', ''),
                     'estrutura_bt': dados_vertex.get('estrutura_bt', ''),
+                    'estrutura_bt_nv2': dados_vertex.get('estrutura_bt_nv2', ''),
                     'poste': dados_vertex.get('poste', ''),
-                    'base': dados_vertex.get('base', '')
+                    'base': dados_vertex.get('base', ''),
+                    'rotacao_poste': dados_vertex.get('rotacao_poste', '')
                 })
         
         # Adiciona a linha conectando todos os vértices
@@ -163,15 +171,27 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
     </Placemark>
 """
         
-        # Para cada ponto (exceto o primeiro e último), cria um quadrado na bissetriz
-        for i in range(1, len(pontos) - 1):
-            pt_anterior = pontos[i - 1]
+        # Para cada ponto, cria um quadrado na bissetriz
+        for i in range(len(pontos)):
             pt_atual = pontos[i]
-            pt_posterior = pontos[i + 1]
             
-            # Calcula os ângulos para o ponto anterior e posterior
-            angulo_anterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1])
-            angulo_posterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1])
+            # Para pontos extremos, usa lógica especial
+            if i == 0:  # Primeiro ponto (derivação)
+                pt_posterior = pontos[i + 1]
+                # Para o primeiro ponto, usa o ângulo do primeiro para o segundo
+                angulo_anterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1]) - 180
+                angulo_posterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1])
+            elif i == len(pontos) - 1:  # Último ponto
+                pt_anterior = pontos[i - 1]
+                # Para o último ponto, usa o ângulo do penúltimo para o último
+                angulo_anterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1])
+                angulo_posterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1]) + 180
+            else:  # Pontos intermediários
+                pt_anterior = pontos[i - 1]
+                pt_posterior = pontos[i + 1]
+                # Calcula os ângulos para o ponto anterior e posterior
+                angulo_anterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1])
+                angulo_posterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1])
             
             # Calcula a bissetriz (média dos ângulos)
             # Se a diferença for maior que 180°, ajusta
@@ -184,8 +204,37 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             
             bissetriz = (angulo_anterior + angulo_posterior) / 2
             
+            # Obtém os dados do ponto atual
+            dados_atual = dados_pontos[i]
+            
+            # Aplica a rotação baseada no campo rotacao_poste
+            rotacao_poste = dados_atual.get('rotacao_poste', '').lower().strip()
+            angulo_final = bissetriz  # valor padrão
+            
+            if rotacao_poste == 'tang':
+                # Tangente: mantém na bissetriz (valor padrão)
+                angulo_final = bissetriz
+            elif rotacao_poste == 'bissetriz1':
+                # Bissetriz1: mantém na bissetriz
+                angulo_final = bissetriz
+            elif rotacao_poste == 'bissetriz2':
+                # Bissetriz2: 90 graus da bissetriz
+                angulo_final = bissetriz + 90
+            elif rotacao_poste == 'topo1':
+                # Topo1: sentido do vértice anterior para o atual + 90 graus
+                angulo_final = angulo_anterior + 90
+            elif rotacao_poste == 'topo2':
+                # Topo2: sentido do vértice atual para o posterior + 90 graus
+                angulo_final = angulo_posterior + 90
+            
+            # Normaliza o ângulo final para ficar entre 0 e 360 graus
+            while angulo_final < 0:
+                angulo_final += 360
+            while angulo_final >= 360:
+                angulo_final -= 360
+            
             # Calcula os vértices do quadrado de 5x3 metros
-            # O quadrado será orientado na direção da bissetriz
+            # O quadrado será orientado na direção do ângulo final calculado
             largura = 5.0  # 5 metros
             altura = 3.0   # 3 metros
             
@@ -194,32 +243,32 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             centro_lat, centro_lon = pt_atual
             
             # Vértice 1: frente-esquerda
-            lat1, lon1 = polar(centro_lat, centro_lon, largura/2, bissetriz - 90)
-            lat1, lon1 = polar(lat1, lon1, altura/2, bissetriz)
+            lat1, lon1 = polar(centro_lat, centro_lon, largura/2, angulo_final - 90)
+            lat1, lon1 = polar(lat1, lon1, altura/2, angulo_final)
             
             # Vértice 2: frente-direita
-            lat2, lon2 = polar(centro_lat, centro_lon, largura/2, bissetriz + 90)
-            lat2, lon2 = polar(lat2, lon2, altura/2, bissetriz)
+            lat2, lon2 = polar(centro_lat, centro_lon, largura/2, angulo_final + 90)
+            lat2, lon2 = polar(lat2, lon2, altura/2, angulo_final)
             
             # Vértice 3: trás-direita
-            lat3, lon3 = polar(centro_lat, centro_lon, largura/2, bissetriz + 90)
-            lat3, lon3 = polar(lat3, lon3, altura/2, bissetriz + 180)
+            lat3, lon3 = polar(centro_lat, centro_lon, largura/2, angulo_final + 90)
+            lat3, lon3 = polar(lat3, lon3, altura/2, angulo_final + 180)
             
             # Vértice 4: trás-esquerda
-            lat4, lon4 = polar(centro_lat, centro_lon, largura/2, bissetriz - 90)
-            lat4, lon4 = polar(lat4, lon4, altura/2, bissetriz + 180)
-            
-            # Obtém os dados do ponto atual
-            dados_atual = dados_pontos[i]
+            lat4, lon4 = polar(centro_lat, centro_lon, largura/2, angulo_final - 90)
+            lat4, lon4 = polar(lat4, lon4, altura/2, angulo_final + 180)
             
             # Cria o texto visível para o quadrado com as informações solicitadas
             sequencia = dados_atual['sequencia'] if dados_atual['sequencia'] != '' else 'N/A'
             poste = dados_atual['poste'] if dados_atual['poste'] != '' else 'N/A'
             estrutura_mt = dados_atual['estrutura_mt'] if dados_atual['estrutura_mt'] != '' else 'N/A'
+            estrutura_mt_nv2 = dados_atual['estrutura_mt_nv2'] if dados_atual['estrutura_mt_nv2'] != '' else 'N/A'
+            estrutura_mt_nv3 = dados_atual['estrutura_mt_nv3'] if dados_atual['estrutura_mt_nv3'] != '' else 'N/A'
             estrutura_bt = dados_atual['estrutura_bt'] if dados_atual['estrutura_bt'] != '' else 'N/A'
+            estrutura_bt_nv2 = dados_atual['estrutura_bt_nv2'] if dados_atual['estrutura_bt_nv2'] != '' else 'N/A'
             
-            # Cria o texto visível que aparecerá na tela
-            texto_visivel = f"Seq:{sequencia} | P:{poste} | MT:{estrutura_mt} | BT:{estrutura_bt}"
+            # Cria o texto visível que aparecerá na tela com todas as informações das estruturas
+            texto_visivel = f"Seq:{sequencia} | P:{poste} | MT:{estrutura_mt} | MT2:{estrutura_mt_nv2} | MT3:{estrutura_mt_nv3} | BT:{estrutura_bt} | BT2:{estrutura_bt_nv2}"
             
             # Determina o tipo de poste baseado no texto após a "/"
             tipo_poste_numero = "padrao"
@@ -249,6 +298,8 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <p><strong>Ângulo Anterior:</strong> {angulo_anterior:.2f}°</p>
             <p><strong>Ângulo Posterior:</strong> {angulo_posterior:.2f}°</p>
             <p><strong>Bissetriz:</strong> {bissetriz:.2f}°</p>
+            <p><strong>Ângulo Final (Rotação):</strong> {angulo_final:.2f}°</p>
+            <p><strong>Rotacao Poste:</strong> {rotacao_poste.upper()}</p>
             <p><strong>Dimensões:</strong> 5m x 3m</p>
             <p><strong>Tipo de Poste:</strong> {tipo_poste_numero}</p>
             <hr>
@@ -257,10 +308,14 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 <tr><td><strong>Sequência:</strong></td><td>{sequencia}</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>{dados_atual['numero_poste'] if dados_atual['numero_poste'] else 'N/A'}</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>{dados_atual['tipo_poste'] if dados_atual['tipo_poste'] else 'N/A'}</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>{estrutura_mt}</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>{estrutura_bt}</td></tr>
+                <tr><td><strong>Estrutura MT NV1:</strong></td><td>{estrutura_mt}</td></tr>
+                <tr><td><strong>Estrutura MT NV2:</strong></td><td>{estrutura_mt_nv2}</td></tr>
+                <tr><td><strong>Estrutura MT NV3:</strong></td><td>{estrutura_mt_nv3}</td></tr>
+                <tr><td><strong>Estrutura BT NV1:</strong></td><td>{estrutura_bt}</td></tr>
+                <tr><td><strong>Estrutura BT NV2:</strong></td><td>{estrutura_bt_nv2}</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>{poste}</td></tr>
                 <tr><td><strong>Base:</strong></td><td>{dados_atual['base'] if dados_atual['base'] else 'N/A'}</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>{rotacao_poste.upper()}</td></tr>
             </table>
             ]]>
         </description>
@@ -279,14 +334,14 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             if tipo_poste_numero == "600":
                 # Adiciona metade pintada na diagonal (triângulo)
                 # Calcula os pontos para o triângulo diagonal
-                tri_lat1, tri_lon1 = polar(centro_lat, centro_lon, largura/2, bissetriz - 90)
-                tri_lat1, tri_lon1 = polar(tri_lat1, tri_lon1, altura/2, bissetriz)
+                tri_lat1, tri_lon1 = polar(centro_lat, centro_lon, largura/2, angulo_final - 90)
+                tri_lat1, tri_lon1 = polar(tri_lat1, tri_lon1, altura/2, angulo_final)
                 
-                tri_lat2, tri_lon2 = polar(centro_lat, centro_lon, largura/2, bissetriz + 90)
-                tri_lat2, tri_lon2 = polar(tri_lat2, tri_lon2, altura/2, bissetriz + 180)
+                tri_lat2, tri_lon2 = polar(centro_lat, centro_lon, largura/2, angulo_final + 90)
+                tri_lat2, tri_lon2 = polar(tri_lat2, tri_lon2, altura/2, angulo_final + 180)
                 
-                tri_lat3, tri_lon3 = polar(centro_lat, centro_lon, largura/2, bissetriz - 90)
-                tri_lat3, tri_lon3 = polar(tri_lat3, tri_lon3, altura/2, bissetriz + 180)
+                tri_lat3, tri_lon3 = polar(centro_lat, centro_lon, largura/2, angulo_final - 90)
+                tri_lat3, tri_lon3 = polar(tri_lat3, tri_lon3, altura/2, angulo_final + 180)
                 
                 kml_content += f"""
             <innerBoundaryIs>
@@ -304,17 +359,17 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 inner_altura = altura / 2
                 
                 # Vértices do quadrado interno
-                inner_lat1, inner_lon1 = polar(centro_lat, centro_lon, inner_largura/2, bissetriz - 90)
-                inner_lat1, inner_lon1 = polar(inner_lat1, inner_lon1, inner_altura/2, bissetriz)
+                inner_lat1, inner_lon1 = polar(centro_lat, centro_lon, inner_largura/2, angulo_final - 90)
+                inner_lat1, inner_lon1 = polar(inner_lat1, inner_lon1, inner_altura/2, angulo_final)
                 
-                inner_lat2, inner_lon2 = polar(centro_lat, centro_lon, inner_largura/2, bissetriz + 90)
-                inner_lat2, inner_lon2 = polar(inner_lat2, inner_lon2, inner_altura/2, bissetriz)
+                inner_lat2, inner_lon2 = polar(centro_lat, centro_lon, inner_largura/2, angulo_final + 90)
+                inner_lat2, inner_lon2 = polar(inner_lat2, inner_lon2, inner_altura/2, angulo_final)
                 
-                inner_lat3, inner_lon3 = polar(centro_lat, centro_lon, inner_largura/2, bissetriz + 90)
-                inner_lat3, inner_lon3 = polar(inner_lat3, inner_lon3, inner_altura/2, bissetriz + 180)
+                inner_lat3, inner_lon3 = polar(centro_lat, centro_lon, inner_largura/2, angulo_final + 90)
+                inner_lat3, inner_lon3 = polar(inner_lat3, inner_lon3, inner_altura/2, angulo_final + 180)
                 
-                inner_lat4, inner_lon4 = polar(centro_lat, centro_lon, inner_largura/2, bissetriz - 90)
-                inner_lat4, inner_lon4 = polar(inner_lat4, inner_lon4, inner_altura/2, bissetriz + 180)
+                inner_lat4, inner_lon4 = polar(centro_lat, centro_lon, inner_largura/2, angulo_final - 90)
+                inner_lat4, inner_lon4 = polar(inner_lat4, inner_lon4, inner_altura/2, angulo_final + 180)
                 
                 kml_content += f"""
             <innerBoundaryIs>

@@ -44,10 +44,10 @@
                 <tr><td><strong>Longitude:</strong></td><td>-49,224541000</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>2255555</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>EXISTENTE</td></tr>
-                <tr><td><strong>Estrutura MT:</strong></td><td>U3</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>EXIST</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BE</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -70,8 +70,8 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT11/1000</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
             ]]>
@@ -95,9 +95,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/150</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -120,9 +120,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT11/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -145,9 +145,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -170,9 +170,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -195,9 +195,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -220,7 +220,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
@@ -245,9 +245,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -270,9 +270,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -295,9 +295,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -320,9 +320,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -345,9 +345,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -370,9 +370,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BC</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -395,7 +395,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
@@ -420,7 +420,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
@@ -445,9 +445,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -470,9 +470,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -495,7 +495,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
@@ -520,9 +520,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -545,9 +545,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -570,9 +570,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -595,9 +595,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -620,9 +620,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -645,9 +645,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BC</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -670,9 +670,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -695,9 +695,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -720,9 +720,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -745,7 +745,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
@@ -770,9 +770,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -795,9 +795,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -820,9 +820,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -845,7 +845,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
@@ -870,9 +870,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -895,9 +895,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -920,9 +920,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -945,9 +945,9 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>BS</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
             </table>
             ]]>
             </description>
@@ -970,7 +970,7 @@
                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
                 <tr><td><strong>Estrutura MT:</strong></td><td>U3</td></tr>
-                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>BC</td></tr>
             </table>
