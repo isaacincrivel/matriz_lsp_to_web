@@ -116,8 +116,15 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         if hasattr(pontos_matriz, 'iterrows'):
             # É um DataFrame
             for index, row in pontos_matriz.iterrows():
-                lat = float(str(row['lat']).replace(',', '.'))
-                lon = float(str(row['long']).replace(',', '.'))
+                # Verifica se as coordenadas não estão vazias
+                lat_str = str(row['lat']).strip()
+                lon_str = str(row['long']).strip()
+                
+                if lat_str == '' or lon_str == '' or lat_str == 'nan' or lon_str == 'nan':
+                    continue  # Pula linhas com coordenadas vazias
+                
+                lat = float(lat_str.replace(',', '.'))
+                lon = float(lon_str.replace(',', '.'))
                 pontos.append((lat, lon))
                 dados_pontos.append({
                     'sequencia': index,  # Usa o índice do DataFrame

@@ -46,7 +46,7 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
     
     if elemento_tipo == "base_concreto" and dados_elemento == "BC":
         # Base de concreto: octógono de raio 6 metros
-        raio = 6.0
+        raio = 4.0
         
         # Cria um octógono (8 lados) com raio de 6 metros
         pontos_octogono = []
