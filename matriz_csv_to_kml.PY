@@ -11,12 +11,38 @@ from colocar_poste_estrutura import colocar_poste_estrutura
 from marcar_vertices_angulo_deflexao import marcar_vertices_angulo_deflexao
 
 ##################################################################################################################################
-def gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, lista_nao_intercalar):
+def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, lista_nao_intercalar):
     # Carrega o arquivo matriz_teste.csv para obter todas as colunas
     matriz_teste = pd.read_csv("matriz_teste.csv", sep=";", decimal=",")
     
+    # Filtra apenas as linhas com status "Implantar" para obter os vértices reais
+    matriz_teste_filtrada = matriz_teste[matriz_teste['status'] == 'Implantar'].copy()
+    
+    # Cria a lista de vértices dinamicamente a partir do CSV
+    vertices = []
+    for index, row in matriz_teste_filtrada.iterrows():
+        # Verifica se as coordenadas não estão vazias
+        lat_str = str(row['lat']).strip()
+        lon_str = str(row['long']).strip()
+        
+        if lat_str == '' or lon_str == '' or lat_str == 'nan' or lon_str == 'nan':
+            continue  # Pula linhas com coordenadas vazias
+        
+        # Converte coordenadas para float
+        lat = float(lat_str.replace(',', '.'))
+        lon = float(lon_str.replace(',', '.'))
+        sequencia = int(row['sequencia'])
+        
+        # Adiciona o vértice à lista
+        vertices.append((lat, lon, sequencia, ""))
+    
+    # Ordena os vértices por sequência para garantir a ordem correta
+    vertices.sort(key=lambda x: x[2])
+    
+    print(f"Vértices carregados dinamicamente do CSV: {len(vertices)} pontos")
+    print(f"Sequências encontradas: {[v[2] for v in vertices]}")
+    
     # Cria DataFrame com todas as colunas do CSV original + colunas adicionais necessárias
-    # Remove colunas duplicadas que já existem no CSV
     colunas_base = ["trecho", "sequencia", "lat", "long", "numero_poste", "tipo_poste"]
     colunas_csv = list(matriz_teste.columns)  # Todas as colunas do CSV original
     
@@ -41,9 +67,6 @@ def gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_
 
     new_vertices = intercalar_vertices(new_vertices, lista_nao_intercalar, gap_size)
 
-    # Filtra apenas as linhas com status "Implantar" e preserva TODAS as colunas do CSV
-    matriz_teste_filtrada = matriz_teste[matriz_teste['status'] == 'Implantar'].copy()
-    
     # Preserva todas as colunas originais do CSV sem renomear
     # Não renomeia mais as colunas para preservar os dados originais
 
@@ -90,57 +113,8 @@ def main():
     tipo_poste = "EXISTENTE"
     lista_nao_intercalar = [2, 4] 
 
-
-    ##variaveis do modulo
-    
-
-
-
-
-
-    vertices = [
-        (-17.041935, -49.224541, 0, ""), #0
-        (-17.04206183, -49.22429193, 1, ""), #1
-        (-17.04234952, -49.22372695, 2, ""), #2
-        (-17.0426372, -49.22316196, 3, ""), #3
-        (-17.04292489, -49.22259697, 4, ""), #4
-        (-17.04321258, -49.22203198, 5, ""), #5
-        (-17.04350026, -49.22146699, 6, ""), #6
-        (-17.04378794, -49.220902, 7, ""), #7
-        (-17.04407562, -49.220337, 8, ""), #8
-        (-17.0443633, -49.21977201, 9, ""), #9
-        (-17.04465098, -49.21920701, 10, ""), #10
-        (-17.04493865, -49.21864201, 11, ""), #11
-        (-17.04522633, -49.218077, 12, ""), #12
-        (-17.045514, -49.217512, 13, ""), #13
-        (-17.047802, -49.214406, 14, ""), #14
-        (-17.047725, -49.213698, 15, ""), #15
-        (-17.046803, -49.213231, 16, ""), #16
-        (-17.0462475, -49.2130015, 17, ""), #17
-        (-17.045692, -49.212772, 18, ""), #18
-        (-17.04507267, -49.21286267, 19, ""), #19
-        (-17.04445333, -49.21295333, 20, ""), #20
-        (-17.043834, -49.213044, 21, ""), #21
-        (-17.043305, -49.21327934, 22, ""), #22
-        (-17.042776, -49.21351467, 23, ""), #23
-        (-17.042247, -49.21375, 24, ""), #24
-        (-17.04167125, -49.21385388, 25, ""), #25
-        (-17.0410955, -49.21395775, 26, ""), #26
-        (-17.04051975, -49.21406163, 27, ""), #27
-        (-17.039944, -49.21416551, 28, ""), #28
-        (-17.03936825, -49.21426938, 29, ""), #29
-        (-17.0387925, -49.21437325, 30, ""), #30
-        (-17.03821675, -49.21447713, 31, ""), #31
-        (-17.037641, -49.214581, 32, ""), #32
-        (-17.037403, -49.2151458, 33, ""), #33
-        (-17.03716501, -49.2157106, 34, ""), #34
-        (-17.03692701, -49.2162754, 35, ""), #35
-        (-17.036689, -49.2168402, 36, ""), #36
-        (-17.036451, -49.217405, 37, "") #37
-
-        #lat, lon, sequencia original vertice, encabecamento, 
-    ]                          
-    matriz = gerar_matriz(trecho, module_naGIme, module_data, vertices, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, lista_nao_intercalar)
+    # Agora os vértices são carregados dinamicamente do CSV
+    matriz = gerar_matriz(trecho, module_naGIme, module_data, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, lista_nao_intercalar)
 
     # Salva o arquivo CSV na pasta resultados
     salvar_csv(matriz, "matriz_resultado.csv")
