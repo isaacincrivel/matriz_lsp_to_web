@@ -12,9 +12,14 @@ T1;9;-17.0443633;-49.21977201;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;n
 T1;10;-17.04465098;-49.21920701;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;11;-17.04493865;-49.21864201;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;12;-17.04522633;-49.218077;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
-T1;13;-17.045514;-49.217512;;PDT10/1000;Implantar;nan;UP4;nan;nan;nan;nan;1EA;nan;nan;TRAFO_150KVA;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz1;nan;nan;nan
+T1;13;-17.045514;-49.217512;;PDT10/1000;Implantar;nan;UP4;nan;nan;nan;nan;1EA;nan;nan;TRAFO_150KVA;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz1;nan;nan
+T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 T1;14;-17.047802;-49.214406;;PDT10/1000;Implantar;nan;UP4;nan;nan;nan;nan;nan;nan;BC;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz2;nan;nan
 T1;15;-17.047725;-49.213698;;PDT10/1000;Implantar;nan;UP4;nan;nan;nan;nan;nan;nan;BC;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz2;nan;nan
+T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 T1;16;-17.046803;-49.213231;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;17;-17.0462475;-49.2130015;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;18;-17.045692;-49.212772;;PDT10/600;Implantar;nan;UP4;nan;nan;nan;nan;nan;nan;BC;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz2;nan;nan
@@ -23,7 +28,7 @@ T1;20;-17.04445333;-49.21295333;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan
 T1;21;-17.043834;-49.213044;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;22;-17.043305;-49.21327934;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;23;-17.042776;-49.21351467;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
-T1;24;-17.042247;-49.21375;;PDT10/600;Implantar;nan;UP4;nan;nan;nan;nan;1EA;nan;nan;TRAFO_75KVA;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz1;nan;nan;nan
+T1;24;-17.042247;-49.21375;;PDT10/600;Implantar;nan;UP4;nan;nan;nan;nan;1EA;nan;nan;TRAFO_75KVA;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;bissetriz1;nan;nan
 T1;25;-17.04167125;-49.21385388;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;26;-17.0410955;-49.21395775;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;27;-17.04051975;-49.21406163;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
@@ -37,8 +42,3 @@ T1;34;-17.03716501;-49.2157106;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;
 T1;35;-17.03692701;-49.2162754;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;36;-17.036689;-49.2168402;;PDT10/300;Implantar;nan;UP1;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;tangente;nan;nan
 T1;37;-17.036451;-49.217405;;PDT10/600;Implantar;nan;U3;nan;nan;nan;nan;nan;nan;BC;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;nan;topo2;nan;nan
-T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-T1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

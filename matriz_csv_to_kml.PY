@@ -76,13 +76,24 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     
     # Adiciona os dados da matriz de pontos ao DataFrame
     for i, vertex in enumerate(new_vertices):
-        # Busca dados correspondentes na matriz_teste_filtrada baseado na sequência
+        # Busca dados correspondentes na matriz_teste_filtrada baseado na sequência original
         dados_csv = {}
-        if i < len(matriz_teste_filtrada):
-            row = matriz_teste_filtrada.iloc[i]
+        
+        # Tenta encontrar o vértice original correspondente
+        sequencia_original = vertex[2] if len(vertex) > 2 else i
+        
+        # Busca na matriz_teste_filtrada pela sequência original
+        row_correspondente = matriz_teste_filtrada[matriz_teste_filtrada['sequencia'] == sequencia_original]
+        
+        if not row_correspondente.empty:
+            row = row_correspondente.iloc[0]
             # Copia TODAS as colunas do CSV original
             for coluna in matriz_teste.columns:
                 dados_csv[coluna] = str(row.get(coluna, ""))
+        else:
+            # Se não encontrar, usa dados vazios
+            for coluna in matriz_teste.columns:
+                dados_csv[coluna] = ""
         
         # Cria nova linha com todas as colunas
         new_row = {

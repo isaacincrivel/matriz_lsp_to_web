@@ -972,7 +972,7 @@
             <p><strong>Ângulo Posterior:</strong> 127.61°</p>
             <p><strong>Bissetriz:</strong> 122.83°</p>
             <p><strong>Ângulo Final (Rotação):</strong> 122.83°</p>
-            <p><strong>Rotacao Poste:</strong> NAN</p>
+            <p><strong>Rotacao Poste:</strong> BISSETRIZ1</p>
             <p><strong>Base Concreto:</strong> nan</p>
                          <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
 
@@ -990,7 +990,7 @@
                 <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
                 <tr><td><strong>Base:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>NAN</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>BISSETRIZ1</td></tr>
             </table>
             ]]>
         </description>
@@ -1072,7 +1072,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 14</p>
-            <p><strong>Sequência:</strong> 14</p>
+            <p><strong>Sequência:</strong> 18</p>
             <p><strong>Coordenadas:</strong> -17.047802000, -49.214406000</p>
             <p><strong>Ângulo Anterior:</strong> 127.61°</p>
             <p><strong>Ângulo Posterior:</strong> 83.51°</p>
@@ -1085,7 +1085,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>14</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1114,11 +1114,11 @@
     </Placemark>
 
     <Placemark>
-        <name>14 | PDT10/1000 | UP4</name>
+        <name>18 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 14</h3>
-            <p><strong>Sequência:</strong> 14</p>
+            <p><strong>Sequência:</strong> 18</p>
             <p><strong>Poste:</strong> PDT10/1000</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1136,7 +1136,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 14</p>
-            <p><strong>Sequência:</strong> 14</p>
+            <p><strong>Sequência:</strong> 18</p>
             <p><strong>Coordenadas:</strong> -17.047802000, -49.214406000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 195.56°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -1162,7 +1162,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 15</p>
-            <p><strong>Sequência:</strong> 15</p>
+            <p><strong>Sequência:</strong> 19</p>
             <p><strong>Coordenadas:</strong> -17.047725000, -49.213698000</p>
             <p><strong>Ângulo Anterior:</strong> 83.51°</p>
             <p><strong>Ângulo Posterior:</strong> 25.84°</p>
@@ -1175,7 +1175,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>15</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1204,11 +1204,11 @@
     </Placemark>
 
     <Placemark>
-        <name>15 | PDT10/1000 | UP4</name>
+        <name>19 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 15</h3>
-            <p><strong>Sequência:</strong> 15</p>
+            <p><strong>Sequência:</strong> 19</p>
             <p><strong>Poste:</strong> PDT10/1000</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1226,7 +1226,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 15</p>
-            <p><strong>Sequência:</strong> 15</p>
+            <p><strong>Sequência:</strong> 19</p>
             <p><strong>Coordenadas:</strong> -17.047725000, -49.213698000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 144.67°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -1252,7 +1252,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 16</p>
-            <p><strong>Sequência:</strong> 16</p>
+            <p><strong>Sequência:</strong> 21</p>
             <p><strong>Coordenadas:</strong> -17.046803000, -49.213231000</p>
             <p><strong>Ângulo Anterior:</strong> 25.84°</p>
             <p><strong>Ângulo Posterior:</strong> 21.55°</p>
@@ -1265,7 +1265,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>16</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1294,11 +1294,11 @@
     </Placemark>
 
     <Placemark>
-        <name>16 | PDT10/300 | UP1</name>
+        <name>21 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 16</h3>
-            <p><strong>Sequência:</strong> 16</p>
+            <p><strong>Sequência:</strong> 21</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1316,7 +1316,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 17</p>
-            <p><strong>Sequência:</strong> 17</p>
+            <p><strong>Sequência:</strong> 22</p>
             <p><strong>Coordenadas:</strong> -17.046247500, -49.213001500</p>
             <p><strong>Ângulo Anterior:</strong> 21.55°</p>
             <p><strong>Ângulo Posterior:</strong> 21.55°</p>
@@ -1329,7 +1329,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>17</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1358,11 +1358,11 @@
     </Placemark>
 
     <Placemark>
-        <name>17 | PDT10/300 | UP1</name>
+        <name>22 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 17</h3>
-            <p><strong>Sequência:</strong> 17</p>
+            <p><strong>Sequência:</strong> 22</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1380,7 +1380,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 18</p>
-            <p><strong>Sequência:</strong> 18</p>
+            <p><strong>Sequência:</strong> 23</p>
             <p><strong>Coordenadas:</strong> -17.045692000, -49.212772000</p>
             <p><strong>Ângulo Anterior:</strong> 381.55°</p>
             <p><strong>Ângulo Posterior:</strong> 352.03°</p>
@@ -1393,7 +1393,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1422,11 +1422,11 @@
     </Placemark>
 
     <Placemark>
-        <name>18 | PDT10/600 | UP4</name>
+        <name>23 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 18</h3>
-            <p><strong>Sequência:</strong> 18</p>
+            <p><strong>Sequência:</strong> 23</p>
             <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1444,7 +1444,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 18</p>
-            <p><strong>Sequência:</strong> 18</p>
+            <p><strong>Sequência:</strong> 23</p>
             <p><strong>Coordenadas:</strong> -17.045692000, -49.212772000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 96.79°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -1470,7 +1470,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 19</p>
-            <p><strong>Sequência:</strong> 19</p>
+            <p><strong>Sequência:</strong> 24</p>
             <p><strong>Coordenadas:</strong> -17.045072670, -49.212862670</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
             <p><strong>Ângulo Posterior:</strong> 352.03°</p>
@@ -1483,7 +1483,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1512,11 +1512,11 @@
     </Placemark>
 
     <Placemark>
-        <name>19 | PDT10/300 | UP1</name>
+        <name>24 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 19</h3>
-            <p><strong>Sequência:</strong> 19</p>
+            <p><strong>Sequência:</strong> 24</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1534,7 +1534,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 20</p>
-            <p><strong>Sequência:</strong> 20</p>
+            <p><strong>Sequência:</strong> 25</p>
             <p><strong>Coordenadas:</strong> -17.044453330, -49.212953330</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
             <p><strong>Ângulo Posterior:</strong> 352.03°</p>
@@ -1547,7 +1547,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>20</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1576,11 +1576,11 @@
     </Placemark>
 
     <Placemark>
-        <name>20 | PDT10/300 | UP1</name>
+        <name>25 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 20</h3>
-            <p><strong>Sequência:</strong> 20</p>
+            <p><strong>Sequência:</strong> 25</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1598,7 +1598,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 21</p>
-            <p><strong>Sequência:</strong> 21</p>
+            <p><strong>Sequência:</strong> 26</p>
             <p><strong>Coordenadas:</strong> -17.043834000, -49.213044000</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
             <p><strong>Ângulo Posterior:</strong> 336.96°</p>
@@ -1611,7 +1611,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1640,11 +1640,11 @@
     </Placemark>
 
     <Placemark>
-        <name>21 | PDT10/300 | UP1</name>
+        <name>26 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 21</h3>
-            <p><strong>Sequência:</strong> 21</p>
+            <p><strong>Sequência:</strong> 26</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1662,7 +1662,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 22</p>
-            <p><strong>Sequência:</strong> 22</p>
+            <p><strong>Sequência:</strong> 27</p>
             <p><strong>Coordenadas:</strong> -17.043305000, -49.213279340</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
             <p><strong>Ângulo Posterior:</strong> 336.96°</p>
@@ -1675,7 +1675,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1704,11 +1704,11 @@
     </Placemark>
 
     <Placemark>
-        <name>22 | PDT10/300 | UP1</name>
+        <name>27 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 22</h3>
-            <p><strong>Sequência:</strong> 22</p>
+            <p><strong>Sequência:</strong> 27</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1726,7 +1726,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 23</p>
-            <p><strong>Sequência:</strong> 23</p>
+            <p><strong>Sequência:</strong> 28</p>
             <p><strong>Coordenadas:</strong> -17.042776000, -49.213514670</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
             <p><strong>Ângulo Posterior:</strong> 336.96°</p>
@@ -1739,7 +1739,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1768,11 +1768,11 @@
     </Placemark>
 
     <Placemark>
-        <name>23 | PDT10/300 | UP1</name>
+        <name>28 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 23</h3>
-            <p><strong>Sequência:</strong> 23</p>
+            <p><strong>Sequência:</strong> 28</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1790,20 +1790,20 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 24</p>
-            <p><strong>Sequência:</strong> 24</p>
+            <p><strong>Sequência:</strong> 29</p>
             <p><strong>Coordenadas:</strong> -17.042247000, -49.213750000</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
             <p><strong>Bissetriz:</strong> 343.59°</p>
             <p><strong>Ângulo Final (Rotação):</strong> 343.59°</p>
-            <p><strong>Rotacao Poste:</strong> NAN</p>
+            <p><strong>Rotacao Poste:</strong> BISSETRIZ1</p>
             <p><strong>Base Concreto:</strong> nan</p>
                          <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
 
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1814,7 +1814,7 @@
                 <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
                 <tr><td><strong>Base:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>NAN</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>BISSETRIZ1</td></tr>
             </table>
             ]]>
         </description>
@@ -1832,11 +1832,11 @@
     </Placemark>
 
     <Placemark>
-        <name>24 | PDT10/600 | UP4</name>
+        <name>29 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 24</h3>
-            <p><strong>Sequência:</strong> 24</p>
+            <p><strong>Sequência:</strong> 29</p>
             <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1854,7 +1854,7 @@
             <![CDATA[
             <h3>Estai Âncora</h3>
             <p><strong>Vértice:</strong> 24</p>
-            <p><strong>Sequência:</strong> 24</p>
+            <p><strong>Sequência:</strong> 29</p>
             <p><strong>Comprimento:</strong> 10.0m</p>
             <p><strong>Ângulo:</strong> 613.59°</p>
             ]]>
@@ -1873,7 +1873,7 @@
             <![CDATA[
             <h3>Quadrado do Estai Âncora</h3>
             <p><strong>Vértice:</strong> 24</p>
-            <p><strong>Sequência:</strong> 24</p>
+            <p><strong>Sequência:</strong> 29</p>
             <p><strong>Dimensões:</strong> 1m x 1m</p>
             <p><strong>Ângulo:</strong> 613.59°</p>
             ]]>
@@ -1896,354 +1896,8 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 25</p>
-            <p><strong>Sequência:</strong> 25</p>
-            <p><strong>Coordenadas:</strong> -17.041671250, -49.213853880</p>
-            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
-            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
-            <p><strong>Bissetriz:</strong> 350.21°</p>
-            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
-            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
-            <p><strong>Base Concreto:</strong> nan</p>
-                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
-
-            <hr>
-            <h4>Informações do Poste:</h4>
-            <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
-                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
-
-                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
-            </table>
-            ]]>
-        </description>
-        <styleUrl>#poste_implantar_style</styleUrl>
-        <Polygon>
-            <outerBoundaryIs>
-                <LinearRing>
-                    <coordinates>
-                        -49.213871781293136,-17.041651387230104,0 -49.213843973291375,-17.041646801095453,0 -49.213835978706356,-17.041691112768873,0 -49.21386378670793,-17.04169569890353,0 -49.213871781293136,-17.041651387230104,0
-                    </coordinates>
-                </LinearRing>
-            </outerBoundaryIs>
-
-        </Polygon>
-    </Placemark>
-
-    <Placemark>
-        <name>25 | PDT10/300 | UP1</name>
-        <description>
-            <![CDATA[
-            <h3>Informações do Vértice 25</h3>
-            <p><strong>Sequência:</strong> 25</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
-            <p><strong>Estrutura BT:</strong> nan</p>
-            ]]>
-        </description>
-        <styleUrl>#label_style</styleUrl>
-        <Point>
-            <coordinates>-49.21375388,-17.04162125,0</coordinates>
-        </Point>
-    </Placemark>
-
-    <Placemark>
-        <name>Quadrado 26</name>
-        <description>
-            <![CDATA[
-            <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> 26</p>
-            <p><strong>Sequência:</strong> 26</p>
-            <p><strong>Coordenadas:</strong> -17.041095500, -49.213957750</p>
-            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
-            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
-            <p><strong>Bissetriz:</strong> 350.21°</p>
-            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
-            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
-            <p><strong>Base Concreto:</strong> nan</p>
-                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
-
-            <hr>
-            <h4>Informações do Poste:</h4>
-            <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
-                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
-
-                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
-            </table>
-            ]]>
-        </description>
-        <styleUrl>#poste_implantar_style</styleUrl>
-        <Polygon>
-            <outerBoundaryIs>
-                <LinearRing>
-                    <coordinates>
-                        -49.21397565124871,-17.041075637238933,0 -49.21394784333508,-17.04107105109056,0 -49.213939848750776,-17.041115362760046,0 -49.21396765666421,-17.041119948908417,0 -49.21397565124871,-17.041075637238933,0
-                    </coordinates>
-                </LinearRing>
-            </outerBoundaryIs>
-
-        </Polygon>
-    </Placemark>
-
-    <Placemark>
-        <name>26 | PDT10/300 | UP1</name>
-        <description>
-            <![CDATA[
-            <h3>Informações do Vértice 26</h3>
-            <p><strong>Sequência:</strong> 26</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
-            <p><strong>Estrutura BT:</strong> nan</p>
-            ]]>
-        </description>
-        <styleUrl>#label_style</styleUrl>
-        <Point>
-            <coordinates>-49.213857749999995,-17.0410455,0</coordinates>
-        </Point>
-    </Placemark>
-
-    <Placemark>
-        <name>Quadrado 27</name>
-        <description>
-            <![CDATA[
-            <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> 27</p>
-            <p><strong>Sequência:</strong> 27</p>
-            <p><strong>Coordenadas:</strong> -17.040519750, -49.214061630</p>
-            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
-            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
-            <p><strong>Bissetriz:</strong> 350.21°</p>
-            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
-            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
-            <p><strong>Base Concreto:</strong> nan</p>
-                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
-
-            <hr>
-            <h4>Informações do Poste:</h4>
-            <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
-                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
-
-                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
-            </table>
-            ]]>
-        </description>
-        <styleUrl>#poste_implantar_style</styleUrl>
-        <Polygon>
-            <outerBoundaryIs>
-                <LinearRing>
-                    <coordinates>
-                        -49.21407953137181,-17.04049988738577,0 -49.21405172358497,-17.040495301009308,0 -49.21404372862769,-17.040539612613212,0 -49.21407153641432,-17.04054419898968,0 -49.21407953137181,-17.04049988738577,0
-                    </coordinates>
-                </LinearRing>
-            </outerBoundaryIs>
-
-        </Polygon>
-    </Placemark>
-
-    <Placemark>
-        <name>27 | PDT10/300 | UP1</name>
-        <description>
-            <![CDATA[
-            <h3>Informações do Vértice 27</h3>
-            <p><strong>Sequência:</strong> 27</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
-            <p><strong>Estrutura BT:</strong> nan</p>
-            ]]>
-        </description>
-        <styleUrl>#label_style</styleUrl>
-        <Point>
-            <coordinates>-49.21396163,-17.04046975,0</coordinates>
-        </Point>
-    </Placemark>
-
-    <Placemark>
-        <name>Quadrado 28</name>
-        <description>
-            <![CDATA[
-            <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> 28</p>
-            <p><strong>Sequência:</strong> 28</p>
-            <p><strong>Coordenadas:</strong> -17.039944000, -49.214165510</p>
-            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
-            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
-            <p><strong>Bissetriz:</strong> 350.21°</p>
-            <p><strong>Ângulo Final (Rotação):</strong> 80.21°</p>
-            <p><strong>Rotacao Poste:</strong> BISSETRIZ2</p>
-            <p><strong>Base Concreto:</strong> BC</p>
-                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
-
-            <hr>
-            <h4>Informações do Poste:</h4>
-            <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
-                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
-
-                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
-                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
-                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Base Concreto:</strong></td><td>BC</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>BISSETRIZ2</td></tr>
-            </table>
-            ]]>
-        </description>
-        <styleUrl>#poste_implantar_style</styleUrl>
-        <Polygon>
-            <outerBoundaryIs>
-                <LinearRing>
-                    <coordinates>
-                        -49.21414473526244,-17.03992688468702,0 -49.214139938509355,-17.039953471683976,0 -49.21418628474147,-17.039961115310316,0 -49.21419108148796,-17.039934528313356,0 -49.21414473526244,-17.03992688468702,0
-                    </coordinates>
-                </LinearRing>
-            </outerBoundaryIs>
-
-        </Polygon>
-    </Placemark>
-
-    <Placemark>
-        <name>28 | PDT10/600 | UP4</name>
-        <description>
-            <![CDATA[
-            <h3>Informações do Vértice 28</h3>
-            <p><strong>Sequência:</strong> 28</p>
-            <p><strong>Poste:</strong> PDT10/600</p>
-            <p><strong>Estrutura MT:</strong> UP4</p>
-            <p><strong>Estrutura BT:</strong> nan</p>
-            ]]>
-        </description>
-        <styleUrl>#label_style</styleUrl>
-        <Point>
-            <coordinates>-49.21406551,-17.039893999999997,0</coordinates>
-        </Point>
-    </Placemark>
-
-    <Placemark>
-        <name>Base Concreto 28</name>
-        <description>
-            <![CDATA[
-            <h3>Base de Concreto</h3>
-            <p><strong>Vértice:</strong> 28</p>
-            <p><strong>Sequência:</strong> 28</p>
-            <p><strong>Coordenadas:</strong> -17.039944000, -49.214165510</p>
-            <p><strong>Ângulo Final (Rotação):</strong> 80.21°</p>
-            <p><strong>Raio:</strong> 4.0m</p>
-            <p><strong>Forma:</strong> Octógono (8 lados)</p>
-            <p><strong>Tipo:</strong> Base de Concreto (BC)</p>
-            ]]>
-        </description>
-        <styleUrl>#poste_implantar_style</styleUrl>
-        <Polygon>
-            <outerBoundaryIs>
-                <LinearRing>
-                    <coordinates>
-                        -49.21412843301816,-17.039937885095565,0 -49.21413477019138,-17.039964742570792,0 -49.21415911433241,-17.039979449329174,0 -49.214187204970486,-17.03997339034798,0 -49.214202586984264,-17.039950114897707,0 -49.214196249801795,-17.03992325742458,0 -49.21417190566517,-17.039908550670617,0 -49.21414381503634,-17.03991460964971,0 -49.21412843301816,-17.039937885095565,0
-                    </coordinates>
-                </LinearRing>
-            </outerBoundaryIs>
-        </Polygon>
-    </Placemark>
-
-    <Placemark>
-        <name>Quadrado 29</name>
-        <description>
-            <![CDATA[
-            <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> 29</p>
-            <p><strong>Sequência:</strong> 29</p>
-            <p><strong>Coordenadas:</strong> -17.039368250, -49.214269380</p>
-            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
-            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
-            <p><strong>Bissetriz:</strong> 350.21°</p>
-            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
-            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
-            <p><strong>Base Concreto:</strong> nan</p>
-                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
-
-            <hr>
-            <h4>Informações do Poste:</h4>
-            <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
-                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
-
-                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
-                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
-                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
-                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
-            </table>
-            ]]>
-        </description>
-        <styleUrl>#poste_implantar_style</styleUrl>
-        <Polygon>
-            <outerBoundaryIs>
-                <LinearRing>
-                    <coordinates>
-                        -49.21428728094795,-17.039348387127408,0 -49.21425947326001,-17.03934380115227,0 -49.21425147905154,-17.039388112871556,0 -49.21427928673929,-17.0393926988467,0 -49.21428728094795,-17.039348387127408,0
-                    </coordinates>
-                </LinearRing>
-            </outerBoundaryIs>
-
-        </Polygon>
-    </Placemark>
-
-    <Placemark>
-        <name>29 | PDT10/300 | UP1</name>
-        <description>
-            <![CDATA[
-            <h3>Informações do Vértice 29</h3>
-            <p><strong>Sequência:</strong> 29</p>
-            <p><strong>Poste:</strong> PDT10/300</p>
-            <p><strong>Estrutura MT:</strong> UP1</p>
-            <p><strong>Estrutura BT:</strong> nan</p>
-            ]]>
-        </description>
-        <styleUrl>#label_style</styleUrl>
-        <Point>
-            <coordinates>-49.214169379999994,-17.039318249999997,0</coordinates>
-        </Point>
-    </Placemark>
-
-    <Placemark>
-        <name>Quadrado 30</name>
-        <description>
-            <![CDATA[
-            <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> 30</p>
             <p><strong>Sequência:</strong> 30</p>
-            <p><strong>Coordenadas:</strong> -17.038792500, -49.214373250</p>
+            <p><strong>Coordenadas:</strong> -17.041671250, -49.213853880</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
             <p><strong>Bissetriz:</strong> 350.21°</p>
@@ -2275,7 +1929,7 @@
             <outerBoundaryIs>
                 <LinearRing>
                     <coordinates>
-                        -49.21439115107105,-17.038772637274253,0 -49.214363343509895,-17.03876805107101,0 -49.21435534892844,-17.03881236272472,0 -49.214383156489404,-17.038816948927963,0 -49.21439115107105,-17.038772637274253,0
+                        -49.213871781293136,-17.041651387230104,0 -49.213843973291375,-17.041646801095453,0 -49.213835978706356,-17.041691112768873,0 -49.21386378670793,-17.04169569890353,0 -49.213871781293136,-17.041651387230104,0
                     </coordinates>
                 </LinearRing>
             </outerBoundaryIs>
@@ -2287,7 +1941,7 @@
         <name>30 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
-            <h3>Informações do Vértice 30</h3>
+            <h3>Informações do Vértice 25</h3>
             <p><strong>Sequência:</strong> 30</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
@@ -2296,18 +1950,18 @@
         </description>
         <styleUrl>#label_style</styleUrl>
         <Point>
-            <coordinates>-49.21427325,-17.038742499999998,0</coordinates>
+            <coordinates>-49.21375388,-17.04162125,0</coordinates>
         </Point>
     </Placemark>
 
     <Placemark>
-        <name>Quadrado 31</name>
+        <name>Quadrado 26</name>
         <description>
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> 31</p>
+            <p><strong>Vértice:</strong> 26</p>
             <p><strong>Sequência:</strong> 31</p>
-            <p><strong>Coordenadas:</strong> -17.038216750, -49.214477130</p>
+            <p><strong>Coordenadas:</strong> -17.041095500, -49.213957750</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 350.21°</p>
             <p><strong>Bissetriz:</strong> 350.21°</p>
@@ -2339,7 +1993,7 @@
             <outerBoundaryIs>
                 <LinearRing>
                     <coordinates>
-                        -49.21449503102664,-17.03819688728308,0 -49.2144672235536,-17.038192301066125,0 -49.214459228972856,-17.0382366127159,0 -49.2144870364457,-17.038241198932848,0 -49.21449503102664,-17.03819688728308,0
+                        -49.21397565124871,-17.041075637238933,0 -49.21394784333508,-17.04107105109056,0 -49.213939848750776,-17.041115362760046,0 -49.21396765666421,-17.041119948908417,0 -49.21397565124871,-17.041075637238933,0
                     </coordinates>
                 </LinearRing>
             </outerBoundaryIs>
@@ -2351,8 +2005,354 @@
         <name>31 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
-            <h3>Informações do Vértice 31</h3>
+            <h3>Informações do Vértice 26</h3>
             <p><strong>Sequência:</strong> 31</p>
+            <p><strong>Poste:</strong> PDT10/300</p>
+            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Estrutura BT:</strong> nan</p>
+            ]]>
+        </description>
+        <styleUrl>#label_style</styleUrl>
+        <Point>
+            <coordinates>-49.213857749999995,-17.0410455,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Quadrado 27</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado na Bissetriz</h3>
+            <p><strong>Vértice:</strong> 27</p>
+            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Coordenadas:</strong> -17.040519750, -49.214061630</p>
+            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
+            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
+            <p><strong>Bissetriz:</strong> 350.21°</p>
+            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
+            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
+            <p><strong>Base Concreto:</strong> nan</p>
+                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
+
+            <hr>
+            <h4>Informações do Poste:</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+
+                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
+            </table>
+            ]]>
+        </description>
+        <styleUrl>#poste_implantar_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21407953137181,-17.04049988738577,0 -49.21405172358497,-17.040495301009308,0 -49.21404372862769,-17.040539612613212,0 -49.21407153641432,-17.04054419898968,0 -49.21407953137181,-17.04049988738577,0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+
+        </Polygon>
+    </Placemark>
+
+    <Placemark>
+        <name>32 | PDT10/300 | UP1</name>
+        <description>
+            <![CDATA[
+            <h3>Informações do Vértice 27</h3>
+            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Poste:</strong> PDT10/300</p>
+            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Estrutura BT:</strong> nan</p>
+            ]]>
+        </description>
+        <styleUrl>#label_style</styleUrl>
+        <Point>
+            <coordinates>-49.21396163,-17.04046975,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Quadrado 28</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado na Bissetriz</h3>
+            <p><strong>Vértice:</strong> 28</p>
+            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Coordenadas:</strong> -17.039944000, -49.214165510</p>
+            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
+            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
+            <p><strong>Bissetriz:</strong> 350.21°</p>
+            <p><strong>Ângulo Final (Rotação):</strong> 80.21°</p>
+            <p><strong>Rotacao Poste:</strong> BISSETRIZ2</p>
+            <p><strong>Base Concreto:</strong> BC</p>
+                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
+
+            <hr>
+            <h4>Informações do Poste:</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+
+                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base Concreto:</strong></td><td>BC</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>BISSETRIZ2</td></tr>
+            </table>
+            ]]>
+        </description>
+        <styleUrl>#poste_implantar_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21414473526244,-17.03992688468702,0 -49.214139938509355,-17.039953471683976,0 -49.21418628474147,-17.039961115310316,0 -49.21419108148796,-17.039934528313356,0 -49.21414473526244,-17.03992688468702,0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+
+        </Polygon>
+    </Placemark>
+
+    <Placemark>
+        <name>33 | PDT10/600 | UP4</name>
+        <description>
+            <![CDATA[
+            <h3>Informações do Vértice 28</h3>
+            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Poste:</strong> PDT10/600</p>
+            <p><strong>Estrutura MT:</strong> UP4</p>
+            <p><strong>Estrutura BT:</strong> nan</p>
+            ]]>
+        </description>
+        <styleUrl>#label_style</styleUrl>
+        <Point>
+            <coordinates>-49.21406551,-17.039893999999997,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Base Concreto 28</name>
+        <description>
+            <![CDATA[
+            <h3>Base de Concreto</h3>
+            <p><strong>Vértice:</strong> 28</p>
+            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Coordenadas:</strong> -17.039944000, -49.214165510</p>
+            <p><strong>Ângulo Final (Rotação):</strong> 80.21°</p>
+            <p><strong>Raio:</strong> 4.0m</p>
+            <p><strong>Forma:</strong> Octógono (8 lados)</p>
+            <p><strong>Tipo:</strong> Base de Concreto (BC)</p>
+            ]]>
+        </description>
+        <styleUrl>#poste_implantar_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21412843301816,-17.039937885095565,0 -49.21413477019138,-17.039964742570792,0 -49.21415911433241,-17.039979449329174,0 -49.214187204970486,-17.03997339034798,0 -49.214202586984264,-17.039950114897707,0 -49.214196249801795,-17.03992325742458,0 -49.21417190566517,-17.039908550670617,0 -49.21414381503634,-17.03991460964971,0 -49.21412843301816,-17.039937885095565,0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+
+    <Placemark>
+        <name>Quadrado 29</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado na Bissetriz</h3>
+            <p><strong>Vértice:</strong> 29</p>
+            <p><strong>Sequência:</strong> 34</p>
+            <p><strong>Coordenadas:</strong> -17.039368250, -49.214269380</p>
+            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
+            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
+            <p><strong>Bissetriz:</strong> 350.21°</p>
+            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
+            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
+            <p><strong>Base Concreto:</strong> nan</p>
+                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
+
+            <hr>
+            <h4>Informações do Poste:</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+
+                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
+            </table>
+            ]]>
+        </description>
+        <styleUrl>#poste_implantar_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21428728094795,-17.039348387127408,0 -49.21425947326001,-17.03934380115227,0 -49.21425147905154,-17.039388112871556,0 -49.21427928673929,-17.0393926988467,0 -49.21428728094795,-17.039348387127408,0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+
+        </Polygon>
+    </Placemark>
+
+    <Placemark>
+        <name>34 | PDT10/300 | UP1</name>
+        <description>
+            <![CDATA[
+            <h3>Informações do Vértice 29</h3>
+            <p><strong>Sequência:</strong> 34</p>
+            <p><strong>Poste:</strong> PDT10/300</p>
+            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Estrutura BT:</strong> nan</p>
+            ]]>
+        </description>
+        <styleUrl>#label_style</styleUrl>
+        <Point>
+            <coordinates>-49.214169379999994,-17.039318249999997,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Quadrado 30</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado na Bissetriz</h3>
+            <p><strong>Vértice:</strong> 30</p>
+            <p><strong>Sequência:</strong> 35</p>
+            <p><strong>Coordenadas:</strong> -17.038792500, -49.214373250</p>
+            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
+            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
+            <p><strong>Bissetriz:</strong> 350.21°</p>
+            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
+            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
+            <p><strong>Base Concreto:</strong> nan</p>
+                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
+
+            <hr>
+            <h4>Informações do Poste:</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+
+                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
+            </table>
+            ]]>
+        </description>
+        <styleUrl>#poste_implantar_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21439115107105,-17.038772637274253,0 -49.214363343509895,-17.03876805107101,0 -49.21435534892844,-17.03881236272472,0 -49.214383156489404,-17.038816948927963,0 -49.21439115107105,-17.038772637274253,0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+
+        </Polygon>
+    </Placemark>
+
+    <Placemark>
+        <name>35 | PDT10/300 | UP1</name>
+        <description>
+            <![CDATA[
+            <h3>Informações do Vértice 30</h3>
+            <p><strong>Sequência:</strong> 35</p>
+            <p><strong>Poste:</strong> PDT10/300</p>
+            <p><strong>Estrutura MT:</strong> UP1</p>
+            <p><strong>Estrutura BT:</strong> nan</p>
+            ]]>
+        </description>
+        <styleUrl>#label_style</styleUrl>
+        <Point>
+            <coordinates>-49.21427325,-17.038742499999998,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Quadrado 31</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado na Bissetriz</h3>
+            <p><strong>Vértice:</strong> 31</p>
+            <p><strong>Sequência:</strong> 36</p>
+            <p><strong>Coordenadas:</strong> -17.038216750, -49.214477130</p>
+            <p><strong>Ângulo Anterior:</strong> 350.21°</p>
+            <p><strong>Ângulo Posterior:</strong> 350.21°</p>
+            <p><strong>Bissetriz:</strong> 350.21°</p>
+            <p><strong>Ângulo Final (Rotação):</strong> 350.21°</p>
+            <p><strong>Rotacao Poste:</strong> TANGENTE</p>
+            <p><strong>Base Concreto:</strong> nan</p>
+                         <p><strong>Dimensões:</strong> 3.0m x 5.0m</p>
+
+            <hr>
+            <h4>Informações do Poste:</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                                 <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+
+                <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura MT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT NV3:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV1:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT NV2:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base Concreto:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Rotação Poste:</strong></td><td>TANGENTE</td></tr>
+            </table>
+            ]]>
+        </description>
+        <styleUrl>#poste_implantar_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -49.21449503102664,-17.03819688728308,0 -49.2144672235536,-17.038192301066125,0 -49.214459228972856,-17.0382366127159,0 -49.2144870364457,-17.038241198932848,0 -49.21449503102664,-17.03819688728308,0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+
+        </Polygon>
+    </Placemark>
+
+    <Placemark>
+        <name>36 | PDT10/300 | UP1</name>
+        <description>
+            <![CDATA[
+            <h3>Informações do Vértice 31</h3>
+            <p><strong>Sequência:</strong> 36</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2370,7 +2370,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 32</p>
-            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Sequência:</strong> 37</p>
             <p><strong>Coordenadas:</strong> -17.037641000, -49.214581000</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -2383,7 +2383,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -2412,11 +2412,11 @@
     </Placemark>
 
     <Placemark>
-        <name>32 | PDT10/600 | UP4</name>
+        <name>37 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 32</h3>
-            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Sequência:</strong> 37</p>
             <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2434,7 +2434,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 32</p>
-            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Sequência:</strong> 37</p>
             <p><strong>Coordenadas:</strong> -17.037641000, -49.214581000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 52.00°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -2460,7 +2460,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 33</p>
-            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Sequência:</strong> 38</p>
             <p><strong>Coordenadas:</strong> -17.037403000, -49.215145800</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -2473,7 +2473,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>38</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2502,11 +2502,11 @@
     </Placemark>
 
     <Placemark>
-        <name>33 | PDT10/300 | UP1</name>
+        <name>38 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 33</h3>
-            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Sequência:</strong> 38</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2524,7 +2524,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 34</p>
-            <p><strong>Sequência:</strong> 34</p>
+            <p><strong>Sequência:</strong> 39</p>
             <p><strong>Coordenadas:</strong> -17.037165010, -49.215710600</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -2537,7 +2537,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>39</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2566,11 +2566,11 @@
     </Placemark>
 
     <Placemark>
-        <name>34 | PDT10/300 | UP1</name>
+        <name>39 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 34</h3>
-            <p><strong>Sequência:</strong> 34</p>
+            <p><strong>Sequência:</strong> 39</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2588,7 +2588,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 35</p>
-            <p><strong>Sequência:</strong> 35</p>
+            <p><strong>Sequência:</strong> 40</p>
             <p><strong>Coordenadas:</strong> -17.036927010, -49.216275400</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 293.79°</p>
@@ -2601,7 +2601,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>40</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2630,11 +2630,11 @@
     </Placemark>
 
     <Placemark>
-        <name>35 | PDT10/300 | UP1</name>
+        <name>40 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 35</h3>
-            <p><strong>Sequência:</strong> 35</p>
+            <p><strong>Sequência:</strong> 40</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2652,7 +2652,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 36</p>
-            <p><strong>Sequência:</strong> 36</p>
+            <p><strong>Sequência:</strong> 41</p>
             <p><strong>Coordenadas:</strong> -17.036689000, -49.216840200</p>
             <p><strong>Ângulo Anterior:</strong> 293.79°</p>
             <p><strong>Ângulo Posterior:</strong> 293.78°</p>
@@ -2665,7 +2665,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>41</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2694,11 +2694,11 @@
     </Placemark>
 
     <Placemark>
-        <name>36 | PDT10/300 | UP1</name>
+        <name>41 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 36</h3>
-            <p><strong>Sequência:</strong> 36</p>
+            <p><strong>Sequência:</strong> 41</p>
             <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2716,7 +2716,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 37</p>
-            <p><strong>Sequência:</strong> 37</p>
+            <p><strong>Sequência:</strong> 42</p>
             <p><strong>Coordenadas:</strong> -17.036451000, -49.217405000</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
             <p><strong>Ângulo Posterior:</strong> 473.78°</p>
@@ -2729,7 +2729,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>42</td></tr>
                                  <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
 
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>U3</td></tr>
@@ -2758,11 +2758,11 @@
     </Placemark>
 
     <Placemark>
-        <name>37 | PDT10/600 | U3</name>
+        <name>42 | PDT10/600 | U3</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 37</h3>
-            <p><strong>Sequência:</strong> 37</p>
+            <p><strong>Sequência:</strong> 42</p>
             <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> U3</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2780,7 +2780,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 37</p>
-            <p><strong>Sequência:</strong> 37</p>
+            <p><strong>Sequência:</strong> 42</p>
             <p><strong>Coordenadas:</strong> -17.036451000, -49.217405000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 203.78°</p>
             <p><strong>Raio:</strong> 4.0m</p>
