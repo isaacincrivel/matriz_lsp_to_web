@@ -52,15 +52,16 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
         pontos_octogono = []
         for angulo in range(0, 360, 45):  # 360° / 8 = 45° entre cada vértice
             # Calcula a posição de cada vértice do octógono
-            angulo_rad = angulo * 3.14159 / 180
             # Aplica a rotação do poste ao octógono
-            angulo_final_rad = angulo_final * 3.14159 / 180
-            angulo_total = angulo_rad + angulo_final_rad
+            angulo_total = angulo + angulo_final
             
-            # Calcula as coordenadas do vértice
-            lat_vertice = centro_lat + raio * 0.00001 * (angulo_total)
-            lon_vertice = centro_lon + raio * 0.00001 * (angulo_total)
+            # Calcula as coordenadas do vértice usando a função polar
+            lat_vertice, lon_vertice = polar(centro_lat, centro_lon, raio, angulo_total)
             pontos_octogono.append(f"{lon_vertice},{lat_vertice},0")
+        
+        # Adiciona o primeiro ponto novamente para fechar o polígono
+        if pontos_octogono:
+            pontos_octogono.append(pontos_octogono[0])
         
         coordenadas_octogono = " ".join(pontos_octogono)
         
