@@ -11,7 +11,7 @@ Este módulo contém as funções modulares para criar elementos KML específico
 
 VARIÁVEIS SUPORTADAS:
 - estai_ancora: "1EA" -> Linha + quadrado 1x1
-- base_concreto: "BC" -> Quadrado 6x6 (apenas bordas)
+- base_concreto: "BC" -> Octógono de raio 6m (apenas bordas)
 - aterr_neutro: "AN" -> Círculo pequeno
 - base_reforcada: (a implementar)
 - chave: (a implementar)
@@ -45,22 +45,24 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
     kml_content = ""
     
     if elemento_tipo == "base_concreto" and dados_elemento == "BC":
-        # Base de concreto 6x6 metros
-        base_largura = 6.0
-        base_altura = 6.0
+        # Base de concreto: octógono de raio 6 metros
+        raio = 6.0
         
-        # Calcula os vértices da base_concreto (6x6 metros)
-        base_lat1, base_lon1 = polar(centro_lat, centro_lon, base_largura/2, angulo_final - 90)
-        base_lat1, base_lon1 = polar(base_lat1, base_lon1, base_altura/2, angulo_final)
+        # Cria um octógono (8 lados) com raio de 6 metros
+        pontos_octogono = []
+        for angulo in range(0, 360, 45):  # 360° / 8 = 45° entre cada vértice
+            # Calcula a posição de cada vértice do octógono
+            angulo_rad = angulo * 3.14159 / 180
+            # Aplica a rotação do poste ao octógono
+            angulo_final_rad = angulo_final * 3.14159 / 180
+            angulo_total = angulo_rad + angulo_final_rad
+            
+            # Calcula as coordenadas do vértice
+            lat_vertice = centro_lat + raio * 0.00001 * (angulo_total)
+            lon_vertice = centro_lon + raio * 0.00001 * (angulo_total)
+            pontos_octogono.append(f"{lon_vertice},{lat_vertice},0")
         
-        base_lat2, base_lon2 = polar(centro_lat, centro_lon, base_largura/2, angulo_final + 90)
-        base_lat2, base_lon2 = polar(base_lat2, base_lon2, base_altura/2, angulo_final)
-        
-        base_lat3, base_lon3 = polar(centro_lat, centro_lon, base_largura/2, angulo_final + 90)
-        base_lat3, base_lon3 = polar(base_lat3, base_lon3, base_altura/2, angulo_final + 180)
-        
-        base_lat4, base_lon4 = polar(centro_lat, centro_lon, base_largura/2, angulo_final - 90)
-        base_lat4, base_lon4 = polar(base_lat4, base_lon4, base_altura/2, angulo_final + 180)
+        coordenadas_octogono = " ".join(pontos_octogono)
         
         kml_content = f"""
     <Placemark>
@@ -72,16 +74,17 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
             <p><strong>Sequência:</strong> {sequencia}</p>
             <p><strong>Coordenadas:</strong> {centro_lat:.9f}, {centro_lon:.9f}</p>
             <p><strong>Ângulo Final (Rotação):</strong> {angulo_final:.2f}°</p>
-            <p><strong>Dimensões:</strong> {base_largura}m x {base_altura}m</p>
+            <p><strong>Raio:</strong> {raio}m</p>
+            <p><strong>Forma:</strong> Octógono (8 lados)</p>
             <p><strong>Tipo:</strong> Base de Concreto (BC)</p>
             ]]>
         </description>
-                 <styleUrl>#poste_implantar_style</styleUrl>
+        <styleUrl>#poste_implantar_style</styleUrl>
         <Polygon>
             <outerBoundaryIs>
                 <LinearRing>
                     <coordinates>
-                        {base_lon1},{base_lat1},0 {base_lon2},{base_lat2},0 {base_lon3},{base_lat3},0 {base_lon4},{base_lat4},0 {base_lon1},{base_lat1},0
+                        {coordenadas_octogono}
                     </coordinates>
                 </LinearRing>
             </outerBoundaryIs>
