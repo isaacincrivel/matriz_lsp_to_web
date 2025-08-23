@@ -28,7 +28,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
     <name>Quadrados na Bissetriz</name>
-    <description>Quadrados de 5x3 metros posicionados na bissetriz dos ângulos</description>
+    <description>Quadrados de 5x3 metros (ou 6x6 metros para base_concreto=BC com apenas bordas) posicionados na bissetriz dos ângulos</description>
     
     <!-- Estilo para postes tipo 300 (quadrado vazio, só bordas) -->
     <Style id="poste_300_style">
@@ -101,6 +101,27 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <scale>0</scale>
         </IconStyle>
     </Style>
+    
+    <!-- Estilo para estai âncora -->
+    <Style id="estai_ancora_style">
+        <LineStyle>
+            <color>ff0000ff</color>
+            <width>2</width>
+        </LineStyle>
+    </Style>
+    
+    <!-- Estilo para quadrado do estai âncora -->
+    <Style id="estai_ancora_quadrado_style">
+        <PolyStyle>
+            <color>ff0000ff</color>
+            <fill>1</fill>
+            <outline>1</outline>
+        </PolyStyle>
+        <LineStyle>
+            <color>ff0000ff</color>
+            <width>1</width>
+        </LineStyle>
+    </Style>
 """
         
         # Converte pontos_matriz para lista de coordenadas e dados
@@ -118,13 +139,16 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                     'sequencia': index,  # Usa o índice do DataFrame
                     'numero_poste': row['numero_poste'],
                     'tipo_poste': row.get('tipo_poste', ''),  # Pode não existir mais
-                    'estrutura_mt': row['estrutura_mt'],
-                    'estrutura_mt_nv2': row.get('estrutura_mt_nv2', ''),
-                    'estrutura_mt_nv3': row.get('estrutura_mt_nv3', ''),
-                    'estrutura_bt': row['estrutura_bt'],
-                    'estrutura_bt_nv2': row.get('estrutura_bt_nv2', ''),
-                    'poste': row['poste'],
-                    'base': row['base'],
+                    'estrutura_mt': row.get('estru_mt_nv1', ''),  # Usa o nome correto da coluna
+                    'estrutura_mt_nv2': row.get('estru_mt_nv2', ''),
+                    'estrutura_mt_nv3': row.get('estru_mt_nv3', ''),
+                    'estrutura_bt': row.get('est_bt_nv1', ''),  # Usa o nome correto da coluna
+                    'estrutura_bt_nv2': row.get('est_bt_nv2', ''),
+                    'poste': row.get('tipo_poste', ''),  # Usa tipo_poste como poste (contém PDT10/600, etc.)
+                    'tipo_poste': row.get('tipo_poste', ''),  # Usa tipo_poste para tipo_poste
+                    'base': row.get('base_reforcada', ''),  # Usa base_reforcada como base
+                    'base_concreto': row.get('base_concreto', ''),  # Adiciona base_concreto
+                    'estai_ancora': row.get('estai_ancora', ''),  # Adiciona estai_ancora
                     'rotacao_poste': row.get('rotacao_poste', '')
                 })
         else:
@@ -145,6 +169,8 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                     'estrutura_bt_nv2': dados_vertex.get('estrutura_bt_nv2', ''),
                     'poste': dados_vertex.get('poste', ''),
                     'base': dados_vertex.get('base', ''),
+                    'base_concreto': dados_vertex.get('base_concreto', ''),  # Adiciona base_concreto
+                    'estai_ancora': dados_vertex.get('estai_ancora', ''),  # Adiciona estai_ancora
                     'rotacao_poste': dados_vertex.get('rotacao_poste', '')
                 })
         
@@ -228,10 +254,28 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             while angulo_final >= 360:
                 angulo_final -= 360
             
-            # Calcula os vértices do quadrado de 5x3 metros
-            # O quadrado será orientado na direção do ângulo final calculado
-            largura = 5.0  # 5 metros
-            altura = 3.0   # 3 metros
+            # Obtém a informação de base_concreto para uso posterior
+            base_concreto = str(dados_atual.get('base_concreto', '')).strip()
+            
+            # Obtém informação do poste
+            poste = dados_atual['poste'] if dados_atual['poste'] != '' else 'N/A'
+            
+            # Determina o tipo de poste baseado no texto após a "/"
+            tipo_poste_numero = "padrao"
+            if poste and '/' in str(poste):
+                tipo_poste_numero = str(poste).split('/')[-1]
+            
+            # Define dimensões do poste baseadas no tipo (sempre as dimensões originais)
+            if tipo_poste_numero == "600":
+                largura = 5.0  # 5 metros
+                altura = 3.0   # 3 metros
+            elif tipo_poste_numero == "1000":
+                largura = 7.0  # 7 metros
+                altura = 4.0   # 4 metros
+            else:
+                # Tipo 300 ou padrão
+                largura = 5.0  # 5 metros
+                altura = 3.0   # 3 metros
             
             # Calcula os vértices do quadrado
             centro_lat, centro_lon = pt_atual
@@ -254,7 +298,6 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             
             # Cria o texto visível para o quadrado com as informações solicitadas
             sequencia = dados_atual['sequencia'] if dados_atual['sequencia'] != '' else 'N/A'
-            poste = dados_atual['poste'] if dados_atual['poste'] != '' else 'N/A'
             estrutura_mt = dados_atual['estrutura_mt'] if dados_atual['estrutura_mt'] != '' else 'N/A'
             estrutura_mt_nv2 = dados_atual['estrutura_mt_nv2'] if dados_atual['estrutura_mt_nv2'] != '' else 'N/A'
             estrutura_mt_nv3 = dados_atual['estrutura_mt_nv3'] if dados_atual['estrutura_mt_nv3'] != '' else 'N/A'
@@ -283,12 +326,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             # Junta os valores com | apenas se houver valores válidos
             texto_visivel = " | ".join(valores_visiveis) if valores_visiveis else "Sem dados"
             
-            # Determina o tipo de poste baseado no texto após a "/"
-            tipo_poste_numero = "padrao"
-            if poste and '/' in str(poste):
-                tipo_poste_numero = str(poste).split('/')[-1]
-            
-            # Seleciona o estilo baseado no tipo de poste
+            # Seleciona o estilo baseado no tipo de poste (normal)
             if tipo_poste_numero == "300":
                 estilo_poste = "poste_300_style"
             elif tipo_poste_numero == "600":
@@ -313,7 +351,8 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <p><strong>Bissetriz:</strong> {bissetriz:.2f}°</p>
             <p><strong>Ângulo Final (Rotação):</strong> {angulo_final:.2f}°</p>
             <p><strong>Rotacao Poste:</strong> {rotacao_poste.upper()}</p>
-            <p><strong>Dimensões:</strong> 5m x 3m</p>
+            <p><strong>Base Concreto:</strong> {base_concreto}</p>
+            <p><strong>Dimensões:</strong> {largura}m x {altura}m</p>
             <p><strong>Tipo de Poste:</strong> {tipo_poste_numero}</p>
             <hr>
             <h4>Informações do Poste:</h4>
@@ -328,6 +367,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 <tr><td><strong>Estrutura BT NV2:</strong></td><td>{estrutura_bt_nv2}</td></tr>
                 <tr><td><strong>Poste:</strong></td><td>{poste}</td></tr>
                 <tr><td><strong>Base:</strong></td><td>{dados_atual['base'] if dados_atual['base'] else 'N/A'}</td></tr>
+                <tr><td><strong>Base Concreto:</strong></td><td>{base_concreto}</td></tr>
                 <tr><td><strong>Rotação Poste:</strong></td><td>{rotacao_poste.upper()}</td></tr>
             </table>
             ]]>
@@ -344,6 +384,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
 """
             
             # Adiciona elementos específicos baseados no tipo de poste
+            # Para base_concreto=BC, ainda adiciona elementos internos baseados no tipo de poste
             if tipo_poste_numero == "600":
                 # Adiciona metade pintada na diagonal (triângulo)
                 # Calcula os pontos para o triângulo diagonal
@@ -422,6 +463,132 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         </Point>
     </Placemark>
 """
+            
+            # Verifica se tem base_concreto "BC" para adicionar elemento adicional
+            if base_concreto == 'BC':
+                # Define dimensões da base concreta: 6x6 metros
+                base_largura = 6.0
+                base_altura = 6.0
+                
+                # Calcula os vértices da base_concreto (6x6 metros)
+                # Vértice 1: frente-esquerda
+                base_lat1, base_lon1 = polar(centro_lat, centro_lon, base_largura/2, angulo_final - 90)
+                base_lat1, base_lon1 = polar(base_lat1, base_lon1, base_altura/2, angulo_final)
+                
+                # Vértice 2: frente-direita
+                base_lat2, base_lon2 = polar(centro_lat, centro_lon, base_largura/2, angulo_final + 90)
+                base_lat2, base_lon2 = polar(base_lat2, base_lon2, base_altura/2, angulo_final)
+                
+                # Vértice 3: trás-direita
+                base_lat3, base_lon3 = polar(centro_lat, centro_lon, base_largura/2, angulo_final + 90)
+                base_lat3, base_lon3 = polar(base_lat3, base_lon3, base_altura/2, angulo_final + 180)
+                
+                # Vértice 4: trás-esquerda
+                base_lat4, base_lon4 = polar(centro_lat, centro_lon, base_largura/2, angulo_final - 90)
+                base_lat4, base_lon4 = polar(base_lat4, base_lon4, base_altura/2, angulo_final + 180)
+                
+                kml_content += f"""
+    <Placemark>
+        <name>Base Concreto {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Base de Concreto</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Coordenadas:</strong> {pt_atual[0]:.9f}, {pt_atual[1]:.9f}</p>
+            <p><strong>Ângulo Final (Rotação):</strong> {angulo_final:.2f}°</p>
+            <p><strong>Dimensões:</strong> {base_largura}m x {base_altura}m</p>
+            <p><strong>Tipo:</strong> Base de Concreto (BC)</p>
+            ]]>
+        </description>
+        <styleUrl>#poste_300_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {base_lon1},{base_lat1},0 {base_lon2},{base_lat2},0 {base_lon3},{base_lat3},0 {base_lon4},{base_lat4},0 {base_lon1},{base_lat1},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
+            
+            # Verifica se tem estai âncora (1EA)
+            estai_ancora = str(dados_atual.get('estai_ancora', '')).strip()
+            if estai_ancora == '1EA':
+                # Cria uma linha com quadrado de 1x1 na ponta
+                # A linha sai do centro do poste na direção do ângulo do poste + 180 graus
+                linha_comprimento = 10.0  # 10 metros de comprimento
+                
+                # Rotaciona 180 graus em relação ao ângulo do poste
+                angulo_estai = angulo_final + 270
+                
+                # Ponto final da linha (onde fica o quadrado)
+                linha_lat_fim, linha_lon_fim = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai)
+                
+                # Adiciona a linha do estai âncora
+                kml_content += f"""
+    <Placemark>
+        <name>Estai Âncora {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Estai Âncora</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+                         <p><strong>Comprimento:</strong> {linha_comprimento}m</p>
+             <p><strong>Ângulo:</strong> {angulo_estai:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_style</styleUrl>
+        <LineString>
+            <coordinates>
+                {centro_lon},{centro_lat},0 {linha_lon_fim},{linha_lat_fim},0
+            </coordinates>
+        </LineString>
+    </Placemark>
+"""
+                
+                # Adiciona o quadrado de 1x1 na ponta da linha
+                quadrado_tamanho = 1.0  # 1 metro
+                
+                                # Vértices do quadrado de 1x1 na ponta da linha
+                quad_lat1, quad_lon1 = polar(linha_lat_fim, linha_lon_fim, quadrado_tamanho/2, angulo_estai - 90)
+                quad_lat1, quad_lon1 = polar(quad_lat1, quad_lon1, quadrado_tamanho/2, angulo_estai)
+                
+                quad_lat2, quad_lon2 = polar(linha_lat_fim, linha_lon_fim, quadrado_tamanho/2, angulo_estai + 90)
+                quad_lat2, quad_lon2 = polar(quad_lat2, quad_lon2, quadrado_tamanho/2, angulo_estai)
+                
+                quad_lat3, quad_lon3 = polar(linha_lat_fim, linha_lon_fim, quadrado_tamanho/2, angulo_estai + 90)
+                quad_lat3, quad_lon3 = polar(quad_lat3, quad_lon3, quadrado_tamanho/2, angulo_estai + 180)
+                
+                quad_lat4, quad_lon4 = polar(linha_lat_fim, linha_lon_fim, quadrado_tamanho/2, angulo_estai - 90)
+                quad_lat4, quad_lon4 = polar(quad_lat4, quad_lon4, quadrado_tamanho/2, angulo_estai + 180)
+                
+                kml_content += f"""
+    <Placemark>
+        <name>Quadrado Estai Âncora {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado do Estai Âncora</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+                         <p><strong>Dimensões:</strong> 1m x 1m</p>
+             <p><strong>Ângulo:</strong> {angulo_estai:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_quadrado_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {quad_lon1},{quad_lat1},0 {quad_lon2},{quad_lat2},0 {quad_lon3},{quad_lat3},0 {quad_lon4},{quad_lat4},0 {quad_lon1},{quad_lat1},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
         
         # Fecha o arquivo KML
         kml_content += """
@@ -435,6 +602,8 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         print(f"Arquivo KML '{caminho_completo}' gerado com sucesso.")
         print(f"Total de vértices: {len(pontos)}")
         print(f"Total de quadrados criados: {len(pontos)}")
+        print(f"Quadrados 6x6 criados para pontos com base_concreto='BC' (apenas bordas)")
+        print(f"Estai âncora criado para pontos com estai_ancora='1EA' (linha + quadrado 1x1)")
         print(f"Linha conectando vértices criada")
         print(f"Labels visíveis adicionados com informações: Sequência, Poste, Estrutura MT, Estrutura BT")
         return True

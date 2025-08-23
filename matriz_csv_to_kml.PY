@@ -12,7 +12,21 @@ from marcar_vertices_angulo_deflexao import marcar_vertices_angulo_deflexao
 
 ##################################################################################################################################
 def gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, lista_nao_intercalar):
-    matriz = pd.DataFrame(columns=["trecho", "sequencia", "lat", "long", "numero_poste", "tipo_poste", "estrutura_mt", "estrutura_mt_nv2", "estrutura_mt_nv3", "estrutura_bt", "estrutura_bt_nv2", "poste", "base_reforcada", "base", "rotacao_poste"])
+    # Carrega o arquivo matriz_teste.csv para obter todas as colunas
+    matriz_teste = pd.read_csv("matriz_teste.csv", sep=";", decimal=",")
+    
+    # Cria DataFrame com todas as colunas do CSV original + colunas adicionais necessárias
+    # Remove colunas duplicadas que já existem no CSV
+    colunas_base = ["trecho", "sequencia", "lat", "long", "numero_poste", "tipo_poste"]
+    colunas_csv = list(matriz_teste.columns)  # Todas as colunas do CSV original
+    
+    # Remove colunas duplicadas
+    colunas_finais = colunas_base.copy()
+    for coluna in colunas_csv:
+        if coluna not in colunas_base:
+            colunas_finais.append(coluna)
+    
+    matriz = pd.DataFrame(columns=colunas_finais)
     
     #new_vertices = get_loose_gap(loose_gap, vertices)
     new_vertices, loose_gap = get_loose_gap(loose_gap, vertices)
@@ -27,33 +41,11 @@ def gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_
 
     new_vertices = intercalar_vertices(new_vertices, lista_nao_intercalar, gap_size)
 
-    # Carrega o arquivo matriz_teste.csv
-    matriz_teste = pd.read_csv("matriz_teste.csv", sep=";", decimal=",")
-    
-    # Filtra apenas as linhas com status "Implantar" e prepara os dados para a função KML
+    # Filtra apenas as linhas com status "Implantar" e preserva TODAS as colunas do CSV
     matriz_teste_filtrada = matriz_teste[matriz_teste['status'] == 'Implantar'].copy()
     
-    # Renomeia as colunas para o formato esperado pela função KML
-    matriz_teste_filtrada = matriz_teste_filtrada.rename(columns={
-        'lat': 'lat',
-        'long': 'long',
-        'num_poste': 'numero_poste',
-        'tipo_poste': 'poste',  # tipo_poste vai para o campo poste
-        'estru_mt_nv1': 'estrutura_mt',
-        'estru_mt_nv2': 'estrutura_mt_nv2',
-        'estru_mt_nv3': 'estrutura_mt_nv3',
-        'est_bt_nv1': 'estrutura_bt',
-        'est_bt_nv2': 'estrutura_bt_nv2',
-        'base_reforcada': 'base_reforcada',  # mantém o nome original
-        'base_concreto': 'base',
-        'rotacao_poste': 'rotacao_poste'  # adiciona o campo de rotação
-    })
-    
-    # Garante que todas as colunas necessárias existem
-    colunas_necessarias = ['lat', 'long', 'numero_poste', 'poste', 'estrutura_mt', 'estrutura_mt_nv2', 'estrutura_mt_nv3', 'estrutura_bt', 'estrutura_bt_nv2', 'base_reforcada', 'base', 'rotacao_poste']
-    for coluna in colunas_necessarias:
-        if coluna not in matriz_teste_filtrada.columns:
-            matriz_teste_filtrada[coluna] = ''
+    # Preserva todas as colunas originais do CSV sem renomear
+    # Não renomeia mais as colunas para preservar os dados originais
 
     #pontos_matriz = colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name)
 
@@ -62,38 +54,27 @@ def gerar_matriz(trecho, module_name, module_data, vertices, loose_gap, section_
     # Adiciona os dados da matriz de pontos ao DataFrame
     for i, vertex in enumerate(new_vertices):
         # Busca dados correspondentes na matriz_teste_filtrada baseado na sequência
-        dados_ponto = {}
+        dados_csv = {}
         if i < len(matriz_teste_filtrada):
             row = matriz_teste_filtrada.iloc[i]
-            dados_ponto = {
-                "estrutura_mt": str(row.get("estrutura_mt", "")),
-                "estrutura_mt_nv2": str(row.get("estrutura_mt_nv2", "")),
-                "estrutura_mt_nv3": str(row.get("estrutura_mt_nv3", "")),
-                "estrutura_bt": str(row.get("estrutura_bt", "")),
-                "estrutura_bt_nv2": str(row.get("estrutura_bt_nv2", "")),
-                "poste": str(row.get("poste", "")),
-                "base_reforcada": str(row.get("base_reforcada", "")),
-                "base": str(row.get("base", "")),
-                "rotacao_poste": str(row.get("rotacao_poste", ""))
-            }
+            # Copia TODAS as colunas do CSV original
+            for coluna in matriz_teste.columns:
+                dados_csv[coluna] = str(row.get(coluna, ""))
         
+        # Cria nova linha com todas as colunas
         new_row = {
             "trecho": trecho,
             "sequencia": i,
             "lat": f"{vertex[0]:.9f}".replace(".", ","),
             "long": f"{vertex[1]:.9f}".replace(".", ","),
             "numero_poste": num_poste_inicial if i == 0 else "",
-            "tipo_poste": tipo_poste if i == 0 else "",
-            "estrutura_mt": dados_ponto.get("estrutura_mt", ""),
-            "estrutura_mt_nv2": dados_ponto.get("estrutura_mt_nv2", ""),
-            "estrutura_mt_nv3": dados_ponto.get("estrutura_mt_nv3", ""),
-            "estrutura_bt": dados_ponto.get("estrutura_bt", ""),
-            "estrutura_bt_nv2": dados_ponto.get("estrutura_bt_nv2", ""),
-            "poste": dados_ponto.get("poste", ""),
-            "base_reforcada": dados_ponto.get("base_reforcada", ""),
-            "base": dados_ponto.get("base", ""),
-            "rotacao_poste": dados_ponto.get("rotacao_poste", "")
+            "tipo_poste": tipo_poste if i == 0 else ""
         }
+        
+        # Adiciona todas as colunas do CSV original
+        for coluna in matriz_teste.columns:
+            new_row[coluna] = dados_csv.get(coluna, "")
+        
         matriz.loc[len(matriz)] = new_row
     return matriz
 

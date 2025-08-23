@@ -70,10 +70,10 @@ def exportar_para_kml(matriz, nome_arquivo="pontos_matriz.kml"):
             trecho = row['trecho']
             numero_poste = row['numero_poste']
             tipo_poste = row['tipo_poste']
-            estrutura_mt = row['estrutura_mt']
-            estrutura_bt = row['estrutura_bt']
-            poste = row['poste']
-            base = row['base']
+            estrutura_mt = row.get('estru_mt_nv1', '')
+            estrutura_bt = row.get('est_bt_nv1', '')
+            poste = row.get('tipo_poste', '')
+            base = row.get('base_reforcada', '')
             
             # Determina o estilo baseado no tipo de ponto
             if numero_poste and numero_poste != "":
