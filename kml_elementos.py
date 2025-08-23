@@ -76,7 +76,7 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
             <p><strong>Tipo:</strong> Base de Concreto (BC)</p>
             ]]>
         </description>
-        <styleUrl>#poste_300_style</styleUrl>
+                 <styleUrl>#poste_implantar_style</styleUrl>
         <Polygon>
             <outerBoundaryIs>
                 <LinearRing>
