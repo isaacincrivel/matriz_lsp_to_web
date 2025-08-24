@@ -19,11 +19,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     # Salva o CSV transformado para referência
     matriz_teste_transformada.to_csv("matriz_teste_transformada.csv", sep=";", decimal=",", index=False)
     
-    # Limpa colunas duplicadas e salva versão final
-    import subprocess
-    subprocess.run(["python", "limpar_csv.py"], check=True)
-    
-    # Carrega o CSV limpo
+    # Carrega o CSV transformado (versão final já limpa)
     matriz_teste_transformada = pd.read_csv("matriz_teste_transformada_final.csv", sep=";", decimal=",")
     
     # Usa o DataFrame transformado como base (já tem uma linha por vértice)

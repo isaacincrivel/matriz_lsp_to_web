@@ -49,9 +49,9 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
     <name>Quadrados na Bissetriz</name>
-         <description>Quadrados de 5x7 metros posicionados na bissetriz dos ângulos</description>
+         <description>Quadrados de 5x3 metros posicionados na bissetriz dos ângulos</description>
     
-    <!-- Estilo padrão para quadrados -->
+    <!-- Estilo para poste IMPLANTAR (vazio) -->
     <Style id="poste_implantar_style">
         <PolyStyle>
             <color>ff0000ff</color>
@@ -64,15 +64,60 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         </LineStyle>
     </Style>
     
-
-     
-    <!-- Estilo para a linha conectando os vértices -->
-    <Style id="linha_vertices_style">
+    <!-- Estilo para poste EXISTENTE (preenchido) -->
+    <Style id="poste_existente_style">
+        <PolyStyle>
+            <color>ff0000ff</color>
+            <fill>1</fill>
+            <outline>1</outline>
+        </PolyStyle>
         <LineStyle>
-            <color>ff00ff00</color>
-            <width>3</width>
+            <color>ff0000ff</color>
+            <width>2</width>
         </LineStyle>
     </Style>
+    
+    <!-- Estilo para poste RETIRAR (vazado com X) -->
+    <Style id="poste_retirar_style">
+        <PolyStyle>
+            <color>ff0000ff</color>
+            <fill>0</fill>
+            <outline>1</outline>
+        </PolyStyle>
+        <LineStyle>
+            <color>ff0000ff</color>
+            <width>2</width>
+        </LineStyle>
+    </Style>
+    
+    <!-- Estilo para poste DESLOCAR (vazado com diagonal) -->
+    <Style id="poste_deslocar_style">
+        <PolyStyle>
+            <color>ff0000ff</color>
+            <fill>0</fill>
+            <outline>1</outline>
+        </PolyStyle>
+        <LineStyle>
+            <color>ff0000ff</color>
+            <width>2</width>
+        </LineStyle>
+    </Style>
+    
+         <!-- Estilo para a linha conectando os vértices -->
+     <Style id="linha_vertices_style">
+         <LineStyle>
+             <color>ff00ff00</color>
+             <width>3</width>
+         </LineStyle>
+     </Style>
+     
+     <!-- Estilo para linhas azuis (retirar e deslocar) -->
+     <Style id="linha_azul_style">
+         <LineStyle>
+             <color>ffff0000</color>
+             <width>2</width>
+         </LineStyle>
+     </Style>
     
     <!-- Estilo para labels visíveis -->
     <Style id="label_style">
@@ -126,6 +171,23 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 lat = float(lat_str.replace(',', '.'))
                 lon = float(lon_str.replace(',', '.'))
                 pontos.append((lat, lon))
+                # Determina o status do poste baseado nas colunas com sufixos
+                poste_implantar = row.get('tipo_poste', '').strip()
+                poste_existente = row.get('tipo_poste_exist', '').strip()
+                poste_retirar = row.get('tipo_poste_ret', '').strip()
+                poste_deslocar = row.get('tipo_poste_desloc', '').strip()
+                
+                # Determina qual status tem o poste
+                # Se há dados em poste_existente, retirar ou deslocar, usa esse status
+                # Se não há dados em nenhuma coluna com sufixo, usa implantar
+                status_poste = 'implantar'  # padrão
+                if poste_existente and poste_existente != '' and poste_existente != 'nan':
+                    status_poste = 'existente'
+                elif poste_retirar and poste_retirar != '' and poste_retirar != 'nan':
+                    status_poste = 'retirar'
+                elif poste_deslocar and poste_deslocar != '' and poste_deslocar != 'nan':
+                    status_poste = 'deslocar'
+                
                 dados_pontos.append({
                     'sequencia': index,  # Usa o índice do DataFrame
                     'numero_poste': row.get('num_poste', ''),
@@ -141,7 +203,12 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                     'base_concreto': row.get('base_concreto', ''),
                     'estai_ancora': row.get('estai_ancora', ''),
                     'status': row.get('status', ''),
-                    'rotacao_poste': row.get('rotacao_poste', '')
+                    'rotacao_poste': row.get('rotacao_poste', ''),
+                    'status_poste': status_poste,  # Novo campo para status do poste
+                    'poste_implantar': poste_implantar,
+                    'poste_existente': poste_existente,
+                    'poste_retirar': poste_retirar,
+                    'poste_deslocar': poste_deslocar
                 })
         else:
             # É um dicionário - precisa converter para o formato esperado
@@ -283,14 +350,45 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             estrutura_bt = dados_atual['estrutura_bt'] if dados_atual['estrutura_bt'] != '' else 'N/A'
             estrutura_bt_nv2 = dados_atual['estrutura_bt_nv2'] if dados_atual['estrutura_bt_nv2'] != '' else 'N/A'
             
+            # Determina o estilo baseado no status do poste
+            status_poste = dados_atual.get('status_poste', 'implantar')
+            if status_poste == 'existente':
+                estilo_poste = "poste_existente_style"
+            elif status_poste == 'retirar':
+                estilo_poste = "poste_retirar_style"
+            elif status_poste == 'deslocar':
+                estilo_poste = "poste_deslocar_style"
+            else:
+                estilo_poste = "poste_implantar_style"
+            
             # Cria o texto visível que aparecerá na tela com todas as informações das estruturas
             # Filtra apenas os valores que não são 'nan' ou vazios
             valores_visiveis = []
             
             if sequencia is not None and str(sequencia) != 'N/A':
                 valores_visiveis.append(str(sequencia))
-            if dados_atual.get('tipo_poste') and dados_atual.get('tipo_poste') != 'N/A' and dados_atual.get('tipo_poste') != 'nan':
-                valores_visiveis.append(dados_atual.get('tipo_poste'))
+            
+            # Adiciona o tipo de poste correto baseado no status
+            tipo_poste_para_exibir = ''
+            if status_poste == 'implantar':
+                tipo_poste_para_exibir = dados_atual.get('tipo_poste', '')
+            elif status_poste == 'existente':
+                tipo_poste_para_exibir = dados_atual.get('poste_existente', '')
+            elif status_poste == 'retirar':
+                tipo_poste_para_exibir = dados_atual.get('poste_retirar', '')
+            elif status_poste == 'deslocar':
+                tipo_poste_para_exibir = dados_atual.get('poste_deslocar', '')
+            
+            if tipo_poste_para_exibir and tipo_poste_para_exibir != 'N/A' and tipo_poste_para_exibir != 'nan':
+                if status_poste == 'implantar':
+                    valores_visiveis.append(tipo_poste_para_exibir)
+                elif status_poste == 'existente':
+                    valores_visiveis.append(f"{tipo_poste_para_exibir} exist")
+                elif status_poste == 'retirar':
+                    valores_visiveis.append(f"{tipo_poste_para_exibir} ret")
+                elif status_poste == 'deslocar':
+                    valores_visiveis.append(f"{tipo_poste_para_exibir} desloc")
+            
             if estrutura_mt and estrutura_mt != 'N/A' and estrutura_mt != 'nan':
                 valores_visiveis.append(estrutura_mt)
             if estrutura_mt_nv2 and estrutura_mt_nv2 != 'N/A' and estrutura_mt_nv2 != 'nan':
@@ -305,9 +403,6 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             # Junta os valores com | apenas se houver valores válidos
             texto_visivel = " | ".join(valores_visiveis) if valores_visiveis else "Sem dados"
             
-            # Usa estilo padrão para todos os postes
-            estilo_poste = "poste_implantar_style"
-            
             # Adiciona o quadrado ao KML
             kml_content += f"""
     <Placemark>
@@ -317,6 +412,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> {i}</p>
             <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Status do Poste:</strong> {status_poste.upper()}</p>
             <p><strong>Coordenadas:</strong> {pt_atual[0]:.9f}, {pt_atual[1]:.9f}</p>
             <p><strong>Ângulo Anterior:</strong> {angulo_anterior:.2f}°</p>
             <p><strong>Ângulo Posterior:</strong> {angulo_posterior:.2f}°</p>
@@ -324,20 +420,20 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <p><strong>Ângulo Final (Rotação):</strong> {angulo_final:.2f}°</p>
             <p><strong>Rotacao Poste:</strong> {rotacao_poste.upper()}</p>
             <p><strong>Base Concreto:</strong> {base_concreto}</p>
-                         <p><strong>Dimensões:</strong> {largura}m x {altura}m</p>
+            <p><strong>Dimensões:</strong> {largura}m x {altura}m</p>
 
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
                 <tr><td><strong>Sequência:</strong></td><td>{sequencia}</td></tr>
-                                 <tr><td><strong>Número do Poste:</strong></td><td>{dados_atual['numero_poste'] if dados_atual['numero_poste'] else 'N/A'}</td></tr>
-
+                <tr><td><strong>Status:</strong></td><td>{status_poste.upper()}</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>{dados_atual['numero_poste'] if dados_atual['numero_poste'] else 'N/A'}</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>{estrutura_mt}</td></tr>
                 <tr><td><strong>Estrutura MT NV2:</strong></td><td>{estrutura_mt_nv2}</td></tr>
                 <tr><td><strong>Estrutura MT NV3:</strong></td><td>{estrutura_mt_nv3}</td></tr>
                 <tr><td><strong>Estrutura BT NV1:</strong></td><td>{estrutura_bt}</td></tr>
                 <tr><td><strong>Estrutura BT NV2:</strong></td><td>{estrutura_bt_nv2}</td></tr>
-                <tr><td><strong>Poste:</strong></td><td>{dados_atual.get('tipo_poste', 'N/A')}</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>{tipo_poste_para_exibir if tipo_poste_para_exibir else 'N/A'}</td></tr>
                 <tr><td><strong>Base:</strong></td><td>{dados_atual['base'] if dados_atual['base'] else 'N/A'}</td></tr>
                 <tr><td><strong>Base Concreto:</strong></td><td>{base_concreto}</td></tr>
                 <tr><td><strong>Rotação Poste:</strong></td><td>{rotacao_poste.upper()}</td></tr>
@@ -362,6 +458,46 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
     </Placemark>
 """
             
+            # Adiciona elementos visuais especiais baseados no status do poste
+            if status_poste == 'retirar':
+                # Adiciona um X ligando os cantos do quadrado (azul)
+                 kml_content += f"""
+     <Placemark>
+         <name>X Retirar {i}</name>
+         <description>X para poste a ser retirado</description>
+         <styleUrl>#linha_azul_style</styleUrl>
+         <LineString>
+             <coordinates>
+                 {lon1},{lat1},0 {lon3},{lat3},0
+             </coordinates>
+         </LineString>
+     </Placemark>
+     <Placemark>
+         <name>X Retirar {i}</name>
+         <description>X para poste a ser retirado</description>
+         <styleUrl>#linha_azul_style</styleUrl>
+         <LineString>
+             <coordinates>
+                 {lon2},{lat2},0 {lon4},{lat4},0
+             </coordinates>
+         </LineString>
+     </Placemark>
+ """
+            elif status_poste == 'deslocar':
+                # Adiciona uma linha diagonal (azul)
+                 kml_content += f"""
+     <Placemark>
+         <name>Diagonal Deslocar {i}</name>
+         <description>Linha diagonal para poste a ser deslocado</description>
+         <styleUrl>#linha_azul_style</styleUrl>
+         <LineString>
+             <coordinates>
+                 {lon1},{lat1},0 {lon3},{lat3},0
+             </coordinates>
+         </LineString>
+     </Placemark>
+ """
+            
             # Adiciona um label visível separado para as informações
             # Posiciona o label ligeiramente deslocado para a direita do centro do quadrado
             offset_lon = centro_lon + 0.0001  # Desloca 0.0001 graus para a direita
@@ -374,7 +510,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             <![CDATA[
             <h3>Informações do Vértice {i}</h3>
             <p><strong>Sequência:</strong> {sequencia}</p>
-            <p><strong>Poste:</strong> {dados_atual.get('tipo_poste', 'N/A')}</p>
+                         <p><strong>Poste:</strong> {tipo_poste_para_exibir if tipo_poste_para_exibir else 'N/A'}</p>
             <p><strong>Estrutura MT:</strong> {estrutura_mt}</p>
             <p><strong>Estrutura BT:</strong> {estrutura_bt}</p>
             ]]>
