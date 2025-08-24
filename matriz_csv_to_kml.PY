@@ -9,14 +9,29 @@ from kml import criar_kml_quadrados_bissetriz
 from colocar_encabecamento_rede import colocar_encabecamento_rede
 from colocar_poste_estrutura import colocar_poste_estrutura
 from marcar_vertices_angulo_deflexao import marcar_vertices_angulo_deflexao
+from transformacao_csv import transformar_csv_para_uma_linha_por_vertice
 
 ##################################################################################################################################
 def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_size, num_poste_inicial, tipo_poste, lista_nao_intercalar):
-    # Carrega o arquivo matriz_teste.csv para obter todas as colunas
-    matriz_teste = pd.read_csv("matriz_teste.csv", sep=";", decimal=",")
+    # Transforma o CSV para uma linha por vértice
+    matriz_teste_transformada = transformar_csv_para_uma_linha_por_vertice("matriz_teste.csv")
     
-    # Filtra apenas as linhas com status "Implantar" para obter os vértices reais
-    matriz_teste_filtrada = matriz_teste[matriz_teste['status'] == 'Implantar'].copy()
+    # Salva o CSV transformado para referência
+    matriz_teste_transformada.to_csv("matriz_teste_transformada.csv", sep=";", decimal=",", index=False)
+    
+    # Limpa colunas duplicadas e salva versão final
+    import subprocess
+    subprocess.run(["python", "limpar_csv.py"], check=True)
+    
+    # Carrega o CSV limpo
+    matriz_teste_transformada = pd.read_csv("matriz_teste_transformada_final.csv", sep=";", decimal=",")
+    
+    # Usa o DataFrame transformado como base (já tem uma linha por vértice)
+    matriz_teste_filtrada = matriz_teste_transformada.copy()
+    
+    # Garante que não há duplicatas e índices estão corretos
+    matriz_teste_filtrada = matriz_teste_filtrada.drop_duplicates(subset=['sequencia'], keep='first')
+    matriz_teste_filtrada = matriz_teste_filtrada.reset_index(drop=True)
     
     # Cria a lista de vértices dinamicamente a partir do CSV
     vertices = []
@@ -31,7 +46,15 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         # Converte coordenadas para float
         lat = float(lat_str.replace(',', '.'))
         lon = float(lon_str.replace(',', '.'))
-        sequencia = int(row['sequencia'])
+        
+        # Converte sequência para int de forma segura
+        sequencia_valor = row['sequencia']
+        if hasattr(sequencia_valor, 'iloc'):
+            sequencia = int(sequencia_valor.iloc[0])
+        elif hasattr(sequencia_valor, 'item'):
+            sequencia = int(sequencia_valor.item())
+        else:
+            sequencia = int(sequencia_valor)
         
         # Adiciona o vértice à lista
         vertices.append((lat, lon, sequencia, ""))
@@ -42,9 +65,9 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     print(f"Vértices carregados dinamicamente do CSV: {len(vertices)} pontos")
     print(f"Sequências encontradas: {[v[2] for v in vertices]}")
     
-    # Cria DataFrame com todas as colunas do CSV original + colunas adicionais necessárias
+    # Cria DataFrame com todas as colunas do CSV transformado + colunas adicionais necessárias
     colunas_base = ["trecho", "sequencia", "lat", "long", "numero_poste", "tipo_poste"]
-    colunas_csv = list(matriz_teste.columns)  # Todas as colunas do CSV original
+    colunas_csv = list(matriz_teste_transformada.columns)  # Todas as colunas do CSV transformado
     
     # Remove colunas duplicadas
     colunas_finais = colunas_base.copy()
@@ -87,12 +110,12 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         
         if not row_correspondente.empty:
             row = row_correspondente.iloc[0]
-            # Copia TODAS as colunas do CSV original
-            for coluna in matriz_teste.columns:
+            # Copia TODAS as colunas do CSV transformado
+            for coluna in matriz_teste_transformada.columns:
                 dados_csv[coluna] = str(row.get(coluna, ""))
         else:
             # Se não encontrar, usa dados vazios
-            for coluna in matriz_teste.columns:
+            for coluna in matriz_teste_transformada.columns:
                 dados_csv[coluna] = ""
         
         # Cria nova linha com todas as colunas
@@ -105,8 +128,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             "tipo_poste": tipo_poste if i == 0 else ""
         }
         
-        # Adiciona todas as colunas do CSV original
-        for coluna in matriz_teste.columns:
+        # Adiciona todas as colunas do CSV transformado
+        for coluna in matriz_teste_transformada.columns:
             new_row[coluna] = dados_csv.get(coluna, "")
         
         matriz.loc[len(matriz)] = new_row
