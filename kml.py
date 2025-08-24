@@ -1,5 +1,5 @@
 import os
-from calculo_geografico import angle, polar
+from calculo_geografico import angle, polar, distance
 from kml_elementos import colocar_elemento_kml
 
 """
@@ -139,18 +139,30 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         </LineStyle>
     </Style>
     
-    <!-- Estilo para quadrado do estai âncora -->
-    <Style id="estai_ancora_quadrado_style">
-        <PolyStyle>
-            <color>ff0000ff</color>
-            <fill>1</fill>
-            <outline>1</outline>
-        </PolyStyle>
-        <LineStyle>
-            <color>ff0000ff</color>
-            <width>1</width>
-        </LineStyle>
-    </Style>
+         <!-- Estilo para quadrado do estai âncora -->
+     <Style id="estai_ancora_quadrado_style">
+         <PolyStyle>
+             <color>ff0000ff</color>
+             <fill>1</fill>
+             <outline>1</outline>
+         </PolyStyle>
+         <LineStyle>
+             <color>ff0000ff</color>
+             <width>1</width>
+         </LineStyle>
+     </Style>
+     
+     <!-- Estilo para distâncias entre vértices (amarelo) -->
+     <Style id="distancia_style">
+         <LabelStyle>
+             <color>ff7fffff</color>
+             <scale>0.8</scale>
+             <colorMode>normal</colorMode>
+         </LabelStyle>
+         <IconStyle>
+             <scale>0</scale>
+         </IconStyle>
+     </Style>
 """
         
         # Converte pontos_matriz para lista de coordenadas e dados
@@ -254,6 +266,40 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 {coordenadas_linha.strip()}
             </coordinates>
         </LineString>
+    </Placemark>
+"""
+        
+        # Adiciona as distâncias entre os vértices como labels visíveis
+        
+        for i in range(len(pontos) - 1):
+            pt_atual = pontos[i]
+            pt_proximo = pontos[i + 1]
+            
+            # Calcula a distância entre os dois pontos
+            distancia = distance(pt_atual[0], pt_atual[1], pt_proximo[0], pt_proximo[1])
+            
+            # Calcula o ponto médio entre os dois vértices
+            lat_medio = (pt_atual[0] + pt_proximo[0]) / 2
+            lon_medio = (pt_atual[1] + pt_proximo[1]) / 2
+            
+            # Formata a distância (em metros)
+            distancia_formatada = f"{distancia:.0f}m"
+            
+            kml_content += f"""
+    <Placemark>
+        <name>{distancia_formatada}</name>
+        <description>
+            <![CDATA[
+            <h3>Distância entre Vértices</h3>
+            <p><strong>De:</strong> Vértice {i+1}</p>
+            <p><strong>Para:</strong> Vértice {i+2}</p>
+            <p><strong>Distância:</strong> {distancia_formatada}</p>
+            ]]>
+        </description>
+        <styleUrl>#distancia_style</styleUrl>
+        <Point>
+            <coordinates>{lon_medio},{lat_medio},0</coordinates>
+        </Point>
     </Placemark>
 """
         
