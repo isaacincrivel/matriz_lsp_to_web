@@ -128,19 +128,19 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 pontos.append((lat, lon))
                 dados_pontos.append({
                     'sequencia': index,  # Usa o índice do DataFrame
-                    'numero_poste': row['numero_poste'],
-                    'tipo_poste': row.get('tipo_poste', ''),  # Pode não existir mais
-                    'estrutura_mt': row.get('estru_mt_nv1', ''),  # Usa o nome correto da coluna
+                    'numero_poste': row.get('num_poste', ''),
+                    'tipo_poste': row.get('tipo_poste', ''),
+                    'estrutura_mt': row.get('estru_mt_nv1', ''),  # Nome correto da coluna
                     'estrutura_mt_nv2': row.get('estru_mt_nv2', ''),
                     'estrutura_mt_nv3': row.get('estru_mt_nv3', ''),
-                    'estrutura_bt': row.get('est_bt_nv1', ''),  # Usa o nome correto da coluna
+                    'estrutura_bt': row.get('est_bt_nv1', ''),  # Nome correto da coluna
                     'estrutura_bt_nv2': row.get('est_bt_nv2', ''),
-                    'poste': row.get('tipo_poste', ''),  # Usa tipo_poste como poste (contém PDT10/600, etc.)
-                    'tipo_poste': row.get('tipo_poste', ''),  # Usa tipo_poste para tipo_poste
-                    'base': row.get('base_reforcada', ''),  # Usa base_reforcada como base
-                    'base_concreto': row.get('base_concreto', ''),  # Adiciona base_concreto
-                    'estai_ancora': row.get('estai_ancora', ''),  # Adiciona estai_ancora
-                    'status': row.get('status', ''),  # Adiciona status
+                    'poste': row.get('tipo_poste', ''),  # Campo correto
+                    'tipo_poste': row.get('tipo_poste', ''),
+                    'base': row.get('base_reforcada', ''),  # Campo correto
+                    'base_concreto': row.get('base_concreto', ''),
+                    'estai_ancora': row.get('estai_ancora', ''),
+                    'status': row.get('status', ''),
                     'rotacao_poste': row.get('rotacao_poste', '')
                 })
         else:
@@ -251,8 +251,8 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             base_concreto = str(dados_atual.get('base_concreto', '')).strip()
             
             # Define dimensões padrão para todos os postes
-            largura = 3.0  # 3 metros
-            altura = 5.0   # 5 metros
+            largura = 5.0  # 5 metros (lado maior)
+            altura = 3.0   # 3 metros (lado menor)
             
 
             
