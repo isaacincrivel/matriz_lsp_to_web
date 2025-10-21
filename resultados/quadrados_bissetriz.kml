@@ -796,7 +796,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 1</p>
-            <p><strong>Sequência:</strong> 1</p>
+            <p><strong>Sequência:</strong> 4</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.042061830, -49.224291930</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -810,7 +810,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>4</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -839,11 +839,11 @@
     </Placemark>
 
     <Placemark>
-        <name>1 | PDT11/1000 | UP4 | UP1 | N2 | SI1 | SI2.2</name>
+        <name>4 | PDT11/1000 | UP4 | UP1 | N2 | SI1 | SI2.2</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 1</h3>
-            <p><strong>Sequência:</strong> 1</p>
+            <p><strong>Sequência:</strong> 4</p>
                          <p><strong>Poste:</strong> PDT11/1000</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> SI1</p>
@@ -861,7 +861,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 1</p>
-            <p><strong>Sequência:</strong> 1</p>
+            <p><strong>Sequência:</strong> 4</p>
             <p><strong>Coordenadas:</strong> -17.042061830, -49.224291930</p>
             <p><strong>Ângulo Final (Rotação):</strong> 208.04°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -887,7 +887,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 2</p>
-            <p><strong>Sequência:</strong> 2</p>
+            <p><strong>Sequência:</strong> 8</p>
             <p><strong>Status do Poste:</strong> EXISTENTE</p>
             <p><strong>Coordenadas:</strong> -17.042349520, -49.223726950</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -901,7 +901,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>2</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>8</td></tr>
                 <tr><td><strong>Status:</strong></td><td>EXISTENTE</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -930,11 +930,11 @@
     </Placemark>
 
     <Placemark>
-        <name>2 | PDT10/150 exist | UP1</name>
+        <name>8 | PDT10/150 exist | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 2</h3>
-            <p><strong>Sequência:</strong> 2</p>
+            <p><strong>Sequência:</strong> 8</p>
                          <p><strong>Poste:</strong> PDT10/150</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -952,7 +952,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 3</p>
-            <p><strong>Sequência:</strong> 3</p>
+            <p><strong>Sequência:</strong> 12</p>
             <p><strong>Status do Poste:</strong> RETIRAR</p>
             <p><strong>Coordenadas:</strong> -17.042637200, -49.223161960</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -966,7 +966,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>3</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>12</td></tr>
                 <tr><td><strong>Status:</strong></td><td>RETIRAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1016,11 +1016,11 @@
      </Placemark>
  
     <Placemark>
-        <name>3 | PDT11/300 ret | UP1</name>
+        <name>12 | PDT11/300 ret | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 3</h3>
-            <p><strong>Sequência:</strong> 3</p>
+            <p><strong>Sequência:</strong> 12</p>
                          <p><strong>Poste:</strong> PDT11/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1038,7 +1038,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 4</p>
-            <p><strong>Sequência:</strong> 4</p>
+            <p><strong>Sequência:</strong> 16</p>
             <p><strong>Status do Poste:</strong> DESLOCAR</p>
             <p><strong>Coordenadas:</strong> -17.042924890, -49.222596970</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1052,7 +1052,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>4</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>16</td></tr>
                 <tr><td><strong>Status:</strong></td><td>DESLOCAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1092,11 +1092,11 @@
      </Placemark>
  
     <Placemark>
-        <name>4 | PDT10/300 desloc | UP1</name>
+        <name>16 | PDT10/300 desloc | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 4</h3>
-            <p><strong>Sequência:</strong> 4</p>
+            <p><strong>Sequência:</strong> 16</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1114,7 +1114,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 5</p>
-            <p><strong>Sequência:</strong> 5</p>
+            <p><strong>Sequência:</strong> 20</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.043212580, -49.222031980</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1128,7 +1128,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>5</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>20</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1157,11 +1157,11 @@
     </Placemark>
 
     <Placemark>
-        <name>5 | PDT10/300 | UP1</name>
+        <name>20 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 5</h3>
-            <p><strong>Sequência:</strong> 5</p>
+            <p><strong>Sequência:</strong> 20</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1179,7 +1179,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 6</p>
-            <p><strong>Sequência:</strong> 6</p>
+            <p><strong>Sequência:</strong> 24</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.043500260, -49.221466990</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1193,7 +1193,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>6</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1222,11 +1222,11 @@
     </Placemark>
 
     <Placemark>
-        <name>6 | PDT10/300 | UP1</name>
+        <name>24 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 6</h3>
-            <p><strong>Sequência:</strong> 6</p>
+            <p><strong>Sequência:</strong> 24</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1244,7 +1244,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 7</p>
-            <p><strong>Sequência:</strong> 7</p>
+            <p><strong>Sequência:</strong> 28</p>
             <p><strong>Status do Poste:</strong> EXISTENTE</p>
             <p><strong>Coordenadas:</strong> -17.043787940, -49.220902000</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1258,7 +1258,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>7</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
                 <tr><td><strong>Status:</strong></td><td>EXISTENTE</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1287,11 +1287,11 @@
     </Placemark>
 
     <Placemark>
-        <name>7 | PDT10/600 exist | UP4</name>
+        <name>28 | PDT10/600 exist | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 7</h3>
-            <p><strong>Sequência:</strong> 7</p>
+            <p><strong>Sequência:</strong> 28</p>
                          <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1309,7 +1309,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 7</p>
-            <p><strong>Sequência:</strong> 7</p>
+            <p><strong>Sequência:</strong> 28</p>
             <p><strong>Coordenadas:</strong> -17.043787940, -49.220902000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 208.04°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -1335,7 +1335,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 8</p>
-            <p><strong>Sequência:</strong> 8</p>
+            <p><strong>Sequência:</strong> 32</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.044075620, -49.220337000</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1349,7 +1349,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>8</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1378,11 +1378,11 @@
     </Placemark>
 
     <Placemark>
-        <name>8 | PDT10/300 | UP1</name>
+        <name>32 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 8</h3>
-            <p><strong>Sequência:</strong> 8</p>
+            <p><strong>Sequência:</strong> 32</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1400,7 +1400,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 9</p>
-            <p><strong>Sequência:</strong> 9</p>
+            <p><strong>Sequência:</strong> 36</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.044363300, -49.219772010</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1414,7 +1414,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>9</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1443,11 +1443,11 @@
     </Placemark>
 
     <Placemark>
-        <name>9 | PDT10/300 | UP1</name>
+        <name>36 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 9</h3>
-            <p><strong>Sequência:</strong> 9</p>
+            <p><strong>Sequência:</strong> 36</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1465,7 +1465,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 10</p>
-            <p><strong>Sequência:</strong> 10</p>
+            <p><strong>Sequência:</strong> 40</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.044650980, -49.219207010</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1479,7 +1479,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>10</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>40</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1508,11 +1508,11 @@
     </Placemark>
 
     <Placemark>
-        <name>10 | PDT10/300 | UP1</name>
+        <name>40 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 10</h3>
-            <p><strong>Sequência:</strong> 10</p>
+            <p><strong>Sequência:</strong> 40</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1530,7 +1530,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 11</p>
-            <p><strong>Sequência:</strong> 11</p>
+            <p><strong>Sequência:</strong> 44</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.044938650, -49.218642010</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1544,7 +1544,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>11</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>44</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1573,11 +1573,11 @@
     </Placemark>
 
     <Placemark>
-        <name>11 | PDT10/300 | UP1</name>
+        <name>44 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 11</h3>
-            <p><strong>Sequência:</strong> 11</p>
+            <p><strong>Sequência:</strong> 44</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1595,7 +1595,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 12</p>
-            <p><strong>Sequência:</strong> 12</p>
+            <p><strong>Sequência:</strong> 48</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.045226330, -49.218077000</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1609,7 +1609,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>12</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>48</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1638,11 +1638,11 @@
     </Placemark>
 
     <Placemark>
-        <name>12 | PDT10/300 | UP1</name>
+        <name>48 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 12</h3>
-            <p><strong>Sequência:</strong> 12</p>
+            <p><strong>Sequência:</strong> 48</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1660,7 +1660,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 13</p>
-            <p><strong>Sequência:</strong> 13</p>
+            <p><strong>Sequência:</strong> 52</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.045514000, -49.217512000</p>
             <p><strong>Ângulo Anterior:</strong> 118.04°</p>
@@ -1674,7 +1674,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>13</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>52</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1703,11 +1703,11 @@
     </Placemark>
 
     <Placemark>
-        <name>13 | PDT10/1000 | UP4</name>
+        <name>52 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 13</h3>
-            <p><strong>Sequência:</strong> 13</p>
+            <p><strong>Sequência:</strong> 52</p>
                          <p><strong>Poste:</strong> PDT10/1000</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1725,7 +1725,7 @@
             <![CDATA[
             <h3>Estai Âncora</h3>
             <p><strong>Vértice:</strong> 13</p>
-            <p><strong>Sequência:</strong> 13</p>
+            <p><strong>Sequência:</strong> 52</p>
             <p><strong>Comprimento:</strong> 10.0m</p>
             <p><strong>Ângulo:</strong> 392.83°</p>
             ]]>
@@ -1744,7 +1744,7 @@
             <![CDATA[
             <h3>Quadrado do Estai Âncora</h3>
             <p><strong>Vértice:</strong> 13</p>
-            <p><strong>Sequência:</strong> 13</p>
+            <p><strong>Sequência:</strong> 52</p>
             <p><strong>Dimensões:</strong> 1m x 1m</p>
             <p><strong>Ângulo:</strong> 392.83°</p>
             ]]>
@@ -1767,7 +1767,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 14</p>
-            <p><strong>Sequência:</strong> 18</p>
+            <p><strong>Sequência:</strong> 56</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.047802000, -49.214406000</p>
             <p><strong>Ângulo Anterior:</strong> 127.61°</p>
@@ -1781,7 +1781,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>56</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1810,11 +1810,11 @@
     </Placemark>
 
     <Placemark>
-        <name>18 | PDT10/1000 | UP4</name>
+        <name>56 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 14</h3>
-            <p><strong>Sequência:</strong> 18</p>
+            <p><strong>Sequência:</strong> 56</p>
                          <p><strong>Poste:</strong> PDT10/1000</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1832,7 +1832,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 14</p>
-            <p><strong>Sequência:</strong> 18</p>
+            <p><strong>Sequência:</strong> 56</p>
             <p><strong>Coordenadas:</strong> -17.047802000, -49.214406000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 195.56°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -1858,7 +1858,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 15</p>
-            <p><strong>Sequência:</strong> 19</p>
+            <p><strong>Sequência:</strong> 60</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.047725000, -49.213698000</p>
             <p><strong>Ângulo Anterior:</strong> 83.51°</p>
@@ -1872,7 +1872,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>60</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -1901,11 +1901,11 @@
     </Placemark>
 
     <Placemark>
-        <name>19 | PDT10/1000 | UP4</name>
+        <name>60 | PDT10/1000 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 15</h3>
-            <p><strong>Sequência:</strong> 19</p>
+            <p><strong>Sequência:</strong> 60</p>
                          <p><strong>Poste:</strong> PDT10/1000</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -1923,7 +1923,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 15</p>
-            <p><strong>Sequência:</strong> 19</p>
+            <p><strong>Sequência:</strong> 60</p>
             <p><strong>Coordenadas:</strong> -17.047725000, -49.213698000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 144.67°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -1949,7 +1949,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 16</p>
-            <p><strong>Sequência:</strong> 21</p>
+            <p><strong>Sequência:</strong> 64</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.046803000, -49.213231000</p>
             <p><strong>Ângulo Anterior:</strong> 25.84°</p>
@@ -1963,7 +1963,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>64</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -1992,11 +1992,11 @@
     </Placemark>
 
     <Placemark>
-        <name>21 | PDT10/300 | UP1</name>
+        <name>64 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 16</h3>
-            <p><strong>Sequência:</strong> 21</p>
+            <p><strong>Sequência:</strong> 64</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2014,7 +2014,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 17</p>
-            <p><strong>Sequência:</strong> 22</p>
+            <p><strong>Sequência:</strong> 68</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.046247500, -49.213001500</p>
             <p><strong>Ângulo Anterior:</strong> 21.55°</p>
@@ -2028,7 +2028,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>68</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2057,11 +2057,11 @@
     </Placemark>
 
     <Placemark>
-        <name>22 | PDT10/300 | UP1</name>
+        <name>68 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 17</h3>
-            <p><strong>Sequência:</strong> 22</p>
+            <p><strong>Sequência:</strong> 68</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2079,7 +2079,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 18</p>
-            <p><strong>Sequência:</strong> 23</p>
+            <p><strong>Sequência:</strong> 72</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.045692000, -49.212772000</p>
             <p><strong>Ângulo Anterior:</strong> 381.55°</p>
@@ -2093,7 +2093,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>72</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -2122,11 +2122,11 @@
     </Placemark>
 
     <Placemark>
-        <name>23 | PDT10/600 | UP4</name>
+        <name>72 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 18</h3>
-            <p><strong>Sequência:</strong> 23</p>
+            <p><strong>Sequência:</strong> 72</p>
                          <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2144,7 +2144,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 18</p>
-            <p><strong>Sequência:</strong> 23</p>
+            <p><strong>Sequência:</strong> 72</p>
             <p><strong>Coordenadas:</strong> -17.045692000, -49.212772000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 96.79°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -2170,7 +2170,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 19</p>
-            <p><strong>Sequência:</strong> 24</p>
+            <p><strong>Sequência:</strong> 76</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.045072670, -49.212862670</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
@@ -2184,7 +2184,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>76</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2213,11 +2213,11 @@
     </Placemark>
 
     <Placemark>
-        <name>24 | PDT10/300 | UP1</name>
+        <name>76 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 19</h3>
-            <p><strong>Sequência:</strong> 24</p>
+            <p><strong>Sequência:</strong> 76</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2235,7 +2235,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 20</p>
-            <p><strong>Sequência:</strong> 25</p>
+            <p><strong>Sequência:</strong> 80</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.044453330, -49.212953330</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
@@ -2249,7 +2249,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>80</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2278,11 +2278,11 @@
     </Placemark>
 
     <Placemark>
-        <name>25 | PDT10/300 | UP1</name>
+        <name>80 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 20</h3>
-            <p><strong>Sequência:</strong> 25</p>
+            <p><strong>Sequência:</strong> 80</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2300,7 +2300,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 21</p>
-            <p><strong>Sequência:</strong> 26</p>
+            <p><strong>Sequência:</strong> 84</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.043834000, -49.213044000</p>
             <p><strong>Ângulo Anterior:</strong> 352.03°</p>
@@ -2314,7 +2314,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>84</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2343,11 +2343,11 @@
     </Placemark>
 
     <Placemark>
-        <name>26 | PDT10/300 | UP1</name>
+        <name>84 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 21</h3>
-            <p><strong>Sequência:</strong> 26</p>
+            <p><strong>Sequência:</strong> 84</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2365,7 +2365,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 22</p>
-            <p><strong>Sequência:</strong> 27</p>
+            <p><strong>Sequência:</strong> 88</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.043305000, -49.213279340</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
@@ -2379,7 +2379,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>88</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2408,11 +2408,11 @@
     </Placemark>
 
     <Placemark>
-        <name>27 | PDT10/300 | UP1</name>
+        <name>88 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 22</h3>
-            <p><strong>Sequência:</strong> 27</p>
+            <p><strong>Sequência:</strong> 88</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2430,7 +2430,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 23</p>
-            <p><strong>Sequência:</strong> 28</p>
+            <p><strong>Sequência:</strong> 92</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.042776000, -49.213514670</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
@@ -2444,7 +2444,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>92</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2473,11 +2473,11 @@
     </Placemark>
 
     <Placemark>
-        <name>28 | PDT10/300 | UP1</name>
+        <name>92 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 23</h3>
-            <p><strong>Sequência:</strong> 28</p>
+            <p><strong>Sequência:</strong> 92</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2495,7 +2495,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 24</p>
-            <p><strong>Sequência:</strong> 29</p>
+            <p><strong>Sequência:</strong> 96</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.042247000, -49.213750000</p>
             <p><strong>Ângulo Anterior:</strong> 336.96°</p>
@@ -2509,7 +2509,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>96</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -2538,11 +2538,11 @@
     </Placemark>
 
     <Placemark>
-        <name>29 | PDT10/600 | UP4</name>
+        <name>96 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 24</h3>
-            <p><strong>Sequência:</strong> 29</p>
+            <p><strong>Sequência:</strong> 96</p>
                          <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2560,7 +2560,7 @@
             <![CDATA[
             <h3>Estai Âncora</h3>
             <p><strong>Vértice:</strong> 24</p>
-            <p><strong>Sequência:</strong> 29</p>
+            <p><strong>Sequência:</strong> 96</p>
             <p><strong>Comprimento:</strong> 10.0m</p>
             <p><strong>Ângulo:</strong> 613.59°</p>
             ]]>
@@ -2579,7 +2579,7 @@
             <![CDATA[
             <h3>Quadrado do Estai Âncora</h3>
             <p><strong>Vértice:</strong> 24</p>
-            <p><strong>Sequência:</strong> 29</p>
+            <p><strong>Sequência:</strong> 96</p>
             <p><strong>Dimensões:</strong> 1m x 1m</p>
             <p><strong>Ângulo:</strong> 613.59°</p>
             ]]>
@@ -2602,7 +2602,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 25</p>
-            <p><strong>Sequência:</strong> 30</p>
+            <p><strong>Sequência:</strong> 100</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.041671250, -49.213853880</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -2616,7 +2616,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>30</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>100</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2645,11 +2645,11 @@
     </Placemark>
 
     <Placemark>
-        <name>30 | PDT10/300 | UP1</name>
+        <name>100 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 25</h3>
-            <p><strong>Sequência:</strong> 30</p>
+            <p><strong>Sequência:</strong> 100</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2667,7 +2667,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 26</p>
-            <p><strong>Sequência:</strong> 31</p>
+            <p><strong>Sequência:</strong> 104</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.041095500, -49.213957750</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -2681,7 +2681,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>31</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>104</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2710,11 +2710,11 @@
     </Placemark>
 
     <Placemark>
-        <name>31 | PDT10/300 | UP1</name>
+        <name>104 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 26</h3>
-            <p><strong>Sequência:</strong> 31</p>
+            <p><strong>Sequência:</strong> 104</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2732,7 +2732,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 27</p>
-            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Sequência:</strong> 108</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.040519750, -49.214061630</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -2746,7 +2746,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>108</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2775,11 +2775,11 @@
     </Placemark>
 
     <Placemark>
-        <name>32 | PDT10/300 | UP1</name>
+        <name>108 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 27</h3>
-            <p><strong>Sequência:</strong> 32</p>
+            <p><strong>Sequência:</strong> 108</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2797,7 +2797,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 28</p>
-            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Sequência:</strong> 112</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.039944000, -49.214165510</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -2811,7 +2811,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>112</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -2840,11 +2840,11 @@
     </Placemark>
 
     <Placemark>
-        <name>33 | PDT10/600 | UP4</name>
+        <name>112 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 28</h3>
-            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Sequência:</strong> 112</p>
                          <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2862,7 +2862,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 28</p>
-            <p><strong>Sequência:</strong> 33</p>
+            <p><strong>Sequência:</strong> 112</p>
             <p><strong>Coordenadas:</strong> -17.039944000, -49.214165510</p>
             <p><strong>Ângulo Final (Rotação):</strong> 80.21°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -2888,7 +2888,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 29</p>
-            <p><strong>Sequência:</strong> 34</p>
+            <p><strong>Sequência:</strong> 116</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.039368250, -49.214269380</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -2902,7 +2902,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>116</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2931,11 +2931,11 @@
     </Placemark>
 
     <Placemark>
-        <name>34 | PDT10/300 | UP1</name>
+        <name>116 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 29</h3>
-            <p><strong>Sequência:</strong> 34</p>
+            <p><strong>Sequência:</strong> 116</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -2953,7 +2953,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 30</p>
-            <p><strong>Sequência:</strong> 35</p>
+            <p><strong>Sequência:</strong> 120</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.038792500, -49.214373250</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -2967,7 +2967,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>120</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -2996,11 +2996,11 @@
     </Placemark>
 
     <Placemark>
-        <name>35 | PDT10/300 | UP1</name>
+        <name>120 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 30</h3>
-            <p><strong>Sequência:</strong> 35</p>
+            <p><strong>Sequência:</strong> 120</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3018,7 +3018,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 31</p>
-            <p><strong>Sequência:</strong> 36</p>
+            <p><strong>Sequência:</strong> 124</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.038216750, -49.214477130</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -3032,7 +3032,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>124</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -3061,11 +3061,11 @@
     </Placemark>
 
     <Placemark>
-        <name>36 | PDT10/300 | UP1</name>
+        <name>124 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 31</h3>
-            <p><strong>Sequência:</strong> 36</p>
+            <p><strong>Sequência:</strong> 124</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3083,7 +3083,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 32</p>
-            <p><strong>Sequência:</strong> 37</p>
+            <p><strong>Sequência:</strong> 128</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.037641000, -49.214581000</p>
             <p><strong>Ângulo Anterior:</strong> 350.21°</p>
@@ -3097,7 +3097,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>128</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP4</td></tr>
@@ -3126,11 +3126,11 @@
     </Placemark>
 
     <Placemark>
-        <name>37 | PDT10/600 | UP4</name>
+        <name>128 | PDT10/600 | UP4</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 32</h3>
-            <p><strong>Sequência:</strong> 37</p>
+            <p><strong>Sequência:</strong> 128</p>
                          <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> UP4</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3148,7 +3148,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 32</p>
-            <p><strong>Sequência:</strong> 37</p>
+            <p><strong>Sequência:</strong> 128</p>
             <p><strong>Coordenadas:</strong> -17.037641000, -49.214581000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 52.00°</p>
             <p><strong>Raio:</strong> 4.0m</p>
@@ -3174,7 +3174,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 33</p>
-            <p><strong>Sequência:</strong> 38</p>
+            <p><strong>Sequência:</strong> 132</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.037403000, -49.215145800</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
@@ -3188,7 +3188,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>38</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>132</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -3217,11 +3217,11 @@
     </Placemark>
 
     <Placemark>
-        <name>38 | PDT10/300 | UP1</name>
+        <name>132 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 33</h3>
-            <p><strong>Sequência:</strong> 38</p>
+            <p><strong>Sequência:</strong> 132</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3239,7 +3239,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 34</p>
-            <p><strong>Sequência:</strong> 39</p>
+            <p><strong>Sequência:</strong> 136</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.037165010, -49.215710600</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
@@ -3253,7 +3253,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>39</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>136</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -3282,11 +3282,11 @@
     </Placemark>
 
     <Placemark>
-        <name>39 | PDT10/300 | UP1</name>
+        <name>136 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 34</h3>
-            <p><strong>Sequência:</strong> 39</p>
+            <p><strong>Sequência:</strong> 136</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3304,7 +3304,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 35</p>
-            <p><strong>Sequência:</strong> 40</p>
+            <p><strong>Sequência:</strong> 140</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.036927010, -49.216275400</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
@@ -3318,7 +3318,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>40</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>140</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -3347,11 +3347,11 @@
     </Placemark>
 
     <Placemark>
-        <name>40 | PDT10/300 | UP1</name>
+        <name>140 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 35</h3>
-            <p><strong>Sequência:</strong> 40</p>
+            <p><strong>Sequência:</strong> 140</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3369,7 +3369,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 36</p>
-            <p><strong>Sequência:</strong> 41</p>
+            <p><strong>Sequência:</strong> 144</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.036689000, -49.216840200</p>
             <p><strong>Ângulo Anterior:</strong> 293.79°</p>
@@ -3383,7 +3383,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>41</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>144</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>UP1</td></tr>
@@ -3412,11 +3412,11 @@
     </Placemark>
 
     <Placemark>
-        <name>41 | PDT10/300 | UP1</name>
+        <name>144 | PDT10/300 | UP1</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 36</h3>
-            <p><strong>Sequência:</strong> 41</p>
+            <p><strong>Sequência:</strong> 144</p>
                          <p><strong>Poste:</strong> PDT10/300</p>
             <p><strong>Estrutura MT:</strong> UP1</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3434,7 +3434,7 @@
             <![CDATA[
             <h3>Quadrado na Bissetriz</h3>
             <p><strong>Vértice:</strong> 37</p>
-            <p><strong>Sequência:</strong> 42</p>
+            <p><strong>Sequência:</strong> 148</p>
             <p><strong>Status do Poste:</strong> IMPLANTAR</p>
             <p><strong>Coordenadas:</strong> -17.036451000, -49.217405000</p>
             <p><strong>Ângulo Anterior:</strong> 293.78°</p>
@@ -3448,7 +3448,7 @@
             <hr>
             <h4>Informações do Poste:</h4>
             <table border="1" style="border-collapse: collapse; width: 100%;">
-                <tr><td><strong>Sequência:</strong></td><td>42</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>148</td></tr>
                 <tr><td><strong>Status:</strong></td><td>IMPLANTAR</td></tr>
                 <tr><td><strong>Número do Poste:</strong></td><td>nan</td></tr>
                 <tr><td><strong>Estrutura MT NV1:</strong></td><td>U3</td></tr>
@@ -3477,11 +3477,11 @@
     </Placemark>
 
     <Placemark>
-        <name>42 | PDT10/600 | U3</name>
+        <name>148 | PDT10/600 | U3</name>
         <description>
             <![CDATA[
             <h3>Informações do Vértice 37</h3>
-            <p><strong>Sequência:</strong> 42</p>
+            <p><strong>Sequência:</strong> 148</p>
                          <p><strong>Poste:</strong> PDT10/600</p>
             <p><strong>Estrutura MT:</strong> U3</p>
             <p><strong>Estrutura BT:</strong> nan</p>
@@ -3499,7 +3499,7 @@
             <![CDATA[
             <h3>Base de Concreto</h3>
             <p><strong>Vértice:</strong> 37</p>
-            <p><strong>Sequência:</strong> 42</p>
+            <p><strong>Sequência:</strong> 148</p>
             <p><strong>Coordenadas:</strong> -17.036451000, -49.217405000</p>
             <p><strong>Ângulo Final (Rotação):</strong> 203.78°</p>
             <p><strong>Raio:</strong> 4.0m</p>

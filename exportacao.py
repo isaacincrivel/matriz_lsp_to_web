@@ -155,9 +155,25 @@ def salvar_csv(matriz, nome_arquivo="matriz_resultado.csv"):
     caminho_completo = os.path.join(pasta_resultados, nome_arquivo)
     
     try:
+        # Limpa valores "nan" antes de salvar
+        matriz_limpa = matriz.copy()
+        
+        # Substitui valores "nan" por strings vazias
+        matriz_limpa = matriz_limpa.replace('nan', '')
+        matriz_limpa = matriz_limpa.replace('NaN', '')
+        
+        # Também substitui valores NaN do pandas
+        matriz_limpa = matriz_limpa.fillna('')
+        
+        # Converte coordenadas lat e long para usar vírgula como separador decimal
+        if 'lat' in matriz_limpa.columns:
+            matriz_limpa['lat'] = matriz_limpa['lat'].astype(str).str.replace('.', ',')
+        if 'long' in matriz_limpa.columns:
+            matriz_limpa['long'] = matriz_limpa['long'].astype(str).str.replace('.', ',')
+        
         # Configura o pandas para usar vírgula como separador decimal
         pd.set_option('display.float_format', lambda x: f'{x:.8f}'.replace('.', ','))
-        matriz.to_csv(caminho_completo, index=False, encoding='utf-8-sig', sep=';', decimal=',')
+        matriz_limpa.to_csv(caminho_completo, index=False, encoding='utf-8-sig', sep=';', decimal=',')
         print(f"Arquivo CSV '{caminho_completo}' gerado com sucesso.")
         return True
     except PermissionError:
@@ -166,7 +182,7 @@ def salvar_csv(matriz, nome_arquivo="matriz_resultado.csv"):
         timestamp = int(time.time())
         arquivo_csv = f"matriz_resultado_{timestamp}.csv"
         caminho_alternativo = os.path.join(pasta_resultados, arquivo_csv)
-        matriz.to_csv(caminho_alternativo, index=False, encoding='utf-8-sig', sep=';', decimal=',')
+        matriz_limpa.to_csv(caminho_alternativo, index=False, encoding='utf-8-sig', sep=';', decimal=',')
         print(f"Arquivo CSV '{caminho_alternativo}' gerado com sucesso (nome alternativo devido a erro de permissão).")
         return True
     except Exception as e:

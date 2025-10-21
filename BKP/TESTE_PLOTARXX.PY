@@ -403,7 +403,7 @@ def main():
     module_data = ["MT10", 100, "SIM"]
     loose_gap = "SIM"
     section_size = 500
-    gap_size = 80
+    gap_size = 120
     num_poste_inicial = "2255555"
     tipo_poste = "EXISTENTE"
     lista_nao_intercalar = [0, 3, 5] 

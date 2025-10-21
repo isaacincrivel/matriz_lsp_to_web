@@ -190,14 +190,17 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 poste_deslocar = row.get('tipo_poste_desloc', '').strip()
                 
                 # Determina qual status tem o poste
-                # Se há dados em poste_existente, retirar ou deslocar, usa esse status
-                # Se não há dados em nenhuma coluna com sufixo, usa implantar
+                # Se há dados válidos em poste_existente, retirar ou deslocar, usa esse status
+                # Se não há dados válidos em nenhuma coluna com sufixo, usa implantar
                 status_poste = 'implantar'  # padrão
-                if poste_existente and poste_existente != '' and poste_existente != 'nan':
+                if (poste_existente and poste_existente != '' and poste_existente != 'nan' and 
+                    str(poste_existente).strip().lower() != 'nan'):
                     status_poste = 'existente'
-                elif poste_retirar and poste_retirar != '' and poste_retirar != 'nan':
+                elif (poste_retirar and poste_retirar != '' and poste_retirar != 'nan' and 
+                      str(poste_retirar).strip().lower() != 'nan'):
                     status_poste = 'retirar'
-                elif poste_deslocar and poste_deslocar != '' and poste_deslocar != 'nan':
+                elif (poste_deslocar and poste_deslocar != '' and poste_deslocar != 'nan' and 
+                      str(poste_deslocar).strip().lower() != 'nan'):
                     status_poste = 'deslocar'
                 
                 dados_pontos.append({
@@ -425,7 +428,10 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             elif status_poste == 'deslocar':
                 tipo_poste_para_exibir = dados_atual.get('poste_deslocar', '')
             
-            if tipo_poste_para_exibir and tipo_poste_para_exibir != 'N/A' and tipo_poste_para_exibir != 'nan':
+            if (tipo_poste_para_exibir and 
+                tipo_poste_para_exibir != 'N/A' and 
+                tipo_poste_para_exibir != 'nan' and 
+                str(tipo_poste_para_exibir).strip().lower() != 'nan'):
                 if status_poste == 'implantar':
                     valores_visiveis.append(tipo_poste_para_exibir)
                 elif status_poste == 'existente':
@@ -507,7 +513,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             # Adiciona elementos visuais especiais baseados no status do poste
             if status_poste == 'retirar':
                 # Adiciona um X ligando os cantos do quadrado (azul)
-                 kml_content += f"""
+                kml_content += f"""
      <Placemark>
          <name>X Retirar {i}</name>
          <description>X para poste a ser retirado</description>
@@ -531,7 +537,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
  """
             elif status_poste == 'deslocar':
                 # Adiciona uma linha diagonal (azul)
-                 kml_content += f"""
+                kml_content += f"""
      <Placemark>
          <name>Diagonal Deslocar {i}</name>
          <description>Linha diagonal para poste a ser deslocado</description>

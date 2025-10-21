@@ -62,7 +62,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     print(f"Sequências encontradas: {[v[2] for v in vertices]}")
     
     # Cria DataFrame com todas as colunas do CSV transformado + colunas adicionais necessárias
-    colunas_base = ["trecho", "sequencia", "lat", "long", "numero_poste", "tipo_poste"]
+    colunas_base = ["trecho", "sequencia", "lat", "long", "modalidade", "numero_poste", "tipo_poste"]
     colunas_csv = list(matriz_teste_transformada.columns)  # Todas as colunas do CSV transformado
     
     # Remove colunas duplicadas
@@ -73,7 +73,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     
     matriz = pd.DataFrame(columns=colunas_finais)
     
-    #new_vertices = get_loose_gap(loose_gap, vertices)
+    #new_vertices = get_loose_gap(loose_gap, vertices)    
     new_vertices, loose_gap = get_loose_gap(loose_gap, vertices)
 
     new_vertices = dividir_tramo(new_vertices, section_size)
@@ -84,6 +84,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     # Aplica encabeçamento automático baseado na distância
     new_vertices = colocar_encabecamento_rede(new_vertices, section_size)
 
+    # Intercala os vértices
     new_vertices = intercalar_vertices(new_vertices, lista_nao_intercalar, gap_size)
 
     # Preserva todas as colunas originais do CSV sem renomear
@@ -93,42 +94,51 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
 
     # Nota: criar_kml_quadrados_bissetriz será chamada na função main
     
-    # Adiciona os dados da matriz de pontos ao DataFrame
+    # Adiciona apenas os dados dos vértices originais do CSV (evita linhas vazias)
     for i, vertex in enumerate(new_vertices):
-        # Busca dados correspondentes na matriz_teste_filtrada baseado na sequência original
-        dados_csv = {}
-        
         # Tenta encontrar o vértice original correspondente
         sequencia_original = vertex[2] if len(vertex) > 2 else i
         
         # Busca na matriz_teste_filtrada pela sequência original
         row_correspondente = matriz_teste_filtrada[matriz_teste_filtrada['sequencia'] == sequencia_original]
         
+        # Só adiciona se encontrar dados correspondentes (vértice original)
         if not row_correspondente.empty:
             row = row_correspondente.iloc[0]
-            # Copia TODAS as colunas do CSV transformado
+            
+            # Cria linha para "implantar" com todos os dados
+            new_row_implantar = {
+                "trecho": trecho,
+                "sequencia": sequencia_original,  # Usa a sequência original
+                "lat": f"{vertex[0]:.9f}".replace(".", ","),
+                "long": f"{vertex[1]:.9f}".replace(".", ","),
+                "modalidade": "implantar",
+                "numero_poste": num_poste_inicial if sequencia_original == 0 else "",
+                "tipo_poste": tipo_poste if sequencia_original == 0 else ""
+            }
+            
+            # Adiciona todas as colunas do CSV transformado para "implantar"
             for coluna in matriz_teste_transformada.columns:
-                dados_csv[coluna] = str(row.get(coluna, ""))
-        else:
-            # Se não encontrar, usa dados vazios
-            for coluna in matriz_teste_transformada.columns:
-                dados_csv[coluna] = ""
-        
-        # Cria nova linha com todas as colunas
-        new_row = {
-            "trecho": trecho,
-            "sequencia": i,
-            "lat": f"{vertex[0]:.9f}".replace(".", ","),
-            "long": f"{vertex[1]:.9f}".replace(".", ","),
-            "numero_poste": num_poste_inicial if i == 0 else "",
-            "tipo_poste": tipo_poste if i == 0 else ""
-        }
-        
-        # Adiciona todas as colunas do CSV transformado
-        for coluna in matriz_teste_transformada.columns:
-            new_row[coluna] = dados_csv.get(coluna, "")
-        
-        matriz.loc[len(matriz)] = new_row
+                new_row_implantar[coluna] = str(row.get(coluna, ""))
+            
+            matriz.loc[len(matriz)] = new_row_implantar
+            
+            # Cria linhas para "existente", "retirar" e "deslocar" com apenas trecho, sequencia e modalidade
+            modalidades_extras = ["existente", "retirar", "deslocar"]
+            
+            for modalidade in modalidades_extras:
+                new_row = {
+                    "trecho": trecho,
+                    "sequencia": sequencia_original,
+                    "modalidade": modalidade
+                }
+                
+                # Preenche todas as outras colunas com string vazia
+                for col in colunas_finais:
+                    if col not in new_row:
+                        new_row[col] = ""
+                
+                matriz.loc[len(matriz)] = new_row
     return matriz
 
 ##################################################################################################################################
@@ -138,7 +148,7 @@ def main():
     module_data = ["MT10", 100, "SIM"]
     loose_gap = "SIM"
     section_size = 500
-    gap_size = 100
+    gap_size = 120
     num_poste_inicial = "2255555"
     tipo_poste = "EXISTENTE"
     lista_nao_intercalar = [2, 4] 
