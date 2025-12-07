@@ -203,8 +203,68 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                       str(poste_deslocar).strip().lower() != 'nan'):
                     status_poste = 'deslocar'
                 
+                # Obtém a sequência da coluna do CSV e converte para string se necessário
+                sequencia_valor = row.get('sequencia', '')
+                if sequencia_valor != '' and sequencia_valor != 'nan':
+                    try:
+                        sequencia_str = str(int(float(str(sequencia_valor).replace(',', '.'))))
+                    except (ValueError, TypeError):
+                        sequencia_str = str(sequencia_valor)
+                else:
+                    sequencia_str = ''
+                
+                # Busca estruturas com sufixos (_exist, _ret, _desloc)
+                # Função auxiliar para tratar valores None/NaN
+                def tratar_valor(valor):
+                    if valor is None or (hasattr(valor, '__iter__') and str(valor).strip().lower() in ['nan', 'none', '']):
+                        return ''
+                    return str(valor).strip()
+                
+                # Busca estruturas MT - tenta diferentes variações de nomes de colunas
+                # O transformacao_csv cria colunas como estru_mt_nv1_ret, estru_mt_nv1_exist, estru_mt_nv1_desloc
+                estrutura_mt_exist = tratar_valor(row.get('estru_mt_nv1_exist', '')) or tratar_valor(row.get('estrutura_mt_exist', ''))
+                estrutura_mt_ret = tratar_valor(row.get('estru_mt_nv1_ret', '')) or tratar_valor(row.get('estrutura_mt_ret', ''))
+                estrutura_mt_desloc = tratar_valor(row.get('estru_mt_nv1_desloc', '')) or tratar_valor(row.get('estrutura_mt_desloc', ''))
+                estrutura_mt_nv2_exist = tratar_valor(row.get('estru_mt_nv2_exist', '')) or tratar_valor(row.get('estrutura_mt_nv2_exist', ''))
+                estrutura_mt_nv2_ret = tratar_valor(row.get('estru_mt_nv2_ret', '')) or tratar_valor(row.get('estrutura_mt_nv2_ret', ''))
+                estrutura_mt_nv2_desloc = tratar_valor(row.get('estru_mt_nv2_desloc', '')) or tratar_valor(row.get('estrutura_mt_nv2_desloc', ''))
+                estrutura_mt_nv3_exist = tratar_valor(row.get('estru_mt_nv3_exist', '')) or tratar_valor(row.get('estrutura_mt_nv3_exist', ''))
+                estrutura_mt_nv3_ret = tratar_valor(row.get('estru_mt_nv3_ret', '')) or tratar_valor(row.get('estrutura_mt_nv3_ret', ''))
+                estrutura_mt_nv3_desloc = tratar_valor(row.get('estru_mt_nv3_desloc', '')) or tratar_valor(row.get('estrutura_mt_nv3_desloc', ''))
+                estrutura_bt_exist = tratar_valor(row.get('est_bt_nv1_exist', '')) or tratar_valor(row.get('estrutura_bt_exist', '')) or tratar_valor(row.get('est_bt_exist', ''))
+                estrutura_bt_ret = tratar_valor(row.get('est_bt_nv1_ret', '')) or tratar_valor(row.get('estrutura_bt_ret', '')) or tratar_valor(row.get('est_bt_ret', ''))
+                estrutura_bt_desloc = tratar_valor(row.get('est_bt_nv1_desloc', '')) or tratar_valor(row.get('estrutura_bt_desloc', '')) or tratar_valor(row.get('est_bt_desloc', ''))
+                estrutura_bt_nv2_exist = tratar_valor(row.get('est_bt_nv2_exist', '')) or tratar_valor(row.get('estrutura_bt_nv2_exist', ''))
+                estrutura_bt_nv2_ret = tratar_valor(row.get('est_bt_nv2_ret', '')) or tratar_valor(row.get('estrutura_bt_nv2_ret', ''))
+                estrutura_bt_nv2_desloc = tratar_valor(row.get('est_bt_nv2_desloc', '')) or tratar_valor(row.get('estrutura_bt_nv2_desloc', ''))
+                
+                # Debug temporário para sequência 9
+                if sequencia_str == '9':
+                    print(f"\n=== DEBUG POSTE 9 ===")
+                    print(f"Colunas disponíveis com 'ret': {[col for col in row.index if 'ret' in str(col).lower()]}")
+                    print(f"estru_mt_nv1: {row.get('estru_mt_nv1', 'NÃO ENCONTRADO')}")
+                    print(f"estru_mt_nv1_ret: {row.get('estru_mt_nv1_ret', 'NÃO ENCONTRADO')}")
+                    print(f"estrutura_mt_ret (tratado): {estrutura_mt_ret}")
+                    print(f"tipo_poste_exist: {row.get('tipo_poste_exist', 'NÃO ENCONTRADO')}")
+                    print(f"status_poste: {status_poste}")
+                    print(f"===================\n")
+                
+                # Busca também estruturas com sufixos usando nomes alternativos
+                # O transformacao_csv cria colunas como estru_mt_nv1_ret, então busca diretamente
+                estrutura_mt_ret_alt = tratar_valor(row.get('estru_mt_nv1_ret', ''))
+                estrutura_mt_exist_alt = tratar_valor(row.get('estru_mt_nv1_exist', ''))
+                estrutura_mt_desloc_alt = tratar_valor(row.get('estru_mt_nv1_desloc', ''))
+                
+                # Usa a estrutura encontrada (pode ser de qualquer uma das buscas)
+                if not estrutura_mt_ret:
+                    estrutura_mt_ret = estrutura_mt_ret_alt
+                if not estrutura_mt_exist:
+                    estrutura_mt_exist = estrutura_mt_exist_alt
+                if not estrutura_mt_desloc:
+                    estrutura_mt_desloc = estrutura_mt_desloc_alt
+                
                 dados_pontos.append({
-                    'sequencia': index,  # Usa o índice do DataFrame
+                    'sequencia': sequencia_str,  # Usa o valor da coluna sequencia do CSV
                     'numero_poste': row.get('num_poste', ''),
                     'tipo_poste': row.get('tipo_poste', ''),
                     'estrutura_mt': row.get('estru_mt_nv1', ''),  # Nome correto da coluna
@@ -223,7 +283,23 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                     'poste_implantar': poste_implantar,
                     'poste_existente': poste_existente,
                     'poste_retirar': poste_retirar,
-                    'poste_deslocar': poste_deslocar
+                    'poste_deslocar': poste_deslocar,
+                    # Estruturas com sufixos
+                    'estrutura_mt_exist': estrutura_mt_exist,
+                    'estrutura_mt_ret': estrutura_mt_ret,
+                    'estrutura_mt_desloc': estrutura_mt_desloc,
+                    'estrutura_mt_nv2_exist': estrutura_mt_nv2_exist,
+                    'estrutura_mt_nv2_ret': estrutura_mt_nv2_ret,
+                    'estrutura_mt_nv2_desloc': estrutura_mt_nv2_desloc,
+                    'estrutura_mt_nv3_exist': estrutura_mt_nv3_exist,
+                    'estrutura_mt_nv3_ret': estrutura_mt_nv3_ret,
+                    'estrutura_mt_nv3_desloc': estrutura_mt_nv3_desloc,
+                    'estrutura_bt_exist': estrutura_bt_exist,
+                    'estrutura_bt_ret': estrutura_bt_ret,
+                    'estrutura_bt_desloc': estrutura_bt_desloc,
+                    'estrutura_bt_nv2_exist': estrutura_bt_nv2_exist,
+                    'estrutura_bt_nv2_ret': estrutura_bt_nv2_ret,
+                    'estrutura_bt_nv2_desloc': estrutura_bt_nv2_desloc
                 })
         else:
             # É um dicionário - precisa converter para o formato esperado
@@ -232,8 +308,17 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 lat, lon = vertex[0], vertex[1]
                 pontos.append((lat, lon))
                 dados_vertex = pontos_matriz.get(vertex, {})
+                # Tenta obter a sequência do vértice (posição 2) ou do dicionário, senão usa o índice
+                if len(vertex) > 2 and vertex[2] != '':
+                    sequencia_valor = vertex[2]
+                    try:
+                        sequencia_str = str(int(float(str(sequencia_valor).replace(',', '.'))))
+                    except (ValueError, TypeError):
+                        sequencia_str = str(sequencia_valor)
+                else:
+                    sequencia_str = str(i)
                 dados_pontos.append({
-                    'sequencia': i,  # Usa o índice do loop
+                    'sequencia': sequencia_str,  # Usa a sequência do vértice ou do CSV
                     'numero_poste': dados_vertex.get('numero_poste', ''),
                     'tipo_poste': dados_vertex.get('tipo_poste', ''),
                     'estrutura_mt': dados_vertex.get('estrutura_mt', ''),
@@ -305,6 +390,13 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         </Point>
     </Placemark>
 """
+        
+        # Função auxiliar para verificar se valor é válido
+        def valor_valido(valor):
+            if not valor:
+                return False
+            valor_str = str(valor).strip().lower()
+            return valor_str not in ['', 'nan', 'none', 'n/a']
         
         # Para cada ponto, cria um quadrado na bissetriz
         for i in range(len(pontos)):
@@ -441,16 +533,134 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 elif status_poste == 'deslocar':
                     valores_visiveis.append(f"{tipo_poste_para_exibir} desloc")
             
-            if estrutura_mt and estrutura_mt != 'N/A' and estrutura_mt != 'nan':
-                valores_visiveis.append(estrutura_mt)
-            if estrutura_mt_nv2 and estrutura_mt_nv2 != 'N/A' and estrutura_mt_nv2 != 'nan':
-                valores_visiveis.append(estrutura_mt_nv2)
-            if estrutura_mt_nv3 and estrutura_mt_nv3 != 'N/A' and estrutura_mt_nv3 != 'nan':
-                valores_visiveis.append(estrutura_mt_nv3)
-            if estrutura_bt and estrutura_bt != 'N/A' and estrutura_bt != 'nan':
-                valores_visiveis.append(estrutura_bt)
-            if estrutura_bt_nv2 and estrutura_bt_nv2 != 'N/A' and estrutura_bt_nv2 != 'nan':
-                valores_visiveis.append(estrutura_bt_nv2)
+            # Adiciona estruturas com sufixos baseado no status (mesma lógica do poste)
+            # Função auxiliar para extrair estrutura de strings como "PDT10/30(UP1" -> "UP1"
+            def extrair_estrutura(valor):
+                if not valor_valido(valor):
+                    return ''
+                valor_str = str(valor).strip()
+                # Tenta extrair estrutura entre parênteses, ex: "PDT10/30(UP1" -> "UP1"
+                if '(' in valor_str:
+                    partes = valor_str.split('(')
+                    if len(partes) > 1:
+                        estrutura = partes[1].split(')')[0].split()[0]  # Pega até o primeiro espaço ou )
+                        return estrutura.strip()
+                # Se não tem parênteses, retorna o valor original
+                return valor_str
+            
+            # Estrutura MT NV1 - Adiciona TODAS as estruturas encontradas
+            estrutura_mt_exist = dados_atual.get('estrutura_mt_exist', '')
+            estrutura_mt_ret = dados_atual.get('estrutura_mt_ret', '')
+            estrutura_mt_desloc = dados_atual.get('estrutura_mt_desloc', '')
+            
+            # SEMPRE adiciona a estrutura normal (da linha Implantar) primeiro, se existir
+            if valor_valido(estrutura_mt):
+                estrutura_extraida = extrair_estrutura(estrutura_mt)
+                estrutura_normal = estrutura_extraida if estrutura_extraida else estrutura_mt
+                # Adiciona sem sufixo (é da linha Implantar)
+                valores_visiveis.append(estrutura_normal)
+            
+            # Adiciona estrutura com sufixo _exist se existir
+            if valor_valido(estrutura_mt_exist):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_exist)
+                estrutura_texto = f"{estrutura_extraida} exist" if estrutura_extraida else f"{estrutura_mt_exist} exist"
+                valores_visiveis.append(estrutura_texto)
+            
+            # Adiciona estrutura com sufixo _ret se existir
+            if valor_valido(estrutura_mt_ret):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_ret)
+                estrutura_texto = f"{estrutura_extraida} ret" if estrutura_extraida else f"{estrutura_mt_ret} ret"
+                valores_visiveis.append(estrutura_texto)
+            
+            # Adiciona estrutura com sufixo _desloc se existir
+            if valor_valido(estrutura_mt_desloc):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_desloc)
+                estrutura_texto = f"{estrutura_extraida} desloc" if estrutura_extraida else f"{estrutura_mt_desloc} desloc"
+                valores_visiveis.append(estrutura_texto)
+            
+            # Estrutura MT NV2 - Adiciona TODAS as estruturas encontradas
+            estrutura_mt_nv2_exist = dados_atual.get('estrutura_mt_nv2_exist', '')
+            estrutura_mt_nv2_ret = dados_atual.get('estrutura_mt_nv2_ret', '')
+            estrutura_mt_nv2_desloc = dados_atual.get('estrutura_mt_nv2_desloc', '')
+            
+            # SEMPRE adiciona a estrutura normal primeiro, se existir
+            if valor_valido(estrutura_mt_nv2):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv2)
+                valores_visiveis.append(estrutura_extraida if estrutura_extraida else estrutura_mt_nv2)
+            
+            # Adiciona estruturas com sufixos se existirem
+            if valor_valido(estrutura_mt_nv2_exist):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv2_exist)
+                valores_visiveis.append(f"{estrutura_extraida} exist" if estrutura_extraida else f"{estrutura_mt_nv2_exist} exist")
+            if valor_valido(estrutura_mt_nv2_ret):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv2_ret)
+                valores_visiveis.append(f"{estrutura_extraida} ret" if estrutura_extraida else f"{estrutura_mt_nv2_ret} ret")
+            if valor_valido(estrutura_mt_nv2_desloc):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv2_desloc)
+                valores_visiveis.append(f"{estrutura_extraida} desloc" if estrutura_extraida else f"{estrutura_mt_nv2_desloc} desloc")
+            
+            # Estrutura MT NV3 - Adiciona TODAS as estruturas encontradas
+            estrutura_mt_nv3_exist = dados_atual.get('estrutura_mt_nv3_exist', '')
+            estrutura_mt_nv3_ret = dados_atual.get('estrutura_mt_nv3_ret', '')
+            estrutura_mt_nv3_desloc = dados_atual.get('estrutura_mt_nv3_desloc', '')
+            
+            # SEMPRE adiciona a estrutura normal primeiro, se existir
+            if valor_valido(estrutura_mt_nv3):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv3)
+                valores_visiveis.append(estrutura_extraida if estrutura_extraida else estrutura_mt_nv3)
+            
+            # Adiciona estruturas com sufixos se existirem
+            if valor_valido(estrutura_mt_nv3_exist):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv3_exist)
+                valores_visiveis.append(f"{estrutura_extraida} exist" if estrutura_extraida else f"{estrutura_mt_nv3_exist} exist")
+            if valor_valido(estrutura_mt_nv3_ret):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv3_ret)
+                valores_visiveis.append(f"{estrutura_extraida} ret" if estrutura_extraida else f"{estrutura_mt_nv3_ret} ret")
+            if valor_valido(estrutura_mt_nv3_desloc):
+                estrutura_extraida = extrair_estrutura(estrutura_mt_nv3_desloc)
+                valores_visiveis.append(f"{estrutura_extraida} desloc" if estrutura_extraida else f"{estrutura_mt_nv3_desloc} desloc")
+            
+            # Estrutura BT NV1 - Adiciona TODAS as estruturas encontradas
+            estrutura_bt_exist = dados_atual.get('estrutura_bt_exist', '')
+            estrutura_bt_ret = dados_atual.get('estrutura_bt_ret', '')
+            estrutura_bt_desloc = dados_atual.get('estrutura_bt_desloc', '')
+            
+            # SEMPRE adiciona a estrutura normal primeiro, se existir
+            if valor_valido(estrutura_bt):
+                estrutura_extraida = extrair_estrutura(estrutura_bt)
+                valores_visiveis.append(estrutura_extraida if estrutura_extraida else estrutura_bt)
+            
+            # Adiciona estruturas com sufixos se existirem
+            if valor_valido(estrutura_bt_exist):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_exist)
+                valores_visiveis.append(f"{estrutura_extraida} exist" if estrutura_extraida else f"{estrutura_bt_exist} exist")
+            if valor_valido(estrutura_bt_ret):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_ret)
+                valores_visiveis.append(f"{estrutura_extraida} ret" if estrutura_extraida else f"{estrutura_bt_ret} ret")
+            if valor_valido(estrutura_bt_desloc):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_desloc)
+                valores_visiveis.append(f"{estrutura_extraida} desloc" if estrutura_extraida else f"{estrutura_bt_desloc} desloc")
+            
+            # Estrutura BT NV2 - Adiciona TODAS as estruturas encontradas
+            estrutura_bt_nv2_exist = dados_atual.get('estrutura_bt_nv2_exist', '')
+            estrutura_bt_nv2_ret = dados_atual.get('estrutura_bt_nv2_ret', '')
+            estrutura_bt_nv2_desloc = dados_atual.get('estrutura_bt_nv2_desloc', '')
+            
+            # SEMPRE adiciona a estrutura normal primeiro, se existir
+            if valor_valido(estrutura_bt_nv2):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_nv2)
+                valores_visiveis.append(estrutura_extraida if estrutura_extraida else estrutura_bt_nv2)
+            
+            # Adiciona estruturas com sufixos se existirem
+            if valor_valido(estrutura_bt_nv2_exist):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_nv2_exist)
+                valores_visiveis.append(f"{estrutura_extraida} exist" if estrutura_extraida else f"{estrutura_bt_nv2_exist} exist")
+            if valor_valido(estrutura_bt_nv2_ret):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_nv2_ret)
+                valores_visiveis.append(f"{estrutura_extraida} ret" if estrutura_extraida else f"{estrutura_bt_nv2_ret} ret")
+            if valor_valido(estrutura_bt_nv2_desloc):
+                estrutura_extraida = extrair_estrutura(estrutura_bt_nv2_desloc)
+                valores_visiveis.append(f"{estrutura_extraida} desloc" if estrutura_extraida else f"{estrutura_bt_nv2_desloc} desloc")
             
             # Junta os valores com | apenas se houver valores válidos
             texto_visivel = " | ".join(valores_visiveis) if valores_visiveis else "Sem dados"

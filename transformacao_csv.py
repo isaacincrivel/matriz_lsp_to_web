@@ -60,14 +60,25 @@ def transformar_csv_para_uma_linha_por_vertice(arquivo_csv):
     df_transformado = df_transformado.drop_duplicates(subset=['sequencia'], keep='first')
     df_transformado = df_transformado.reset_index(drop=True)
     
-    # Remove colunas duplicadas (pandas adiciona .1, .2, etc.)
+    # Remove colunas duplicadas de forma mais robusta
+    # Primeiro remove colunas com nomes exatamente duplicados
+    if df_transformado.columns.duplicated().any():
+        df_transformado = df_transformado.loc[:, ~df_transformado.columns.duplicated(keep='first')]
+    
+    # Depois remove colunas com mesmo nome base (ex: "sequencia" e "sequencia.1")
     colunas_unicas = []
+    colunas_base_vistas = set()
     for col in df_transformado.columns:
-        col_base = col.split('.')[0]  # Remove sufixos .1, .2, etc.
-        if col_base not in [c.split('.')[0] for c in colunas_unicas]:
+        col_base = str(col).split('.')[0]  # Remove sufixos .1, .2, etc.
+        if col_base not in colunas_base_vistas:
             colunas_unicas.append(col)
+            colunas_base_vistas.add(col_base)
     
     df_transformado = df_transformado[colunas_unicas]
+    
+    # Verificação final: garante que não há colunas duplicadas
+    if df_transformado.columns.duplicated().any():
+        df_transformado = df_transformado.loc[:, ~df_transformado.columns.duplicated(keep='first')]
     
     # Organiza as colunas em ordem lógica
     colunas_sequencia = ['sequencia']

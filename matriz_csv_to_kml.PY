@@ -16,11 +16,34 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     # Transforma o CSV para uma linha por vértice
     matriz_teste_transformada = transformar_csv_para_uma_linha_por_vertice("matriz_teste.csv")
     
-    # Salva o CSV transformado para referência
-    matriz_teste_transformada.to_csv("matriz_teste_transformada.csv", sep=";", decimal=",", index=False)
+    # Remove colunas duplicadas de forma mais robusta
+    # Primeiro, identifica colunas duplicadas exatas
+    colunas_duplicadas_exatas = matriz_teste_transformada.columns[matriz_teste_transformada.columns.duplicated()].tolist()
+    if colunas_duplicadas_exatas:
+        # Remove colunas duplicadas exatas, mantendo apenas a primeira
+        matriz_teste_transformada = matriz_teste_transformada.loc[:, ~matriz_teste_transformada.columns.duplicated()]
     
-    # Carrega o CSV transformado (versão final já limpa)
-    matriz_teste_transformada = pd.read_csv("matriz_teste_transformada_final.csv", sep=";", decimal=",")
+    # Remove colunas com sufixos .1, .2, etc. (mantém apenas a primeira)
+    colunas_unicas = []
+    colunas_base_vistas = set()
+    for col in matriz_teste_transformada.columns:
+        col_base = col.split('.')[0]  # Remove sufixos .1, .2, etc.
+        if col_base not in colunas_base_vistas:
+            colunas_unicas.append(col)
+            colunas_base_vistas.add(col_base)
+        # Se já viu essa coluna base, pula (mantém apenas a primeira)
+    
+    matriz_teste_transformada = matriz_teste_transformada[colunas_unicas]
+    
+    # Garante que não há colunas duplicadas no índice das colunas
+    if matriz_teste_transformada.columns.duplicated().any():
+        matriz_teste_transformada = matriz_teste_transformada.loc[:, ~matriz_teste_transformada.columns.duplicated()]
+    
+    # Salva o CSV transformado para referência (atualiza o arquivo final)
+    matriz_teste_transformada.to_csv("matriz_teste_transformada_final.csv", sep=";", decimal=",", index=False)
+    
+    # Usa o DataFrame transformado diretamente (não precisa carregar novamente)
+    # matriz_teste_transformada já contém os dados transformados
     
     # Usa o DataFrame transformado como base (já tem uma linha por vértice)
     matriz_teste_filtrada = matriz_teste_transformada.copy()
@@ -100,7 +123,22 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         sequencia_original = vertex[2] if len(vertex) > 2 else i
         
         # Busca na matriz_teste_filtrada pela sequência original
-        row_correspondente = matriz_teste_filtrada[matriz_teste_filtrada['sequencia'] == sequencia_original]
+        # Usa uma abordagem mais segura para evitar problemas com colunas duplicadas
+        try:
+            # Converte sequencia_original para o tipo correto
+            sequencia_original_int = int(float(sequencia_original)) if sequencia_original is not None else None
+            
+            # Usa .iloc com índice numérico para evitar problemas de reindexação
+            mask = matriz_teste_filtrada['sequencia'].astype(int) == sequencia_original_int
+            indices_match = matriz_teste_filtrada.index[mask]
+            
+            if len(indices_match) > 0:
+                row_correspondente = matriz_teste_filtrada.loc[[indices_match[0]]]
+            else:
+                row_correspondente = pd.DataFrame()  # DataFrame vazio
+        except (ValueError, KeyError, TypeError) as e:
+            # Se houver erro, retorna DataFrame vazio
+            row_correspondente = pd.DataFrame()
         
         # Só adiciona se encontrar dados correspondentes (vértice original)
         if not row_correspondente.empty:
