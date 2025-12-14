@@ -1,0 +1,3836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+    <name>Pontos da Matriz</name>
+    <description>Pontos gerados pelo sistema de plotagem</description>
+    
+    <!-- Estilo para postes -->
+    <Style id="poste_style">
+        <IconStyle>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+            </Icon>
+            <scale>1.0</scale>
+        </IconStyle>
+        <LabelStyle>
+            <color>ff0000ff</color>
+            <scale>0.8</scale>
+        </LabelStyle>
+    </Style>
+    
+    <!-- Estilo para pontos intermediários -->
+    <Style id="ponto_intermediario_style">
+        <IconStyle>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/paddle/blue-circle.png</href>
+            </Icon>
+            <scale>0.8</scale>
+        </IconStyle>
+        <LabelStyle>
+            <color>ff0000ff</color>
+            <scale>0.6</scale>
+        </LabelStyle>
+    </Style>
+
+    <Placemark>
+        <name>Poste 2255555</name>
+        <description>
+            <![CDATA[
+            <h3>Poste 2255555</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>0</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.041935</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.224541</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>2255555</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>A1</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#poste_style</styleUrl>
+        <Point>
+            <coordinates>-49.224541,-17.041935,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 0</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 0</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>0</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041935000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,224541000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.224541,-17.041935,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 0</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 0</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>0</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041935000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,224541000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.224541,-17.041935,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 0</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 0</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>0</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041935000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,224541000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.224541,-17.041935,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 1</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 1</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>1</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04206183</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.22429193</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT11/1000</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>SI1</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT11/1000</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22429193,-17.04206183,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 1</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 1</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>1</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042061830</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,224291930</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22429193,-17.04206183,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 1</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 1</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>1</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042061830</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,224291930</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22429193,-17.04206183,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 1</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 1</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>1</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042061830</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,224291930</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22429193,-17.04206183,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 2</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 2</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>2</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04234952</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.22372695</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22372695,-17.04234952,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 2</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 2</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>2</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042349520</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,223726950</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22372695,-17.04234952,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 2</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 2</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>2</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042349520</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,223726950</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22372695,-17.04234952,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 2</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 2</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>2</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042349520</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,223726950</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22372695,-17.04234952,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 3</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 3</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>3</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.0426372</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.22316196</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22316196,-17.0426372,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 3</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 3</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>3</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042637200</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,223161960</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22316196,-17.0426372,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 3</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 3</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>3</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042637200</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,223161960</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22316196,-17.0426372,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 3</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 3</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>3</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042637200</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,223161960</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22316196,-17.0426372,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 4</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 4</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>4</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04292489</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.22259697</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22259697,-17.04292489,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 4</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 4</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>4</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042924890</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,222596970</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22259697,-17.04292489,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 4</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 4</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>4</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042924890</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,222596970</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22259697,-17.04292489,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 4</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 4</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>4</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042924890</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,222596970</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22259697,-17.04292489,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 5</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 5</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>5</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04321258</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.22203198</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22203198,-17.04321258,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 5</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 5</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>5</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043212580</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,222031980</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22203198,-17.04321258,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 5</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 5</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>5</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043212580</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,222031980</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22203198,-17.04321258,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 5</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 5</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>5</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043212580</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,222031980</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22203198,-17.04321258,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 6</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 6</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>6</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04350026</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.22146699</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22146699,-17.04350026,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 6</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 6</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>6</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043500260</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,221466990</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22146699,-17.04350026,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 6</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 6</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>6</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043500260</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,221466990</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22146699,-17.04350026,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 6</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 6</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>6</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043500260</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,221466990</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.22146699,-17.04350026,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 7</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 7</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>7</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04378794</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.220902</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220902,-17.04378794,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 7</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 7</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>7</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043787940</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,220902000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220902,-17.04378794,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 7</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 7</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>7</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043787940</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,220902000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220902,-17.04378794,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 7</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 7</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>7</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043787940</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,220902000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220902,-17.04378794,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 8</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 8</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>8</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04407562</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.220337</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220337,-17.04407562,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 8</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 8</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>8</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044075620</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,220337000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220337,-17.04407562,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 8</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 8</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>8</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044075620</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,220337000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220337,-17.04407562,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 8</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 8</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>8</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044075620</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,220337000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.220337,-17.04407562,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 9</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 9</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>9</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.0443633</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21977201</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21977201,-17.0443633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 9</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 9</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>9</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044363300</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,219772010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21977201,-17.0443633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 9</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 9</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>9</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044363300</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,219772010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21977201,-17.0443633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 9</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 9</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>9</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044363300</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,219772010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21977201,-17.0443633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 10</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 10</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>10</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04465098</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21920701</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21920701,-17.04465098,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 10</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 10</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>10</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044650980</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,219207010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21920701,-17.04465098,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 10</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 10</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>10</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044650980</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,219207010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21920701,-17.04465098,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 10</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 10</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>10</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044650980</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,219207010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21920701,-17.04465098,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 11</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 11</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>11</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04493865</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21864201</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21864201,-17.04493865,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 11</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 11</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>11</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044938650</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,218642010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21864201,-17.04493865,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 11</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 11</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>11</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044938650</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,218642010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21864201,-17.04493865,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 11</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 11</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>11</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044938650</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,218642010</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21864201,-17.04493865,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 12</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 12</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>12</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04522633</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.218077</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.218077,-17.04522633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 12</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 12</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>12</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045226330</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,218077000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.218077,-17.04522633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 12</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 12</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>12</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045226330</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,218077000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.218077,-17.04522633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 12</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 12</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>12</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045226330</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,218077000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.218077,-17.04522633,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 13</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 13</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>13</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.045514</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.217512</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/1000</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217512,-17.045514,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 13</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 13</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>13</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045514000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,217512000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217512,-17.045514,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 13</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 13</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>13</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045514000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,217512000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217512,-17.045514,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 13</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 13</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>13</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045514000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,217512000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217512,-17.045514,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 14</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 14</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>14</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.047802</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.214406</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/1000</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214406,-17.047802,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 14</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 14</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>14</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,047802000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214406000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214406,-17.047802,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 14</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 14</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>14</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,047802000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214406000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214406,-17.047802,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 14</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 14</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>14</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,047802000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214406000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214406,-17.047802,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 15</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 15</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>15</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.047725</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.213698</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/1000</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/1000</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213698,-17.047725,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 15</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 15</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>15</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,047725000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213698000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213698,-17.047725,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 15</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 15</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>15</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,047725000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213698000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213698,-17.047725,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 15</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 15</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>15</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,047725000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213698000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213698,-17.047725,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 16</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 16</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>16</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.046803</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.213231</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213231,-17.046803,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 16</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 16</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>16</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,046803000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213231000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213231,-17.046803,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 16</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 16</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>16</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,046803000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213231000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213231,-17.046803,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 16</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 16</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>16</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,046803000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213231000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213231,-17.046803,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 17</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 17</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>17</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.0462475</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.2130015</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2130015,-17.0462475,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 17</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 17</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>17</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,046247500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213001500</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2130015,-17.0462475,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 17</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 17</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>17</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,046247500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213001500</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2130015,-17.0462475,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 17</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 17</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>17</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,046247500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213001500</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2130015,-17.0462475,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 18</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 18</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.045692</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.212772</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.212772,-17.045692,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 18</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 18</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045692000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212772000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.212772,-17.045692,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 18</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 18</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045692000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212772000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.212772,-17.045692,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 18</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 18</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>18</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045692000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212772000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.212772,-17.045692,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 19</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 19</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04507267</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21286267</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21286267,-17.04507267,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 19</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 19</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045072670</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212862670</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21286267,-17.04507267,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 19</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 19</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045072670</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212862670</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21286267,-17.04507267,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 19</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 19</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>19</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,045072670</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212862670</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21286267,-17.04507267,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 20</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 20</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>20</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04445333</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21295333</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21295333,-17.04445333,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 20</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 20</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>20</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044453330</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212953330</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21295333,-17.04445333,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 20</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 20</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>20</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044453330</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212953330</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21295333,-17.04445333,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 20</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 20</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>20</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,044453330</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,212953330</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21295333,-17.04445333,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 21</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 21</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.043834</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.213044</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213044,-17.043834,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 21</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 21</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043834000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213044000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213044,-17.043834,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 21</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 21</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043834000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213044000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213044,-17.043834,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 21</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 21</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>21</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043834000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213044000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.213044,-17.043834,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 22</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 22</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.043305</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21327934</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21327934,-17.043305,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 22</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 22</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043305000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213279340</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21327934,-17.043305,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 22</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 22</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043305000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213279340</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21327934,-17.043305,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 22</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 22</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>22</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,043305000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213279340</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21327934,-17.043305,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 23</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 23</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.042776</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21351467</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21351467,-17.042776,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 23</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 23</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042776000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213514670</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21351467,-17.042776,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 23</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 23</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042776000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213514670</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21351467,-17.042776,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 23</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 23</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>23</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042776000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213514670</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21351467,-17.042776,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 24</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 24</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.042247</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21375</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21375,-17.042247,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 24</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 24</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042247000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213750000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21375,-17.042247,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 24</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 24</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042247000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213750000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21375,-17.042247,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 24</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 24</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>24</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,042247000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213750000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21375,-17.042247,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 25</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 25</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04167125</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21385388</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21385388,-17.04167125,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 25</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 25</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041671250</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213853880</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21385388,-17.04167125,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 25</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 25</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041671250</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213853880</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21385388,-17.04167125,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 25</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 25</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>25</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041671250</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213853880</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21385388,-17.04167125,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 26</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 26</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.0410955</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21395775</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21395775,-17.0410955,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 26</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 26</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041095500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213957750</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21395775,-17.0410955,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 26</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 26</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041095500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213957750</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21395775,-17.0410955,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 26</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 26</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>26</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,041095500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,213957750</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21395775,-17.0410955,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 27</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 27</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.04051975</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21406163</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21406163,-17.04051975,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 27</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 27</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,040519750</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214061630</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21406163,-17.04051975,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 27</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 27</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,040519750</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214061630</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21406163,-17.04051975,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 27</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 27</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>27</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,040519750</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214061630</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21406163,-17.04051975,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 28</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 28</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.039944</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21416551</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21416551,-17.039944,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 28</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 28</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,039944000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214165510</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21416551,-17.039944,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 28</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 28</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,039944000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214165510</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21416551,-17.039944,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 28</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 28</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>28</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,039944000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214165510</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21416551,-17.039944,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 29</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 29</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.03936825</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21426938</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21426938,-17.03936825,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 29</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 29</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,039368250</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214269380</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21426938,-17.03936825,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 29</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 29</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,039368250</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214269380</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21426938,-17.03936825,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 29</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 29</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>29</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,039368250</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214269380</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21426938,-17.03936825,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 30</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 30</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>30</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.0387925</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21437325</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21437325,-17.0387925,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 30</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 30</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>30</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,038792500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214373250</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21437325,-17.0387925,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 30</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 30</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>30</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,038792500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214373250</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21437325,-17.0387925,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 30</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 30</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>30</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,038792500</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214373250</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21437325,-17.0387925,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 31</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 31</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>31</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.03821675</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.21447713</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21447713,-17.03821675,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 31</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 31</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>31</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,038216750</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214477130</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21447713,-17.03821675,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 31</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 31</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>31</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,038216750</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214477130</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21447713,-17.03821675,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 31</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 31</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>31</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,038216750</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214477130</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.21447713,-17.03821675,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 32</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 32</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.037641</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.214581</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP4</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214581,-17.037641,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 32</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 32</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037641000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214581000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214581,-17.037641,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 32</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 32</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037641000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214581000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214581,-17.037641,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 32</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 32</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>32</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037641000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,214581000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.214581,-17.037641,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 33</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 33</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.037403</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.2151458</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2151458,-17.037403,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 33</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 33</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037403000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,215145800</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2151458,-17.037403,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 33</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 33</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037403000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,215145800</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2151458,-17.037403,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 33</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 33</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>33</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037403000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,215145800</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2151458,-17.037403,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 34</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 34</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.03716501</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.2157106</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2157106,-17.03716501,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 34</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 34</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037165010</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,215710600</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2157106,-17.03716501,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 34</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 34</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037165010</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,215710600</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2157106,-17.03716501,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 34</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 34</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>34</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,037165010</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,215710600</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2157106,-17.03716501,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 35</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 35</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.03692701</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.2162754</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2162754,-17.03692701,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 35</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 35</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036927010</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,216275400</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2162754,-17.03692701,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 35</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 35</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036927010</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,216275400</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2162754,-17.03692701,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 35</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 35</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>35</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036927010</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,216275400</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2162754,-17.03692701,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 36</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 36</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.036689</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.2168402</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>UP1</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/300</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2168402,-17.036689,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 36</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 36</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036689000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,216840200</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2168402,-17.036689,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 36</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 36</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036689000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,216840200</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2168402,-17.036689,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 36</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 36</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>36</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036689000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,216840200</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.2168402,-17.036689,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 37</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 37</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17.036451</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49.217405</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>U3</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>nan</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>PDT10/600</td></tr>
+                <tr><td><strong>Base:</strong></td><td>nan</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217405,-17.036451,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 37</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 37</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036451000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,217405000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217405,-17.036451,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 37</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 37</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036451000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,217405000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217405,-17.036451,0</coordinates>
+        </Point>
+    </Placemark>
+
+    <Placemark>
+        <name>Ponto 37</name>
+        <description>
+            <![CDATA[
+            <h3>Ponto 37</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>T1</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>37</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>-17,036451000</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>-49,217405000</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura MT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Estrutura BT:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Poste:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Base:</strong></td><td>N/A</td></tr>
+            </table>
+            ]]>
+            </description>
+        <styleUrl>#ponto_intermediario_style</styleUrl>
+        <Point>
+            <coordinates>-49.217405,-17.036451,0</coordinates>
+        </Point>
+    </Placemark>
+
+</Document>
+</kml>

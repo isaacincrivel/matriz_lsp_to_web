@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar KML - Sistema Simples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .form-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background: #f0f4ff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload-label:hover {
+            background: #e6ebff;
+            border-color: #764ba2;
+        }
+
+        .file-upload input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            color: #1976d2;
+            margin: 5px 0;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Sistema de Importação KML</h1>
+        <p class="subtitle">Projeto Modular Automatizado de Redes de Distribuição Eletrica</p>
+
+        <!-- Opção 1: Upload de Arquivo -->
+        <div class="form-section">
+            <h2>📁 Opção 1: Carregar Arquivo Kml</h2>
+            <div class="form-group">
+                <div class="file-upload">
+                    <label class="file-upload-label">
+                        <span>📎 Clique para selecionar ou arraste o arquivo aqui</span>
+                        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls">
+                    </label>
+                </div>
+                <div class="file-name" id="fileName"></div>
+            </div>
+            <h2>📁 Opção 2: Carregar Arquivo CSV Matriz</h2>
+            <button class="btn" id="btnImportarArquivo" disabled>Importar KML do Arquivo</button>
+        </div>
+
+        <!-- Opção 2: Entrada Manual Simples -->
+        <div class="form-section">
+            <h2>✏️ Opção 2: Entrada Manual Simples</h2>
+            <div class="form-group">
+                <label for="nomeArquivo">Nome do Arquivo KML:</label>
+                <input type="text" id="nomeArquivo" placeholder="Ex: pontos_rede.kml" value="pontos_matriz.kml">
+            </div>
+            
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="text" id="latitude" placeholder="Ex: -17.041935">
+            </div>
+            
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="text" id="longitude" placeholder="Ex: -49.224541">
+            </div>
+            
+            <div class="form-group">
+                <label for="sequencia">Sequência:</label>
+                <input type="number" id="sequencia" placeholder="Ex: 1" value="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="trecho">Trecho:</label>
+                <input type="text" id="trecho" placeholder="Ex: T001">
+            </div>
+            
+            <div class="form-group">
+                <label for="numeroPoste">Número do Poste (opcional):</label>
+                <input type="text" id="numeroPoste" placeholder="Ex: 46464546">
+            </div>
+            
+            <div class="form-group">
+                <label for="tipoPoste">Tipo de Poste (opcional):</label>
+                <input type="text" id="tipoPoste" placeholder="Ex: N3, DT10/300">
+            </div>
+            
+            <button class="btn" id="btnAdicionarPonto">➕ Adicionar Ponto</button>
+            <button class="btn" id="btnGerarKMLManual" disabled>📥 Gerar e Baixar KML</button>
+        </div>
+
+        <!-- Mensagens -->
+        <div class="success-message" id="successMessage"></div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <!-- Biblioteca PapaParse para CSV -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <!-- FileSaver para download -->
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <!-- XLSX.js para Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        // Estado global para pontos manuais
+        let pontosManuais = [];
+
+        // Referências aos elementos
+        const fileInput = document.getElementById('fileInput');
+        const btnImportarArquivo = document.getElementById('btnImportarArquivo');
+        const btnGerarKMLManual = document.getElementById('btnGerarKMLManual');
+        const btnAdicionarPonto = document.getElementById('btnAdicionarPonto');
+        const fileName = document.getElementById('fileName');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Habilita botão quando arquivo é selecionado
+        fileInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                btnImportarArquivo.disabled = false;
+                fileName.textContent = `Arquivo selecionado: ${e.target.files[0].name}`;
+            } else {
+                btnImportarArquivo.disabled = true;
+                fileName.textContent = '';
+            }
+        });
+
+        // Função para mostrar mensagens
+        function showMessage(element, message, isError = false) {
+            element.textContent = message;
+            element.style.display = 'block';
+            if (isError) {
+                element.className = 'error-message';
+            } else {
+                element.className = 'success-message';
+            }
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        // Função para gerar KML a partir de dados
+        function gerarKML(dados, nomeArquivo = 'pontos_matriz.kml') {
+            let kml = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+    <name>Pontos da Matriz</name>
+    <description>Pontos gerados pelo sistema de plotagem</description>
+    
+    <!-- Estilo para postes -->
+    <Style id="poste_style">
+        <IconStyle>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href>
+            </Icon>
+            <scale>1.0</scale>
+        </IconStyle>
+        <LabelStyle>
+            <color>ff0000ff</color>
+            <scale>0.8</scale>
+        </LabelStyle>
+    </Style>
+    
+    <!-- Estilo para pontos intermediários -->
+    <Style id="ponto_intermediario_style">
+        <IconStyle>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/paddle/blue-circle.png</href>
+            </Icon>
+            <scale>0.8</scale>
+        </IconStyle>
+        <LabelStyle>
+            <color>ff0000ff</color>
+            <scale>0.6</scale>
+        </LabelStyle>
+    </Style>
+`;
+
+            dados.forEach((ponto, index) => {
+                const lat = ponto.lat || ponto.Lat || ponto.latitude || 0;
+                const lon = ponto.long || ponto.Long || ponto.longitude || ponto.lon || 0;
+                const sequencia = ponto.sequencia || ponto.Sequencia || index;
+                const trecho = ponto.trecho || ponto.Trecho || '';
+                const numero_poste = ponto.numero_poste || ponto.Numero_Poste || ponto.num_poste || '';
+                const tipo_poste = ponto.tipo_poste || ponto.Tipo_Poste || '';
+
+                // Converte string com vírgula para número
+                const latNum = typeof lat === 'string' ? parseFloat(lat.replace(',', '.')) : parseFloat(lat);
+                const lonNum = typeof lon === 'string' ? parseFloat(lon.replace(',', '.')) : parseFloat(lon);
+
+                if (isNaN(latNum) || isNaN(lonNum)) {
+                    console.warn(`Linha ${index + 1}: Coordenadas inválidas`, ponto);
+                    return;
+                }
+
+                const styleId = numero_poste && numero_poste !== '' ? 'poste_style' : 'ponto_intermediario_style';
+                const nomePonto = numero_poste && numero_poste !== '' ? `Poste ${numero_poste}` : `Ponto ${sequencia}`;
+
+                const descricao = `
+            <![CDATA[
+            <h3>${nomePonto}</h3>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr><td><strong>Trecho:</strong></td><td>${trecho}</td></tr>
+                <tr><td><strong>Sequência:</strong></td><td>${sequencia}</td></tr>
+                <tr><td><strong>Latitude:</strong></td><td>${lat}</td></tr>
+                <tr><td><strong>Longitude:</strong></td><td>${lon}</td></tr>
+                <tr><td><strong>Número do Poste:</strong></td><td>${numero_poste || 'N/A'}</td></tr>
+                <tr><td><strong>Tipo do Poste:</strong></td><td>${tipo_poste || 'N/A'}</td></tr>
+            </table>
+            ]]>
+            `;
+
+                kml += `
+    <Placemark>
+        <name>${nomePonto}</name>
+        <description>${descricao}</description>
+        <styleUrl>#${styleId}</styleUrl>
+        <Point>
+            <coordinates>${lonNum},${latNum},0</coordinates>
+        </Point>
+    </Placemark>
+`;
+            });
+
+            kml += `
+</Document>
+</kml>`;
+
+            return kml;
+        }
+
+        // Função para fazer download do KML
+        function downloadKML(kmlContent, filename) {
+            const blob = new Blob([kmlContent], { type: 'application/vnd.google-earth.kml+xml' });
+            saveAs(blob, filename);
+        }
+
+        // Importar KML do arquivo
+        btnImportarArquivo.addEventListener('click', async function() {
+            const file = fileInput.files[0];
+            if (!file) {
+                showMessage(errorMessage, 'Por favor, selecione um arquivo primeiro.', true);
+                return;
+            }
+
+            try {
+                let dados = [];
+
+                if (file.name.endsWith('.csv')) {
+                    // Processa CSV
+                    Papa.parse(file, {
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: function(results) {
+                            dados = results.data;
+                            if (dados.length === 0) {
+                                showMessage(errorMessage, 'Arquivo CSV vazio ou formato inválido.', true);
+                                return;
+                            }
+                            const kmlContent = gerarKML(dados, file.name.replace('.csv', '.kml'));
+                            downloadKML(kmlContent, file.name.replace('.csv', '.kml'));
+                            showMessage(successMessage, `✅ KML gerado com sucesso! ${dados.length} pontos processados.`);
+                        },
+                        error: function(error) {
+                            showMessage(errorMessage, 'Erro ao processar CSV: ' + error.message, true);
+                        }
+                    });
+                } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+                    // Processa Excel
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const data = new Uint8Array(e.target.result);
+                            const workbook = XLSX.read(data, { type: 'array' });
+                            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                            dados = XLSX.utils.sheet_to_json(firstSheet);
+                            
+                            if (dados.length === 0) {
+                                showMessage(errorMessage, 'Arquivo Excel vazio ou formato inválido.', true);
+                                return;
+                            }
+                            
+                            const kmlContent = gerarKML(dados, file.name.replace(/\.(xlsx|xls)$/, '.kml'));
+                            downloadKML(kmlContent, file.name.replace(/\.(xlsx|xls)$/, '.kml'));
+                            showMessage(successMessage, `✅ KML gerado com sucesso! ${dados.length} pontos processados.`);
+                        } catch (error) {
+                            showMessage(errorMessage, 'Erro ao processar Excel: ' + error.message, true);
+                        }
+                    };
+                    reader.readAsArrayBuffer(file);
+                } else {
+                    showMessage(errorMessage, 'Formato de arquivo não suportado. Use CSV ou Excel.', true);
+                }
+            } catch (error) {
+                showMessage(errorMessage, 'Erro ao processar arquivo: ' + error.message, true);
+            }
+        });
+
+        // Adicionar ponto manual
+        btnAdicionarPonto.addEventListener('click', function() {
+            const lat = document.getElementById('latitude').value;
+            const lon = document.getElementById('longitude').value;
+            const sequencia = document.getElementById('sequencia').value || pontosManuais.length + 1;
+            const trecho = document.getElementById('trecho').value;
+            const numeroPoste = document.getElementById('numeroPoste').value;
+            const tipoPoste = document.getElementById('tipoPoste').value;
+
+            if (!lat || !lon) {
+                showMessage(errorMessage, 'Por favor, preencha latitude e longitude.', true);
+                return;
+            }
+
+            const ponto = {
+                lat: lat,
+                long: lon,
+                sequencia: sequencia,
+                trecho: trecho,
+                numero_poste: numeroPoste,
+                tipo_poste: tipoPoste
+            };
+
+            pontosManuais.push(ponto);
+            btnGerarKMLManual.disabled = false;
+
+            // Limpa campos
+            document.getElementById('latitude').value = '';
+            document.getElementById('longitude').value = '';
+            document.getElementById('sequencia').value = pontosManuais.length + 1;
+            document.getElementById('numeroPoste').value = '';
+            document.getElementById('tipoPoste').value = '';
+
+            showMessage(successMessage, `✅ Ponto ${sequencia} adicionado! Total: ${pontosManuais.length} pontos.`);
+        });
+
+        // Gerar KML manual
+        btnGerarKMLManual.addEventListener('click', function() {
+            if (pontosManuais.length === 0) {
+                showMessage(errorMessage, 'Adicione pelo menos um ponto antes de gerar o KML.', true);
+                return;
+            }
+
+            const nomeArquivo = document.getElementById('nomeArquivo').value || 'pontos_matriz.kml';
+            const kmlContent = gerarKML(pontosManuais, nomeArquivo);
+            downloadKML(kmlContent, nomeArquivo);
+            showMessage(successMessage, `✅ KML gerado com sucesso! ${pontosManuais.length} pontos exportados.`);
+        });
+    </script>
+</body>
+</html>
+

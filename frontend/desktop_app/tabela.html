@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[ Sistema MATRIZ ] - Tabela de Dados</title>
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AG Grid CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@31.0.0/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@31.0.0/styles/ag-theme-alpine.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* AG Grid Container */
+        #myGrid {
+            height: 600px;
+            width: 100%;
+        }
+
+        .ag-theme-alpine {
+            --ag-font-family: 'JetBrains Mono', monospace;
+            --ag-header-height: 40px;
+            --ag-row-height: 35px;
+        }
+
+        .info-bar {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-bar .total {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .info-bar .info {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .btn-export {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .btn-export:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>[ Tabela de Dados - Sistema Matriz ]</h1>
+        <p class="subtitle">Filtre e edite os dados diretamente na tabela</p>
+        
+        <div class="info-bar">
+            <div>
+                <span class="total">Total de linhas: <span id="totalRows">0</span></span>
+                <span class="info"> | Clique no ícone de filtro em cada coluna para filtrar</span>
+            </div>
+        </div>
+
+        <!-- AG Grid Container -->
+        <div id="myGrid" class="ag-theme-alpine"></div>
+    </div>
+
+    <!-- AG Grid JS -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@31.0.0/dist/ag-grid-community.min.js"></script>
+    
+    <script src="tabela-data.js"></script>
+    <script src="tabela-grid.js"></script>
+</body>
+</html>
+

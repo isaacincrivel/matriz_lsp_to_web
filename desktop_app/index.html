@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[ Sistema MATRIZ ]</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .form-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background: #f0f4ff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload-label:hover {
+            background: #e6ebff;
+            border-color: #764ba2;
+        }
+
+        .file-upload input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .matriz-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .matriz-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        #line-map-container {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        #line-map-container .caption {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        #line-map {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos do Leaflet */
+        .leaflet-container {
+            background: #e5e3df;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <div class="matriz-logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Desenho de Matriz/Grid -->
+                    <!-- Linhas horizontais -->
+                    <line x1="10" y1="20" x2="90" y2="20" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="10" y1="35" x2="90" y2="35" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="10" y1="50" x2="90" y2="50" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="10" y1="65" x2="90" y2="65" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="10" y1="80" x2="90" y2="80" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    
+                    <!-- Linhas verticais -->
+                    <line x1="25" y1="10" x2="25" y2="90" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="40" y1="10" x2="40" y2="90" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="55" y1="10" x2="55" y2="90" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="70" y1="10" x2="70" y2="90" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    <line x1="85" y1="10" x2="85" y2="90" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                    
+                    <!-- Pontos/Células destacadas -->
+                    <circle cx="25" cy="35" r="3" fill="#fff" opacity="0.9"/>
+                    <circle cx="40" cy="50" r="3" fill="#fff" opacity="0.9"/>
+                    <circle cx="55" cy="65" r="3" fill="#fff" opacity="0.9"/>
+                    <circle cx="70" cy="35" r="3" fill="#fff" opacity="0.9"/>
+                    <circle cx="55" cy="20" r="3" fill="#fff" opacity="0.9"/>
+                </svg>
+            </div>
+        </div>
+        <h1>[ Sistema Matriz ]</h1>
+        <p class="subtitle">Projeto Modular Automatizado de Redes de Distribuição Eletrica</p>
+
+        <!-- Opção 1: Upload de Arquivo -->
+        <div class="form-section">
+            <h2>📁 Opção 1: Carregar Arquivo Kml</h2>
+            <div class="form-group">
+                <div class="file-upload">
+                    <label class="file-upload-label">
+                        <span>📎 Clique para selecionar ou arraste o arquivo aqui</span>
+                        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.kml,.kmz">
+                    </label>
+                </div>
+                <div class="file-name" id="fileName"></div>
+            </div>
+            <h2>📁 Opção 2: Carregar Arquivo CSV Matriz</h2>
+            <button class="btn" id="btnImportarArquivo">Importar Matriz CSV</button>
+            <button class="btn" id="btnGerarMatriz" disabled>Gerar Matriz</button>
+            <button class="btn" id="btnPlotarProjeto">Plotar Projeto</button>
+            
+            <!-- Mapa Leaflet -->
+            <div id="line-map-container" style="margin-top: 30px;">
+                <h2 class="caption" style="color: #333; margin-bottom: 10px; font-size: 1.1em;">Mapa da linha</h2>
+                <div id="line-map" style="width: 100%; height: 500px; border-radius: 10px; overflow: hidden; border: 2px solid #ddd;"></div>
+            </div>
+        </div>
+
+        <!-- Opção 2: Entrada Manual Simples -->
+        <div class="form-section">
+            <h2>✏️ Opção 2: Entrada Manual Simples</h2>
+            <div class="form-group">
+                <label for="nomeArquivo">Nome do Arquivo KML:</label>
+                <input type="text" id="nomeArquivo" placeholder="Ex: pontos_rede.kml" value="pontos_matriz.kml">
+            </div>
+            
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="text" id="latitude" placeholder="Ex: -17.041935">
+            </div>
+            
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="text" id="longitude" placeholder="Ex: -49.224541">
+            </div>
+            
+            <div class="form-group">
+                <label for="sequencia">Sequência:</label>
+                <input type="number" id="sequencia" placeholder="Ex: 1" value="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="trecho">Trecho:</label>
+                <input type="text" id="trecho" placeholder="Ex: T001">
+            </div>
+            
+            <div class="form-group">
+                <label for="numeroPoste">Número do Poste (opcional):</label>
+                <input type="text" id="numeroPoste" placeholder="Ex: 46464546">
+            </div>
+            
+            <div class="form-group">
+                <label for="tipoPoste">Tipo de Poste (opcional):</label>
+                <input type="text" id="tipoPoste" placeholder="Ex: N3, DT10/300">
+            </div>
+            
+            <button class="btn" id="btnAdicionarPonto">➕ Adicionar Ponto</button>
+            <button class="btn" id="btnGerarKMLManual" disabled>📥 Gerar e Baixar KML</button>
+        </div>
+
+        <!-- Mensagens -->
+        <div class="success-message" id="successMessage"></div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <!-- Leaflet CSS (deve estar antes do JS) -->
+    <link rel="stylesheet" href="libs/leaflet.css"/>
+    
+    <!-- Bibliotecas locais (serão substituídas por versões embutidas durante o build) -->
+    <script src="libs/papaparse.min.js"></script>
+    <script src="libs/FileSaver.min.js"></script>
+    <script src="libs/xlsx.full.min.js"></script>
+    <script src="libs/leaflet.js"></script>
+
+    <!-- Código principal da aplicação -->
+    <script src="app.js"></script>
+</body>
+</html>
+

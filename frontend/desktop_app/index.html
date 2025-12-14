@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[ Sistema MATRIZ ]</title>
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .form-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background: #f0f4ff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload-label:hover {
+            background: #e6ebff;
+            border-color: #764ba2;
+        }
+
+        .file-upload input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .matriz-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: block;
+            background: none;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        #line-map-container {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        #line-map-container .caption {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        #line-map {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos do Leaflet */
+        .leaflet-container {
+            background: #e5e3df;
+        }
+
+        /* Estilos para marcadores numerados */
+        .numbered-marker {
+            background: transparent;
+            border: none;
+        }
+
+        .marker-number-label {
+            background: #ff4444;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <div class="matriz-logo">
+                <img src="assets/logo.png" alt="Logo Sistema Matriz" class="logo-image">
+            </div>
+        </div>
+        <h1>[ Sistema Matriz ]</h1>
+        <p class="subtitle">Projeto Modular Automatizado de Redes de Distribuição Eletrica</p>
+
+        <!-- Opção 1: Upload de Arquivo -->
+        <div class="form-section">
+            <h2>📁 Opção 1: Carregar Arquivo Kml</h2>
+            <div class="form-group">
+                <div class="file-upload">
+                    <label class="file-upload-label">
+                        <span>📎 Clique para selecionar ou arraste o arquivo aqui</span>
+                        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.kml,.kmz">
+                    </label>
+                </div>
+                <div class="file-name" id="fileName"></div>
+            </div>
+            <h2>📁 Opção 2: Carregar Arquivo CSV Matriz</h2>
+            <button class="btn" id="btnImportarArquivo">Importar Matriz CSV</button>
+            <button class="btn" id="btnGerarMatriz" disabled>Gerar Matriz</button>
+            <button class="btn" id="btnPlotarProjeto">Plotar Projeto</button>
+            <button class="btn" id="btnAbrirTabela" style="margin-top: 10px; background: #28a745;">📊 Abrir Tabela de Dados</button>
+            
+            <!-- Mapa Leaflet (inicialmente escondido) -->
+            <div id="line-map-container" style="margin-top: 30px; display: none;">
+                <h2 class="caption" style="color: #333; margin-bottom: 10px; font-size: 1.1em;">Mapa da linha</h2>
+                <div id="line-map" style="width: 100%; height: 500px; border-radius: 10px; overflow: hidden; border: 2px solid #ddd;"></div>
+                <button class="btn" id="btnInverterSentido" style="margin-top: 15px; width: 100%;" disabled>🔄 Inverter Sentido</button>
+                
+                <!-- Campos de Seleção -->
+                <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <!-- Poste derivação -->
+                    <div class="form-group">
+                        <label for="posteDerivacao" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Poste derivação:</label>
+                        <select id="posteDerivacao" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="Implantar">Implantar</option>
+                            <option value="Existente">Existente</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Estado -->
+                    <div class="form-group">
+                        <label for="estado" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Estado:</label>
+                        <select id="estado" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="Goiás">Goiás</option>
+                            <option value="Pará">Pará</option>
+                            <option value="Piauí">Piauí</option>
+                            <option value="Maranhão">Maranhão</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Tensão -->
+                    <div class="form-group">
+                        <label for="tensao" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Tensão:</label>
+                        <select id="tensao" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="13,8kV">13,8kV</option>
+                            <option value="34,5kV">34,5kV</option>
+                            <option value="23,1kV">23,1kV</option>
+                            <option value="BT">BT</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Local -->
+                    <div class="form-group">
+                        <label for="local" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Local:</label>
+                        <select id="local" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="Rural">Rural</option>
+                            <option value="Urbano">Urbano</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Tipo de rede -->
+                    <div class="form-group">
+                        <label for="tipoRede" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Tipo de rede:</label>
+                        <select id="tipoRede" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="Construção MT">Construção MT</option>
+                            <option value="Construção BT">Construção BT</option>
+                            <option value="Retirada">Retirada</option>
+                            <option value="Melhoria Rede MT">Melhoria Rede MT</option>
+                            <option value="Melhoria Rede BT">Melhoria Rede BT</option>
+                            <option value="Melhoria de Rede MT BT">Melhoria de Rede MT BT</option>
+                            <option value="Trifaseamento MT">Trifaseamento MT</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Quantidade de Fases -->
+                    <div class="form-group">
+                        <label for="quantidadeFases" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Quantidade de Fases:</label>
+                        <select id="quantidadeFases" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="Monofasico MRT">Monofasic MRT</option>
+                            <option value="Monofasico">Monofasico</option>
+                            <option value="Bifasico com Neutro">Bifasico com Neutro</option>
+                            <option value="Bifásico sem neutro">Bifásico sem neutro</option>
+                            <option value="Trifásico com neutro">Trifásico com neutro</option>
+                            <option value="Trifásico sem neutro">Trifásico sem neutro</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Cabo -->
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="cabo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Cabo:</label>
+                        <select id="cabo" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="1/0CAA">1/0CAA</option>
+                            <option value="4/0CAA">4/0CAA</option>
+                            <option value="4CAA">4CAA</option>
+                            <option value="Space 185">Space 185</option>
+                            <option value="Space 150">Space 150</option>
+                            <option value="Space 50">Space 50</option>
+                            <option value="BT35mm">BT35mm</option>
+                            <option value="BT70mm">BT70mm</option>
+                            <option value="BT120mm">BT120mm</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Número do Módulo -->
+                    <div class="form-group">
+                        <label for="numeroModulo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Número do Módulo:</label>
+                        <input type="text" id="numeroModulo" class="form-control" 
+                               style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;"
+                               placeholder="Digite apenas números"
+                               pattern="[0-9]*"
+                               inputmode="numeric"
+                               onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                    </div>
+                    
+                    <!-- Descrição do Módulo -->
+                    <div class="form-group">
+                        <label for="descricaoModulo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Descrição do Módulo:</label>
+                        <select id="descricaoModulo" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagens -->
+        <div class="success-message" id="successMessage"></div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <!-- Leaflet CSS (deve estar antes do JS) -->
+    <link rel="stylesheet" href="libs/leaflet.css"/>
+    
+    <!-- Bibliotecas locais (serão substituídas por versões embutidas durante o build) -->
+    <script src="libs/papaparse.min.js"></script>
+    <script src="libs/FileSaver.min.js"></script>
+    <script src="libs/xlsx.full.min.js"></script>
+    <script src="libs/leaflet.js"></script>
+
+    <!-- Código principal da aplicação -->
+    <script src="app.js"></script>
+</body>
+</html>
+

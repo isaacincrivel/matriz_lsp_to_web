@@ -1,0 +1,6 @@
+sequencia;posteDerivacao;estado;tensao;local;tipoRede;quantidadeFases;cabo;Idade;numeroModulo;descricaoModulo;numeroPoste;tipoPoste;latitude;longitude;observacoes
+1;Implantar;S�o Paulo;13,8kV;Rural;Construção MT;Trifásico com neutro;1/0CAA;25;5;Módulo 1;123456;N3;-17.041.935;-49.224.541;Observação exemplo 1
+2;Existente;Pará;34,5kV;Urbano;Construção BT;Monofasico;4/0CAA;20;12;Módulo 2;789012;DT10/300;-17.050.000;-49.230.000;Observação exemplo 2
+3;Implantar;Piauí;23,1kV;Rural;Retirada;Bifasico com Neutro;Space 185;33;8;Módulo 3;345678;PDT10/300;-17.060.000;-49.240.000;Observação exemplo 3
+4;Existente;Maranhão;BT;Urbano;Melhoria Rede MT;Trifásico sem neutro;BT70mm;33;15;Módulo 4;456789;N1;-17.070.000;-49.250.000;Observação exemplo 4
+5;Implantar;Goiás;13,8kV;Rural;Trifaseamento MT;Monofasico MRT;Space 150;44;22;Módulo 5;567890;N2;-17.080.000;-49.260.000;Observação exemplo 5

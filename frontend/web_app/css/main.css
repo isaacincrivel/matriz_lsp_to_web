@@ -1,0 +1,137 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#line-map {
+    width: 100%;
+    height: 400px;
+    z-index: 99;
+}
+
+#line-map-container {
+    width: 80%;
+}
+
+#project-title {
+    font-size: 28px;
+    color: #1e293b;
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+#files-interaction, #project-infos {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+#files-interaction {
+    margin-bottom: 20px;
+}
+
+#files-interaction button, .form-actions button {
+    background-color: #1e3a8a;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    border: none;
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.form-actions #import-matrix-button {
+    background-color: black;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#files-interaction button:hover, .form-actions button:hover {
+    border-radius: 0;
+    background-color: var(--primary-color);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-actions button.excluir {
+    background-color: #8a1e1e;
+}
+
+.form-actions button.excluir:hover {
+    border-radius: 0;
+    background-color: #6f1919;
+}
+
+#project-infos {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+}
+
+#project-infos label {
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    gap: 5px;
+}
+
+.caption {
+    font-size: 20px;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.button {
+    background-color: #1e3a8a;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.button:hover {
+    border-radius: 0;
+    background-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    #line-map-container {
+        width: 95%;
+    }
+    
+    #files-interaction, #project-infos {
+        width: 95%;
+    }
+    
+    #files-interaction button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    #project-title {
+        font-size: 22px;
+        margin-top: 20px;
+    }
+}
+
