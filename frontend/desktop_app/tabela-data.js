@@ -78,5 +78,43 @@ const dadosTabela = [
         '%custo_poste_enc': 120
     },
 
+    // Linha 5
+    {
+        codigo_modulo: '10105',
+        descrição_modulo: 'Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Pecuária',
+        distribuidora_estado: 'Goiás',
+        tipo_obra: 'construção',
+        tensão: '13,8kV',
+        local: 'rural',
+        fases: '1',
+        neutro: 'não',
+        cabo: '1/0CAA',
+        vao_medio: 80,
+        vao_max: 300,
+        tramo_max: 700,
+        custo_med_poste: 12000,
+        '%custo_poste_tang': 90,
+        '%custo_poste_enc': 120
+    },
+
+    // Linha 6
+    {
+        codigo_modulo: '10106',
+        descrição_modulo: 'Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Agricultura',
+        distribuidora_estado: 'Goiás',
+        tipo_obra: 'construção',
+        tensão: '13,8kV',
+        local: 'rural',
+        fases: '1',
+        neutro: 'não',
+        cabo: '1/0CAA',
+        vao_medio: 80,
+        vao_max: 400,
+        tramo_max: 900,
+        custo_med_poste: 10000,
+        '%custo_poste_tang': 90,
+        '%custo_poste_enc': 120
+    },
+
    
 ];
