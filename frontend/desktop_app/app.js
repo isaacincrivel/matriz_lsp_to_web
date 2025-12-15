@@ -36,6 +36,8 @@ const btnInverterSentido = document.getElementById('btnInverterSentido');
 const fileName = document.getElementById('fileName');
 const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
+const numeroModulo = document.getElementById('numeroModulo');
+const descricaoModulo = document.getElementById('descricaoModulo');
 
 // Atualiza nome do arquivo quando selecionado e habilita/desabilita botões
 fileInput.addEventListener('change', function(e) {
@@ -388,9 +390,51 @@ function initMap() {
 }
 
 // Inicializa o mapa quando a página carregar e Leaflet estiver pronto
-// Validação para campo numérico - só permite números
+// Função para buscar módulo na tabela-data.js
+function buscarModuloPorCodigo(codigo) {
+    if (!codigo || codigo.trim() === '') {
+        return null;
+    }
+    
+    // Verifica se dadosTabela está disponível
+    if (typeof dadosTabela === 'undefined' || !dadosTabela || dadosTabela.length === 0) {
+        console.warn('dadosTabela não está disponível');
+        return null;
+    }
+    
+    // Busca o módulo pelo código
+    const modulo = dadosTabela.find(item => {
+        const codigoItem = item.codigo_modulo ? String(item.codigo_modulo).trim() : '';
+        const codigoBuscado = String(codigo).trim();
+        return codigoItem === codigoBuscado;
+    });
+    
+    return modulo || null;
+}
+
+// Função para atualizar descrição do módulo
+function atualizarDescricaoModulo(codigo) {
+    if (!descricaoModulo) return;
+    
+    if (!codigo || codigo.trim() === '') {
+        descricaoModulo.textContent = '<- Digitar código do módulo';
+        descricaoModulo.style.color = '#666';
+        return;
+    }
+    
+    const modulo = buscarModuloPorCodigo(codigo);
+    if (modulo) {
+        const descricao = modulo.descrição_modulo || modulo['descrição_modulo'] || '';
+        descricaoModulo.textContent = descricao || 'Descrição não encontrada';
+        descricaoModulo.style.color = '#333';
+    } else {
+        descricaoModulo.textContent = 'Módulo não encontrado';
+        descricaoModulo.style.color = '#f44336';
+    }
+}
+
+// Validação para campo numérico - só permite números e busca descrição
 function setupNumeroModuloValidation() {
-    const numeroModulo = document.getElementById('numeroModulo');
     if (numeroModulo) {
         // Permite apenas números ao digitar
         numeroModulo.addEventListener('keypress', function(e) {
@@ -410,20 +454,71 @@ function setupNumeroModuloValidation() {
             const paste = (e.clipboardData || window.clipboardData).getData('text');
             const numbersOnly = paste.replace(/\D/g, ''); // Remove tudo que não é dígito
             this.value = numbersOnly;
+            // Busca a descrição após colar
+            atualizarDescricaoModulo(numbersOnly);
         });
         
-        // Valida ao soltar tecla (input event) - remove caracteres não numéricos
+        // Valida ao digitar - remove caracteres não numéricos e busca descrição
         numeroModulo.addEventListener('input', function(e) {
             this.value = this.value.replace(/\D/g, '');
+            // Busca a descrição quando o usuário digita
+            atualizarDescricaoModulo(this.value);
+        });
+        
+        // Também busca quando o campo perde o foco (blur)
+        numeroModulo.addEventListener('blur', function(e) {
+            atualizarDescricaoModulo(this.value);
         });
     }
+}
+
+// Função para escutar mudanças no localStorage quando um módulo é selecionado na tabela
+function setupModuloSelecionadoListener() {
+    // Escuta mudanças no localStorage
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'modulo_selecionado') {
+            try {
+                const moduloData = JSON.parse(e.newValue);
+                if (moduloData && numeroModulo && descricaoModulo) {
+                    numeroModulo.value = moduloData.codigo_modulo || '';
+                    atualizarDescricaoModulo(moduloData.codigo_modulo);
+                }
+            } catch (error) {
+                console.error('Erro ao processar módulo selecionado:', error);
+            }
+        }
+    });
+    
+    // Também verifica periodicamente para quando a mesma janela atualiza o localStorage
+    // (o evento 'storage' só dispara entre janelas diferentes)
+    let lastTimestamp = null;
+    setInterval(function() {
+        try {
+            const moduloSelecionado = localStorage.getItem('modulo_selecionado');
+            if (moduloSelecionado) {
+                const moduloData = JSON.parse(moduloSelecionado);
+                if (moduloData && moduloData.timestamp && moduloData.timestamp !== lastTimestamp) {
+                    lastTimestamp = moduloData.timestamp;
+                    if (numeroModulo && descricaoModulo) {
+                        numeroModulo.value = moduloData.codigo_modulo || '';
+                        atualizarDescricaoModulo(moduloData.codigo_modulo);
+                    }
+                }
+            }
+        } catch (error) {
+            // Ignora erros silenciosamente
+        }
+    }, 500); // Verifica a cada 500ms
 }
 
 window.addEventListener('load', function() {
     console.log('Página carregada');
     
-    // Configura validação do campo número do módulo
+    // Configura validação do campo número do módulo e busca de descrição
     setupNumeroModuloValidation();
+    
+    // Configura listener para módulo selecionado na tabela
+    setupModuloSelecionadoListener();
     
     // Mapa será inicializado apenas quando um KML for importado
     // Não inicializa automaticamente aqui
@@ -536,8 +631,11 @@ function parseAndDisplayKML(kmlText) {
         window.currentMarkers = [];
         window.currentPolylines = [];
         
-        // Desabilita botão de inverter sentido quando limpar
+        // Desabilita botão de inverter sentido e botão abrir tabela quando limpar
         btnInverterSentido.disabled = true;
+        if (btnAbrirTabela) {
+            btnAbrirTabela.disabled = true;
+        }
 
         const parser = new DOMParser();
         const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -617,9 +715,12 @@ function parseAndDisplayKML(kmlText) {
             window.currentMarkers.push(marker);
         });
         
-        // Habilita botão de inverter sentido se houver marcadores
+        // Habilita botão de inverter sentido e botão abrir tabela se houver marcadores
         if (window.currentMarkers.length > 0) {
             btnInverterSentido.disabled = false;
+            if (btnAbrirTabela) {
+                btnAbrirTabela.disabled = false;
+            }
         }
 
         // Agora desenha as linhas e polígonos

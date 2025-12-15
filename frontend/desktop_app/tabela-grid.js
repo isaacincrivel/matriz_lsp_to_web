@@ -2,21 +2,20 @@
 
 // Definir colunas da tabela
 const columnDefs = [
-    { field: 'sequencia', headerName: 'Sequência', width: 100, filter: 'agNumberColumnFilter', editable: true, sortable: true },
-    { field: 'posteDerivacao', headerName: 'Poste Derivação', width: 150, filter: 'agSetColumnFilter', editable: true, sortable: true },
-    { field: 'estado', headerName: 'Estado', width: 120, filter: 'agSetColumnFilter', editable: true, sortable: true },
-    { field: 'tensao', headerName: 'Tensão', width: 110, filter: 'agSetColumnFilter', editable: true, sortable: true },
+    { field: 'codigo_modulo', headerName: 'Código Módulo', width: 130, filter: 'agTextColumnFilter', editable: true, sortable: true },
+    { field: 'descrição_modulo', headerName: 'Descrição Módulo', width: 200, filter: 'agTextColumnFilter', editable: true, sortable: true },
+    { field: 'distribuidora_estado', headerName: 'Distribuidora/Estado', width: 180, filter: 'agSetColumnFilter', editable: true, sortable: true },
+    { field: 'tipo_obra', headerName: 'Tipo Obra', width: 180, filter: 'agSetColumnFilter', editable: true, sortable: true },
+    { field: 'tensão', headerName: 'Tensão', width: 110, filter: 'agSetColumnFilter', editable: true, sortable: true },
     { field: 'local', headerName: 'Local', width: 100, filter: 'agSetColumnFilter', editable: true, sortable: true },
-    { field: 'tipoRede', headerName: 'Tipo de Rede', width: 180, filter: 'agSetColumnFilter', editable: true, sortable: true },
-    { field: 'quantidadeFases', headerName: 'Quantidade Fases', width: 180, filter: 'agSetColumnFilter', editable: true, sortable: true },
+    { field: 'fases', headerName: 'Fases', width: 180, filter: 'agSetColumnFilter', editable: true, sortable: true },
+    { field: 'neutro', headerName: 'Neutro', width: 100, filter: 'agSetColumnFilter', editable: true, sortable: true },
     { field: 'cabo', headerName: 'Cabo', width: 130, filter: 'agSetColumnFilter', editable: true, sortable: true },
-    { field: 'numeroModulo', headerName: 'Nº Módulo', width: 120, filter: 'agNumberColumnFilter', editable: true, sortable: true },
-    { field: 'descricaoModulo', headerName: 'Descrição Módulo', width: 160, filter: 'agTextColumnFilter', editable: true, sortable: true },
-    { field: 'numeroPoste', headerName: 'Nº Poste', width: 130, filter: 'agNumberColumnFilter', editable: true, sortable: true },
-    { field: 'tipoPoste', headerName: 'Tipo Poste', width: 130, filter: 'agSetColumnFilter', editable: true, sortable: true },
-    { field: 'latitude', headerName: 'Latitude', width: 130, filter: 'agNumberColumnFilter', editable: true, sortable: true },
-    { field: 'longitude', headerName: 'Longitude', width: 130, filter: 'agNumberColumnFilter', editable: true, sortable: true },
-    { field: 'observacoes', headerName: 'Observações', width: 250, filter: 'agTextColumnFilter', editable: true, sortable: true }
+    { field: 'vao_max', headerName: 'Vão Máx', width: 120, filter: 'agNumberColumnFilter', editable: true, sortable: true },
+    { field: 'tramo_max', headerName: 'Tramo Máx', width: 120, filter: 'agNumberColumnFilter', editable: true, sortable: true },
+    { field: 'custo_med_poste', headerName: 'custo_med_poste', width: 150, filter: 'agNumberColumnFilter', editable: true, sortable: true },
+    { field: '%custo_poste_tang', headerName: '%custo_poste_tang', width: 150, filter: 'agNumberColumnFilter', editable: true, sortable: true },
+    { field: '%custo_poste_enc', headerName: '%custo_poste_enc', width: 150, filter: 'agNumberColumnFilter', editable: true, sortable: true }
 ];
 
 // Configuração do grid
@@ -36,6 +35,7 @@ const gridOptions = {
     animateRows: true,
     pagination: true,
     paginationPageSize: 50,
+    rowSelection: 'single', // Permite seleção de uma linha
     suppressRowClickSelection: false,
     enableCellTextSelection: true,
     ensureDomOrder: true,
@@ -54,6 +54,32 @@ const gridOptions = {
         console.log('Célula alterada:', params.data);
         // Aqui você pode salvar as alterações em LocalStorage ou IndexedDB
         salvarDados();
+    },
+    onRowDoubleClicked: function(params) {
+        // Quando o usuário clica duas vezes na linha, envia dados para a tela principal
+        const selectedData = params.data;
+        if (selectedData) {
+            // Salva os dados no localStorage para a tela principal ler
+            localStorage.setItem('modulo_selecionado', JSON.stringify({
+                codigo_modulo: selectedData.codigo_modulo,
+                descrição_modulo: selectedData.descrição_modulo || selectedData['descrição_modulo'],
+                timestamp: Date.now() // Para garantir que seja detectado como mudança
+            }));
+            console.log('Módulo selecionado:', selectedData.codigo_modulo);
+        }
+    },
+    onRowClicked: function(params) {
+        // Quando o usuário clica uma vez na linha, também envia dados para a tela principal
+        const selectedData = params.data;
+        if (selectedData) {
+            // Salva os dados no localStorage para a tela principal ler
+            localStorage.setItem('modulo_selecionado', JSON.stringify({
+                codigo_modulo: selectedData.codigo_modulo,
+                descrição_modulo: selectedData.descrição_modulo || selectedData['descrição_modulo'],
+                timestamp: Date.now() // Para garantir que seja detectado como mudança
+            }));
+            console.log('Módulo selecionado:', selectedData.codigo_modulo);
+        }
     }
 };
 

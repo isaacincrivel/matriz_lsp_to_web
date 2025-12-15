@@ -146,6 +146,32 @@
             cursor: not-allowed;
             transform: none;
         }
+        
+        /* Estilo para botão discreto (similar ao select) */
+        #btnAbrirTabela {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        #btnAbrirTabela:hover:not(:disabled) {
+            background: #f8f9fa;
+            border-color: #667eea;
+        }
+        
+        #btnAbrirTabela:disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
 
         .success-message {
             background: #4caf50;
@@ -270,7 +296,6 @@
             <button class="btn" id="btnImportarArquivo">Importar Matriz CSV</button>
             <button class="btn" id="btnGerarMatriz" disabled>Gerar Matriz</button>
             <button class="btn" id="btnPlotarProjeto">Plotar Projeto</button>
-            <button class="btn" id="btnAbrirTabela" style="margin-top: 10px; background: #28a745;">📊 Abrir Tabela de Dados</button>
             
             <!-- Mapa Leaflet (inicialmente escondido) -->
             <div id="line-map-container" style="margin-top: 30px; display: none;">
@@ -280,96 +305,6 @@
                 
                 <!-- Campos de Seleção -->
                 <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <!-- Poste derivação -->
-                    <div class="form-group">
-                        <label for="posteDerivacao" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Poste derivação:</label>
-                        <select id="posteDerivacao" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="Implantar">Implantar</option>
-                            <option value="Existente">Existente</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Estado -->
-                    <div class="form-group">
-                        <label for="estado" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Estado:</label>
-                        <select id="estado" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="Goiás">Goiás</option>
-                            <option value="Pará">Pará</option>
-                            <option value="Piauí">Piauí</option>
-                            <option value="Maranhão">Maranhão</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Tensão -->
-                    <div class="form-group">
-                        <label for="tensao" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Tensão:</label>
-                        <select id="tensao" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="13,8kV">13,8kV</option>
-                            <option value="34,5kV">34,5kV</option>
-                            <option value="23,1kV">23,1kV</option>
-                            <option value="BT">BT</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Local -->
-                    <div class="form-group">
-                        <label for="local" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Local:</label>
-                        <select id="local" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="Rural">Rural</option>
-                            <option value="Urbano">Urbano</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Tipo de rede -->
-                    <div class="form-group">
-                        <label for="tipoRede" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Tipo de rede:</label>
-                        <select id="tipoRede" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="Construção MT">Construção MT</option>
-                            <option value="Construção BT">Construção BT</option>
-                            <option value="Retirada">Retirada</option>
-                            <option value="Melhoria Rede MT">Melhoria Rede MT</option>
-                            <option value="Melhoria Rede BT">Melhoria Rede BT</option>
-                            <option value="Melhoria de Rede MT BT">Melhoria de Rede MT BT</option>
-                            <option value="Trifaseamento MT">Trifaseamento MT</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Quantidade de Fases -->
-                    <div class="form-group">
-                        <label for="quantidadeFases" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Quantidade de Fases:</label>
-                        <select id="quantidadeFases" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="Monofasico MRT">Monofasic MRT</option>
-                            <option value="Monofasico">Monofasico</option>
-                            <option value="Bifasico com Neutro">Bifasico com Neutro</option>
-                            <option value="Bifásico sem neutro">Bifásico sem neutro</option>
-                            <option value="Trifásico com neutro">Trifásico com neutro</option>
-                            <option value="Trifásico sem neutro">Trifásico sem neutro</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Cabo -->
-                    <div class="form-group" style="grid-column: 1 / -1;">
-                        <label for="cabo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Cabo:</label>
-                        <select id="cabo" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                            <option value="1/0CAA">1/0CAA</option>
-                            <option value="4/0CAA">4/0CAA</option>
-                            <option value="4CAA">4CAA</option>
-                            <option value="Space 185">Space 185</option>
-                            <option value="Space 150">Space 150</option>
-                            <option value="Space 50">Space 50</option>
-                            <option value="BT35mm">BT35mm</option>
-                            <option value="BT70mm">BT70mm</option>
-                            <option value="BT120mm">BT120mm</option>
-                        </select>
-                    </div>
-                    
                     <!-- Número do Módulo -->
                     <div class="form-group">
                         <label for="numeroModulo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Número do Módulo:</label>
@@ -384,10 +319,16 @@
                     <!-- Descrição do Módulo -->
                     <div class="form-group">
                         <label for="descricaoModulo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Descrição do Módulo:</label>
-                        <select id="descricaoModulo" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                            <option value="">Selecione...</option>
-                        </select>
+                        <div id="descricaoModulo" 
+                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; background: #f5f5f5; color: #666; min-height: 20px;">
+                            <- Digitar código do módulo
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Botão Abrir Tabela de Dados -->
+                <div style="margin-top: 10px;">
+                    <button id="btnAbrirTabela" disabled>📊 Abrir Tabela de Dados</button>
                 </div>
             </div>
         </div>
@@ -406,6 +347,9 @@
     <script src="libs/xlsx.full.min.js"></script>
     <script src="libs/leaflet.js"></script>
 
+    <!-- Dados da tabela para busca -->
+    <script src="tabela-data.js"></script>
+    
     <!-- Código principal da aplicação -->
     <script src="app.js"></script>
 </body>
