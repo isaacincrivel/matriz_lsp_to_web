@@ -39,7 +39,6 @@ const errorMessage = document.getElementById('errorMessage');
 const numeroModulo = document.getElementById('numeroModulo');
 const descricaoModulo = document.getElementById('descricaoModulo');
 const naoIntercalarPostes = document.getElementById('naoIntercalarPostes');
-const filtroIntercalar = document.getElementById('filtroIntercalar');
 
 // Atualiza nome do arquivo quando selecionado e habilita/desabilita botões
 fileInput.addEventListener('change', function(e) {
@@ -522,24 +521,6 @@ window.addEventListener('load', function() {
     // Configura listener para módulo selecionado na tabela
     setupModuloSelecionadoListener();
     
-    // Configura filtro do select "Não Intercalar Postes"
-    if (filtroIntercalar) {
-        filtroIntercalar.addEventListener('input', function(e) {
-            filterIntercalarOptions(this.value);
-        });
-        
-        filtroIntercalar.addEventListener('keypress', function(e) {
-            // Permite apenas números
-            if (!(e.key >= '0' && e.key <= '9') && 
-                e.key !== 'Backspace' && 
-                e.key !== 'Delete' && 
-                e.key !== 'Tab' && 
-                !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
-                e.preventDefault();
-            }
-        });
-    }
-    
     // Configura listener para destacar segmentos quando seleção muda
     if (naoIntercalarPostes) {
         naoIntercalarPostes.addEventListener('change', function(e) {
@@ -739,9 +720,6 @@ function populateNaoIntercalarPostes(vertices) {
     // Limpa o select
     naoIntercalarPostes.innerHTML = '';
     
-    // Armazena todas as opções para filtro
-    window.allIntercalarOptions = [];
-    
     // Cria opções no formato "X-Y" (exceto o último vértice)
     for (let i = 0; i < vertices.length - 1; i++) {
         const currentNum = vertices[i].number;
@@ -760,80 +738,6 @@ function populateNaoIntercalarPostes(vertices) {
         }
         
         naoIntercalarPostes.appendChild(option);
-        
-        // Armazena para filtro (clona a opção para preservar estado)
-        window.allIntercalarOptions.push({
-            element: option,
-            value: optionValue,
-            text: optionText,
-            startNum: String(currentNum)
-        });
-    }
-    
-    // Aplica filtro atual se houver
-    if (filtroIntercalar && filtroIntercalar.value.trim() !== '') {
-        filterIntercalarOptions(filtroIntercalar.value.trim());
-    }
-}
-
-// Função para filtrar opções do select baseado no número inicial
-function filterIntercalarOptions(filterValue) {
-    if (!naoIntercalarPostes || !window.allIntercalarOptions) {
-        return;
-    }
-    
-    // Salva seleções atuais antes de filtrar
-    const selectedValues = Array.from(naoIntercalarPostes.selectedOptions).map(opt => opt.value);
-    
-    // Limpa o select
-    naoIntercalarPostes.innerHTML = '';
-    
-    // Se o filtro está vazio, mostra todas as opções
-    if (!filterValue || filterValue.trim() === '') {
-        window.allIntercalarOptions.forEach(optionData => {
-            const option = document.createElement('option');
-            option.value = optionData.value;
-            option.textContent = optionData.text;
-            option.dataset.startNum = optionData.startNum;
-            
-            // Restaura seleção se estava selecionada antes
-            if (selectedValues.includes(optionData.value)) {
-                option.selected = true;
-            }
-            
-            naoIntercalarPostes.appendChild(option);
-        });
-        return;
-    }
-    
-    // Filtra opções que começam com o número digitado
-    const filterNum = filterValue.trim();
-    let foundAny = false;
-    
-    window.allIntercalarOptions.forEach(optionData => {
-        if (optionData.startNum && optionData.startNum.startsWith(filterNum)) {
-            const option = document.createElement('option');
-            option.value = optionData.value;
-            option.textContent = optionData.text;
-            option.dataset.startNum = optionData.startNum;
-            
-            // Restaura seleção se estava selecionada antes
-            if (selectedValues.includes(optionData.value)) {
-                option.selected = true;
-            }
-            
-            naoIntercalarPostes.appendChild(option);
-            foundAny = true;
-        }
-    });
-    
-    // Se nenhuma opção foi encontrada
-    if (!foundAny) {
-        const noOption = document.createElement('option');
-        noOption.value = '';
-        noOption.textContent = 'Nenhum resultado encontrado';
-        noOption.disabled = true;
-        naoIntercalarPostes.appendChild(noOption);
     }
 }
 
@@ -867,9 +771,6 @@ function parseAndDisplayKML(kmlText) {
         // Limpa o select "Não Intercalar Postes"
         if (naoIntercalarPostes) {
             naoIntercalarPostes.innerHTML = '<option value="">Nenhum vértice carregado</option>';
-        }
-        if (filtroIntercalar) {
-            filtroIntercalar.value = '';
         }
         
         // Limpa segmentos
