@@ -38,6 +38,8 @@ const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
 const numeroModulo = document.getElementById('numeroModulo');
 const descricaoModulo = document.getElementById('descricaoModulo');
+const naoIntercalarPostes = document.getElementById('naoIntercalarPostes');
+const filtroIntercalar = document.getElementById('filtroIntercalar');
 
 // Atualiza nome do arquivo quando selecionado e habilita/desabilita botões
 fileInput.addEventListener('change', function(e) {
@@ -520,6 +522,31 @@ window.addEventListener('load', function() {
     // Configura listener para módulo selecionado na tabela
     setupModuloSelecionadoListener();
     
+    // Configura filtro do select "Não Intercalar Postes"
+    if (filtroIntercalar) {
+        filtroIntercalar.addEventListener('input', function(e) {
+            filterIntercalarOptions(this.value);
+        });
+        
+        filtroIntercalar.addEventListener('keypress', function(e) {
+            // Permite apenas números
+            if (!(e.key >= '0' && e.key <= '9') && 
+                e.key !== 'Backspace' && 
+                e.key !== 'Delete' && 
+                e.key !== 'Tab' && 
+                !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
+    
+    // Configura listener para destacar segmentos quando seleção muda
+    if (naoIntercalarPostes) {
+        naoIntercalarPostes.addEventListener('change', function(e) {
+            highlightSelectedSegments();
+        });
+    }
+    
     // Mapa será inicializado apenas quando um KML for importado
     // Não inicializa automaticamente aqui
 });
@@ -580,6 +607,79 @@ function updateMarkerNumber(marker, newNumber) {
     marker.bindPopup(`<strong>Vértice ${newNumber}</strong><br>Lat: ${latlng.lat.toFixed(6)}<br>Lon: ${latlng.lng.toFixed(6)}`);
 }
 
+// Função para criar segmentos individuais de linha entre vértices consecutivos
+function createSegmentPolylines(vertices) {
+    // Limpa segmentos anteriores (camada de destaque)
+    if (window.segmentPolylines) {
+        window.segmentPolylines.forEach((segmentData) => {
+            if (segmentData.polyline) {
+                try { map.removeLayer(segmentData.polyline); } catch(e) {}
+            }
+        });
+    }
+    window.segmentPolylines = new Map();
+    
+    if (!vertices || vertices.length < 2) {
+        return;
+    }
+    
+    // Armazena referências aos segmentos para destacamento
+    // Não cria linhas agora, apenas armazena as referências
+    // As linhas originais do KML já são desenhadas
+    for (let i = 0; i < vertices.length - 1; i++) {
+        const v1 = vertices[i];
+        const v2 = vertices[i + 1];
+        const segmentKey = `${v1.number}-${v2.number}`;
+        
+        // Armazena apenas a referência dos vértices para criar highlight quando necessário
+        window.segmentPolylines.set(segmentKey, {
+            v1: v1,
+            v2: v2,
+            polyline: null // Será criado quando selecionado
+        });
+    }
+}
+
+// Função para destacar segmentos selecionados
+function highlightSelectedSegments() {
+    if (!naoIntercalarPostes || !window.segmentPolylines) {
+        return;
+    }
+    
+    // Obtém todas as opções selecionadas
+    const selectedOptions = Array.from(naoIntercalarPostes.selectedOptions);
+    const selectedValues = selectedOptions.map(opt => opt.value);
+    
+    // Remove todos os segmentos de destaque existentes
+    window.segmentPolylines.forEach((segmentData, segmentKey) => {
+        if (segmentData.polyline) {
+            try {
+                map.removeLayer(segmentData.polyline);
+            } catch(e) {}
+            segmentData.polyline = null;
+        }
+    });
+    
+    // Cria linhas destacadas para os segmentos selecionados
+    window.segmentPolylines.forEach((segmentData, segmentKey) => {
+        if (selectedValues.includes(segmentKey)) {
+            // Cria polyline destacada (vermelha) sobre a linha original
+            const highlightPolyline = L.polyline(
+                [[segmentData.v1.lat, segmentData.v1.lon], [segmentData.v2.lat, segmentData.v2.lon]],
+                {
+                    color: '#ff4444', // Vermelho para destacar
+                    weight: 6,
+                    opacity: 1.0,
+                    zIndexOffset: 1000 // Garante que fique acima das linhas originais
+                }
+            ).addTo(map);
+            
+            // Armazena referência
+            segmentData.polyline = highlightPolyline;
+        }
+    });
+}
+
 // Função para inverter sentido da numeração
 function inverterSentido() {
     if (!window.currentMarkers || window.currentMarkers.length === 0) {
@@ -607,8 +707,134 @@ function inverterSentido() {
     // Reordena o array para manter a ordem invertida
     window.currentMarkers.reverse();
     
+    // Atualiza o select "Não Intercalar Postes" com a nova ordem
+    const allVertices = window.currentMarkers.map((marker, index) => ({
+        number: marker.vertexNumber,
+        lat: marker.getLatLng().lat,
+        lon: marker.getLatLng().lng
+    }));
+    
+    // Recria os segmentos com a nova ordem
+    createSegmentPolylines(allVertices);
+    
+    // Atualiza o select
+    populateNaoIntercalarPostes(allVertices);
+    
+    // Aplica destacamento se houver seleções
+    highlightSelectedSegments();
+    
     showMessage(successMessage, `✅ Sentido invertido! ${totalVertices} vértices renumerados.`);
     console.log(`Sentido invertido: ${totalVertices} vértices`);
+}
+
+// Função para popular o select "Não Intercalar Postes"
+function populateNaoIntercalarPostes(vertices) {
+    if (!naoIntercalarPostes || !vertices || vertices.length < 2) {
+        return;
+    }
+    
+    // Salva seleções atuais antes de limpar
+    const selectedValues = Array.from(naoIntercalarPostes.selectedOptions).map(opt => opt.value);
+    
+    // Limpa o select
+    naoIntercalarPostes.innerHTML = '';
+    
+    // Armazena todas as opções para filtro
+    window.allIntercalarOptions = [];
+    
+    // Cria opções no formato "X-Y" (exceto o último vértice)
+    for (let i = 0; i < vertices.length - 1; i++) {
+        const currentNum = vertices[i].number;
+        const nextNum = vertices[i + 1].number;
+        const optionText = `${currentNum}-${nextNum}`;
+        const optionValue = `${currentNum}-${nextNum}`;
+        
+        const option = document.createElement('option');
+        option.value = optionValue;
+        option.textContent = optionText;
+        option.dataset.startNum = String(currentNum);
+        
+        // Restaura seleção se estava selecionada antes
+        if (selectedValues.includes(optionValue)) {
+            option.selected = true;
+        }
+        
+        naoIntercalarPostes.appendChild(option);
+        
+        // Armazena para filtro (clona a opção para preservar estado)
+        window.allIntercalarOptions.push({
+            element: option,
+            value: optionValue,
+            text: optionText,
+            startNum: String(currentNum)
+        });
+    }
+    
+    // Aplica filtro atual se houver
+    if (filtroIntercalar && filtroIntercalar.value.trim() !== '') {
+        filterIntercalarOptions(filtroIntercalar.value.trim());
+    }
+}
+
+// Função para filtrar opções do select baseado no número inicial
+function filterIntercalarOptions(filterValue) {
+    if (!naoIntercalarPostes || !window.allIntercalarOptions) {
+        return;
+    }
+    
+    // Salva seleções atuais antes de filtrar
+    const selectedValues = Array.from(naoIntercalarPostes.selectedOptions).map(opt => opt.value);
+    
+    // Limpa o select
+    naoIntercalarPostes.innerHTML = '';
+    
+    // Se o filtro está vazio, mostra todas as opções
+    if (!filterValue || filterValue.trim() === '') {
+        window.allIntercalarOptions.forEach(optionData => {
+            const option = document.createElement('option');
+            option.value = optionData.value;
+            option.textContent = optionData.text;
+            option.dataset.startNum = optionData.startNum;
+            
+            // Restaura seleção se estava selecionada antes
+            if (selectedValues.includes(optionData.value)) {
+                option.selected = true;
+            }
+            
+            naoIntercalarPostes.appendChild(option);
+        });
+        return;
+    }
+    
+    // Filtra opções que começam com o número digitado
+    const filterNum = filterValue.trim();
+    let foundAny = false;
+    
+    window.allIntercalarOptions.forEach(optionData => {
+        if (optionData.startNum && optionData.startNum.startsWith(filterNum)) {
+            const option = document.createElement('option');
+            option.value = optionData.value;
+            option.textContent = optionData.text;
+            option.dataset.startNum = optionData.startNum;
+            
+            // Restaura seleção se estava selecionada antes
+            if (selectedValues.includes(optionData.value)) {
+                option.selected = true;
+            }
+            
+            naoIntercalarPostes.appendChild(option);
+            foundAny = true;
+        }
+    });
+    
+    // Se nenhuma opção foi encontrada
+    if (!foundAny) {
+        const noOption = document.createElement('option');
+        noOption.value = '';
+        noOption.textContent = 'Nenhum resultado encontrado';
+        noOption.disabled = true;
+        naoIntercalarPostes.appendChild(noOption);
+    }
 }
 
 // Função para parsear e exibir KML no mapa
@@ -630,11 +856,30 @@ function parseAndDisplayKML(kmlText) {
         
         window.currentMarkers = [];
         window.currentPolylines = [];
+        window.segmentPolylines = new Map(); // Armazena segmentos individuais por par de vértices (ex: "1-2", "2-3")
         
         // Desabilita botão de inverter sentido e botão abrir tabela quando limpar
         btnInverterSentido.disabled = true;
         if (btnAbrirTabela) {
             btnAbrirTabela.disabled = true;
+        }
+        
+        // Limpa o select "Não Intercalar Postes"
+        if (naoIntercalarPostes) {
+            naoIntercalarPostes.innerHTML = '<option value="">Nenhum vértice carregado</option>';
+        }
+        if (filtroIntercalar) {
+            filtroIntercalar.value = '';
+        }
+        
+        // Limpa segmentos
+        if (window.segmentPolylines) {
+            window.segmentPolylines.forEach((segmentData) => {
+                if (segmentData && segmentData.polyline) {
+                    try { map.removeLayer(segmentData.polyline); } catch(e) {}
+                }
+            });
+            window.segmentPolylines.clear();
         }
 
         const parser = new DOMParser();
@@ -715,15 +960,20 @@ function parseAndDisplayKML(kmlText) {
             window.currentMarkers.push(marker);
         });
         
+        // Cria segmentos individuais entre vértices consecutivos
+        createSegmentPolylines(allVertices);
+        
         // Habilita botão de inverter sentido e botão abrir tabela se houver marcadores
         if (window.currentMarkers.length > 0) {
             btnInverterSentido.disabled = false;
             if (btnAbrirTabela) {
                 btnAbrirTabela.disabled = false;
             }
+            // Popula o select "Não Intercalar Postes"
+            populateNaoIntercalarPostes(allVertices);
         }
 
-        // Agora desenha as linhas e polígonos
+        // Agora desenha as linhas e polígonos originais do KML
         placemarks.forEach((placemark) => {
             // Processa LineString
             const lineString = placemark.querySelector('LineString coordinates');

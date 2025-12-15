@@ -330,6 +330,23 @@
                 <div style="margin-top: 10px;">
                     <button id="btnAbrirTabela" disabled>📊 Abrir Tabela de Dados</button>
                 </div>
+                
+                <!-- Select Não Intercalar Postes -->
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="naoIntercalarPostes" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Não Intercalar Postes (Ctrl+Click para selecionar múltiplos):</label>
+                    <select id="naoIntercalarPostes" class="form-control" 
+                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; min-height: 150px;"
+                            size="8"
+                            multiple>
+                        <option value="">Nenhum vértice carregado</option>
+                    </select>
+                    <input type="text" id="filtroIntercalar" 
+                           placeholder="Digite o número inicial para filtrar (ex: 1, 2, 3...)"
+                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; margin-top: 5px;">
+                    <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">
+                        💡 Use Ctrl+Click (ou Cmd+Click no Mac) para selecionar múltiplas opções
+                    </small>
+                </div>
             </div>
         </div>
 
