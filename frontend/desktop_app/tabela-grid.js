@@ -11,6 +11,7 @@ const columnDefs = [
     { field: 'fases', headerName: 'Fases', width: 180, filter: 'agSetColumnFilter', editable: true, sortable: true },
     { field: 'neutro', headerName: 'Neutro', width: 100, filter: 'agSetColumnFilter', editable: true, sortable: true },
     { field: 'cabo', headerName: 'Cabo', width: 130, filter: 'agSetColumnFilter', editable: true, sortable: true },
+    { field: 'vao_medio', headerName: 'Vão Médio', width: 120, filter: 'agNumberColumnFilter', editable: true, sortable: true },
     { field: 'vao_max', headerName: 'Vão Máx', width: 120, filter: 'agNumberColumnFilter', editable: true, sortable: true },
     { field: 'tramo_max', headerName: 'Tramo Máx', width: 120, filter: 'agNumberColumnFilter', editable: true, sortable: true },
     { field: 'custo_med_poste', headerName: 'custo_med_poste', width: 150, filter: 'agNumberColumnFilter', editable: true, sortable: true },

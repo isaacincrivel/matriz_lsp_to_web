@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[ Sistema MATRIZ ]</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <!-- Google Fonts - JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -282,7 +283,7 @@
 
         <!-- Opção 1: Upload de Arquivo -->
         <div class="form-section">
-            <h2>📁 Opção 1: Carregar Arquivo Kml</h2>
+            <h2>Opção 1: Carregar Arquivo Kml</h2>
             <div class="form-group">
                 <div class="file-upload">
                     <label class="file-upload-label">
@@ -292,9 +293,8 @@
                 </div>
                 <div class="file-name" id="fileName"></div>
             </div>
-            <h2>📁 Opção 2: Carregar Arquivo CSV Matriz</h2>
+            <h2>Opção 2: Carregar Arquivo CSV Matriz</h2>
             <button class="btn" id="btnImportarArquivo">Importar Matriz CSV</button>
-            <button class="btn" id="btnGerarMatriz" disabled>Gerar Matriz</button>
             <button class="btn" id="btnPlotarProjeto">Plotar Projeto</button>
             
             <!-- Mapa Leaflet (inicialmente escondido) -->
@@ -340,6 +340,11 @@
                             multiple>
                         <option value="">Nenhum vértice carregado</option>
                     </select>
+                </div>
+                
+                <!-- Botão Gerar Matriz -->
+                <div style="margin-top: 15px;">
+                    <button class="btn" id="btnGerarMatriz" disabled>Gerar Matriz</button>
                 </div>
             </div>
         </div>
