@@ -174,7 +174,10 @@ def salvar_csv(matriz, nome_arquivo="matriz_resultado.csv"):
         # Configura o pandas para usar vírgula como separador decimal
         pd.set_option('display.float_format', lambda x: f'{x:.8f}'.replace('.', ','))
         matriz_limpa.to_csv(caminho_completo, index=False, encoding='utf-8-sig', sep=';', decimal=',')
-        print(f"Arquivo CSV '{caminho_completo}' gerado com sucesso.")
+        # Obtém o caminho absoluto para exibir ao usuário
+        caminho_absoluto = os.path.abspath(caminho_completo)
+        print(f"✅ Arquivo CSV gerado com sucesso!")
+        print(f"📍 Local: {caminho_absoluto}")
         return True
     except PermissionError:
         # Se não conseguir salvar com o nome original, tenta com um nome diferente
@@ -183,7 +186,9 @@ def salvar_csv(matriz, nome_arquivo="matriz_resultado.csv"):
         arquivo_csv = f"matriz_resultado_{timestamp}.csv"
         caminho_alternativo = os.path.join(pasta_resultados, arquivo_csv)
         matriz_limpa.to_csv(caminho_alternativo, index=False, encoding='utf-8-sig', sep=';', decimal=',')
-        print(f"Arquivo CSV '{caminho_alternativo}' gerado com sucesso (nome alternativo devido a erro de permissão).")
+        caminho_absoluto_alt = os.path.abspath(caminho_alternativo)
+        print(f"✅ Arquivo CSV gerado com sucesso (nome alternativo devido a erro de permissão)!")
+        print(f"📍 Local: {caminho_absoluto_alt}")
         return True
     except Exception as e:
         print(f"Erro ao salvar arquivo CSV: {e}")

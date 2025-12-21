@@ -64,9 +64,11 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, estrutura_mt, estrutura_bt, p
         "qdt_adic_3": "SIM",
         "adiconal_4": "SIM",
         "qdt_adic_4": "SIM",
-        "adiconal_5": "SIM",    	
-
-
+        "adiconal_5": "SIM",
+        "qdt_adic_5": "",
+        "adiconal_6": "",
+        "qdt_adic_6": "",
+        "rotacao_poste": ""
     }
     
     return pontos_matriz
