@@ -17,33 +17,36 @@ def mtz_abaco(str1):
     Returns:
         list: Lista de entradas do ábaco
     """
+
+    
+    # cria o dicionario de abacos
     abacos = {}    
-    abacos["MT7"] = [
-        ["UP1","","PDT10/300", "BS", "BICETRIZ", "TAN", [(-1.0, 0.0), (-1.0, 217.143), (160.0, 217.143), (160.0, 0.0), (-1.0, 0.0)]], #ms1
-        ["UP1","", "PDT10/300", "BC", "BICETRIZ", "TAN", [(160.0, 0.0), (160.0, 217.143), (350.0, 0.0), (160.0, 0.0)]], #ms2
-        ["UP4","", "PDT10/600", "BC", "ZIRTECIB", "ENC", [(160.0, 217.143), (160.0, 300.0), (600.0, 100.0), (600.0, 0.0), (350.0, 0.0), (160.0, 217.143)]], #ms3
-        ["UP4","", "PDT10/600", "BC", "ZIRTECIB", "ENC", [(-1.0, 217.143), (-1.0, 401.143), (160.0, 217.143), (-1.0, 217.143)]],#ms4
-        ["UP4","", "PDT10/1000", "BC", "ZIRTECIB", "ENC", [(-1.0, 401.143), (-1.0, 500.0), (600.0, 500.0), (600.0, 100.0), (160.0, 300.0), (160.0, 217.143), (-1.0, 401.143)]], #ms5
-        ["U3/U3","", "PDT10/1500", "BC", "TOPOMAIOR", "ENC", [(600.0, 220.0), (600.0, 500.0), (900.0, 500.0), (900.0, 220.0), (600.0, 220.0)]], #ms6
-        ["U3","", "PDT10/1000", "ES", "TOPOMAIOR", "ENC", [(600.0, 0.0), (600.0, 220.0), (900.0, 220.0), (900.0, 0.0), (600.0, 0.0)]], #ms7    
-        ["U3","", "PDT10/600", "BC", "TOPOMAIOR", "ENC", [(900.0, 220.0), (1000.0, 220.0), (1000.0, 1.39955e-12), (900.0, 9.09495e-13), (900.0, 220.0)]], #ms8
-        ["U3","", "PDT10/1000", "BC", "TOPOMAIOR", "ENC", [(900.0, 220.0), (900.0, 500.0), (1000.0, 500.0), (1000.0, 220.0), (900.0, 220.0)]], #ms9
-        ["U3","", "PDT11/300", "BS", "TOPOMAIOR", "ENC", [(1000.0, 35.0), (1100.0, 35.0), (1100.0, 9.09495e-13), (1000.0, 1.39266e-12), (1000.0, 35.0)]], #ms10
-        ["U3","", "PDT11/1000", "BC", "TOPOMAIOR", "ENC", [(1000.0, 220.0), (1100.0, 220.0), (1100.0, 35.0), (1000.0, 35.0), (1000.0, 220.0)]], #ms11
-        ["U3","", "EXIST", "BE", "TOPOMAIOR", "ENC", [(1100.0, 35.0), (1200.0, 35.0), (1200.0, 9.09495e-13), (1100.0, 1.39266e-12), (1100.0, 35.0)]], #ms12
-        ["U3","", "EXIST", "ES", "TOPOMAIOR", "ENC", [(1100.0, 220.0), (1200.0, 220.0), (1200.0, 35.0), (1100.0, 35.0), (1100.0, 220.0)]], #ms13
-        ["UP4","", "PDT10/600", "BC", "ZIRTECIB", "ENC", [(1300.0, 1.81899e-12), (1300.0, 180.0), (1400.0, 180.0), (1400.0, 2.72671e-12), (1300.0, 1.81899e-12)]] #m14
+    abacos["10105"] = [
+        {"estru_mt_nv1": "UP1", "tipo_poste": "PDT10/300", "rotacao_poste": "BICETRIZ", "tang_ou_enc": "TAN", "polygon": [(-1.0, 0.0), (-1.0, 217.143), (160.0, 217.143), (160.0, 0.0), (-1.0, 0.0)], "id": "ms1"},
+        {"estru_mt_nv1": "UP1", "tipo_poste": "PDT10/300", "base_concreto": "BC", "rotacao_poste": "BICETRIZ", "tang_ou_enc": "TAN", "polygon": [(160.0, 0.0), (160.0, 217.143), (350.0, 0.0), (160.0, 0.0)], "id": "ms2"},
+        {"estru_mt_nv1": "UP4", "tipo_poste": "PDT10/600", "base_concreto": "BC", "rotacao_poste": "ZIRTECIB", "tang_ou_enc": "ENC", "polygon": [(160.0, 217.143), (160.0, 300.0), (600.0, 100.0), (600.0, 0.0), (350.0, 0.0), (160.0, 217.143)], "id": "ms3"},
+        {"estru_mt_nv1": "UP4", "tipo_poste": "PDT10/600", "base_concreto": "BC", "rotacao_poste": "ZIRTECIB", "tang_ou_enc": "ENC", "polygon": [(-1.0, 217.143), (-1.0, 401.143), (160.0, 217.143), (-1.0, 217.143)], "id": "ms4"},
+        {"estru_mt_nv1": "UP4", "tipo_poste": "PDT10/1000", "base_concreto": "BC", "rotacao_poste": "ZIRTECIB", "tang_ou_enc": "ENC", "polygon": [(-1.0, 401.143), (-1.0, 500.0), (600.0, 500.0), (600.0, 100.0), (160.0, 300.0), (160.0, 217.143), (-1.0, 401.143)], "id": "ms5"},
+        {"estru_mt_nv1": "U3U3", "tipo_poste": "PDT10/1500", "base_concreto": "BC", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(600.0, 220.0), (600.0, 500.0), (900.0, 500.0), (900.0, 220.0), (600.0, 220.0)], "id": "ms6"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "PDT10/1000", "estai_ancora": "ES", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(600.0, 0.0), (600.0, 220.0), (900.0, 220.0), (900.0, 0.0), (600.0, 0.0)], "id": "ms7"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "PDT10/600", "base_concreto": "BC", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(900.0, 220.0), (1000.0, 220.0), (1000.0, 1.39955e-12), (900.0, 9.09495e-13), (900.0, 220.0)], "id": "ms8"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "PDT10/1000", "base_concreto": "BC", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(900.0, 220.0), (900.0, 500.0), (1000.0, 500.0), (1000.0, 220.0), (900.0, 220.0)], "id": "ms9"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "PDT11/300", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(1000.0, 35.0), (1100.0, 35.0), (1100.0, 9.09495e-13), (1000.0, 1.39266e-12), (1000.0, 35.0)], "id": "ms10"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "PDT11/1000", "base_concreto": "BC", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(1000.0, 220.0), (1100.0, 220.0), (1100.0, 35.0), (1000.0, 35.0), (1000.0, 220.0)], "id": "ms11"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "EXIST", "base_concreto": "BC", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(1100.0, 35.0), (1200.0, 35.0), (1200.0, 9.09495e-13), (1100.0, 1.39266e-12), (1100.0, 35.0)], "id": "ms12"},
+        {"estru_mt_nv1": "U3", "tipo_poste": "EXIST", "estai_ancora": "ES", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(1100.0, 220.0), (1200.0, 220.0), (1200.0, 35.0), (1100.0, 35.0), (1100.0, 220.0)], "id": "ms13"},
+        {"estru_mt_nv1": "UP4", "tipo_poste": "PDT10/600", "base_concreto": "BC", "rotacao_poste": "ZIRTECIB", "tang_ou_enc": "ENC", "polygon": [(1300.0, 1.81899e-12), (1300.0, 180.0), (1400.0, 180.0), (1400.0, 2.72671e-12), (1300.0, 1.81899e-12)], "id": "ms14"}
     ]  
-    abacos["MT8"] = [
-        ["UP1","", "PDT10/300", "BS", "TOPOMAIOR", "TAN", [(-1.0, 0.0), (160.0, 0.0), (160.0, 217.143), (-1.0, 217.143), (-1.0, 0.0)]],
-        ["UP1","", "PDT10/300", "ES","TOPOMAIOR", "TAN",  [(160.0, 217.143), (160.0, 0.0), (350.0, 0.0), (160.0, 217.143)]],
-        ["UP4","", "PDT10/300", "ED", "TOPOMAIOR", "ENC", [(-1.0, 217.143), (-1.0, 500.0), (160.0, 500.0), (160.0, 300.0), (600.0, 180.0), (600.0, 0.0), (350.0, 0.0), (160.0, 217.143), (-1.0, 217.143)]],
-        ["U3","U3", "PDT10/300", "ED", "TOPOMAIOR", "ENC", [(600.0, 220.0), (600.0, 0.0), (900.0, 0.0), (900.0, 220.0), (600.0, 220.0)]],
-        ["UP4","", "PDT10/300", "ET", "TOPOMAIOR", "ENC", [(160.0, 300.0), (160.0, 500.0), (600.0, 500.0), (600.0, 180.0), (160.0, 300.0)]],
-        ["U3/U3","", "PDT10/600", "ET", "TOPOMAIOR", "ENC", [(600.0, 220.0), (600.0, 500.0), (900.0, 500.0), (900.0, 220.0), (600.0, 220.0)]],
-        ["U3","", "PDT10/300", "ET", "TOPOMAIOR", "ENC", [(900.0, 220.0), (900.0, 500.0), (1100.0, 500.0), (1100.0, 220.0), (900.0, 220.0)]],
-        ["U3","", "PDT10/300", "ES", "TOPOMAIOR", "ENC", [(900.0, 0.0), (900.0, 220.0), (1100.0, 220.0), (1100.0, 0.0), (900.0, 0.0)]],
-        ["UP4","", "PDT10/300", "ED", "TOPOMAIOR", "ENC", [(1100.0, 217.143), (1300.0, 217.143), (1300.0, 0.0), (1100.0, 0.0), (1100.0, 217.143)]]
+    abacos["10106"] = [
+        {"estru_mt_nv1": "UP1", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "TAN", "polygon": [(-1.0, 0.0), (160.0, 0.0), (160.0, 217.143), (-1.0, 217.143), (-1.0, 0.0)]},
+        {"estru_mt_nv1": "UP1", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ES", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "TAN", "polygon": [(160.0, 217.143), (160.0, 0.0), (350.0, 0.0), (160.0, 217.143)]},
+        {"estru_mt_nv1": "UP4", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ED", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(-1.0, 217.143), (-1.0, 500.0), (160.0, 500.0), (160.0, 300.0), (600.0, 180.0), (600.0, 0.0), (350.0, 0.0), (160.0, 217.143), (-1.0, 217.143)]},
+        {"estru_mt_nv1": "U3", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ED", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(600.0, 220.0), (600.0, 0.0), (900.0, 0.0), (900.0, 220.0), (600.0, 220.0)]},
+        {"estru_mt_nv1": "UP4", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ET", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(160.0, 300.0), (160.0, 500.0), (600.0, 500.0), (600.0, 180.0), (160.0, 300.0)]},
+        {"estru_mt_nv1": "U3U3", "estrutura_bt": "A1", "tipo_poste": "PDT10/600", "estai_ancora": "ET", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(600.0, 220.0), (600.0, 500.0), (900.0, 500.0), (900.0, 220.0), (600.0, 220.0)]},
+        {"estru_mt_nv1": "U3", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ET", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(900.0, 220.0), (900.0, 500.0), (1100.0, 500.0), (1100.0, 220.0), (900.0, 220.0)]},
+        {"estru_mt_nv1": "U3", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ES", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(900.0, 0.0), (900.0, 220.0), (1100.0, 220.0), (1100.0, 0.0), (900.0, 0.0)]},
+        {"estru_mt_nv1": "UP4", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ED", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(1100.0, 217.143), (1300.0, 217.143), (1300.0, 0.0), (1100.0, 0.0), (1100.0, 217.143)]}
     ]
     return abacos.get(str1, [])
 
@@ -84,17 +87,20 @@ def mosaico(ang1, dist1, str1):
         str1: Nome do módulo
     
     Returns:
-        list: [estrutura_mt, estrutura_bt, poste, base] ou None se não encontrar
+        dict: Dicionário com todos os campos do ábaco encontrado (exceto 'polygon' e 'id'), 
+              ou None se não encontrar
     """
     ang1 = ang1 * 10
     abaco = mtz_abaco(str1)
     ptx = (ang1, dist1)
 
     for entry in abaco:
-        # Agora todas as entradas têm 6 elementos: estrutura_mt, estrutura_bt, poste, base, tipo, polygon
-        def_estrutura, def_estruturabt, def_poste, def_base, posicao_poste, estr_encabecamento, polygon = entry
+        # Entradas agora são dicionários com chaves nomeadas
+        polygon = entry.get("polygon", [])
         if point_in_polygon(polygon, ptx):
-            return [def_estrutura, def_estruturabt, def_poste, def_base, posicao_poste, estr_encabecamento]
+            # Retorna uma cópia do dicionário sem os campos internos (polygon e id)
+            resultado = {k: v for k, v in entry.items() if k not in ["polygon", "id"]}
+            return resultado
 
     ## se não der nada tem que retornar algo padrão
     print(f"ERRO: Não foi possível encontrar correspondência no ábaco para:")

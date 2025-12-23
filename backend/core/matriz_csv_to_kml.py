@@ -229,7 +229,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         # Cria linha para "implantar" com todas as colunas necessárias
         new_row_implantar = {
             "trecho": trecho,
-            "sequencia": sequencia_original,
+            "sequencia": dados_estrutura.get("sequencia", sequencia_original),
             "status": status,
             "lat": f"{vertex[0]:.9f}".replace(".", ","),
             "long": f"{vertex[1]:.9f}".replace(".", ","),

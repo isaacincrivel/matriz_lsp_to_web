@@ -9,18 +9,16 @@ from backend.core.calculo_geografico import distance_ptos, angulo_deflexao
 from backend.abacos.abaco_mosaico import mosaico
 
 
-def gravar_pontos_matriz(pontos_matriz, sequencia, estrutura_mt, estrutura_bt, poste, base, posicao_poste):
+def gravar_pontos_matriz(pontos_matriz, sequencia, resultado_abaco=None, sequencia_poste=None):
     """
     Função que adiciona dados de um ponto específico ao dicionário pontos_matriz.
+    Os campos do resultado_abaco (dicionário dinâmico do módulo) são mesclados com os campos fixos.
     
     Args:
         pontos_matriz: Dicionário existente com os pontos
         sequencia: Índice do ponto na lista (0, 1, 2, ...)
-        estrutura_mt: Dados da estrutura MT (ex: "D1")
-        estrutura_bt: Dados da estrutura BT (ex: "D2")
-        poste: Dados do poste (ex: "P23")
-        base: Dados da base (ex: "B1")
-        posicao_poste: Posição do poste (ex: "TOPOMAIOR")
+        resultado_abaco: Dicionário com campos dinâmicos do ábaco do módulo (todos os campos que vieram do resultado)
+        sequencia_poste: Sequência do poste para ser salva no CSV (inicia em 0 se EXISTENTE, 1 caso contrário)
     
     Returns:
         dict: Dicionário atualizado com os dados do ponto
@@ -33,43 +31,58 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, estrutura_mt, estrutura_bt, p
         print(f"Erro: Sequência {sequencia} inválida. Deve estar entre 0 e {len(new_vertices)-1}")
         return pontos_matriz
     
-    # Adiciona os dados específicos no ponto indicado pela sequência
-    ponto_especifico = new_vertices[sequencia]
-    pontos_matriz[ponto_especifico] = {
-        "estrutura_mt": estrutura_mt,
-        "estrutura_bt": estrutura_bt,
-        "poste": poste,
-        "base": base,
-        "num_poste": "8989899889",
-        "tipo_poste": "EXISTENTE",
-        "estru_mt_nv1": "ESTRUTURA_MT",
-        "estru_mt_nv2": "ESTRUTURA_MT",
-        "estru_mt_nv3": "ESTRUTURA_MT",
-        "est_bt_nv1": "ESTRUTURA_BT",
-        "est_bt_nv2": "ESTRUTURA_BT",
-        "estai_ancora": "ESTRUTURA_BT",
-        "base_reforcada": "BASE_REFORCADA",
-        "base_concreto": "BASE_CONCRETO",
-        "aterr_neutro": "SIM",
-        "chave": "SIM",
-        "trafo": "SIM",
-        "equipamento": "SIM",
-        "faixa": "SIM",
-        "cort_arvores_isol": "SIM",
-        "adiconal_1": "SIM",
-        "qdt_adic_1": "SIM",
-        "adiconal_2": "SIM",
-        "qdt_adic_2": "SIM",
-        "adiconal_3": "SIM",
-        "qdt_adic_3": "SIM",
-        "adiconal_4": "SIM",
-        "qdt_adic_4": "SIM",
-        "adiconal_5": "SIM",
+
+
+
+    # Dicionário base com valores padrão para todos os campos possíveis
+    dados_base = {
+        "sequencia": "",
+        "num_poste": "",
+        "tipo_poste": "",
+        "estru_mt_nv1": "",
+        "estru_mt_nv2": "",
+        "estru_mt_nv3": "",
+        "est_bt_nv1": "",
+        "est_bt_nv2": "",
+        "estai_ancora": "",
+        "base_reforcada": "",
+        "base_concreto": "",
+        "aterr_neutro": "",
+        "chave": "",
+        "trafo": "",
+        "equipamento": "",
+        "faixa": "",
+        "cort_arvores_isol": "",
+        "adiconal_1": "",
+        "qdt_adic_1": "",
+        "adiconal_2": "",
+        "qdt_adic_2": "",
+        "adiconal_3": "",
+        "qdt_adic_3": "",
+        "adiconal_4": "",
+        "qdt_adic_4": "",
+        "adiconal_5": "",
         "qdt_adic_5": "",
         "adiconal_6": "",
         "qdt_adic_6": "",
-        "rotacao_poste": ""
+        "adiconal_7": "",
+        "qdt_adic_7": "",               
+        "rotacao_poste": "",
+        "tang_ou_enc": ""
     }
+    
+    # Se houver resultado do ábaco, mescla todos os campos dinâmicos do módulo
+    # Isso sobrescreve os valores padrão com os valores do ábaco e adiciona campos novos
+    if resultado_abaco and isinstance(resultado_abaco, dict):
+        dados_base.update(resultado_abaco)
+    
+    # Define o campo "sequencia" com o valor de sequencia_poste se foi fornecido
+    if sequencia_poste is not None:
+        dados_base["sequencia"] = sequencia_poste
+    
+    # Adiciona os dados específicos no ponto indicado pela sequência
+    ponto_especifico = new_vertices[sequencia]
+    pontos_matriz[ponto_especifico] = dados_base
     
     return pontos_matriz
 
@@ -92,6 +105,14 @@ def colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name):
     for ponto in new_vertices:
         pontos_matriz[ponto] = {}
     
+    # Inicializa sequencia_poste baseado no tipo_poste
+    # Se EXISTENTE, começa em 0; caso contrário, começa em 1
+    tipo_poste_upper = str(tipo_poste).upper() if tipo_poste else ""
+    if tipo_poste_upper == "EXISTENTE":
+        sequencia_poste = 0
+    else:
+        sequencia_poste = 1
+    
     # Itera sobre todos os pontos de new_vertices
     for i in range(len(new_vertices)):
         pt2 = new_vertices[i]  # Ponto atual (referência)
@@ -111,31 +132,30 @@ def colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name):
         # Se é o primeiro ponto (i == 0)
         if i == 0:
             # Determina o tipo de poste e aplica a lógica correspondente
-            if tipo_poste == "EXISTENTE":
+            # Aceita "EXISTENTE" ou "Existente" (case-insensitive)
+            tipo_poste_upper = str(tipo_poste).upper() if tipo_poste else ""
+            if tipo_poste_upper == "EXISTENTE":
                 # Se poste existente e instalou vão frouxo, colocar estrutura de derivação existente       
                 resultado = mosaico(115, distance_ptos(pt2, pt3), module_name)      
                 if resultado is None:
                     print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: 115°, distância: {distance_ptos(pt2, pt3):.2f}m")
-                    mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = "ESTRUTURA_MT", "ESTRUTURA_BT", "PADRAO", "BASE_PADRAO", "TOPOMAIOR"
-                else:
-                    mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = resultado[0], resultado[1], resultado[2], resultado[3], resultado[4]
+                    resultado = None  # Passa None para usar valores padrão
+                # resultado já é um dicionário completo com todos os campos do módulo
             # Se poste intercalado                    
             else:
                 if loose_gap == "SIM":
                     resultado = mosaico(105, distance_ptos(pt2, pt3), module_name)
                     if resultado is None:
                         print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: 105°, distância: {distance_ptos(pt2, pt3):.2f}m")
-                        mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = "ESTRUTURA_MT", "ESTRUTURA_BT", "PADRAO", "BASE_PADRAO", "TOPOMAIOR"
-                    else:
-                        mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = resultado[0], resultado[1], resultado[2], resultado[3], resultado[4]
+                        resultado = None  # Passa None para usar valores padrão
+                    # resultado já é um dicionário completo com todos os campos do módulo
                 else:
                     # Se poste intercalado e não instalou vão frouxo, usar mesma regra de fim de linha
                     resultado = mosaico(95, distance_ptos(pt2, pt3), module_name)
                     if resultado is None:
                         print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: 95°, distância: {distance_ptos(pt2, pt3):.2f}m")
-                        mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = "ESTRUTURA_MT", "ESTRUTURA_BT", "PADRAO", "BASE_PADRAO", "TOPOMAIOR"
-                    else:
-                        mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = resultado[0], resultado[1], resultado[2], resultado[3], resultado[4]
+                        resultado = None  # Passa None para usar valores padrão
+                    # resultado já é um dicionário completo com todos os campos do módulo
         
         # Para pontos intermediários (i > 0)
         else:
@@ -146,26 +166,34 @@ def colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name):
                 
                 resultado = mosaico(angulo_def, distancia_maior, module_name) 
 
-                if (possui_encabecamento == "SIM_AUTOMATICO" or possui_encabecamento == "SIM") and (resultado[5] != "ENC"):
+                # Verifica encabecamento (pode ser "tang_ou_enc" ou "encabecamento" dependendo do módulo)
+                encabecamento_atual = resultado.get("tang_ou_enc") or resultado.get("encabecamento") or "" if resultado else ""
+                if (possui_encabecamento == "SIM_AUTOMATICO" or possui_encabecamento == "SIM") and (encabecamento_atual != "ENC"):
                     resultado = mosaico(135, distancia_maior, module_name) 
                 
 
                 if resultado is None:
                     print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: {angulo_def:.2f}°, distância: {distancia_maior:.2f}m")
-                    mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = "ESTRUTURA_MT", "ESTRUTURA_BT", "PADRAO", "BASE_PADRAO", "TOPOMAIOR"
-                else:
-                    mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = resultado[0], resultado[1], resultado[2], resultado[3], resultado[4]
+                    resultado = None  # Passa None para usar valores padrão
+                # resultado já é um dicionário completo com todos os campos do módulo
             else:
                 ## se não tiver pt3, usar ábaco de fim de linha
                 resultado = mosaico(95, distance_ptos(pt1, pt2), module_name) 
 
                 if resultado is None:
                     print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: 95°, distância: {distance_ptos(pt1, pt2):.2f}m")
-                    mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = "ESTRUTURA_MT", "ESTRUTURA_BT", "PADRAO", "BASE_PADRAO", "TOPOMAIOR"
-                else:
-                    mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste = resultado[0], resultado[1], resultado[2], resultado[3], resultado[4]
+                    resultado = None  # Passa None para usar valores padrão
+                # resultado já é um dicionário completo com todos os campos do módulo
 
-        pontos_matriz = gravar_pontos_matriz(pontos_matriz, i, mtz_estruturamt, mtz_estruturabt, mtz_postes, mtz_base, posicao_poste)
+        # Passa o resultado completo (dicionário com todos os campos dinâmicos do módulo) e sequencia_poste para gravar_pontos_matriz
+        pontos_matriz = gravar_pontos_matriz(pontos_matriz, i, resultado, sequencia_poste)
+        
+        # Incrementa sequencia_poste para o próximo ponto
+        sequencia_poste += 1
+
+
+    #resultado temos: indice 1 trata-se de estrutura mt, indice 2 trata-se de estrutura bt, 
+    # indice 3 trata-se de poste, indice 4 trata-se de base, indice 5 trata-se de posição do poste
 
     # Retorna o resultado do primeiro ponto (mantendo compatibilidade)
     return pontos_matriz
