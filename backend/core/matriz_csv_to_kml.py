@@ -297,6 +297,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
                     new_row[col] = ""
             
             matriz.loc[len(matriz)] = new_row
+
+
     return matriz
 
 ##################################################################################################################################
@@ -558,6 +560,15 @@ def testar_gerar_matriz():
         print("Salvando CSV...")
         print("=" * 80)
         salvar_csv(matriz, "matriz_resultado.csv")
+        
+        # Cria KML com quadrados na bissetriz
+        print("\n" + "=" * 80)
+        print("Criando KML com quadrados na bissetriz...")
+        print("=" * 80)
+        criar_kml_quadrados_bissetriz(matriz, "quadrados_bissetriz.kml")
+
+        
+        
         
         return matriz
         
