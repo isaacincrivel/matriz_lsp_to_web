@@ -13,6 +13,7 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, resultado_abaco=None, sequenc
     """
     Função que adiciona dados de um ponto específico ao dicionário pontos_matriz.
     Os campos do resultado_abaco (dicionário dinâmico do módulo) são mesclados com os campos fixos.
+    O tipo_poste virá do resultado_abaco se existir lá.
     
     Args:
         pontos_matriz: Dicionário existente com os pontos
@@ -73,12 +74,16 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, resultado_abaco=None, sequenc
     
     # Se houver resultado do ábaco, mescla todos os campos dinâmicos do módulo
     # Isso sobrescreve os valores padrão com os valores do ábaco e adiciona campos novos
+    # O tipo_poste virá do resultado_abaco se existir lá
     if resultado_abaco and isinstance(resultado_abaco, dict):
         dados_base.update(resultado_abaco)
     
     # Define o campo "sequencia" com o valor de sequencia_poste se foi fornecido
     if sequencia_poste is not None:
         dados_base["sequencia"] = sequencia_poste
+    
+    # tipo_poste vem do resultado_abaco (já foi mesclado pelo update acima)
+    # Se não existir no resultado, mantém o valor padrão vazio
     
     # Adiciona os dados específicos no ponto indicado pela sequência
     ponto_especifico = new_vertices[sequencia]
@@ -186,6 +191,7 @@ def colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name):
                 # resultado já é um dicionário completo com todos os campos do módulo
 
         # Passa o resultado completo (dicionário com todos os campos dinâmicos do módulo) e sequencia_poste para gravar_pontos_matriz
+        # O tipo_poste virá do resultado (resultado_abaco) se existir lá
         pontos_matriz = gravar_pontos_matriz(pontos_matriz, i, resultado, sequencia_poste)
         
         # Incrementa sequencia_poste para o próximo ponto

@@ -235,7 +235,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             "lat": f"{vertex[0]:.9f}".replace(".", ","),
             "long": f"{vertex[1]:.9f}".replace(".", ","),            
             "num_post": dados_estrutura.get("num_poste", num_poste_inicial if sequencia_original == 0 else ""),
-            "tipo_post": dados_estrutura.get("tipo_poste", tipo_poste if sequencia_original == 0 else ""),
+            "tipo_poste": dados_estrutura.get("tipo_poste", ""),
             "estru_mt_nv1": dados_estrutura.get("estru_mt_nv1", ""),
             "estru_mt_nv2": dados_estrutura.get("estru_mt_nv2", ""),
             "estru_mt_nv3": dados_estrutura.get("estru_mt_nv3", ""),
