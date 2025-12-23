@@ -123,8 +123,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     
     # Cria DataFrame com todas as colunas do CSV transformado + colunas adicionais necessárias
     colunas_base = [
-        "trecho", "sequencia", "status", "lat", "long", "modalidade", 
-        "num_post", "tipo_post",
+        "sequencia", "status", "lat", "long", 
+        "num_poste", "tipo_poste",
         "estru_mt_nv1", "estru_mt_nv2", "estru_mt_nv3",
         "est_bt_nv1", "est_bt_nv2",
         "estai_ancora", "base_reforcada", "base_concreto",
@@ -132,6 +132,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         "adiconal_1", "qdt_adic_1", "adiconal_2", "qdt_adic_2",
         "adiconal_3", "qdt_adic_3", "adiconal_4", "qdt_adic_4",
         "adiconal_5", "qdt_adic_5", "adiconal_6", "qdt_adic_6",
+        "adiconal_7", "qdt_adic_7",
         "rotacao_poste", "modulo", "municipio"
     ]
     colunas_csv = list(matriz_teste_transformada.columns)  # Todas as colunas do CSV transformado
@@ -220,8 +221,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             except (ValueError, KeyError, TypeError) as e:
                 pass
         
-        # Extrai status do vértice (4º elemento se existir)
-        status = vertex[3] if len(vertex) > 3 else ""
+        # Extrai status do vértice (4º elemento se existir) - usado para outras finalidades, não para o campo status do CSV
+        status_vertice = vertex[3] if len(vertex) > 3 else ""
         
         # Obtém dados de estruturas do dicionário pontos_matriz_estruturas
         dados_estrutura = pontos_matriz_estruturas.get(vertex, {})
@@ -230,10 +231,9 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         new_row_implantar = {
             "trecho": trecho,
             "sequencia": dados_estrutura.get("sequencia", sequencia_original),
-            "status": status,
+            "status": "implantar",
             "lat": f"{vertex[0]:.9f}".replace(".", ","),
-            "long": f"{vertex[1]:.9f}".replace(".", ","),
-            "modalidade": "implantar",
+            "long": f"{vertex[1]:.9f}".replace(".", ","),            
             "num_post": dados_estrutura.get("num_poste", num_poste_inicial if sequencia_original == 0 else ""),
             "tipo_post": dados_estrutura.get("tipo_poste", tipo_poste if sequencia_original == 0 else ""),
             "estru_mt_nv1": dados_estrutura.get("estru_mt_nv1", ""),
@@ -282,13 +282,13 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         matriz.loc[len(matriz)] = new_row_implantar
         
         # Cria linhas para "existente", "retirar" e "deslocar"
-        modalidades_extras = ["existente", "retirar", "deslocar"]
+        status_extras = ["existente", "retirar", "deslocar"]
         
-        for modalidade in modalidades_extras:
+        for status_extra in status_extras:
             new_row = {
                 "trecho": trecho,
-                "sequencia": sequencia_original,
-                "modalidade": modalidade
+                "sequencia": dados_estrutura.get("sequencia", sequencia_original),
+                "status": status_extra
             }
             
             # Preenche todas as outras colunas com string vazia
