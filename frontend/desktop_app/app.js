@@ -369,19 +369,6 @@ function initMap() {
         // Define uma localização padrão (Brasil - centro)
         map.setView([-15.7942, -47.8822], 13);
 
-        // Tenta obter localização do usuário
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    map.setView([position.coords.latitude, position.coords.longitude], 13);
-                },
-                function() {
-                    // Mantém a localização padrão se não conseguir obter
-                    console.log('Não foi possível obter a localização do usuário');
-                }
-            );
-        }
-
         mapInitialized = true;
         console.log('Mapa inicializado com sucesso');
     } catch (error) {
