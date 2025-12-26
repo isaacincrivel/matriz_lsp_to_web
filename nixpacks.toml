@@ -6,8 +6,6 @@ nixPkgs = ["python311", "python311Packages.pip"]
 
 [phases.install]
 cmds = [
-  "chmod +x build.sh || true",
-  "chmod +x start.sh || true",
   "pip install --upgrade pip",
   "pip install -r requirements.txt"
 ]
@@ -15,15 +13,11 @@ cmds = [
 [phases.build]
 cmds = [
   "echo '🔍 Detectando estrutura do projeto...'",
-  "echo '📁 Diretórios encontrados:'",
-  "ls -la | head -20",
-  "echo ''",
-  "echo '📁 Conteúdo de backend/:'",
+  "echo '📁 Verificando backend/...'",
   "ls -la backend/ || echo 'Diretório backend não encontrado'",
-  "echo ''",
   "echo '✅ Build completo - Python Flask App'"
 ]
 
 [start]
-cmd = "bash start.sh"
+cmd = "gunicorn backend.api.server_flask:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
 
