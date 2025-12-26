@@ -1,13 +1,5 @@
 # Arquivos que o Railway deve ignorar durante o build
-BKP/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-venv/
-env/
-ENV/
+# Estes arquivos confundem o detector de linguagem
 
 # Arquivos Python na raiz (devem estar em backend/)
 abaco_mosaico.py
@@ -20,6 +12,17 @@ marcar_vertices_angulo_deflexao.py
 matriz_csv_to_kml.PY
 processamento_vertices.py
 
+# Diretórios
+BKP/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+ENV/
+
 # Arquivos de dados
 *.csv
 *.xlsx
@@ -29,9 +32,9 @@ MATRIZ_MODELO.csv
 matriz_teste.csv
 teste_kml.kml
 TABELA ABACOS.xlsx
-
-# Diretórios
 resultados/
+
+# Outros diretórios
 data/
 frontend/desktop_app/
 frontend/standalone/
@@ -39,9 +42,10 @@ backup/
 docs/
 scripts/
 
-# Scripts (exceto build.sh e start.sh)
+# Scripts
 organizar_projeto.ps1
 *.bat
+*.sh
 !build.sh
 !start.sh
 
@@ -52,4 +56,3 @@ organizar_projeto.ps1
 # Outros
 *.json
 !railway.json
-!nixpacks.toml
