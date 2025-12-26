@@ -8,10 +8,29 @@ __pycache__/
 venv/
 env/
 ENV/
+
+# Arquivos Python na raiz (devem estar em backend/)
+abaco_mosaico.py
+calculo_geografico.py
+colocar_encabecamento_rede.py
+colocar_poste_estrutura.py
+exportacao.py
+kml.py
+marcar_vertices_angulo_deflexao.py
+matriz_csv_to_kml.PY
+processamento_vertices.py
+
+# Arquivos de dados
 *.csv
 *.xlsx
 *.kml
 *.kmz
+MATRIZ_MODELO.csv
+matriz_teste.csv
+teste_kml.kml
+TABELA ABACOS.xlsx
+
+# Diretórios
 resultados/
 data/
 frontend/desktop_app/
@@ -19,15 +38,18 @@ frontend/standalone/
 backup/
 docs/
 scripts/
+
+# Scripts (exceto build.sh e start.sh)
 organizar_projeto.ps1
 *.bat
-*.sh
+!build.sh
+!start.sh
+
+# Documentação
 *.md
 !README.md
-!requirements.txt
-!Procfile
-!runtime.txt
+
+# Outros
 *.json
 !railway.json
 !nixpacks.toml
-
