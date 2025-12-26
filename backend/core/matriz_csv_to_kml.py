@@ -178,29 +178,90 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     #    print(f"   Primeiros 3 vértices após get_loose_gap: {new_vertices[:3]}")
 
     # Divisão do vão em tramos menores
-    #print(f"🔵 ANTES dividir_tramo: {len(new_vertices)} vértices")
+    print(f"🔵 ANTES dividir_tramo: {len(new_vertices)} vértices")
     
-    new_vertices = dividir_tramo(new_vertices, section_size)
-    print(f"🟢 DEPOIS dividir_tramo: {len(new_vertices)} vértices")
+    try:
+        new_vertices = dividir_tramo(new_vertices, section_size)
+        print(f"🟢 DEPOIS dividir_tramo: {len(new_vertices)} vértices")
+    except Exception as e:
+        import traceback
+        print(f"\n{'='*80}")
+        print(f"❌ ERRO em dividir_tramo():")
+        print(f"Tipo: {type(e).__name__}, Mensagem: {str(e)}")
+        print(traceback.format_exc())
+        print(f"{'='*80}\n")
+        raise
 
-    # Aplica marcação SIM baseada no ângulo de deflexão - Angulo de deflexão    
-    new_vertices = marcar_vertices_angulo_deflexao(new_vertices, gap_size, module_name, lista_nao_intercalar)
+    # Aplica marcação SIM baseada no ângulo de deflexão - Angulo de deflexão
+    print(f"🔵 Chamando marcar_vertices_angulo_deflexao() com {len(new_vertices)} vértices...")
+    try:
+        new_vertices = marcar_vertices_angulo_deflexao(new_vertices, gap_size, module_name, lista_nao_intercalar)
+        print(f"🟢 DEPOIS marcar_vertices_angulo_deflexao: {len(new_vertices)} vértices")
+    except Exception as e:
+        import traceback
+        print(f"\n{'='*80}")
+        print(f"❌ ERRO em marcar_vertices_angulo_deflexao():")
+        print(f"Tipo: {type(e).__name__}, Mensagem: {str(e)}")
+        print(f"Parâmetros: gap_size={gap_size}, module_name={module_name}, lista_nao_intercalar={lista_nao_intercalar}")
+        print(traceback.format_exc())
+        print(f"{'='*80}\n")
+        raise
     
     # Aplica encabeçamento automático baseado na distância - Encabeçamento automático
-    new_vertices = colocar_encabecamento_rede(new_vertices, section_size)
+    print(f"🔵 Chamando colocar_encabecamento_rede()...")
+    try:
+        new_vertices = colocar_encabecamento_rede(new_vertices, section_size)
+        print(f"🟢 DEPOIS colocar_encabecamento_rede: {len(new_vertices)} vértices")
+    except Exception as e:
+        import traceback
+        print(f"\n{'='*80}")
+        print(f"❌ ERRO em colocar_encabecamento_rede():")
+        print(f"Tipo: {type(e).__name__}, Mensagem: {str(e)}")
+        print(traceback.format_exc())
+        print(f"{'='*80}\n")
+        raise
 
     # Intercala os postes entre os vertices
-    new_vertices = intercalar_vertices(new_vertices, lista_nao_intercalar, gap_size)
+    print(f"🔵 Chamando intercalar_vertices()...")
+    try:
+        new_vertices = intercalar_vertices(new_vertices, lista_nao_intercalar, gap_size)
+        print(f"🟢 DEPOIS intercalar_vertices: {len(new_vertices)} vértices")
+    except Exception as e:
+        import traceback
+        print(f"\n{'='*80}")
+        print(f"❌ ERRO em intercalar_vertices():")
+        print(f"Tipo: {type(e).__name__}, Mensagem: {str(e)}")
+        print(traceback.format_exc())
+        print(f"{'='*80}\n")
+        raise
 
     # Preserva todas as colunas originais do CSV sem renomear
     # Não renomeia mais as colunas para preservar os dados originais
 
     # Obtém os dados de estruturas e postes para cada vértice
-    pontos_matriz_estruturas = colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name)
+    print(f"🔵 Chamando colocar_poste_estrutura() com {len(new_vertices)} vértices...")
+    try:
+        pontos_matriz_estruturas = colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name)
+        print(f"🟢 DEPOIS colocar_poste_estrutura: {len(pontos_matriz_estruturas)} pontos processados")
+    except Exception as e:
+        import traceback
+        print(f"\n{'='*80}")
+        print(f"❌ ERRO em colocar_poste_estrutura():")
+        print(f"Tipo: {type(e).__name__}, Mensagem: {str(e)}")
+        print(f"Parâmetros: loose_gap={loose_gap}, tipo_poste={tipo_poste}, module_name={module_name}")
+        print(traceback.format_exc())
+        print(f"{'='*80}\n")
+        raise
+    
+    # Garante que pontos_matriz_estruturas seja um dicionário
+    if pontos_matriz_estruturas is None or not isinstance(pontos_matriz_estruturas, dict):
+        print(f"[AVISO] pontos_matriz_estruturas não é um dicionário (tipo: {type(pontos_matriz_estruturas)}), usando dicionário vazio")
+        pontos_matriz_estruturas = {}
 
     # Nota: criar_kml_quadrados_bissetriz será chamada na função main
     
     # Adiciona os dados dos vértices processados
+    print(f"🔵 Processando {len(new_vertices)} vértices para criar matriz final...")
     for i, vertex in enumerate(new_vertices):
         # Tenta encontrar o vértice original correspondente
         sequencia_original = vertex[2] if len(vertex) > 2 else i
@@ -225,7 +286,24 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         status_vertice = vertex[3] if len(vertex) > 3 else ""
         
         # Obtém dados de estruturas do dicionário pontos_matriz_estruturas
-        dados_estrutura = pontos_matriz_estruturas.get(vertex, {})
+        # Garante que seja sempre um dicionário
+        try:
+            if pontos_matriz_estruturas is not None and isinstance(pontos_matriz_estruturas, dict):
+                dados_estrutura = pontos_matriz_estruturas.get(vertex, {})
+                # Garante que dados_estrutura seja um dicionário
+                if dados_estrutura is None or not isinstance(dados_estrutura, dict):
+                    dados_estrutura = {}
+            else:
+                dados_estrutura = {}
+        except Exception as e:
+            import traceback
+            print(f"\n{'='*80}")
+            print(f"❌ ERRO ao obter dados_estrutura para vértice {i}:")
+            print(f"Vértice: {vertex}")
+            print(f"Tipo do erro: {type(e).__name__}, Mensagem: {str(e)}")
+            print(traceback.format_exc())
+            print(f"{'='*80}\n")
+            dados_estrutura = {}
         
         # Cria linha para "implantar" com todas as colunas necessárias
         new_row_implantar = {
@@ -269,10 +347,19 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         
         # Adiciona todas as colunas do CSV transformado para "implantar" (se existirem e vier do CSV)
         if not row_correspondente.empty:
-            row = row_correspondente.iloc[0]
-            for coluna in matriz_teste_transformada.columns:
-                if coluna not in new_row_implantar:
-                    new_row_implantar[coluna] = str(row.get(coluna, ""))
+            try:
+                row = row_correspondente.iloc[0]
+                for coluna in matriz_teste_transformada.columns:
+                    if coluna not in new_row_implantar:
+                        # row é um pandas Series, usa indexação direta ao invés de .get()
+                        try:
+                            valor = row[coluna] if coluna in row.index else ""
+                            new_row_implantar[coluna] = str(valor) if pd.notna(valor) else ""
+                        except (KeyError, IndexError):
+                            new_row_implantar[coluna] = ""
+            except Exception as e:
+                print(f"[AVISO] Erro ao processar row_correspondente: {e}")
+                pass
         else:
             # Se não há dados do CSV, preenche colunas extras com string vazia
             for col in colunas_finais:

@@ -851,6 +851,15 @@ function parseAndDisplayKML(kmlText) {
         // Cria segmentos individuais entre vértices consecutivos
         createSegmentPolylines(allVertices);
         
+        // Salva vértices no formato esperado pela função gerarMatriz
+        // Formato: [{lat, lon, number}, ...]
+        window.kmlVertices = allVertices.map(v => ({
+            lat: v.lat,
+            lon: v.lon,
+            number: v.number,
+            sequencia: v.number
+        }));
+        
         // Habilita botão de inverter sentido e botão abrir tabela se houver marcadores
         if (window.currentMarkers.length > 0) {
             btnInverterSentido.disabled = false;
@@ -953,5 +962,327 @@ if (btnAbrirTabela) {
         // Abre a tabela em nova aba
         window.open('tabela.html', '_blank');
     });
+}
+
+// Função para fazer download de arquivo
+function downloadFile(blob, filename, mimeType) {
+    if (typeof saveAs !== 'undefined') {
+        saveAs(blob, filename);
+    } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 100);
+    }
+}
+
+// Função para coletar dados do formulário e chamar a API Python
+async function gerarMatriz() {
+    console.log('Botão Gerar Matriz clicado');
+    
+    // Coleta dados do formulário
+    const numeroModuloValue = numeroModulo ? numeroModulo.value.trim() : '';
+    if (!numeroModuloValue) {
+        showMessage(errorMessage, 'Por favor, digite o número do módulo.', true);
+        return;
+    }
+    
+    // Busca dados do módulo na tabela
+    const moduloData = buscarModuloPorCodigo(numeroModuloValue);
+    if (!moduloData) {
+        showMessage(errorMessage, 'Módulo não encontrado na tabela. Verifique o número do módulo.', true);
+        return;
+    }
+    
+    // Verifica se há vértices carregados
+    if (!window.kmlVertices || window.kmlVertices.length === 0) {
+        showMessage(errorMessage, 'Por favor, carregue um arquivo KML primeiro.', true);
+        return;
+    }
+    
+    // Coleta vértices do KML (formato [[lat, lon, sequencia], ...])
+    const vertices = window.kmlVertices.map(v => [v.lat, v.lon, v.number || v.sequencia || v.number]);
+    
+    // Coleta trecho do arquivo KML (usa nome do arquivo ou padrão)
+    const file = fileInput ? fileInput.files[0] : null;
+    const trecho = file ? file.name.replace(/\.[^/.]+$/, '') : 'T001';
+    
+    // Coleta "Vão Frouxo" - converte "sim"/"não" para "SIM"/"NÃO"
+    const vaoFrouxoElement = document.getElementById('vaoFrouxo');
+    let looseGap = 'NÃO';
+    if (vaoFrouxoElement) {
+        const valor = vaoFrouxoElement.value.toLowerCase();
+        looseGap = (valor === 'sim') ? 'SIM' : 'NÃO';
+    }
+    
+    // Coleta "Poste da derivação" - sempre garante um valor padrão
+    const posteDerivacaoElement = document.getElementById('posteDerivacao');
+    let tipoPoste = 'Existente'; // Valor padrão
+    if (posteDerivacaoElement && posteDerivacaoElement.value && posteDerivacaoElement.value.trim() !== '') {
+        tipoPoste = posteDerivacaoElement.value.trim();
+    }
+    
+    // Coleta "Não Intercalar Postes" - converte de "X-Y" para lista de sequências originais
+    const listaNaoIntercalar = [];
+    const naoIntercalarPostes = document.getElementById('naoIntercalarPostes');
+    if (naoIntercalarPostes && naoIntercalarPostes.selectedOptions) {
+        Array.from(naoIntercalarPostes.selectedOptions).forEach(option => {
+            if (option.value && option.value.includes('-')) {
+                // Extrai o número inicial do formato "X-Y"
+                const startNum = parseInt(option.value.split('-')[0]);
+                if (!isNaN(startNum)) {
+                    listaNaoIntercalar.push(startNum);
+                }
+            }
+        });
+    }
+    
+    // Dados do módulo da tabela
+    const moduleData = {
+        codigo_modulo: moduloData.codigo_modulo || numeroModuloValue,
+        descrição_modulo: moduloData.descrição_modulo || moduloData['descrição_modulo'] || '',
+        distribuidora_estado: moduloData.distribuidora_estado || '',
+        tipo_obra: moduloData.tipo_obra || '',
+        tensão: moduloData.tensão || moduloData['tensão'] || '',
+        local: moduloData.local || '',
+        fases: moduloData.fases || '',
+        neutro: moduloData.neutro || '',
+        cabo: moduloData.cabo || '',
+        vao_medio: moduloData.vao_medio || 80,
+        vao_max: moduloData.vao_max || '',
+        tramo_max: moduloData.tramo_max || '',
+        custo_med_poste: moduloData.custo_med_poste || '',
+        '%custo_poste_tang': moduloData['%custo_poste_tang'] || '',
+        '%custo_poste_enc': moduloData['%custo_poste_enc'] || ''
+    };
+    
+    // Parâmetros para a função gerar_matriz
+    const params = {
+        trecho: trecho,
+        module_name: numeroModuloValue,
+        module_data: moduleData,
+        loose_gap: looseGap,
+        section_size: moduleData.tramo_max || 300,
+        gap_size: moduleData.vao_medio || 80,
+        num_poste_inicial: '00000000',
+        tipo_poste: tipoPoste,
+        lista_nao_intercalar: listaNaoIntercalar,
+        vertices: vertices
+    };
+    
+    console.log('Parâmetros coletados:', params);
+    
+    // Desabilita o botão durante o processamento
+    if (btnGerarMatriz) {
+        btnGerarMatriz.disabled = true;
+        btnGerarMatriz.textContent = 'Gerando Matriz...';
+    }
+    
+    try {
+        // Detecta se está em produção (HTTPS ou domínio customizado)
+        const isProduction = window.location.protocol === 'https:' || 
+                            (window.location.hostname !== 'localhost' && 
+                             window.location.hostname !== '127.0.0.1');
+        
+        let API_URL = null;
+        
+        if (isProduction) {
+            // Em produção, usa o mesmo domínio
+            API_URL = `${window.location.origin}/api/gerar-matriz/`;
+            console.log(`🌐 Modo PRODUÇÃO - Usando: ${API_URL}`);
+        } else {
+            // Em desenvolvimento, procura servidor local nas portas 8000-8004
+            const PORTS = [8000, 8001, 8002, 8003, 8004];
+            
+            console.log('🔧 Modo DESENVOLVIMENTO - Procurando servidor nas portas 8000-8004...');
+            for (const port of PORTS) {
+                const testUrl = `http://localhost:${port}/api/test/`;
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 2000);
+                    
+                    const testResponse = await fetch(testUrl, { 
+                        method: 'GET',
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+                    
+                    if (testResponse.ok) {
+                        const testData = await testResponse.json();
+                        API_URL = `http://localhost:${port}/api/gerar-matriz/`;
+                        console.log(`✅ Servidor encontrado na porta ${port}:`, testData);
+                        break;
+                    }
+                } catch (e) {
+                    if (e.name !== 'AbortError') {
+                        console.log(`   Porta ${port} não disponível`);
+                    }
+                    continue;
+                }
+            }
+            
+            if (!API_URL) {
+                throw new Error('Servidor Flask não encontrado nas portas 8000-8004.\n\nCertifique-se de que o servidor está rodando:\npython backend/api/server_flask.py\n\nOu execute: backend\\api\\start_server.bat');
+            }
+        }
+        
+        console.log('Fazendo requisição para:', API_URL);
+        console.log('Parâmetros enviados:', JSON.stringify(params, null, 2));
+        
+        // Faz a requisição POST
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params)
+        });
+        
+        console.log('Resposta recebida - Status:', response.status, response.statusText);
+        
+        if (!response.ok) {
+            let errorText = '';
+            try {
+                const errorData = await response.json();
+                errorText = errorData.message || JSON.stringify(errorData);
+                console.error('Erro da API:', errorData);
+            } catch (e) {
+                errorText = await response.text();
+                console.error('Erro da API (texto):', errorText);
+            }
+            throw new Error(`Erro HTTP ${response.status}: ${errorText}`);
+        }
+        
+        const result = await response.json();
+        console.log('Resultado recebido:', result);
+        
+        if (result.success) {
+            showMessage(successMessage, `✅ ${result.message || 'Matriz gerada com sucesso!'}`);
+            
+            // Faz download dos arquivos CSV e KML gerados pelo backend
+            if (result.csv_content && result.csv_filename) {
+                console.log(`Iniciando download CSV: ${result.csv_filename}`);
+                try {
+                    const csvDecoded = atob(result.csv_content);
+                    const csvBlob = new Blob(['\uFEFF' + csvDecoded], { type: 'text/csv;charset=utf-8;' });
+                    downloadFile(csvBlob, result.csv_filename, 'text/csv;charset=utf-8;');
+                    console.log(`✅ CSV baixado: ${result.csv_filename}`);
+                } catch (e) {
+                    console.error('❌ Erro ao baixar CSV:', e);
+                    showMessage(errorMessage, `Erro ao baixar CSV: ${e.message}`, true);
+                }
+            }
+            
+            // Aguarda um pouco antes de fazer download do KML (para evitar conflito)
+            setTimeout(() => {
+                if (result.kml_content && result.kml_filename) {
+                    console.log(`Iniciando download KML: ${result.kml_filename}`);
+                    try {
+                        const kmlDecoded = atob(result.kml_content);
+                        const kmlBlob = new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' });
+                        downloadFile(kmlBlob, result.kml_filename, 'application/vnd.google-earth.kml+xml');
+                        console.log(`✅ KML baixado: ${result.kml_filename}`);
+                    } catch (e) {
+                        console.error('❌ Erro ao baixar KML:', e);
+                        showMessage(errorMessage, `Erro ao baixar KML: ${e.message}`, true);
+                    }
+                }
+            }, 800);
+            
+        } else {
+            throw new Error(result.message || 'Erro desconhecido ao gerar matriz');
+        }
+        
+    } catch (error) {
+        console.error('Erro ao gerar matriz:', error);
+        console.error('Stack trace:', error.stack);
+        
+        // Tenta obter detalhes do erro da resposta se houver
+        let errorDetails = '';
+        if (error.response) {
+            try {
+                const errorData = await error.response.json();
+                console.error('Detalhes do erro do servidor:', errorData);
+                
+                if (errorData.error_file) {
+                    errorDetails += `\n\n📍 Local do erro:\n`;
+                    errorDetails += `   Arquivo: ${errorData.error_file}\n`;
+                    errorDetails += `   Linha: ${errorData.error_line}\n`;
+                    errorDetails += `   Função: ${errorData.error_function || 'N/A'}\n`;
+                }
+                
+                if (errorData.traceback) {
+                    console.error('Stack trace completo do servidor:', errorData.traceback);
+                }
+            } catch (e) {
+                // Ignora se não conseguir parsear JSON
+            }
+        }
+        
+        // Mostra mensagem de erro mais detalhada
+        let errorMsg = `❌ Erro ao gerar matriz: ${error.message}`;
+        if (error.response) {
+            try {
+                const errorData = await error.response.clone().json();
+                if (errorData.message) {
+                    errorMsg = `❌ ${errorData.message}`;
+                }
+                if (errorData.error_file) {
+                    errorMsg += `\n\n📍 Erro em:\n   ${errorData.error_file}:${errorData.error_line}`;
+                    if (errorData.error_function) {
+                        errorMsg += ` (${errorData.error_function})`;
+                    }
+                }
+            } catch (e) {
+                // Usa mensagem padrão se não conseguir parsear
+            }
+        }
+        
+        if (error.message.includes('Failed to fetch') || error.message.includes('ERR_EMPTY_RESPONSE')) {
+            errorMsg = `❌ Servidor não está respondendo!\n\n` +
+                       `📋 Para resolver:\n` +
+                       `1. Execute: python backend/api/server_flask.py\n` +
+                       `2. Ou clique duas vezes em: backend\\api\\start_server.bat\n` +
+                       `3. Aguarde ver a mensagem: "API disponível em..."\n` +
+                       `4. Mantenha o terminal aberto e tente novamente`;
+        }
+        
+        // Mostra mensagem de erro (usa <br> para quebras de linha)
+        errorMessage.innerHTML = errorMsg.replace(/\n/g, '<br>');
+        errorMessage.style.display = 'block';
+        errorMessage.className = 'error-message';
+        
+        // Log completo no console para depuração
+        console.group('🔍 Detalhes completos do erro:');
+        console.error('Erro:', error);
+        console.error('Stack trace:', error.stack);
+        if (error.response) {
+            error.response.clone().json().then(errorData => {
+                console.error('Resposta do servidor:', errorData);
+                if (errorData.traceback) {
+                    console.error('Stack trace do servidor:', errorData.traceback);
+                }
+            }).catch(() => {});
+        }
+        console.groupEnd();
+    } finally {
+        // Reabilita o botão
+        if (btnGerarMatriz) {
+            btnGerarMatriz.disabled = false;
+            btnGerarMatriz.textContent = 'Gerar Matriz';
+        }
+    }
+}
+
+// Adiciona evento ao botão Gerar Matriz
+if (btnGerarMatriz) {
+    btnGerarMatriz.addEventListener('click', gerarMatriz);
 }
 

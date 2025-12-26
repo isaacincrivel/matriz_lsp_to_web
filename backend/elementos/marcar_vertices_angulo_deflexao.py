@@ -131,11 +131,17 @@ def marcar_vertices_angulo_deflexao(vertices, gap_size, module_name, lista_nao_i
 
             # resultado agora é um dicionário dinâmico, busca o campo de encabecamento
             # Pode ser "tang_ou_enc", "encabecamento", ou outro nome dependendo do módulo
-            encabecamento_sim_nao = resultado.get("tang_ou_enc") or resultado.get("encabecamento") or ""
-
-            if encabecamento_sim_nao == "ENC":
-                vertex = (vertex[0], vertex[1], vertex[2], "SIM")
+            # Verifica se resultado não é None antes de chamar .get()
+            if resultado is not None and isinstance(resultado, dict):
+                encabecamento_sim_nao = resultado.get("tang_ou_enc") or resultado.get("encabecamento") or ""
+                
+                if encabecamento_sim_nao == "ENC":
+                    vertex = (vertex[0], vertex[1], vertex[2], "SIM")
+                else:
+                    vertex = (vertex[0], vertex[1], vertex[2], vertex[3] if len(vertex) >= 4 else "")
             else:
+                # Se resultado é None, mantém o vértice como está (sem encabecamento)
+                print(f"[AVISO] mosaico retornou None para vértice {i}, ângulo: {angulo_def:.2f}°, distância: {distancia_maior:.2f}m")
                 vertex = (vertex[0], vertex[1], vertex[2], vertex[3] if len(vertex) >= 4 else "")
 
 

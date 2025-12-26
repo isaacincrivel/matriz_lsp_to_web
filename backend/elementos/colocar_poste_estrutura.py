@@ -172,12 +172,16 @@ def colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name):
                 resultado = mosaico(angulo_def, distancia_maior, module_name) 
 
                 # Verifica encabecamento (pode ser "tang_ou_enc" ou "encabecamento" dependendo do módulo)
-                encabecamento_atual = resultado.get("tang_ou_enc") or resultado.get("encabecamento") or "" if resultado else ""
-                if (possui_encabecamento == "SIM_AUTOMATICO" or possui_encabecamento == "SIM") and (encabecamento_atual != "ENC"):
-                    resultado = mosaico(135, distancia_maior, module_name) 
-                
-
-                if resultado is None:
+                # Só verifica se resultado não for None
+                if resultado is not None and isinstance(resultado, dict):
+                    encabecamento_atual = resultado.get("tang_ou_enc") or resultado.get("encabecamento") or ""
+                    if (possui_encabecamento == "SIM_AUTOMATICO" or possui_encabecamento == "SIM") and (encabecamento_atual != "ENC"):
+                        resultado = mosaico(135, distancia_maior, module_name) 
+                        # Verifica novamente após chamar mosaico novamente
+                        if resultado is None:
+                            print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: 135°, distância: {distancia_maior:.2f}m")
+                            resultado = None  # Passa None para usar valores padrão
+                elif resultado is None:
                     print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: {angulo_def:.2f}°, distância: {distancia_maior:.2f}m")
                     resultado = None  # Passa None para usar valores padrão
                 # resultado já é um dicionário completo com todos os campos do módulo
