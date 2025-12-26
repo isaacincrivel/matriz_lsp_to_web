@@ -330,6 +330,31 @@
                     <button id="btnAbrirTabela" disabled>📊 Consultar e definir Modulos</button>
                 </div>
                 
+                <!-- Select Poste da Derivação e Vão Frouxo -->
+                <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <!-- Poste da Derivação -->
+                    <div class="form-group">
+                        <label for="posteDerivacao" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Poste da derivação:</label>
+                        <select id="posteDerivacao" class="form-control" 
+                                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="Implantar">Implantar</option>
+                            <option value="Existente">Existente</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Vão Frouxo -->
+                    <div class="form-group">
+                        <label for="vaoFrouxo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Vão Frouxo:</label>
+                        <select id="vaoFrouxo" class="form-control" 
+                                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                            <option value="">Selecione...</option>
+                            <option value="sim">sim</option>
+                            <option value="não">não</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <!-- Select Não Intercalar Postes -->
                 <div class="form-group" style="margin-top: 15px;">
                     <label for="naoIntercalarPostes" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Não Intercalar Postes (Ctrl+Click para selecionar múltiplos):</label>
