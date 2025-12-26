@@ -1,0 +1,18 @@
+# Configuração Nixpacks para Railway
+# Este arquivo força o Railway a detectar este como projeto Python
+
+[phases.setup]
+nixPkgs = ["python311", "python311Packages.pip"]
+
+[phases.install]
+cmds = [
+  "pip install --upgrade pip",
+  "pip install -r requirements.txt"
+]
+
+[phases.build]
+cmds = ["echo 'Build completo - Python Flask App'"]
+
+[start]
+cmd = "gunicorn backend.api.server_flask:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+
