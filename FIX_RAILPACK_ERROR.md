@@ -1,44 +1,36 @@
 # 🔧 Fix: Error creating build plan with Railpack
 
 ## Problema
-Railway mostra: "Error creating build plan with Railpack"
+Railway mostra: "Railpack could not determine how to build the app" ou "Script start.sh not found"
 
-## ✅ Solução Aplicada
+## ✅ Solução - Opção 1: Usar Dockerfile (RECOMENDADO AGORA)
 
-### 1. Simplificação do nixpacks.toml
-Removida a fase `[phases.build]` que pode estar causando conflito.
+**Criado `Dockerfile` como solução mais confiável.**
 
-### 2. Start Command Explícito
-Adicionado `startCommand` no `railway.json` para garantir.
-
-### 3. No Railway Dashboard
-
-**IMPORTANTE:** Siga estes passos na ordem:
+### No Railway Dashboard:
 
 1. **Settings → Build & Deploy**
-2. **Configure manualmente:**
-   - **Builder:** `NIXPACKS`
-   - **Build Command:** *(deixe vazio)*
-   - **Start Command:** `gunicorn backend.api.server_flask:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`
+2. **Configure:**
+   - **Builder:** `DOCKERFILE` (ou `Docker`)
+   - **Dockerfile Path:** `Dockerfile` (ou deixe vazio se estiver na raiz)
+   - **Start Command:** *(deixe vazio - usa CMD do Dockerfile)*
 
-3. **Clear Build Cache** (obrigatório!)
+3. **Clear Build Cache**
    - Settings → Build & Deploy → **Clear Build Cache**
 
 4. **Novo Deploy**
    - Deployments → **Redeploy**
 
-## 🔍 Se Ainda Não Funcionar
+## ✅ Solução - Opção 2: Usar Nixpacks (se Dockerfile não funcionar)
 
-### Verifique os Logs do Build:
-1. Deployments → Último deploy
-2. Procure por:
-   - Mensagens sobre `requirements.txt`
-   - Erros de sintaxe do `nixpacks.toml`
-   - Erros de detecção de linguagem
+1. **Settings → Build & Deploy**
+2. **Configure:**
+   - **Builder:** `NIXPACKS`
+   - **Build Command:** *(deixe vazio)*
+   - **Start Command:** `gunicorn backend.api.server_flask:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`
 
-### Alternativa: Usar Dockerfile
-
-Se o Nixpacks continuar falhando, podemos criar um Dockerfile. Mas tente primeiro:
+3. **Clear Build Cache**
+4. **Novo Deploy**
 
 ### Verificar Arquivos no GitHub:
 Acesse seu repositório e confirme que na **raiz** existem:
