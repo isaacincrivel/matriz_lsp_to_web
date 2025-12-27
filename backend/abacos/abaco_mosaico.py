@@ -21,7 +21,7 @@ def mtz_abaco(str1):
     
     # cria o dicionario de abacos
     abacos = {}    
-    abacos["10105"] = [
+    abacos["10104"] = [
         {"estru_mt_nv1": "UP1", "tipo_poste": "PDT10/300", "rotacao_poste": "BICETRIZ", "tang_ou_enc": "TAN", "polygon": [(-1.0, 0.0), (-1.0, 217.143), (160.0, 217.143), (160.0, 0.0), (-1.0, 0.0)], "id": "ms1"},
         {"estru_mt_nv1": "UP1", "tipo_poste": "PDT10/300", "base_concreto": "BC", "rotacao_poste": "BICETRIZ", "tang_ou_enc": "TAN", "polygon": [(160.0, 0.0), (160.0, 217.143), (350.0, 0.0), (160.0, 0.0)], "id": "ms2"},
         {"estru_mt_nv1": "UP4", "tipo_poste": "PDT10/600", "base_concreto": "BC", "rotacao_poste": "ZIRTECIB", "tang_ou_enc": "ENC", "polygon": [(160.0, 217.143), (160.0, 300.0), (600.0, 100.0), (600.0, 0.0), (350.0, 0.0), (160.0, 217.143)], "id": "ms3"},
@@ -37,7 +37,7 @@ def mtz_abaco(str1):
         {"estru_mt_nv1": "U3", "tipo_poste": "EXIST", "estai_ancora": "ES", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(1100.0, 220.0), (1200.0, 220.0), (1200.0, 35.0), (1100.0, 35.0), (1100.0, 220.0)], "id": "ms13"},
         {"estru_mt_nv1": "UP4", "tipo_poste": "PDT10/600", "base_concreto": "BC", "rotacao_poste": "ZIRTECIB", "tang_ou_enc": "ENC", "polygon": [(1300.0, 1.81899e-12), (1300.0, 180.0), (1400.0, 180.0), (1400.0, 2.72671e-12), (1300.0, 1.81899e-12)], "id": "ms14"}
     ]  
-    abacos["10106"] = [
+    abacos["10105"] = [
         {"estru_mt_nv1": "UP1", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "TAN", "polygon": [(-1.0, 0.0), (160.0, 0.0), (160.0, 217.143), (-1.0, 217.143), (-1.0, 0.0)]},
         {"estru_mt_nv1": "UP1", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ES", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "TAN", "polygon": [(160.0, 217.143), (160.0, 0.0), (350.0, 0.0), (160.0, 217.143)]},
         {"estru_mt_nv1": "UP4", "estrutura_bt": "A1", "tipo_poste": "PDT10/300", "estai_ancora": "ED", "rotacao_poste": "TOPOMAIOR", "tang_ou_enc": "ENC", "polygon": [(-1.0, 217.143), (-1.0, 500.0), (160.0, 500.0), (160.0, 300.0), (600.0, 180.0), (600.0, 0.0), (350.0, 0.0), (160.0, 217.143), (-1.0, 217.143)]},

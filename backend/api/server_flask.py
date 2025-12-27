@@ -21,6 +21,22 @@ import pandas as pd
 
 app = Flask(__name__)
 
+## trecho incluido para resolver erro de CORS
+from flask import make_response
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "http://localhost:5500"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    return response
+
+@app.route("/api/gerar-matriz/", methods=["OPTIONS"])
+def gerar_matriz_options():
+    return make_response("", 200)
+## trecho incluido para resolver erro de CORS
+
+
 # Configuração de CORS
 # Em produção, restrinja aos domínios permitidos
 # Em desenvolvimento, permite todos

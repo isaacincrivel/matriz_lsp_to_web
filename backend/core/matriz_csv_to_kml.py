@@ -35,6 +35,9 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         vertices_kml: list, optional - Lista de vértices do KML no formato [[lat, lon, sequencia], ...]
                                       Se fornecido, usa esses vértices ao invés de ler do CSV
     """
+
+    #import pdb; pdb.set_trace()
+
     # 🐛 BREAKPOINT PARA DEPURAÇÃO - Descomente a linha abaixo para ativar o debugger
     # import pdb; pdb.set_trace()  # Pausa aqui quando a função é chamada
     # Se vértices foram fornecidos, usa eles diretamente
@@ -543,9 +546,9 @@ def testar_gerar_matriz():
         print(f"Total de vértices extraídos: {len(vertices_kml)}")
     
     # Simula os dados de entrada baseados no arquivo dados_gerar_matriz.json
-    module_name = "10105"
+    module_name = "10104"
     module_data = {
-        "codigo_modulo": "10105",
+        "codigo_modulo": "10104",
         "descrição_modulo": "Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Pecuária",
         "distribuidora_estado": "Goiás",
         "tipo_obra": "construção",
