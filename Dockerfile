@@ -20,5 +20,5 @@ COPY . .
 EXPOSE 5000
 
 # Comando para iniciar (porta fixa 5000 para alinhar com Railway Target Port)
-CMD gunicorn backend.api.server_flask:app --bind 0.0.0.0:5000 --workers 2 --timeout 120
+CMD gunicorn backend.api.server_flask:app --bind 0.0.0.0:${PORT:-5000} --workers 2 --timeout 120
 
