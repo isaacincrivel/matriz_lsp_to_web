@@ -15,7 +15,6 @@ matriz_csv_to_kml/
 │
 ├── frontend/            # Aplicações Frontend
 │   ├── desktop_app/     # Aplicação Desktop (principal) ⭐
-│   ├── web_app/         # Aplicação Web (coleta campo)
 │   └── standalone/      # Versões standalone
 │
 ├── data/                # Dados
