@@ -1,0 +1,76 @@
+{
+  "trecho": "TESTEXXyx.kml",
+  "module_name": "10105",
+  "module_data": {
+    "codigo_modulo": "10105",
+    "descrição_modulo": "Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Pecuária",
+    "distribuidora_estado": "Goiás",
+    "tipo_obra": "construção",
+    "tensão": "13,8kV",
+    "local": "rural",
+    "fases": "1",
+    "neutro": "não",
+    "cabo": "1/0CAA",
+    "vao_medio": 80,
+    "vao_max": 300,
+    "tramo_max": 700,
+    "custo_med_poste": 12000,
+    "%custo_poste_tang": 90,
+    "%custo_poste_enc": 120
+  },
+  "loose_gap": "NÃO",
+  "section_size": 80,
+  "gap_size": 700,
+  "num_poste_inicial": "00000000",
+  "tipo_poste": "",
+  "lista_nao_intercalar": [
+    7
+  ],
+  "vertices": [
+    [
+      -17.1136297307818,
+      -49.11767411000091,
+      1
+    ],
+    [
+      -17.11345701706738,
+      -49.11426432948661,
+      2
+    ],
+    [
+      -17.11651960580667,
+      -49.10948863380214,
+      3
+    ],
+    [
+      -17.12849402521782,
+      -49.09688735289248,
+      4
+    ],
+    [
+      -17.12986237350835,
+      -49.09723104379758,
+      5
+    ],
+    [
+      -17.13109055166651,
+      -49.09997207690454,
+      6
+    ],
+    [
+      -17.13175936407751,
+      -49.10016793420279,
+      7
+    ],
+    [
+      -17.13465925674163,
+      -49.09536762672727,
+      8
+    ],
+    [
+      -17.13552518620229,
+      -49.09270943110433,
+      9
+    ]
+  ]
+}
