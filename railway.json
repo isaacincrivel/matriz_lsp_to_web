@@ -5,12 +5,17 @@
     "dockerfilePath": "Dockerfile"
   },
   "deploy": {
-    "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 10,
-    "startCommand": "",
     "runtime": "V2",
     "numReplicas": 1,
     "sleepApplication": false,
-    "useLegacyStacker": false
+    "useLegacyStacker": false,
+    "multiRegionConfig": {
+      "us-east4-eqdc4a": {
+        "numReplicas": 1
+      }
+    },
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10,
+    "startCommand": ""
   }
 }
