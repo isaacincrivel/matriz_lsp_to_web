@@ -29,5 +29,5 @@ Railway.toml
 railway.toml
 nixpacks.toml
 .dockerignore
-Dockerfile
+# Dockerfile NÃO deve ser ignorado!
 
