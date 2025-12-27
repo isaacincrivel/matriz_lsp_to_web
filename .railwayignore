@@ -46,8 +46,7 @@ scripts/
 organizar_projeto.ps1
 *.bat
 *.sh
-!build.sh
-!start.sh
+*.sh.backup
 
 # Documentação
 *.md
