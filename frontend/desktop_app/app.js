@@ -1086,10 +1086,10 @@ async function gerarMatriz() {
     }
     
     try {
-        // Detecta se está em produção (HTTPS ou domínio customizado)
-        const isProduction = window.location.protocol === 'https:' || 
-                            (window.location.hostname !== 'localhost' && 
-                             window.location.hostname !== '127.0.0.1');
+        // Detecta se está em produção (HTTP/HTTPS em domínio não local)
+        const isProduction = window.location.protocol.startsWith('http') &&
+                            window.location.hostname !== 'localhost' &&
+                            window.location.hostname !== '127.0.0.1';
         
         let API_URL = null;
         
