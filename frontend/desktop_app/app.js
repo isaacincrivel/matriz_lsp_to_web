@@ -1180,61 +1180,21 @@ async function gerarMatriz() {
                 }
             }
             
-            // Plota KML no mapa e faz download
+            // Apenas faz download do KML (não plota no mapa automaticamente)
+            // O usuário deve importar manualmente o arquivo se quiser visualizar no mapa
             if (result.kml_content && result.kml_filename) {
                 try {
                     const kmlDecoded = atob(result.kml_content);
                     console.log(`KML decodificado: ${kmlDecoded.length} caracteres`);
                     
-                    // 1. Plotar KML no mapa (substitui o KML atual)
-                    if (map && mapInitialized) {
-                        try {
-                            console.log('📍 Plotando KML gerado no mapa...');
-                            parseAndDisplayKML(kmlDecoded);
-                            console.log(`✅ KML plotado no mapa: ${result.kml_filename}`);
-                            // Atualiza nome do arquivo carregado
-                            if (fileInput) {
-                                fileInput.value = ''; // Limpa seleção anterior
-                            }
-                            if (fileName) {
-                                fileName.textContent = `KML gerado: ${result.kml_filename}`;
-                            }
-                        } catch (plotError) {
-                            console.error('❌ Erro ao plotar KML no mapa:', plotError);
-                            showMessage(errorMessage, `Erro ao plotar KML no mapa: ${plotError.message}`, true);
-                        }
-                    } else {
-                        console.warn('⚠️ Mapa não inicializado. Inicializando mapa antes de plotar KML...');
-                        // Tenta inicializar o mapa se não estiver inicializado
-                        waitForLeaflet(function() {
-                            if (!mapInitialized) {
-                                initMap();
-                            }
-                            setTimeout(function() {
-                                if (map && mapInitialized) {
-                                    try {
-                                        parseAndDisplayKML(kmlDecoded);
-                                        console.log(`✅ KML plotado no mapa após inicialização: ${result.kml_filename}`);
-                                        if (fileName) {
-                                            fileName.textContent = `KML gerado: ${result.kml_filename}`;
-                                        }
-                                    } catch (plotError) {
-                                        console.error('❌ Erro ao plotar KML:', plotError);
-                                    }
-                                } else {
-                                    console.warn('⚠️ Não foi possível inicializar o mapa para plotar KML');
-                                }
-                            }, 500);
-                        });
-                    }
-                    
-                    // 2. Faz download do KML (aguarda um pouco para evitar conflito com plotagem)
+                    // Faz download do KML (sem atualizar o mapa)
                     setTimeout(() => {
                         try {
                             console.log(`Iniciando download KML: ${result.kml_filename}`);
                             const kmlBlob = new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' });
                             downloadFile(kmlBlob, result.kml_filename, 'application/vnd.google-earth.kml+xml');
                             console.log(`✅ KML baixado: ${result.kml_filename}`);
+                            console.log(`ℹ️ Para visualizar no mapa, importe o arquivo manualmente`);
                         } catch (e) {
                             console.error('❌ Erro ao baixar KML:', e);
                             showMessage(errorMessage, `Erro ao baixar KML: ${e.message}`, true);

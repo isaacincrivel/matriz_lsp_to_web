@@ -17,8 +17,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # Expõe porta
-EXPOSE $PORT
+EXPOSE 5000
 
-# Comando para iniciar
-CMD gunicorn backend.api.server_flask:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+# Comando para iniciar (porta fixa 5000 para alinhar com Railway Target Port)
+CMD gunicorn backend.api.server_flask:app --bind 0.0.0.0:5000 --workers 2 --timeout 120
 

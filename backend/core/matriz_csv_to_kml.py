@@ -546,7 +546,7 @@ def testar_gerar_matriz():
         print(f"Total de vértices extraídos: {len(vertices_kml)}")
     
     # Simula os dados de entrada baseados no arquivo dados_gerar_matriz.json
-    module_name = "101
+    module_name = "10104"
     module_data = {
         "codigo_modulo": "10104",
         "descrição_modulo": "Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Pecuária",
