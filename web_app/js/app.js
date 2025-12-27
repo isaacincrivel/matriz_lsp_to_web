@@ -1,4 +1,5 @@
 // app.js - Aplicação principal
+const API_URL = "http://127.0.0.1:8001/api/gerar-matriz/";
 
 class App {
     constructor() {

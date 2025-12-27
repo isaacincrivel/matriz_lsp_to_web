@@ -68,6 +68,13 @@ def gerar_matriz_api():
     - lista_nao_intercalar: array de números
     - vertices: array de arrays [[lat, lon, sequencia], ...]
     """
+
+    ##linha para depurar codigo
+    print("\nCHEGOU NA API →\n", request.json)
+
+
+
+
     # Handle CORS preflight
     if request.method == 'OPTIONS':
         response = jsonify({})
