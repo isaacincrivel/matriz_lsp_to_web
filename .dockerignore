@@ -17,7 +17,7 @@ BKP/
 backup/
 resultados/
 data/
-frontend/desktop_app/
+# frontend/desktop_app/ - NÃO ignorar! Precisa para servir na raiz
 frontend/standalone/
 docs/
 *.md

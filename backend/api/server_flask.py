@@ -301,7 +301,23 @@ def gerar_matriz_api():
 @app.route('/')
 def index():
     """Serve o frontend na raiz do domínio"""
-    return send_file(os.path.join(FRONTEND_DIR, 'index.html'))
+    index_path = os.path.join(FRONTEND_DIR, 'index.html')
+    
+    # Verifica se o arquivo existe
+    if not os.path.exists(index_path):
+        print(f"❌ Erro: Arquivo não encontrado: {index_path}")
+        print(f"📁 FRONTEND_DIR: {FRONTEND_DIR}")
+        print(f"📁 Diretório atual: {os.getcwd()}")
+        print(f"📁 Conteúdo de FRONTEND_DIR: {os.listdir(FRONTEND_DIR) if os.path.exists(FRONTEND_DIR) else 'DIRETÓRIO NÃO EXISTE'}")
+        from flask import abort
+        abort(500)
+    
+    try:
+        return send_file(index_path)
+    except Exception as e:
+        print(f"❌ Erro ao servir index.html: {e}")
+        from flask import abort
+        abort(500)
 
 @app.route('/<path:filename>')
 def serve_static(filename):
@@ -312,9 +328,17 @@ def serve_static(filename):
         abort(404)
     
     # Serve arquivos do frontend
+    file_path = os.path.join(FRONTEND_DIR, filename)
+    
+    # Verifica se o arquivo existe
+    if not os.path.exists(file_path) or not os.path.isfile(file_path):
+        from flask import abort
+        abort(404)
+    
     try:
         return send_from_directory(FRONTEND_DIR, filename)
-    except:
+    except Exception as e:
+        print(f"❌ Erro ao servir arquivo {filename}: {e}")
         from flask import abort
         abort(404)
 
