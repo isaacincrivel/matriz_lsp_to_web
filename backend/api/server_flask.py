@@ -8,7 +8,7 @@ import sys
 import os
 import base64
 import io
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory, send_file
 from flask_cors import CORS
 
 # Adiciona o diretório raiz ao path
@@ -57,6 +57,9 @@ else:
         }
     })
     print(f"[CORS] Modo produção: Permitindo origens: {origins}")
+
+# Configuração para servir frontend na raiz
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'frontend', 'desktop_app')
 
 @app.route('/api/test/', methods=['GET'])
 def test():
@@ -293,6 +296,27 @@ def gerar_matriz_api():
         response.status_code = 500
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+
+# Rotas para servir frontend (devem vir DEPOIS das rotas da API)
+@app.route('/')
+def index():
+    """Serve o frontend na raiz do domínio"""
+    return send_file(os.path.join(FRONTEND_DIR, 'index.html'))
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    """Serve arquivos estáticos do frontend (CSS, JS, imagens, etc.)"""
+    # Ignora rotas da API (já processadas acima)
+    if filename.startswith('api/'):
+        from flask import abort
+        abort(404)
+    
+    # Serve arquivos do frontend
+    try:
+        return send_from_directory(FRONTEND_DIR, filename)
+    except:
+        from flask import abort
+        abort(404)
 
 if __name__ == '__main__':
     import socket
