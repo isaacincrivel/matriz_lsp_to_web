@@ -6,6 +6,12 @@ let pontosManuais = [];
 let map = null;
 let mapInitialized = false;
 
+// Estado do modo manual de criação de polilinha
+let isManualModeActive = false;
+let manualVertices = []; // Vértices criados manualmente [{lat, lon, number}, ...]
+let tempPolyline = null; // Linha temporária do último ponto ao cursor
+let manualPolyline = null; // Linha conectando os pontos manuais
+
 // Aguarda o Leaflet estar carregado
 function waitForLeaflet(callback, maxAttempts = 50) {
     let attempts = 0;
@@ -33,6 +39,7 @@ const btnGerarMatriz = document.getElementById('btnGerarMatriz');
 const btnPlotarProjeto = document.getElementById('btnPlotarProjeto');
 const btnAbrirTabela = document.getElementById('btnAbrirTabela');
 const btnInverterSentido = document.getElementById('btnInverterSentido');
+const btnFinalizarPolilinha = document.getElementById('btnFinalizarPolilinha');
 const fileName = document.getElementById('fileName');
 const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
@@ -98,6 +105,9 @@ fileInput.addEventListener('change', function(e) {
         btnImportarArquivo.disabled = true;
         btnGerarMatriz.disabled = true;
         btnPlotarProjeto.disabled = false;
+        
+        // Se não há arquivo, reativa modo manual se não houver vértices
+        checkAndActivateManualMode();
     }
 });
 
@@ -371,10 +381,266 @@ function initMap() {
 
         mapInitialized = true;
         console.log('Mapa inicializado com sucesso');
+        
+        // Configura eventos para modo manual de criação de polilinha
+        setupManualModeEvents();
+        
+        // Ativa modo manual inicialmente (se não houver KML carregado)
+        checkAndActivateManualMode();
     } catch (error) {
         console.error('Erro ao inicializar o mapa:', error);
         showMessage(errorMessage, 'Erro ao inicializar o mapa: ' + error.message, true);
     }
+}
+
+// Função para verificar e ativar modo manual (se não houver KML)
+function checkAndActivateManualMode() {
+    // Se não há vértices KML carregados, ativa modo manual
+    if (!window.kmlVertices || window.kmlVertices.length === 0) {
+        activateManualMode();
+    } else {
+        deactivateManualMode();
+    }
+}
+
+// Função para ativar modo manual
+function activateManualMode() {
+    if (isManualModeActive) return;
+    
+    isManualModeActive = true;
+    manualVertices = [];
+    
+    console.log('Modo manual ativado - Clique no mapa para adicionar pontos');
+    
+    // Desabilita doubleClickZoom para permitir duplo clique finalizar
+    if (map) {
+        map.doubleClickZoom.disable();
+    }
+    
+    // Limpa qualquer polilinha temporária anterior
+    clearTempPolyline();
+    
+    // Habilita o botão Finalizar (mas esconde até ter pelo menos 2 pontos)
+    if (btnFinalizarPolilinha) {
+        btnFinalizarPolilinha.style.display = 'none';
+    }
+}
+
+// Função para desativar modo manual
+function deactivateManualMode() {
+    if (!isManualModeActive) return;
+    
+    isManualModeActive = false;
+    
+    console.log('Modo manual desativado');
+    
+    // Reabilita doubleClickZoom
+    if (map) {
+        map.doubleClickZoom.enable();
+    }
+    
+    // Remove linha temporária
+    clearTempPolyline();
+    
+    // Remove linha manual se existir
+    if (manualPolyline) {
+        try {
+            map.removeLayer(manualPolyline);
+        } catch(e) {}
+        manualPolyline = null;
+    }
+    
+    // Esconde botão Finalizar
+    if (btnFinalizarPolilinha) {
+        btnFinalizarPolilinha.style.display = 'none';
+    }
+}
+
+// Função para limpar linha temporária
+function clearTempPolyline() {
+    if (tempPolyline) {
+        try {
+            map.removeLayer(tempPolyline);
+        } catch(e) {}
+        tempPolyline = null;
+    }
+}
+
+// Configura eventos do mapa para modo manual
+function setupManualModeEvents() {
+    if (!map) return;
+    
+    // Event listener para clique simples (adiciona ponto)
+    map.on('click', function(e) {
+        if (!isManualModeActive) return;
+        
+        const lat = e.latlng.lat;
+        const lon = e.latlng.lng;
+        const number = manualVertices.length + 1;
+        
+        // Adiciona vértice
+        manualVertices.push({ lat, lon, number, sequencia: number });
+        
+        console.log(`Ponto ${number} adicionado:`, { lat, lon });
+        
+        // Cria marcador
+        const marker = createNumberedMarker(lat, lon, number);
+        if (!window.currentMarkers) {
+            window.currentMarkers = [];
+        }
+        window.currentMarkers.push(marker);
+        
+        // Atualiza polilinha manual
+        updateManualPolyline();
+        
+        // Mostra botão Finalizar se tiver pelo menos 2 pontos
+        if (btnFinalizarPolilinha && manualVertices.length >= 2) {
+            btnFinalizarPolilinha.style.display = 'block';
+        }
+        
+        // Remove linha temporária (será recriada no mousemove)
+        clearTempPolyline();
+    });
+    
+    // Event listener para duplo clique (finaliza polilinha) - funciona melhor no desktop
+    // No mobile, use o botão "Finalizar Polilinha" que é mais confiável
+    map.on('dblclick', function(e) {
+        if (!isManualModeActive || manualVertices.length < 2) return;
+        
+        // Só previne default se não for touch (mobile)
+        if (!e.originalEvent.touches) {
+            e.originalEvent.preventDefault();
+            e.originalEvent.stopPropagation();
+        }
+        
+        finalizeManualPolyline();
+    });
+    
+    // Event listener para movimento do mouse (desktop) - mostra linha temporária
+    map.on('mousemove', function(e) {
+        if (!isManualModeActive || manualVertices.length === 0) {
+            clearTempPolyline();
+            return;
+        }
+        
+        // Remove linha temporária anterior
+        clearTempPolyline();
+        
+        // Pega último vértice
+        const lastVertex = manualVertices[manualVertices.length - 1];
+        const mouseLat = e.latlng.lat;
+        const mouseLon = e.latlng.lng;
+        
+        // Cria linha temporária do último ponto ao cursor (apenas desktop)
+        tempPolyline = L.polyline(
+            [[lastVertex.lat, lastVertex.lon], [mouseLat, mouseLon]],
+            {
+                color: '#3388ff',
+                weight: 3,
+                opacity: 0.5,
+                dashArray: '5, 10'
+            }
+        ).addTo(map);
+    });
+    
+    // Nota: No mobile, a linha temporária não será exibida (mousemove não funciona em touch)
+    // Isso é aceitável - o importante é que o toque adiciona pontos e o botão "Finalizar" funciona
+}
+
+// Função para atualizar polilinha manual (conecta todos os pontos)
+function updateManualPolyline() {
+    if (manualVertices.length < 2) return;
+    
+    // Remove polilinha anterior se existir
+    if (manualPolyline) {
+        try {
+            map.removeLayer(manualPolyline);
+        } catch(e) {}
+    }
+    
+    // Cria nova polilinha conectando todos os pontos
+    const latlngs = manualVertices.map(v => [v.lat, v.lon]);
+    manualPolyline = L.polyline(latlngs, {
+        color: '#3388ff',
+        weight: 3,
+        opacity: 0.7
+    }).addTo(map);
+}
+
+// Função para finalizar polilinha manual
+function finalizeManualPolyline() {
+    if (!isManualModeActive || manualVertices.length < 2) {
+        showMessage(errorMessage, 'Adicione pelo menos 2 pontos antes de finalizar.', true);
+        return;
+    }
+    
+    console.log('Finalizando polilinha manual com', manualVertices.length, 'vértices');
+    
+    // Remove linha temporária
+    clearTempPolyline();
+    
+    // Desativa modo manual (isso também reabilita doubleClickZoom)
+    deactivateManualMode();
+    
+    // Salva vértices no formato esperado (igual ao KML)
+    window.kmlVertices = manualVertices.map(v => ({
+        lat: v.lat,
+        lon: v.lon,
+        number: v.number,
+        sequencia: v.number
+    }));
+    
+    // Cria segmentos para destacamento
+    const allVertices = manualVertices.map(v => ({
+        number: v.number,
+        lat: v.lat,
+        lon: v.lon
+    }));
+    
+    // Remove a polilinha manual temporária (se existir)
+    if (manualPolyline) {
+        try {
+            map.removeLayer(manualPolyline);
+        } catch(e) {}
+        manualPolyline = null;
+    }
+    
+    // Cria a linha azul principal (igual ao KML) - conecta todos os pontos
+    if (!window.currentPolylines) {
+        window.currentPolylines = [];
+    }
+    
+    const latlngs = manualVertices.map(v => [v.lat, v.lon]);
+    const mainPolyline = L.polyline(latlngs, {
+        color: '#3388ff',
+        weight: 4,
+        opacity: 0.8
+    }).addTo(map);
+    
+    window.currentPolylines.push(mainPolyline);
+    
+    createSegmentPolylines(allVertices);
+    
+    // Popula select "Não Intercalar Postes"
+    populateNaoIntercalarPostes(allVertices);
+    
+    // Habilita botões
+    if (btnInverterSentido) {
+        btnInverterSentido.disabled = false;
+    }
+    if (btnAbrirTabela) {
+        btnAbrirTabela.disabled = false;
+    }
+    if (btnGerarMatriz) {
+        btnGerarMatriz.disabled = false;
+    }
+    
+    // Esconde botão Finalizar
+    if (btnFinalizarPolilinha) {
+        btnFinalizarPolilinha.style.display = 'none';
+    }
+    
+    showMessage(successMessage, `✅ Polilinha finalizada com ${manualVertices.length} vértices!`);
 }
 
 // Inicializa o mapa quando a página carregar e Leaflet estiver pronto
@@ -745,9 +1011,24 @@ function parseAndDisplayKML(kmlText) {
             });
         }
         
+        // Remove polilinha manual se existir
+        if (manualPolyline) {
+            try {
+                map.removeLayer(manualPolyline);
+            } catch(e) {}
+            manualPolyline = null;
+        }
+        
+        // Limpa linha temporária
+        clearTempPolyline();
+        
         window.currentMarkers = [];
         window.currentPolylines = [];
         window.segmentPolylines = new Map(); // Armazena segmentos individuais por par de vértices (ex: "1-2", "2-3")
+        
+        // Desativa modo manual quando KML é carregado
+        deactivateManualMode();
+        manualVertices = []; // Limpa vértices manuais
         
         // Desabilita botão de inverter sentido e botão abrir tabela quando limpar
         btnInverterSentido.disabled = true;
@@ -964,6 +1245,14 @@ if (btnAbrirTabela) {
     });
 }
 
+// Adiciona evento ao botão Finalizar Polilinha
+if (btnFinalizarPolilinha) {
+    btnFinalizarPolilinha.addEventListener('click', function() {
+        console.log('Botão Finalizar Polilinha clicado');
+        finalizeManualPolyline();
+    });
+}
+
 // Função para fazer download de arquivo
 function downloadFile(blob, filename, mimeType) {
     if (typeof saveAs !== 'undefined') {
@@ -1001,9 +1290,9 @@ async function gerarMatriz() {
         return;
     }
     
-    // Verifica se há vértices carregados
+    // Verifica se há vértices carregados (KML ou manual)
     if (!window.kmlVertices || window.kmlVertices.length === 0) {
-        showMessage(errorMessage, 'Por favor, carregue um arquivo KML primeiro.', true);
+        showMessage(errorMessage, 'Por favor, carregue um arquivo KML ou crie uma polilinha manualmente no mapa.', true);
         return;
     }
     
@@ -1099,18 +1388,24 @@ async function gerarMatriz() {
             console.log(`🌐 Modo PRODUÇÃO - Usando: ${API_URL}`);
         } else {
             // Em desenvolvimento, procura servidor local nas portas 8000-8004
-            const PORTS = [8000, 8001, 8002, 8003, 8004];
+            // Prioriza 8001 que é a porta padrão quando PORT é definido
+            const PORTS = [8001, 8000, 8002, 8003, 8004];
             
-            console.log('🔧 Modo DESENVOLVIMENTO - Procurando servidor nas portas 8000-8004...');
+            console.log('🔧 Modo DESENVOLVIMENTO - Procurando servidor nas portas 8001, 8000-8004...');
             for (const port of PORTS) {
                 const testUrl = `http://localhost:${port}/api/test/`;
+                console.log(`   Testando porta ${port}...`);
                 try {
                     const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 2000);
+                    // Aumenta timeout para 5 segundos para dar mais tempo
+                    const timeoutId = setTimeout(() => controller.abort(), 5000);
                     
                     const testResponse = await fetch(testUrl, { 
                         method: 'GET',
-                        signal: controller.signal
+                        signal: controller.signal,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
                     });
                     clearTimeout(timeoutId);
                     
@@ -1122,14 +1417,23 @@ async function gerarMatriz() {
                     }
                 } catch (e) {
                     if (e.name !== 'AbortError') {
-                        console.log(`   Porta ${port} não disponível`);
+                        console.log(`   ❌ Porta ${port} não disponível: ${e.message}`);
+                    } else {
+                        console.log(`   ⏱️ Porta ${port} timeout (servidor não respondeu em 5s)`);
                     }
                     continue;
                 }
             }
             
             if (!API_URL) {
-                throw new Error('Servidor Flask não encontrado nas portas 8000-8004.\n\nCertifique-se de que o servidor está rodando:\npython backend/api/server_flask.py\n\nOu execute: backend\\api\\start_server.bat');
+                throw new Error('Servidor Flask não encontrado nas portas 8001, 8000-8004.\n\n' +
+                    '📋 Para resolver:\n' +
+                    '1. Execute: python backend/api/server_flask.py\n' +
+                    '2. Ou execute: backend\\api\\start_server.bat\n' +
+                    '3. Aguarde ver a mensagem: "API disponível em..."\n' +
+                    '4. Mantenha o terminal aberto e tente novamente\n\n' +
+                    '💡 Dica: Você pode acessar o frontend diretamente pelo Flask em:\n' +
+                    '   http://localhost:8001/ (em vez de usar servidor HTTP separado)');
             }
         }
         
@@ -1296,4 +1600,15 @@ async function gerarMatriz() {
 if (btnGerarMatriz) {
     btnGerarMatriz.addEventListener('click', gerarMatriz);
 }
+
+// Inicializa o mapa automaticamente quando a página carregar
+waitForLeaflet(function() {
+    console.log('Página carregada, inicializando mapa automaticamente...');
+    setTimeout(function() {
+        if (!mapInitialized) {
+            initMap();
+            console.log('Mapa inicializado automaticamente');
+        }
+    }, 300);
+});
 
