@@ -109,7 +109,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
      <Style id="linha_vertices_style">
          <LineStyle>
              <color>ff00ff00</color>
-             <width>3</width>
+             <width>1.5</width>
          </LineStyle>
      </Style>
      

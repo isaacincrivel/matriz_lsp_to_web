@@ -311,6 +311,25 @@
             min-height: 150px;
         }
 
+        /* Media Queries para Desktop - Expansão progressiva */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1000px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
         /* Media Queries para Mobile */
         @media (max-width: 768px) {
             body {
@@ -448,6 +467,18 @@
                 min-height: 100px;
             }
         }
+
+        /* Estilo para o marcador de localização do usuário */
+        .user-location-marker {
+            background: transparent;
+            border: none;
+        }
+        
+        /* Estilo para o botão de geolocalização quando desabilitado */
+        #btnMinhaLocalizacao:disabled {
+            background: #6c757d !important;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -478,6 +509,7 @@
             <div id="line-map-container" style="margin-top: 30px; display: block;">
                 <h2 class="caption" style="color: #333; margin-bottom: 10px; font-size: 1.1em;">Mapa da linha</h2>
                 <div id="line-map" style="width: 100%; border-radius: 10px; overflow: hidden; border: 2px solid #ddd;"></div>
+                <button class="btn" id="btnMinhaLocalizacao" style="margin-top: 15px; width: 100%; background: #28a745;">📍 Minha Localização</button>
                 <button class="btn" id="btnFinalizarPolilinha" style="margin-top: 15px; width: 100%; display: none;">✅ Finalizar Polilinha</button>
                 <button class="btn" id="btnInverterSentido" style="margin-top: 15px; width: 100%;" disabled>🔄 Inverter Sentido</button>
                 

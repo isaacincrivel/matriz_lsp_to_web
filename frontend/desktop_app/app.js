@@ -12,6 +12,9 @@ let manualVertices = []; // Vértices criados manualmente [{lat, lon, number}, .
 let tempPolyline = null; // Linha temporária do último ponto ao cursor
 let manualPolyline = null; // Linha conectando os pontos manuais
 
+// Estado da geolocalização
+let userLocationMarker = null; // Marcador da localização do usuário
+
 // Aguarda o Leaflet estar carregado
 function waitForLeaflet(callback, maxAttempts = 50) {
     let attempts = 0;
@@ -40,6 +43,7 @@ const btnPlotarProjeto = document.getElementById('btnPlotarProjeto');
 const btnAbrirTabela = document.getElementById('btnAbrirTabela');
 const btnInverterSentido = document.getElementById('btnInverterSentido');
 const btnFinalizarPolilinha = document.getElementById('btnFinalizarPolilinha');
+const btnMinhaLocalizacao = document.getElementById('btnMinhaLocalizacao');
 const fileName = document.getElementById('fileName');
 const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
@@ -1599,6 +1603,111 @@ async function gerarMatriz() {
 // Adiciona evento ao botão Gerar Matriz
 if (btnGerarMatriz) {
     btnGerarMatriz.addEventListener('click', gerarMatriz);
+}
+
+// Função para obter e mostrar a localização do usuário
+function obterMinhaLocalizacao() {
+    // Verifica se o navegador suporta geolocalização
+    if (!navigator.geolocation) {
+        showMessage(errorMessage, 'Geolocalização não é suportada pelo seu navegador.', true);
+        return;
+    }
+    
+    // Verifica se o mapa está inicializado
+    if (!map || !mapInitialized) {
+        showMessage(errorMessage, 'Por favor, aguarde o mapa carregar completamente.', true);
+        return;
+    }
+    
+    // Desabilita o botão durante a busca
+    if (btnMinhaLocalizacao) {
+        btnMinhaLocalizacao.disabled = true;
+        btnMinhaLocalizacao.textContent = '📍 Buscando localização...';
+    }
+    
+    // Opções para geolocalização (mais preciso em dispositivos móveis)
+    const options = {
+        enableHighAccuracy: true, // Usa GPS quando disponível (melhor para celular)
+        timeout: 10000, // Timeout de 10 segundos
+        maximumAge: 0 // Não usa cache, sempre busca nova posição
+    };
+    
+    // Obtém a localização atual
+    navigator.geolocation.getCurrentPosition(
+        // Sucesso
+        function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const accuracy = position.coords.accuracy; // Precisão em metros
+            
+            console.log('Localização obtida:', lat, lon, 'Precisão:', accuracy, 'm');
+            
+            // Remove marcador anterior se existir
+            if (userLocationMarker) {
+                map.removeLayer(userLocationMarker);
+            }
+            
+            // Cria ícone customizado para a localização do usuário
+            const userIcon = L.divIcon({
+                className: 'user-location-marker',
+                html: '<div style="background-color: #28a745; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></div>',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+            
+            // Adiciona marcador no mapa
+            userLocationMarker = L.marker([lat, lon], { icon: userIcon })
+                .addTo(map)
+                .bindPopup(`<b>Sua Localização</b><br>Lat: ${lat.toFixed(6)}<br>Lon: ${lon.toFixed(6)}<br>Precisão: ${Math.round(accuracy)}m`)
+                .openPopup();
+            
+            // Centraliza o mapa na posição do usuário
+            map.setView([lat, lon], 16); // Zoom nível 16 (bem próximo)
+            
+            // Mostra mensagem de sucesso
+            showMessage(successMessage, `Localização encontrada! Precisão: ${Math.round(accuracy)}m`, false);
+            
+            // Reabilita o botão
+            if (btnMinhaLocalizacao) {
+                btnMinhaLocalizacao.disabled = false;
+                btnMinhaLocalizacao.textContent = '📍 Minha Localização';
+            }
+        },
+        // Erro
+        function(error) {
+            let errorMessageText = 'Erro ao obter localização: ';
+            
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessageText += 'Permissão negada pelo usuário. Por favor, permita o acesso à localização nas configurações do navegador.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessageText += 'Localização não disponível. Verifique se o GPS está ativado no seu dispositivo.';
+                    break;
+                case error.TIMEOUT:
+                    errorMessageText += 'Tempo limite excedido ao buscar localização. Tente novamente.';
+                    break;
+                default:
+                    errorMessageText += 'Erro desconhecido.';
+                    break;
+            }
+            
+            console.error('Erro ao obter localização:', error);
+            showMessage(errorMessage, errorMessageText, true);
+            
+            // Reabilita o botão
+            if (btnMinhaLocalizacao) {
+                btnMinhaLocalizacao.disabled = false;
+                btnMinhaLocalizacao.textContent = '📍 Minha Localização';
+            }
+        },
+        options
+    );
+}
+
+// Adiciona evento ao botão Minha Localização
+if (btnMinhaLocalizacao) {
+    btnMinhaLocalizacao.addEventListener('click', obterMinhaLocalizacao);
 }
 
 // Inicializa o mapa automaticamente quando a página carregar
