@@ -354,20 +354,29 @@ function addLocationControl() {
     // Cria controle customizado de localização
     const LocationControl = L.Control.extend({
         onAdd: function(map) {
-            const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-            container.style.backgroundColor = 'white';
-            container.style.border = '2px solid rgba(0,0,0,0.2)';
-            container.style.cursor = 'pointer';
-            container.style.padding = '10px';
-            container.style.borderRadius = '4px';
-            container.style.boxShadow = '0 1px 5px rgba(0,0,0,0.4)';
-            container.innerHTML = '<span style="font-size: 20px;">📍</span>';
-            container.title = 'Mostrar minha localização';
+            // Cria container principal (barra de controles)
+            const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+            
+            // Cria o botão dentro da barra
+            const button = L.DomUtil.create('a', 'leaflet-control-locate', container);
+            button.href = '#';
+            button.title = 'Mostrar minha localização';
+            button.innerHTML = '📍';
+            button.style.cssText = 'font-size: 18px; line-height: 30px; text-align: center; display: block; width: 30px; height: 30px; text-decoration: none; color: #333;';
+            
+            // Efeito hover
+            button.onmouseover = function() {
+                this.style.backgroundColor = '#f4f4f4';
+            };
+            button.onmouseout = function() {
+                this.style.backgroundColor = '';
+            };
             
             // Previne o evento de arrastar o mapa quando clicar no controle
-            L.DomEvent.disableClickPropagation(container);
-            L.DomEvent.on(container, 'click', function(e) {
+            L.DomEvent.disableClickPropagation(button);
+            L.DomEvent.on(button, 'click', function(e) {
                 L.DomEvent.stopPropagation(e);
+                L.DomEvent.preventDefault(e);
                 getCurrentLocation();
             });
             
@@ -379,12 +388,13 @@ function addLocationControl() {
         }
     });
     
-    // Adiciona o controle ao mapa
+    // Adiciona o controle ao mapa (canto superior esquerdo, abaixo dos controles de zoom)
     const locationControl = new LocationControl({
         position: 'topleft'
     });
     
     locationControl.addTo(map);
+    console.log('Controle de localização adicionado ao mapa');
 }
 
 // Função para obter localização atual e centralizar mapa
