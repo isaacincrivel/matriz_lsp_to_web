@@ -243,6 +243,15 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Labels responsivos (mostra desktop ou mobile) */
+        .label-mobile {
+            display: none;
+        }
+
+        .label-desktop {
+            display: inline;
+        }
+
         /* Estilos do Leaflet */
         .leaflet-container {
             background: #ffffff;
@@ -269,6 +278,175 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
             text-align: center;
             line-height: 1;
+        }
+
+        /* Classes auxiliares para campos inline */
+        .grid-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .select-nao-intercalar {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            min-height: 150px;
+        }
+
+        /* Media Queries para Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 8px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .form-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 8px;
+            }
+
+            .subtitle {
+                font-size: 0.9em;
+                margin-bottom: 20px;
+            }
+
+            .logo-container {
+                margin-bottom: 20px;
+            }
+
+            .matriz-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* Aumenta font-size dos inputs para evitar zoom no iOS */
+            input[type="text"],
+            input[type="number"],
+            input[type="file"],
+            select,
+            .form-field {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .form-field {
+                padding: 12px;
+            }
+
+            /* Botões com área de toque adequada */
+            .btn {
+                padding: 16px 20px;
+                font-size: 16px;
+                min-height: 44px;
+            }
+
+            /* Grid de 2 colunas vira 1 coluna no mobile */
+            .grid-two-columns {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            /* Mapa com altura reduzida */
+            #line-map {
+                height: 350px;
+            }
+
+            /* Select "Não Intercalar" com altura reduzida */
+            .select-nao-intercalar {
+                min-height: 120px;
+                font-size: 16px;
+            }
+
+            /* Ajustes de espaçamento */
+            #line-map-container {
+                margin-top: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .file-upload-label {
+                padding: 15px;
+            }
+
+            #btnAbrirTabela {
+                font-size: 16px;
+                padding: 12px;
+                min-height: 44px;
+            }
+
+            /* Mostra label mobile, esconde desktop */
+            .label-mobile {
+                display: inline;
+            }
+
+            .label-desktop {
+                display: none;
+            }
+        }
+
+        /* Media Query para telas muito pequenas */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 12px;
+            }
+
+            .form-section {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            .subtitle {
+                font-size: 0.85em;
+            }
+
+            .matriz-logo {
+                width: 70px;
+                height: 70px;
+            }
+
+            #line-map {
+                height: 300px;
+            }
+
+            .select-nao-intercalar {
+                min-height: 100px;
+            }
         }
     </style>
 </head>
@@ -299,17 +477,16 @@
             <!-- Mapa Leaflet (exibido automaticamente) -->
             <div id="line-map-container" style="margin-top: 30px; display: block;">
                 <h2 class="caption" style="color: #333; margin-bottom: 10px; font-size: 1.1em;">Mapa da linha</h2>
-                <div id="line-map" style="width: 100%; height: 500px; border-radius: 10px; overflow: hidden; border: 2px solid #ddd;"></div>
+                <div id="line-map" style="width: 100%; border-radius: 10px; overflow: hidden; border: 2px solid #ddd;"></div>
                 <button class="btn" id="btnFinalizarPolilinha" style="margin-top: 15px; width: 100%; display: none;">✅ Finalizar Polilinha</button>
                 <button class="btn" id="btnInverterSentido" style="margin-top: 15px; width: 100%;" disabled>🔄 Inverter Sentido</button>
                 
                 <!-- Campos de Seleção -->
-                <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="grid-two-columns" style="margin-top: 20px;">
                     <!-- Número do Módulo -->
                     <div class="form-group">
-                        <label for="numeroModulo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Número do Módulo:</label>
-                        <input type="text" id="numeroModulo" class="form-control" 
-                               style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;"
+                        <label for="numeroModulo" class="form-label">Número do Módulo:</label>
+                        <input type="text" id="numeroModulo" class="form-field" 
                                placeholder="Digite apenas números"
                                pattern="[0-9]*"
                                inputmode="numeric"
@@ -318,9 +495,9 @@
                     
                     <!-- Descrição do Módulo -->
                     <div class="form-group">
-                        <label for="descricaoModulo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Descrição do Módulo:</label>
-                        <div id="descricaoModulo" 
-                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; background: #f5f5f5; color: #666; min-height: 20px;">
+                        <label for="descricaoModulo" class="form-label">Descrição do Módulo:</label>
+                        <div id="descricaoModulo" class="form-field" 
+                             style="background: #f5f5f5; color: #666; min-height: 20px;">
                             <- Digitar código do módulo
                         </div>
                     </div>
@@ -332,12 +509,11 @@
                 </div>
                 
                 <!-- Select Poste da Derivação e Vão Frouxo -->
-                <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="grid-two-columns" style="margin-top: 15px;">
                     <!-- Poste da Derivação -->
                     <div class="form-group">
-                        <label for="posteDerivacao" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Poste da derivação:</label>
-                        <select id="posteDerivacao" class="form-control" 
-                                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                        <label for="posteDerivacao" class="form-label">Poste da derivação:</label>
+                        <select id="posteDerivacao" class="form-field">
                             <option value="">Selecione...</option>
                             <option value="Implantar">Implantar</option>
                             <option value="Existente">Existente</option>
@@ -346,9 +522,8 @@
                     
                     <!-- Vão Frouxo -->
                     <div class="form-group">
-                        <label for="vaoFrouxo" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Vão Frouxo:</label>
-                        <select id="vaoFrouxo" class="form-control" 
-                                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
+                        <label for="vaoFrouxo" class="form-label">Vão Frouxo:</label>
+                        <select id="vaoFrouxo" class="form-field">
                             <option value="">Selecione...</option>
                             <option value="sim">sim</option>
                             <option value="não">não</option>
@@ -358,9 +533,11 @@
                 
                 <!-- Select Não Intercalar Postes -->
                 <div class="form-group" style="margin-top: 15px;">
-                    <label for="naoIntercalarPostes" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Não Intercalar Postes (Ctrl+Click para selecionar múltiplos):</label>
-                    <select id="naoIntercalarPostes" class="form-control" 
-                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; min-height: 150px;"
+                    <label for="naoIntercalarPostes" class="form-label">
+                        <span class="label-desktop">Não Intercalar Postes (Ctrl+Click para selecionar múltiplos):</span>
+                        <span class="label-mobile">Não Intercalar Postes (Toque e segure para selecionar múltiplos):</span>
+                    </label>
+                    <select id="naoIntercalarPostes" class="select-nao-intercalar" 
                             size="8"
                             multiple>
                         <option value="">Nenhum vértice carregado</option>
