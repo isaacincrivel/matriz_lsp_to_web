@@ -582,6 +582,8 @@ function activateManualMode() {
     // Desabilita doubleClickZoom para permitir duplo clique finalizar
     if (map) {
         map.doubleClickZoom.disable();
+        // Muda cursor para crosshair (mira) durante modo manual
+        map.getContainer().style.cursor = 'crosshair';
     }
     
     // Limpa qualquer polilinha temporária anterior
@@ -604,6 +606,8 @@ function deactivateManualMode() {
     // Reabilita doubleClickZoom
     if (map) {
         map.doubleClickZoom.enable();
+        // Volta cursor para o padrão do Leaflet (grab)
+        map.getContainer().style.cursor = '';
     }
     
     // Remove linha temporária
@@ -1820,6 +1824,9 @@ function resetApplication() {
         
         // Volta para a visualização padrão
         map.setView([-15.7942, -47.8822], 13);
+        
+        // Reseta cursor para o padrão do Leaflet
+        map.getContainer().style.cursor = '';
     }
     
     // Limpa variáveis globais
