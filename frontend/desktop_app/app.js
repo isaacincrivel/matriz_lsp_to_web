@@ -1768,6 +1768,155 @@ if (btnGerarMatriz) {
     btnGerarMatriz.addEventListener('click', gerarMatriz);
 }
 
+// Função para resetar completamente a aplicação
+function resetApplication() {
+    console.log('Resetando aplicação...');
+    
+    // Limpa o mapa - remove todas as camadas
+    if (map && mapInitialized) {
+        // Remove todos os markers
+        if (window.currentMarkers) {
+            window.currentMarkers.forEach(marker => {
+                try { map.removeLayer(marker); } catch(e) {}
+            });
+            window.currentMarkers = [];
+        }
+        
+        // Remove todas as polylines
+        if (window.currentPolylines) {
+            window.currentPolylines.forEach(polyline => {
+                try { map.removeLayer(polyline); } catch(e) {}
+            });
+            window.currentPolylines = [];
+        }
+        
+        // Remove segmentos
+        if (window.segmentPolylines) {
+            window.segmentPolylines.forEach(polyline => {
+                try { map.removeLayer(polyline); } catch(e) {}
+            });
+            window.segmentPolylines = new Map();
+        }
+        
+        // Remove marcador de localização do usuário
+        if (userLocationMarker) {
+            try { map.removeLayer(userLocationMarker); } catch(e) {}
+            userLocationMarker = null;
+        }
+        
+        if (userLocationAccuracyCircle) {
+            try { map.removeLayer(userLocationAccuracyCircle); } catch(e) {}
+            userLocationAccuracyCircle = null;
+        }
+        
+        // Remove polilinha manual
+        if (manualPolyline) {
+            try { map.removeLayer(manualPolyline); } catch(e) {}
+            manualPolyline = null;
+        }
+        
+        // Limpa linha temporária
+        clearTempPolyline();
+        
+        // Volta para a visualização padrão
+        map.setView([-15.7942, -47.8822], 13);
+    }
+    
+    // Limpa variáveis globais
+    pontosManuais = [];
+    isManualModeActive = false;
+    manualVertices = [];
+    tempPolyline = null;
+    window.kmlVertices = [];
+    
+    // Desativa modo manual
+    deactivateManualMode();
+    
+    // Limpa campos do formulário
+    if (fileInput) {
+        fileInput.value = '';
+    }
+    
+    if (fileName) {
+        fileName.textContent = '';
+    }
+    
+    if (numeroModulo) {
+        numeroModulo.value = '';
+    }
+    
+    if (descricaoModulo) {
+        descricaoModulo.textContent = '<- Digitar código do módulo';
+    }
+    
+    if (naoIntercalarPostes) {
+        naoIntercalarPostes.innerHTML = '<option value="">Nenhum vértice carregado</option>';
+    }
+    
+    // Reseta estado dos botões
+    if (btnImportarArquivo) {
+        btnImportarArquivo.disabled = false;
+    }
+    
+    if (btnGerarMatriz) {
+        btnGerarMatriz.disabled = true;
+    }
+    
+    if (btnPlotarProjeto) {
+        btnPlotarProjeto.disabled = true;
+    }
+    
+    if (btnInverterSentido) {
+        btnInverterSentido.disabled = true;
+    }
+    
+    if (btnAbrirTabela) {
+        btnAbrirTabela.disabled = true;
+    }
+    
+    if (btnFinalizarPolilinha) {
+        btnFinalizarPolilinha.style.display = 'none';
+    }
+    
+    // Limpa mensagens
+    if (successMessage) {
+        successMessage.style.display = 'none';
+        successMessage.textContent = '';
+    }
+    
+    if (errorMessage) {
+        errorMessage.style.display = 'none';
+        errorMessage.textContent = '';
+    }
+    
+    // Reativa modo manual se não houver KML
+    if (map && mapInitialized) {
+        checkAndActivateManualMode();
+    }
+    
+    console.log('Aplicação resetada com sucesso');
+}
+
+// Adiciona evento de clique no logo para resetar
+const logoReset = document.getElementById('logoReset');
+if (logoReset) {
+    logoReset.addEventListener('click', function() {
+        resetApplication();
+    });
+    
+    // Adiciona efeito visual ao passar o mouse
+    logoReset.addEventListener('mouseenter', function() {
+        this.style.opacity = '0.8';
+        this.style.transform = 'scale(1.05)';
+        this.style.transition = 'all 0.2s';
+    });
+    
+    logoReset.addEventListener('mouseleave', function() {
+        this.style.opacity = '1';
+        this.style.transform = 'scale(1)';
+    });
+}
+
 // Inicializa o mapa automaticamente quando a página carregar
 waitForLeaflet(function() {
     console.log('Página carregada, inicializando mapa automaticamente...');
