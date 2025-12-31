@@ -14,6 +14,7 @@ let manualPolyline = null; // Linha conectando os pontos manuais
 
 // Estado da geolocalização
 let userLocationMarker = null; // Marcador da localização do usuário
+let userLocationAccuracyCircle = null; // Círculo de precisão da localização
 
 // Aguarda o Leaflet estar carregado
 function waitForLeaflet(callback, maxAttempts = 50) {
@@ -43,7 +44,6 @@ const btnPlotarProjeto = document.getElementById('btnPlotarProjeto');
 const btnAbrirTabela = document.getElementById('btnAbrirTabela');
 const btnInverterSentido = document.getElementById('btnInverterSentido');
 const btnFinalizarPolilinha = document.getElementById('btnFinalizarPolilinha');
-const btnMinhaLocalizacao = document.getElementById('btnMinhaLocalizacao');
 const fileName = document.getElementById('fileName');
 const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
@@ -347,6 +347,156 @@ btnImportarArquivo.addEventListener('click', async function() {
 
 // Event listeners removidos - funcionalidade de entrada manual removida
 
+// Cria e adiciona controle de localização ao mapa
+function addLocationControl() {
+    if (!map || typeof L === 'undefined') return;
+    
+    // Cria controle customizado de localização
+    const LocationControl = L.Control.extend({
+        onAdd: function(map) {
+            const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+            container.style.backgroundColor = 'white';
+            container.style.border = '2px solid rgba(0,0,0,0.2)';
+            container.style.cursor = 'pointer';
+            container.style.padding = '10px';
+            container.style.borderRadius = '4px';
+            container.style.boxShadow = '0 1px 5px rgba(0,0,0,0.4)';
+            container.innerHTML = '<span style="font-size: 20px;">📍</span>';
+            container.title = 'Mostrar minha localização';
+            
+            // Previne o evento de arrastar o mapa quando clicar no controle
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.on(container, 'click', function(e) {
+                L.DomEvent.stopPropagation(e);
+                getCurrentLocation();
+            });
+            
+            return container;
+        },
+        
+        onRemove: function(map) {
+            // Limpeza se necessário
+        }
+    });
+    
+    // Adiciona o controle ao mapa
+    const locationControl = new LocationControl({
+        position: 'topleft'
+    });
+    
+    locationControl.addTo(map);
+}
+
+// Função para obter localização atual e centralizar mapa
+function getCurrentLocation() {
+    if (!navigator.geolocation) {
+        showMessage(errorMessage, 'Geolocalização não é suportada pelo seu navegador.', true);
+        return;
+    }
+    
+    if (!map || !mapInitialized) {
+        showMessage(errorMessage, 'Aguarde o mapa carregar completamente.', true);
+        return;
+    }
+    
+    // Opções para geolocalização (GPS de alta precisão)
+    const options = {
+        enableHighAccuracy: true, // Usa GPS quando disponível (melhor para celular)
+        timeout: 15000, // Timeout de 15 segundos
+        maximumAge: 0 // Não usa cache
+    };
+    
+    // Obtém a localização atual
+    navigator.geolocation.getCurrentPosition(
+        // Sucesso
+        function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+            
+            console.log('Localização obtida:', lat, lon, 'Precisão:', accuracy, 'm');
+            
+            // Remove marcador e círculo anteriores se existirem
+            if (userLocationMarker) {
+                map.removeLayer(userLocationMarker);
+                userLocationMarker = null;
+            }
+            if (userLocationAccuracyCircle) {
+                map.removeLayer(userLocationAccuracyCircle);
+                userLocationAccuracyCircle = null;
+            }
+            
+            // Cria ícone customizado para a localização do usuário
+            const userIcon = L.divIcon({
+                className: 'user-location-marker',
+                html: '<div style="background-color: #28a745; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></div>',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8]
+            });
+            
+            // Cria círculo de precisão
+            userLocationAccuracyCircle = L.circle([lat, lon], {
+                radius: accuracy,
+                fillColor: '#28a745',
+                fillOpacity: 0.2,
+                color: '#28a745',
+                weight: 1,
+                opacity: 0.5
+            }).addTo(map);
+            
+            // Adiciona marcador no mapa
+            userLocationMarker = L.marker([lat, lon], { icon: userIcon })
+                .addTo(map)
+                .bindPopup(`<b>Sua Localização</b><br>Precisão: ${Math.round(accuracy)}m`)
+                .openPopup();
+            
+            // Centraliza e faz zoom no mapa na posição do usuário
+            // Calcula zoom baseado na precisão
+            let zoomLevel = 16;
+            if (accuracy > 100) zoomLevel = 14;
+            else if (accuracy > 50) zoomLevel = 15;
+            else if (accuracy > 20) zoomLevel = 16;
+            else zoomLevel = 17;
+            
+            map.setView([lat, lon], zoomLevel, {
+                animate: true,
+                duration: 1.0
+            });
+            
+            // Limpa o círculo de precisão após alguns segundos (opcional)
+            setTimeout(function() {
+                if (userLocationAccuracyCircle) {
+                    map.removeLayer(userLocationAccuracyCircle);
+                    userLocationAccuracyCircle = null;
+                }
+            }, 5000);
+        },
+        // Erro
+        function(error) {
+            let errorMessageText = 'Erro ao obter localização: ';
+            
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessageText = 'Permissão negada. Por favor, permita o acesso à localização nas configurações do navegador.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessageText = 'Localização não disponível. Verifique se o GPS está ativado.';
+                    break;
+                case error.TIMEOUT:
+                    errorMessageText = 'Tempo limite excedido. Tente novamente.';
+                    break;
+                default:
+                    errorMessageText = 'Erro desconhecido ao obter localização.';
+                    break;
+            }
+            
+            console.error('Erro ao obter localização:', error);
+            showMessage(errorMessage, errorMessageText, true);
+        },
+        options
+    );
+}
+
 // Inicializa o mapa Leaflet
 function initMap() {
     if (mapInitialized) return;
@@ -382,6 +532,9 @@ function initMap() {
 
         // Define uma localização padrão (Brasil - centro)
         map.setView([-15.7942, -47.8822], 13);
+
+        // Adiciona controle de localização customizado
+        addLocationControl();
 
         mapInitialized = true;
         console.log('Mapa inicializado com sucesso');
@@ -1603,111 +1756,6 @@ async function gerarMatriz() {
 // Adiciona evento ao botão Gerar Matriz
 if (btnGerarMatriz) {
     btnGerarMatriz.addEventListener('click', gerarMatriz);
-}
-
-// Função para obter e mostrar a localização do usuário
-function obterMinhaLocalizacao() {
-    // Verifica se o navegador suporta geolocalização
-    if (!navigator.geolocation) {
-        showMessage(errorMessage, 'Geolocalização não é suportada pelo seu navegador.', true);
-        return;
-    }
-    
-    // Verifica se o mapa está inicializado
-    if (!map || !mapInitialized) {
-        showMessage(errorMessage, 'Por favor, aguarde o mapa carregar completamente.', true);
-        return;
-    }
-    
-    // Desabilita o botão durante a busca
-    if (btnMinhaLocalizacao) {
-        btnMinhaLocalizacao.disabled = true;
-        btnMinhaLocalizacao.textContent = '📍 Buscando localização...';
-    }
-    
-    // Opções para geolocalização (mais preciso em dispositivos móveis)
-    const options = {
-        enableHighAccuracy: true, // Usa GPS quando disponível (melhor para celular)
-        timeout: 10000, // Timeout de 10 segundos
-        maximumAge: 0 // Não usa cache, sempre busca nova posição
-    };
-    
-    // Obtém a localização atual
-    navigator.geolocation.getCurrentPosition(
-        // Sucesso
-        function(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const accuracy = position.coords.accuracy; // Precisão em metros
-            
-            console.log('Localização obtida:', lat, lon, 'Precisão:', accuracy, 'm');
-            
-            // Remove marcador anterior se existir
-            if (userLocationMarker) {
-                map.removeLayer(userLocationMarker);
-            }
-            
-            // Cria ícone customizado para a localização do usuário
-            const userIcon = L.divIcon({
-                className: 'user-location-marker',
-                html: '<div style="background-color: #28a745; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></div>',
-                iconSize: [20, 20],
-                iconAnchor: [10, 10]
-            });
-            
-            // Adiciona marcador no mapa
-            userLocationMarker = L.marker([lat, lon], { icon: userIcon })
-                .addTo(map)
-                .bindPopup(`<b>Sua Localização</b><br>Lat: ${lat.toFixed(6)}<br>Lon: ${lon.toFixed(6)}<br>Precisão: ${Math.round(accuracy)}m`)
-                .openPopup();
-            
-            // Centraliza o mapa na posição do usuário
-            map.setView([lat, lon], 16); // Zoom nível 16 (bem próximo)
-            
-            // Mostra mensagem de sucesso
-            showMessage(successMessage, `Localização encontrada! Precisão: ${Math.round(accuracy)}m`, false);
-            
-            // Reabilita o botão
-            if (btnMinhaLocalizacao) {
-                btnMinhaLocalizacao.disabled = false;
-                btnMinhaLocalizacao.textContent = '📍 Minha Localização';
-            }
-        },
-        // Erro
-        function(error) {
-            let errorMessageText = 'Erro ao obter localização: ';
-            
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    errorMessageText += 'Permissão negada pelo usuário. Por favor, permita o acesso à localização nas configurações do navegador.';
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    errorMessageText += 'Localização não disponível. Verifique se o GPS está ativado no seu dispositivo.';
-                    break;
-                case error.TIMEOUT:
-                    errorMessageText += 'Tempo limite excedido ao buscar localização. Tente novamente.';
-                    break;
-                default:
-                    errorMessageText += 'Erro desconhecido.';
-                    break;
-            }
-            
-            console.error('Erro ao obter localização:', error);
-            showMessage(errorMessage, errorMessageText, true);
-            
-            // Reabilita o botão
-            if (btnMinhaLocalizacao) {
-                btnMinhaLocalizacao.disabled = false;
-                btnMinhaLocalizacao.textContent = '📍 Minha Localização';
-            }
-        },
-        options
-    );
-}
-
-// Adiciona evento ao botão Minha Localização
-if (btnMinhaLocalizacao) {
-    btnMinhaLocalizacao.addEventListener('click', obterMinhaLocalizacao);
 }
 
 // Inicializa o mapa automaticamente quando a página carregar
