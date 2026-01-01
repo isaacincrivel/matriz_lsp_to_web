@@ -50,20 +50,19 @@ def mtz_abaco(str1):
     ]
 
     abacos["10101"] = [
-        {"estrutura_n1": "N4", "poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(1100, 0), (1100, 180), (1300, 180), (1300, 0), (1100, 0)], "id": "ms1"},
-        {"estrutura_n1": "N3", "poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(900, 0), (900, 140), (1100, 140), (1100, 0), (900, 0)], "id": "ms2"},
-        {"estrutura_n1": "N3", "estrutura_n2": "N3", "poste": "PDT11/2000", "base_concreto": "BC", "polygon": [(600, 0), (600, 140), (900, 140), (900, 0), (600, 0)], "id": "ms3"},
-        {"estrutura_n1": "HT", "poste": "2XPDT11/1500", "base_concreto": "BC", "polygon": [(460, 500), (600, 500), (600, 140), (460, 500)], "id": "ms4"},
-        {"estrutura_n1": "TE", "poste": "PDT11/2000", "base_concreto": "BC", "polygon": [(-1, 400), (-1, 500), (460, 500), (584.444, 180), (420, 180), (323.063, 400), (-1, 400)], "id": "ms5"},
-        {"estrutura_n1": "TE", "poste": "PDT11/1500", "base_concreto": "BC", "polygon": [(59, 300), (59, 400), (323.063, 400), (420, 180), (250, 180), (212.125, 300), (59, 300)], "id": "ms6"},
-        {"estrutura_n1": "TE", "poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(59, 180), (59, 300), (212.125, 300), (250, 180), (59, 180)], "id": "ms7"},
-        {"estrutura_n1": "TE", "poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(-1, 400), (59, 400), (59, 180), (-1, 180), (-1, 400)], "id": "ms8"},
-        {"estrutura_n1": "N4", "poste": "PDT11/2000", "base_concreto": "BC", "polygon": [(150, 180), (600, 60), (600, 140), (584.444, 180), (150, 180)], "id": "ms9"},
-        {"estrutura_n1": "N4", "estrutura_n2": "PDT11/1500", "poste": "PDT11/1500", "base_concreto": "BC", "polygon": [(150, 180), (220, 0), (600, 0), (600, 60), (150, 180)], "id": "ms10"},
-        {"estrutura_n1": "N2", "poste": "PDT11/600", "base_concreto": "BC", "polygon": [(150, 180), (150, 0), (220, 0), (150, 180)], "id": "ms11"},
-        {"estrutura_n1": "N1", "poste": "PDT11/600", "base_concreto": "BC", "polygon": [(-1, 100), (-1, 180), (150, 180), (150, 0), (60, 0), (-1, 100)], "id": "ms12"},
-        {"estrutura_n1": "N1", "poste": "PDT11/300", "polygon": [(-1, 0), (-1, 100), (60, 0), (-1, 0)], "id": "ms13"},                                                              
-        
+        {"estru_mt_nv1": "N4", "tipo_poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(1100, 0), (1100, 180), (1300, 180), (1300, 0), (1100, 0)], "id": "ms1"},
+        {"estru_mt_nv1": "N3", "tipo_poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(900, 0), (900, 140), (1100, 140), (1100, 0), (900, 0)], "id": "ms2"},
+        {"estru_mt_nv1": "N3", "estru_mt_nv2": "N3", "tipo_poste": "PDT11/2000", "base_concreto": "BC", "polygon": [(600, 0), (600, 140), (900, 140), (900, 0), (600, 0)], "id": "ms3"},
+        {"estru_mt_nv1": "HT", "tipo_poste": "2XPDT11/1500", "base_concreto": "BC", "polygon": [(460, 500), (600, 500), (600, 140), (460, 500)], "id": "ms4"},
+        {"estru_mt_nv1": "TE", "tipo_poste": "PDT11/2000", "base_concreto": "BC", "polygon": [(-1, 400), (-1, 500), (460, 500), (584.444, 180), (420, 180), (323.063, 400), (-1, 400)], "id": "ms5"},
+        {"estru_mt_nv1": "TE", "tipo_poste": "PDT11/1500", "base_concreto": "BC", "polygon": [(59, 300), (59, 400), (323.063, 400), (420, 180), (250, 180), (212.125, 300), (59, 300)], "id": "ms6"},
+        {"estru_mt_nv1": "TE", "tipo_poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(59, 180), (59, 300), (212.125, 300), (250, 180), (59, 180)], "id": "ms7"},
+        {"estru_mt_nv1": "TE", "tipo_poste": "PDT11/1000", "base_concreto": "BC", "polygon": [(-1, 400), (59, 400), (59, 180), (-1, 180), (-1, 400)], "id": "ms8"},
+        {"estru_mt_nv1": "N4", "tipo_poste": "PDT11/2000", "base_concreto": "BC", "polygon": [(150, 180), (600, 60), (600, 140), (584.444, 180), (150, 180)], "id": "ms9"},
+        {"estru_mt_nv1": "N4", "estru_mt_nv2": "PDT11/1500", "tipo_poste": "PDT11/1500", "base_concreto": "BC", "polygon": [(150, 180), (220, 0), (600, 0), (600, 60), (150, 180)], "id": "ms10"},
+        {"estru_mt_nv1": "N2", "tipo_poste": "PDT11/600", "base_concreto": "BC", "polygon": [(150, 180), (150, 0), (220, 0), (150, 180)], "id": "ms11"},
+        {"estru_mt_nv1": "N1", "tipo_poste": "PDT11/600", "base_concreto": "BC", "polygon": [(-1, 100), (-1, 180), (150, 180), (150, 0), (60, 0), (-1, 100)], "id": "ms12"},
+        {"estru_mt_nv1": "N1", "tipo_poste": "PDT11/300", "polygon": [(-1, 0), (-1, 100), (60, 0), (-1, 0)], "id": "ms13"},
     ]
 
 
