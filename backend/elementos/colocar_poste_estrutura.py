@@ -149,6 +149,7 @@ def colocar_poste_estrutura(new_vertices, loose_gap, tipo_poste, module_name):
             # Se poste intercalado                    
             else:
                 if loose_gap == "SIM":
+                    
                     resultado = mosaico(105, distance_ptos(pt2, pt3), module_name)
                     if resultado is None:
                         print(f"ALERTA: Verificar ábaco para ponto {i} - ângulo: 105°, distância: {distance_ptos(pt2, pt3):.2f}m")
