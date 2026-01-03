@@ -442,9 +442,9 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
             
             if rotacao_poste == 'tang' or rotacao_poste == 'tangente':
                 angulo_final = bissetriz
-            elif rotacao_poste == 'bissetriz1' or rotacao_poste == 'bicetriz1':
+            elif rotacao_poste == 'biss1' or rotacao_poste == 'bissetriz1' or rotacao_poste == 'bicetriz1':
                 angulo_final = bissetriz
-            elif rotacao_poste == 'bissetriz2' or rotacao_poste == 'bicetriz2':
+            elif rotacao_poste == 'biss2' or rotacao_poste == 'bissetriz2' or rotacao_poste == 'bicetriz2':
                 angulo_final = bissetriz + 90
             elif rotacao_poste == 'topo1':
                 angulo_final = angulo_anterior + 90
