@@ -55,7 +55,7 @@ def mtz_abaco(str1):
         {"estru_mt_nv1": "UP3UP3", "tipo_poste": "DT10/600", "base_concreto": "BC", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(600, 80), (600, 0), (900, 0), (900, 80), (600, 80)], "id": "ms03"},
         {"estru_mt_nv1": "UP3", "tipo_poste": "DT10/300", "base_reforcada": "BR", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1100, 35), (1000, 35), (1000, 0), (1100, 0), (1100, 35)], "id": "ms05"},
         {"estru_mt_nv1": "UP3", "tipo_poste": "EXIST", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1200, 80), (1100, 80), (1100, 0), (1200, 0), (1200, 80)], "id": "ms06"},
-        {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "base_reforcada": "BR", "rotacao_poste": "BISS1", "tang_ou_enc": "ENC", "polygon": [(1400, 80), (1300, 80), (1300, 60), (1300, 0), (1400, 0), (1400, 80)], "id": "ms08"},
+        {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "base_reforcada": "BR", "rotacao_poste": "BISS2", "tang_ou_enc": "ENC", "polygon": [(1400, 80), (1300, 80), (1300, 60), (1300, 0), (1400, 0), (1400, 80)], "id": "ms08"},
         {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "base_reforcada": "BR", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1300, 80), (1200, 80), (1200, 60), (1200, 0), (1300, 0), (1300, 80)], "id": "ms07"},
         {"estru_mt_nv1": "UP1", "tipo_poste": "DT10/300", "rotacao_poste": "BISS1", "tang_ou_enc": "TAN", "polygon": [(300, 80), (-1, 80), (-1, 0), (300, 0), (300, 80)], "id": "ms01"}, 
     ]
@@ -87,7 +87,7 @@ def mtz_abaco(str1):
         {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "estai_ancora": "1ED", "rotacao_poste": "BISS1", "tang_ou_enc": "ENC", "polygon": [(1400, 500), (1300, 500), (1300, 160), (1400, 160), (1400, 500)], "id": "ms16"},
         {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "estai_ancora": "1ED", "rotacao_poste": "BISS1", "tang_ou_enc": "ENC", "polygon": [(1400, 160), (1300, 160), (1300, 140), (1300, 0), (1400, 0), (1400, 160)], "id": "ms15"},
         {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "estai_ancora": "1ET", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1300, 500), (1200, 500), (1200, 160), (1300, 160), (1300, 500)], "id": "ms13"},
-        {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "estai_ancora": "1ED", "rotacao_poste": "BISS1", "tang_ou_enc": "ENC", "polygon": [(1300, 160), (1200, 160), (1200, 220), (1200, 0), (1300, 0), (1300, 160)], "id": "ms14"},
+        {"estru_mt_nv1": "UP4", "tipo_poste": "DT10/300", "estai_ancora": "1ED", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1300, 160), (1200, 160), (1200, 220), (1200, 0), (1300, 0), (1300, 160)], "id": "ms14"},
         {"estru_mt_nv1": "UP3", "tipo_poste": "DT10/300", "estai_ancora": "1ET", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1000, 500), (900, 500), (900, 160), (1000, 160), (1000, 500)], "id": "ms09"},
         {"estru_mt_nv1": "UP3", "tipo_poste": "DT10/300", "estai_ancora": "1ES", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(1000, 160), (900, 160), (900, 220), (900, 0), (1000, 0), (1000, 160)], "id": "ms08"},
         {"estru_mt_nv1": "UP3UP3", "tipo_poste": "DT10/300", "estai_ancora": "2ES", "rotacao_poste": "TOPO1", "tang_ou_enc": "ENC", "polygon": [(900, 220), (600, 220), (600, 100), (600, 0), (900, 0), (900, 220)], "id": "ms07"},

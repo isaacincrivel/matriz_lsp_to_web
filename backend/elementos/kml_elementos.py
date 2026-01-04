@@ -171,7 +171,7 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
         linha_comprimento = 10.0
         
         # Primeiro estai: usa angulo_anterior + 270
-        angulo_estai_1 = angulo_anterior + 270
+        angulo_estai_1 = angulo_anterior + 180
         linha_lat_fim_1, linha_lon_fim_1 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_1)
         
         # Linha do primeiro estai
@@ -236,7 +236,7 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
 """
         
         # Segundo estai: usa angulo_posterior + 270
-        angulo_estai_2 = angulo_posterior + 270
+        angulo_estai_2 = angulo_posterior + 180
         linha_lat_fim_2, linha_lon_fim_2 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_2)
         
         # Linha do segundo estai
