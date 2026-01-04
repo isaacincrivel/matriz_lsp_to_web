@@ -30,7 +30,7 @@ Para adicionar novos elementos:
 2. A variável já está na lista de variaveis_elementos em colocar_elemento_kml()
 """
 
-def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_lon, angulo_final, i, sequencia):
+def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_lon, angulo_final, i, sequencia, angulo_anterior, angulo_posterior):
     """
     Cria o desenho específico de cada elemento KML
     
@@ -96,10 +96,11 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
     </Placemark>
 """
     
-    elif elemento_tipo == "estai_ancora" and dados_elemento == "1EA":
+    elif elemento_tipo == "estai_ancora" and dados_elemento == "1ES":
         # Estai âncora: linha + quadrado 1x1
         linha_comprimento = 10.0
         angulo_estai = angulo_final + 270
+
         
         # Ponto final da linha
         linha_lat_fim, linha_lon_fim = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai)
@@ -165,6 +166,336 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
     </Placemark>
 """
     
+    elif elemento_tipo == "estai_ancora" and dados_elemento in ["1ED", "2ES"]:
+        # Estai duplo: cria dois estais (um com angulo_anterior + 270, outro com angulo_posterior + 270)
+        linha_comprimento = 10.0
+        
+        # Primeiro estai: usa angulo_anterior + 270
+        angulo_estai_1 = angulo_anterior + 270
+        linha_lat_fim_1, linha_lon_fim_1 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_1)
+        
+        # Linha do primeiro estai
+        kml_content += f"""
+    <Placemark>
+        <name>Estai Âncora 1 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Estai Âncora 1 (Anterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Comprimento:</strong> {linha_comprimento}m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_1:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_style</styleUrl>
+        <LineString>
+            <coordinates>
+                {centro_lon},{centro_lat},0 {linha_lon_fim_1},{linha_lat_fim_1},0
+            </coordinates>
+        </LineString>
+    </Placemark>
+"""
+        
+        # Quadrado do primeiro estai
+        quadrado_tamanho = 1.0
+        quad_lat1_1, quad_lon1_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 - 90)
+        quad_lat1_1, quad_lon1_1 = polar(quad_lat1_1, quad_lon1_1, quadrado_tamanho/2, angulo_estai_1)
+        
+        quad_lat2_1, quad_lon2_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 + 90)
+        quad_lat2_1, quad_lon2_1 = polar(quad_lat2_1, quad_lon2_1, quadrado_tamanho/2, angulo_estai_1)
+        
+        quad_lat3_1, quad_lon3_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 + 90)
+        quad_lat3_1, quad_lon3_1 = polar(quad_lat3_1, quad_lon3_1, quadrado_tamanho/2, angulo_estai_1 + 180)
+        
+        quad_lat4_1, quad_lon4_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 - 90)
+        quad_lat4_1, quad_lon4_1 = polar(quad_lat4_1, quad_lon4_1, quadrado_tamanho/2, angulo_estai_1 + 180)
+        
+        kml_content += f"""
+    <Placemark>
+        <name>Quadrado Estai Âncora 1 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado do Estai Âncora 1 (Anterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Dimensões:</strong> 1m x 1m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_1:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_quadrado_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {quad_lon1_1},{quad_lat1_1},0 {quad_lon2_1},{quad_lat2_1},0 {quad_lon3_1},{quad_lat3_1},0 {quad_lon4_1},{quad_lat4_1},0 {quad_lon1_1},{quad_lat1_1},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
+        
+        # Segundo estai: usa angulo_posterior + 270
+        angulo_estai_2 = angulo_posterior + 270
+        linha_lat_fim_2, linha_lon_fim_2 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_2)
+        
+        # Linha do segundo estai
+        kml_content += f"""
+    <Placemark>
+        <name>Estai Âncora 2 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Estai Âncora 2 (Posterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Comprimento:</strong> {linha_comprimento}m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_2:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_style</styleUrl>
+        <LineString>
+            <coordinates>
+                {centro_lon},{centro_lat},0 {linha_lon_fim_2},{linha_lat_fim_2},0
+            </coordinates>
+        </LineString>
+    </Placemark>
+"""
+        
+        # Quadrado do segundo estai
+        quad_lat1_2, quad_lon1_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 - 90)
+        quad_lat1_2, quad_lon1_2 = polar(quad_lat1_2, quad_lon1_2, quadrado_tamanho/2, angulo_estai_2)
+        
+        quad_lat2_2, quad_lon2_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 + 90)
+        quad_lat2_2, quad_lon2_2 = polar(quad_lat2_2, quad_lon2_2, quadrado_tamanho/2, angulo_estai_2)
+        
+        quad_lat3_2, quad_lon3_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 + 90)
+        quad_lat3_2, quad_lon3_2 = polar(quad_lat3_2, quad_lon3_2, quadrado_tamanho/2, angulo_estai_2 + 180)
+        
+        quad_lat4_2, quad_lon4_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 - 90)
+        quad_lat4_2, quad_lon4_2 = polar(quad_lat4_2, quad_lon4_2, quadrado_tamanho/2, angulo_estai_2 + 180)
+        
+        kml_content += f"""
+    <Placemark>
+        <name>Quadrado Estai Âncora 2 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado do Estai Âncora 2 (Posterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Dimensões:</strong> 1m x 1m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_2:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_quadrado_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {quad_lon1_2},{quad_lat1_2},0 {quad_lon2_2},{quad_lat2_2},0 {quad_lon3_2},{quad_lat3_2},0 {quad_lon4_2},{quad_lat4_2},0 {quad_lon1_2},{quad_lat1_2},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
+    
+    elif elemento_tipo == "estai_ancora" and dados_elemento == "1ET":
+        # Estai triplo: cria três estais (dois como 1ED + um como 1ES)
+        linha_comprimento = 10.0
+        
+        # Primeiro estai: usa angulo_anterior + 270 (igual ao 1ED)
+        angulo_estai_1 = angulo_anterior + 270
+        linha_lat_fim_1, linha_lon_fim_1 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_1)
+        
+        # Linha do primeiro estai
+        kml_content += f"""
+    <Placemark>
+        <name>Estai Âncora 1 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Estai Âncora 1 (Anterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Comprimento:</strong> {linha_comprimento}m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_1:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_style</styleUrl>
+        <LineString>
+            <coordinates>
+                {centro_lon},{centro_lat},0 {linha_lon_fim_1},{linha_lat_fim_1},0
+            </coordinates>
+        </LineString>
+    </Placemark>
+"""
+        
+        # Quadrado do primeiro estai
+        quadrado_tamanho = 1.0
+        quad_lat1_1, quad_lon1_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 - 90)
+        quad_lat1_1, quad_lon1_1 = polar(quad_lat1_1, quad_lon1_1, quadrado_tamanho/2, angulo_estai_1)
+        
+        quad_lat2_1, quad_lon2_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 + 90)
+        quad_lat2_1, quad_lon2_1 = polar(quad_lat2_1, quad_lon2_1, quadrado_tamanho/2, angulo_estai_1)
+        
+        quad_lat3_1, quad_lon3_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 + 90)
+        quad_lat3_1, quad_lon3_1 = polar(quad_lat3_1, quad_lon3_1, quadrado_tamanho/2, angulo_estai_1 + 180)
+        
+        quad_lat4_1, quad_lon4_1 = polar(linha_lat_fim_1, linha_lon_fim_1, quadrado_tamanho/2, angulo_estai_1 - 90)
+        quad_lat4_1, quad_lon4_1 = polar(quad_lat4_1, quad_lon4_1, quadrado_tamanho/2, angulo_estai_1 + 180)
+        
+        kml_content += f"""
+    <Placemark>
+        <name>Quadrado Estai Âncora 1 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado do Estai Âncora 1 (Anterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Dimensões:</strong> 1m x 1m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_1:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_quadrado_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {quad_lon1_1},{quad_lat1_1},0 {quad_lon2_1},{quad_lat2_1},0 {quad_lon3_1},{quad_lat3_1},0 {quad_lon4_1},{quad_lat4_1},0 {quad_lon1_1},{quad_lat1_1},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
+        
+        # Segundo estai: usa angulo_posterior + 270 (igual ao 1ED)
+        angulo_estai_2 = angulo_posterior + 270
+        linha_lat_fim_2, linha_lon_fim_2 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_2)
+        
+        # Linha do segundo estai
+        kml_content += f"""
+    <Placemark>
+        <name>Estai Âncora 2 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Estai Âncora 2 (Posterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Comprimento:</strong> {linha_comprimento}m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_2:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_style</styleUrl>
+        <LineString>
+            <coordinates>
+                {centro_lon},{centro_lat},0 {linha_lon_fim_2},{linha_lat_fim_2},0
+            </coordinates>
+        </LineString>
+    </Placemark>
+"""
+        
+        # Quadrado do segundo estai
+        quad_lat1_2, quad_lon1_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 - 90)
+        quad_lat1_2, quad_lon1_2 = polar(quad_lat1_2, quad_lon1_2, quadrado_tamanho/2, angulo_estai_2)
+        
+        quad_lat2_2, quad_lon2_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 + 90)
+        quad_lat2_2, quad_lon2_2 = polar(quad_lat2_2, quad_lon2_2, quadrado_tamanho/2, angulo_estai_2)
+        
+        quad_lat3_2, quad_lon3_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 + 90)
+        quad_lat3_2, quad_lon3_2 = polar(quad_lat3_2, quad_lon3_2, quadrado_tamanho/2, angulo_estai_2 + 180)
+        
+        quad_lat4_2, quad_lon4_2 = polar(linha_lat_fim_2, linha_lon_fim_2, quadrado_tamanho/2, angulo_estai_2 - 90)
+        quad_lat4_2, quad_lon4_2 = polar(quad_lat4_2, quad_lon4_2, quadrado_tamanho/2, angulo_estai_2 + 180)
+        
+        kml_content += f"""
+    <Placemark>
+        <name>Quadrado Estai Âncora 2 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado do Estai Âncora 2 (Posterior)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Dimensões:</strong> 1m x 1m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_2:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_quadrado_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {quad_lon1_2},{quad_lat1_2},0 {quad_lon2_2},{quad_lat2_2},0 {quad_lon3_2},{quad_lat3_2},0 {quad_lon4_2},{quad_lat4_2},0 {quad_lon1_2},{quad_lat1_2},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
+        
+        # Terceiro estai: usa angulo_final + 270 (igual ao 1ES)
+        angulo_estai_3 = angulo_final + 270
+        linha_lat_fim_3, linha_lon_fim_3 = polar(centro_lat, centro_lon, linha_comprimento, angulo_estai_3)
+        
+        # Linha do terceiro estai
+        kml_content += f"""
+    <Placemark>
+        <name>Estai Âncora 3 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Estai Âncora 3 (Final)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Comprimento:</strong> {linha_comprimento}m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_3:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_style</styleUrl>
+        <LineString>
+            <coordinates>
+                {centro_lon},{centro_lat},0 {linha_lon_fim_3},{linha_lat_fim_3},0
+            </coordinates>
+        </LineString>
+    </Placemark>
+"""
+        
+        # Quadrado do terceiro estai
+        quad_lat1_3, quad_lon1_3 = polar(linha_lat_fim_3, linha_lon_fim_3, quadrado_tamanho/2, angulo_estai_3 - 90)
+        quad_lat1_3, quad_lon1_3 = polar(quad_lat1_3, quad_lon1_3, quadrado_tamanho/2, angulo_estai_3)
+        
+        quad_lat2_3, quad_lon2_3 = polar(linha_lat_fim_3, linha_lon_fim_3, quadrado_tamanho/2, angulo_estai_3 + 90)
+        quad_lat2_3, quad_lon2_3 = polar(quad_lat2_3, quad_lon2_3, quadrado_tamanho/2, angulo_estai_3)
+        
+        quad_lat3_3, quad_lon3_3 = polar(linha_lat_fim_3, linha_lon_fim_3, quadrado_tamanho/2, angulo_estai_3 + 90)
+        quad_lat3_3, quad_lon3_3 = polar(quad_lat3_3, quad_lon3_3, quadrado_tamanho/2, angulo_estai_3 + 180)
+        
+        quad_lat4_3, quad_lon4_3 = polar(linha_lat_fim_3, linha_lon_fim_3, quadrado_tamanho/2, angulo_estai_3 - 90)
+        quad_lat4_3, quad_lon4_3 = polar(quad_lat4_3, quad_lon4_3, quadrado_tamanho/2, angulo_estai_3 + 180)
+        
+        kml_content += f"""
+    <Placemark>
+        <name>Quadrado Estai Âncora 3 {i}</name>
+        <description>
+            <![CDATA[
+            <h3>Quadrado do Estai Âncora 3 (Final)</h3>
+            <p><strong>Vértice:</strong> {i}</p>
+            <p><strong>Sequência:</strong> {sequencia}</p>
+            <p><strong>Dimensões:</strong> 1m x 1m</p>
+            <p><strong>Ângulo:</strong> {angulo_estai_3:.2f}°</p>
+            ]]>
+        </description>
+        <styleUrl>#estai_ancora_quadrado_style</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        {quad_lon1_3},{quad_lat1_3},0 {quad_lon2_3},{quad_lat2_3},0 {quad_lon3_3},{quad_lat3_3},0 {quad_lon4_3},{quad_lat4_3},0 {quad_lon1_3},{quad_lat1_3},0
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+"""
+    
     elif elemento_tipo == "aterr_neutro" and dados_elemento == "AN":
         # Aterramento neutro: círculo pequeno
         raio = 0.5  # 0.5 metros de raio
@@ -215,7 +546,7 @@ def cria_desenho_elemento_kml(elemento_tipo, dados_elemento, centro_lat, centro_
     
     return kml_content
 
-def colocar_elemento_kml(dados_atual, centro_lat, centro_lon, angulo_final, i, sequencia):
+def colocar_elemento_kml(dados_atual, centro_lat, centro_lon, angulo_final, i, sequencia, angulo_anterior, angulo_posterior):
     """
     Verifica as condições de cada variável e chama a função de desenho apropriada
     
@@ -263,7 +594,7 @@ def colocar_elemento_kml(dados_atual, centro_lat, centro_lon, angulo_final, i, s
         
         if valor and valor != 'nan' and valor != '':
             # Chama a função de desenho para cada elemento
-            elemento_kml = cria_desenho_elemento_kml(variavel, valor, centro_lat, centro_lon, angulo_final, i, sequencia)
+            elemento_kml = cria_desenho_elemento_kml(variavel, valor, centro_lat, centro_lon, angulo_final, i, sequencia, angulo_anterior, angulo_posterior)
             kml_content += elemento_kml
     
     return kml_content

@@ -2,21 +2,26 @@
 // Edite cada linha individualmente conforme necessário
 
 const dadosTabela = [
+
+
+
+
+
     // Linha 1
     {
         codigo_modulo: '10101',
-        descrição_modulo: 'Construção - 13,8kV - Rural - TRI - Cabo 1/0CAA',
+        descrição_modulo: 'CONSTRUÇÃO MT MONOF RURAL 13,8KV - CAB 1#1/0CAA - EST. TIPO P - TRACAO REDUZIDA',
         distribuidora_estado: 'Goiás',
         tipo_obra: 'construção',
         tensão: '13,8kV',
         local: 'rural',
-        fases: '3',
+        fases: '1',
         neutro: 'não',
         cabo: '1/0CAA',
         vao_medio: 80,
-        vao_max: 400,
-        tramo_max: 800,
-        custo_med_poste: 10000,
+        vao_max: 81,
+        tramo_max: 400,
+        custo_med_poste: 9000,
         '%custo_poste_tang': 90,
         '%custo_poste_enc': 120
     },
@@ -24,7 +29,7 @@ const dadosTabela = [
     // Linha 2
     {
         codigo_modulo: '10102',
-        descrição_modulo: 'Construção - 13,5kV - Rural - MONOF - Cabo 1/0CAA - AREA:AGRICULTURA',
+        descrição_modulo: 'CONSTRUÇÃO MT MONOF RURAL 13,8KV - CAB 1#1/0CAA - EST. TIPO P - AREA:AGRICULTURA',
         distribuidora_estado: 'Goiás',
         tipo_obra: 'construção',
         tensão: '13,8kV',
@@ -35,7 +40,7 @@ const dadosTabela = [
         vao_medio: 110,
         vao_max: 500,
         tramo_max: 800,
-        custo_med_poste: 10000,
+        custo_med_poste: 12000,
         '%custo_poste_tang': 90,
         '%custo_poste_enc': 120
     },
@@ -43,18 +48,18 @@ const dadosTabela = [
     // Linha 3
     {
         codigo_modulo: '10103',
-        descrição_modulo: 'Construção - 13,8kV - Rural - TRI - Cabo 4/0CAA',
+        descrição_modulo: 'CONSTRUÇÃO MT MONOF RURAL 13,8KV - CAB 1#1/0CAA - EST. TIPO P - AREA:PECUARIA',
         distribuidora_estado: 'Goiás',
         tipo_obra: 'construção',
         tensão: '13,8kV',
         local: 'rural',
-        fases: '3',
+        fases: '1',
         neutro: 'não',
-        cabo: '4/0CAA',
-        vao_medio: 80,
-        vao_max: 300,
-        tramo_max: 700,
-        custo_med_poste: 12000,
+        cabo: '1/0CAA',
+        vao_medio: 110,
+        vao_max: 500,
+        tramo_max: 1000,
+        custo_med_poste: 10000,
         '%custo_poste_tang': 90,
         '%custo_poste_enc': 120
     },

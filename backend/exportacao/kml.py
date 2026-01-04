@@ -787,7 +787,11 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
 """
             
             # Chama a função modular para colocar elementos adicionais
-            elementos_kml = colocar_elemento_kml(dados_atual, centro_lat, centro_lon, angulo_final, i, sequencia)
+            elementos_kml = colocar_elemento_kml(dados_atual, centro_lat, centro_lon, angulo_final, i, sequencia, angulo_anterior, angulo_posterior)
+
+
+
+
             kml_content += elementos_kml
         
         # Fecha o arquivo KML
