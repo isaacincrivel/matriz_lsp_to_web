@@ -9,10 +9,11 @@ from backend.core.calculo_geografico import distance_ptos
 
 def mtz_abaco(str1):
     """
-    Retorna o ábaco correspondente ao módulo especificado.
+    Retorna o ábaco correspondente ao código de ábaco especificado.
     
     Args:
-        str1: Nome do módulo (ex: "MT7", "MT8")
+        str1: Código do ábaco (ex: "10101", "10102", "10104")
+              Pode ser usado por múltiplos módulos diferentes
     
     Returns:
         list: Lista de entradas do ábaco
@@ -138,7 +139,7 @@ def mosaico(ang1, dist1, str1):
     Args:
         ang1: Ângulo multiplicado por 10
         dist1: Distância em metros
-        str1: Nome do módulo
+        str1: Código do ábaco (não código do módulo)
     
     Returns:
         dict: Dicionário com todos os campos do ábaco encontrado (exceto 'polygon' e 'id'), 
