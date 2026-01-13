@@ -24,8 +24,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     
     Args:
         trecho: string - Código do trecho
-        module_name: string - Nome do módulo
-        module_data: dict - Dados do módulo da tabela
+        module_name: string - Código do ábaco (não código do módulo)
+        module_data: dict - Dados do módulo da tabela (pode conter codigo_abaco)
         loose_gap: string - "SIM" ou "NÃO" para vão frouxo
         section_size: number - Vão médio (da tabela)
         gap_size: number - Tramo máximo (da tabela)
@@ -40,6 +40,14 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
 
     # 🐛 BREAKPOINT PARA DEPURAÇÃO - Descomente a linha abaixo para ativar o debugger
     # import pdb; pdb.set_trace()  # Pausa aqui quando a função é chamada
+    
+    # Se module_data contém codigo_abaco, usa ele ao invés de module_name
+    # Isso permite que múltiplos módulos usem o mesmo ábaco
+    if module_data and isinstance(module_data, dict) and 'codigo_abaco' in module_data:
+        codigo_abaco = module_data.get('codigo_abaco')
+        if codigo_abaco:
+            module_name = str(codigo_abaco)
+    
     # Se vértices foram fornecidos, usa eles diretamente
     if vertices_kml is not None:
         # Cria um DataFrame simples a partir dos vértices KML

@@ -10,9 +10,10 @@ const dadosTabela = [
     // Linha 1
     {
         codigo_modulo: '10101',
+        codigo_abaco: '10101',
         descrição_modulo: 'CONSTRUÇÃO MT MONOF RURAL 13,8KV - CAB 1#1/0CAA - EST. TIPO P - TRACAO REDUZIDA',
         distribuidora_estado: 'Goiás',
-        tipo_obra: 'construção',
+        tipo_obra: 'construção MT',
         tensão: '13,8kV',
         local: 'rural',
         fases: '1',
@@ -29,9 +30,10 @@ const dadosTabela = [
     // Linha 2
     {
         codigo_modulo: '10102',
+        codigo_abaco: '10102',
         descrição_modulo: 'CONSTRUÇÃO MT MONOF RURAL 13,8KV - CAB 1#1/0CAA - EST. TIPO P - AREA:AGRICULTURA',
         distribuidora_estado: 'Goiás',
-        tipo_obra: 'construção',
+        tipo_obra: 'construção MT',
         tensão: '13,8kV',
         local: 'rural',
         fases: '1',
@@ -48,9 +50,10 @@ const dadosTabela = [
     // Linha 3
     {
         codigo_modulo: '10103',
+        codigo_abaco: '10103',
         descrição_modulo: 'CONSTRUÇÃO MT MONOF RURAL 13,8KV - CAB 1#1/0CAA - EST. TIPO P - AREA:PECUARIA',
         distribuidora_estado: 'Goiás',
-        tipo_obra: 'construção',
+        tipo_obra: 'construção MT',
         tensão: '13,8kV',
         local: 'rural',
         fases: '1',
@@ -67,6 +70,7 @@ const dadosTabela = [
     // Linha 4
     {
         codigo_modulo: '10104',
+        codigo_abaco: '10104',
         descrição_modulo: 'Construção - 34,5kV - Rural - TRI - Cabo 4/0CAA',
         distribuidora_estado: 'Goiás',
         tipo_obra: 'construção',
@@ -86,6 +90,7 @@ const dadosTabela = [
     // Linha 5
     {
         codigo_modulo: '10105',
+        codigo_abaco: '10105',
         descrição_modulo: 'Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Pecuária',
         distribuidora_estado: 'Goiás',
         tipo_obra: 'construção',
@@ -105,6 +110,7 @@ const dadosTabela = [
     // Linha 6
     {
         codigo_modulo: '10106',
+        codigo_abaco: '10102',
         descrição_modulo: 'Construção - 13,8kV - Rural - MONOF - Cabo 1/0CAA - Agricultura',
         distribuidora_estado: 'Goiás',
         tipo_obra: 'construção',

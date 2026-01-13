@@ -1507,6 +1507,7 @@ async function gerarMatriz() {
     // Dados do módulo da tabela
     const moduleData = {
         codigo_modulo: moduloData.codigo_modulo || numeroModuloValue,
+        codigo_abaco: moduloData.codigo_abaco || numeroModuloValue, // Fallback para codigo_modulo se não houver codigo_abaco
         descrição_modulo: moduloData.descrição_modulo || moduloData['descrição_modulo'] || '',
         distribuidora_estado: moduloData.distribuidora_estado || '',
         tipo_obra: moduloData.tipo_obra || '',
@@ -1526,7 +1527,7 @@ async function gerarMatriz() {
     // Parâmetros para a função gerar_matriz
     const params = {
         trecho: trecho,
-        module_name: numeroModuloValue,
+        module_name: moduleData.codigo_abaco || numeroModuloValue, // Usa codigo_abaco ao invés de codigo_modulo
         module_data: moduleData,
         loose_gap: looseGap,
         section_size: moduleData.tramo_max || 300,
