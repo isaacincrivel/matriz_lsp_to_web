@@ -75,12 +75,6 @@ def gerar_matriz_api():
     - vertices: array de arrays [[lat, lon, sequencia], ...]
     """
 
-    ##linha para depurar codigo
-    print("\nCHEGOU NA API →\n", request.json)
-
-
-
-
     # Handle CORS preflight
     if request.method == 'OPTIONS':
         response = jsonify({})
@@ -90,7 +84,9 @@ def gerar_matriz_api():
         return response
     
     try:
-        data = request.json
+        data = request.get_json(silent=True)
+        # linha para depurar codigo (evita erro em requisições sem JSON)
+        print("\nCHEGOU NA API →\n", data)
         if not data:
             return jsonify({
                 'success': False,

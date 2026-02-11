@@ -59,8 +59,8 @@ fileInput.addEventListener('change', function(e) {
         
         fileName.textContent = `Arquivo selecionado: ${file.name}`;
         
-        // Se o arquivo for KML, desabilita botão CSV e habilita botão Gerar Matriz, habilita Plotar Projeto
-        if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz')) {
+        // Se o arquivo for KML/HTML, desabilita botão CSV e habilita botão Gerar Matriz, habilita Plotar Projeto
+        if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz') || fileNameStr.endsWith('.html')) {
             btnImportarArquivo.disabled = true;
             btnGerarMatriz.disabled = false;
             btnPlotarProjeto.disabled = false;
@@ -75,7 +75,11 @@ fileInput.addEventListener('change', function(e) {
             if (mapInitialized && map) {
                 // Mapa já está pronto, só carrega o KML
                 setTimeout(function() {
-                    loadKMLOnMap(file);
+                    if (fileNameStr.endsWith('.html')) {
+                        loadGeoJSONOnMap(file);
+                    } else {
+                        loadKMLOnMap(file);
+                    }
                 }, 300);
             } else {
                 // Aguarda o Leaflet carregar, inicializa o mapa e depois carrega o KML
@@ -86,12 +90,20 @@ fileInput.addEventListener('change', function(e) {
                         }
                         // Aguarda o mapa estar totalmente pronto antes de carregar o KML
                         setTimeout(function() {
-                            if (map && mapInitialized) {
+                        if (map && mapInitialized) {
+                            if (fileNameStr.endsWith('.html')) {
+                                loadGeoJSONOnMap(file);
+                            } else {
                                 loadKMLOnMap(file);
+                            }
                             } else {
                                 // Se ainda não estiver pronto, tenta novamente
                                 setTimeout(function() {
+                                if (fileNameStr.endsWith('.html')) {
+                                    loadGeoJSONOnMap(file);
+                                } else {
                                     loadKMLOnMap(file);
+                                }
                                 }, 500);
                             }
                         }, 500);
@@ -978,6 +990,223 @@ function loadKMLOnMap(kmlFile) {
     reader.readAsText(kmlFile);
 }
 
+// Função para extrair GeoJSON inline de um HTML
+function extractGeoJSONFromHtml(htmlText) {
+    const match = htmlText.match(/const\s+geojson\s*=\s*(\{[\s\S]*?\});/);
+    if (!match || !match[1]) {
+        throw new Error('GeoJSON inline não encontrado no HTML.');
+    }
+    return JSON.parse(match[1]);
+}
+
+// Função para carregar HTML com GeoJSON inline no mapa
+function loadGeoJSONOnMap(htmlFile) {
+    if (!map || !mapInitialized) {
+        showMessage(errorMessage, 'Mapa não inicializado. Aguarde um momento e tente novamente.', true);
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const htmlText = e.target.result;
+            const geojson = extractGeoJSONFromHtml(htmlText);
+            parseAndDisplayGeoJSON(geojson);
+        } catch (error) {
+            showMessage(errorMessage, 'Erro ao ler GeoJSON do HTML: ' + error.message, true);
+        }
+    };
+    reader.onerror = function() {
+        showMessage(errorMessage, 'Erro ao ler o arquivo HTML.', true);
+    };
+    reader.readAsText(htmlFile);
+}
+
+// Converte KML em GeoJSON simples (Point, LineString, Polygon)
+function buildGeoJsonFromKml(kmlText) {
+    const parser = new DOMParser();
+    const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+    const parseError = kmlDoc.querySelector('parsererror');
+    if (parseError) {
+        throw new Error('Erro ao fazer parse do KML');
+    }
+
+    const features = [];
+    const placemarks = kmlDoc.querySelectorAll('Placemark');
+
+    placemarks.forEach((placemark) => {
+        const nameEl = placemark.querySelector('name');
+        const name = nameEl ? nameEl.textContent.trim() : '';
+
+        const point = placemark.querySelector('Point coordinates');
+        if (point && point.textContent) {
+            const parts = point.textContent.trim().split(',');
+            if (parts.length >= 2) {
+                const lon = parseFloat(parts[0]);
+                const lat = parseFloat(parts[1]);
+                if (!isNaN(lat) && !isNaN(lon)) {
+                    features.push({
+                        type: 'Feature',
+                        properties: { name, geomType: 'Point' },
+                        geometry: { type: 'Point', coordinates: [lon, lat] }
+                    });
+                }
+            }
+        }
+
+        const lineString = placemark.querySelector('LineString coordinates');
+        if (lineString && lineString.textContent) {
+            const coordText = lineString.textContent.trim();
+            const coords = coordText.split(/\s+/)
+                .map(coord => coord.split(','))
+                .filter(parts => parts.length >= 2)
+                .map(parts => [parseFloat(parts[0]), parseFloat(parts[1])])
+                .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+
+            if (coords.length > 0) {
+                features.push({
+                    type: 'Feature',
+                    properties: { name, geomType: 'LineString' },
+                    geometry: { type: 'LineString', coordinates: coords }
+                });
+            }
+        }
+
+        const polygon = placemark.querySelector('Polygon outerBoundaryIs LinearRing coordinates');
+        if (polygon && polygon.textContent) {
+            const coordText = polygon.textContent.trim();
+            const coords = coordText.split(/\s+/)
+                .map(coord => coord.split(','))
+                .filter(parts => parts.length >= 2)
+                .map(parts => [parseFloat(parts[0]), parseFloat(parts[1])])
+                .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+
+            if (coords.length > 0) {
+                features.push({
+                    type: 'Feature',
+                    properties: { name, geomType: 'Polygon' },
+                    geometry: { type: 'Polygon', coordinates: [coords] }
+                });
+            }
+        }
+    });
+
+    return { type: 'FeatureCollection', features };
+}
+
+// Plota o KML gerado no mapa com estilo simplificado
+function showGeneratedKmlOnMap(kmlText) {
+    if (!map || !mapInitialized) {
+        return;
+    }
+
+    // Remove numeração de vértices e camadas anteriores
+    resetMapState();
+
+    let geojson;
+    try {
+        geojson = buildGeoJsonFromKml(kmlText);
+    } catch (error) {
+        console.error('Erro ao converter KML para GeoJSON:', error);
+        return;
+    }
+
+    if (!window.generatedLayerGroup) {
+        window.generatedLayerGroup = L.layerGroup().addTo(map);
+    }
+    window.generatedLayerGroup.clearLayers();
+
+    // Mapeia labels de postes a partir de pontos com padrão "N | ..."
+    const posteLabelByIndex = new Map();
+    geojson.features.forEach((feature) => {
+        if (feature.geometry && feature.geometry.type === 'Point') {
+            const name = feature.properties?.name || '';
+            const match = name.match(/^\s*(\d+)\s*\|/);
+            if (match) {
+                posteLabelByIndex.set(parseInt(match[1], 10), name);
+            }
+        }
+    });
+
+    function getLabelForPolygonName(name) {
+        if (!name) return '';
+        const quadMatch = name.match(/^Quadrado\s+(\d+)/i);
+        if (quadMatch) {
+            const idx = parseInt(quadMatch[1], 10);
+            return posteLabelByIndex.get(idx) || name;
+        }
+        const baseMatch = name.match(/^Base Concreto\s+(\d+)/i);
+        if (baseMatch) {
+            const idx = parseInt(baseMatch[1], 10);
+            return posteLabelByIndex.get(idx) || name;
+        }
+        return name;
+    }
+
+    function haversineDistanceMeters(a, b) {
+        const R = 6371000;
+        const toRad = (v) => (v * Math.PI) / 180;
+        const dLat = toRad(b[0] - a[0]);
+        const dLon = toRad(b[1] - a[1]);
+        const lat1 = toRad(a[0]);
+        const lat2 = toRad(b[0]);
+        const sinDLat = Math.sin(dLat / 2);
+        const sinDLon = Math.sin(dLon / 2);
+        const h = sinDLat * sinDLat + Math.cos(lat1) * Math.cos(lat2) * sinDLon * sinDLon;
+        return 2 * R * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+    }
+
+    function lineLengthMeters(coords) {
+        let total = 0;
+        for (let i = 1; i < coords.length; i++) {
+            total += haversineDistanceMeters(coords[i - 1], coords[i]);
+        }
+        return total;
+    }
+
+    const pontos = L.geoJSON(geojson, {
+        filter: f => f.geometry && f.geometry.type === 'Point',
+        pointToLayer: (f, latlng) => L.marker(latlng, {
+            opacity: 0,
+            icon: L.divIcon({ className: '', html: '', iconSize: [1, 1] })
+        }),
+        onEachFeature: (f, layer) => {
+            if (f.properties?.name) layer.bindPopup(f.properties.name);
+        }
+    }).addTo(window.generatedLayerGroup);
+
+    const linhas = L.geoJSON(geojson, {
+        filter: f => f.geometry && f.geometry.type === 'LineString',
+        style: () => ({ weight: 3 }),
+        onEachFeature: (f, layer) => {
+            const coords = f.geometry?.coordinates || [];
+            const latlngs = coords
+                .map(coord => [parseFloat(coord[1]), parseFloat(coord[0])])
+                .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+            if (latlngs.length > 1) {
+                const total = lineLengthMeters(latlngs);
+                layer.bindPopup(`Distância: ${total.toFixed(1).replace('.', ',')} m`);
+            } else if (f.properties?.name) {
+                layer.bindPopup(f.properties.name);
+            }
+        }
+    }).addTo(window.generatedLayerGroup);
+
+    const poligonos = L.geoJSON(geojson, {
+        filter: f => f.geometry && f.geometry.type === 'Polygon',
+        style: () => ({ weight: 2, fillOpacity: 0.2 }),
+        onEachFeature: (f, layer) => {
+            const label = getLabelForPolygonName(f.properties?.name || '');
+            if (label) layer.bindPopup(label);
+        }
+    }).addTo(window.generatedLayerGroup);
+
+    const group = L.featureGroup([pontos, linhas, poligonos]);
+    if (group.getBounds().isValid()) {
+        map.fitBounds(group.getBounds().pad(0.1));
+    }
+}
+
 // Função para criar marcador numerado
 function createNumberedMarker(lat, lon, number) {
     const markerIcon = L.divIcon({
@@ -1165,62 +1394,66 @@ function populateNaoIntercalarPostes(vertices) {
     }
 }
 
+// Função para limpar o estado do mapa antes de carregar novo arquivo
+function resetMapState() {
+    // Remove marcadores e polylines existentes
+    if (window.currentMarkers) {
+        window.currentMarkers.forEach(marker => {
+            try { map.removeLayer(marker); } catch(e) {}
+        });
+    }
+    if (window.currentPolylines) {
+        window.currentPolylines.forEach(polyline => {
+            try { map.removeLayer(polyline); } catch(e) {}
+        });
+    }
+    
+    // Remove polilinha manual se existir
+    if (manualPolyline) {
+        try {
+            map.removeLayer(manualPolyline);
+        } catch(e) {}
+        manualPolyline = null;
+    }
+    
+    // Limpa linha temporária
+    clearTempPolyline();
+    
+    window.currentMarkers = [];
+    window.currentPolylines = [];
+    window.segmentPolylines = new Map(); // Armazena segmentos individuais por par de vértices
+    
+    // Desativa modo manual quando arquivo é carregado
+    deactivateManualMode();
+    manualVertices = []; // Limpa vértices manuais
+    
+    // Desabilita botão de inverter sentido e botão abrir tabela quando limpar
+    btnInverterSentido.disabled = true;
+    if (btnAbrirTabela) {
+        btnAbrirTabela.disabled = true;
+    }
+    
+    // Limpa o select "Não Intercalar Postes"
+    if (naoIntercalarPostes) {
+        naoIntercalarPostes.innerHTML = '<option value="">Nenhum vértice carregado</option>';
+    }
+    
+    // Limpa segmentos
+    if (window.segmentPolylines) {
+        window.segmentPolylines.forEach((segmentData) => {
+            if (segmentData && segmentData.polyline) {
+                try { map.removeLayer(segmentData.polyline); } catch(e) {}
+            }
+        });
+        window.segmentPolylines.clear();
+    }
+}
+
 // Função para parsear e exibir KML no mapa
 function parseAndDisplayKML(kmlText) {
     try {
         console.log('Parseando KML...');
-        
-        // Remove marcadores e polylines existentes
-        if (window.currentMarkers) {
-            window.currentMarkers.forEach(marker => {
-                try { map.removeLayer(marker); } catch(e) {}
-            });
-        }
-        if (window.currentPolylines) {
-            window.currentPolylines.forEach(polyline => {
-                try { map.removeLayer(polyline); } catch(e) {}
-            });
-        }
-        
-        // Remove polilinha manual se existir
-        if (manualPolyline) {
-            try {
-                map.removeLayer(manualPolyline);
-            } catch(e) {}
-            manualPolyline = null;
-        }
-        
-        // Limpa linha temporária
-        clearTempPolyline();
-        
-        window.currentMarkers = [];
-        window.currentPolylines = [];
-        window.segmentPolylines = new Map(); // Armazena segmentos individuais por par de vértices (ex: "1-2", "2-3")
-        
-        // Desativa modo manual quando KML é carregado
-        deactivateManualMode();
-        manualVertices = []; // Limpa vértices manuais
-        
-        // Desabilita botão de inverter sentido e botão abrir tabela quando limpar
-        btnInverterSentido.disabled = true;
-        if (btnAbrirTabela) {
-            btnAbrirTabela.disabled = true;
-        }
-        
-        // Limpa o select "Não Intercalar Postes"
-        if (naoIntercalarPostes) {
-            naoIntercalarPostes.innerHTML = '<option value="">Nenhum vértice carregado</option>';
-        }
-        
-        // Limpa segmentos
-        if (window.segmentPolylines) {
-            window.segmentPolylines.forEach((segmentData) => {
-                if (segmentData && segmentData.polyline) {
-                    try { map.removeLayer(segmentData.polyline); } catch(e) {}
-                }
-            });
-            window.segmentPolylines.clear();
-        }
+        resetMapState();
 
         const parser = new DOMParser();
         const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -1379,6 +1612,156 @@ function parseAndDisplayKML(kmlText) {
     }
 }
 
+// Função para parsear e exibir GeoJSON inline no mapa
+function parseAndDisplayGeoJSON(geojson) {
+    try {
+        console.log('Parseando GeoJSON...');
+        resetMapState();
+        
+        if (!geojson || !geojson.features || !Array.isArray(geojson.features)) {
+            throw new Error('GeoJSON inválido.');
+        }
+        
+        let bounds = [];
+        let allVertices = [];
+        let sequence = 1;
+        const vertexMap = new Map();
+        
+        function addVertexIfNew(lat, lon) {
+            const key = `${lat.toFixed(6)}_${lon.toFixed(6)}`;
+            if (!vertexMap.has(key)) {
+                vertexMap.set(key, sequence);
+                allVertices.push({ lat, lon, number: sequence });
+                bounds.push([lat, lon]);
+                sequence++;
+            }
+        }
+        
+        // Processa LineString primeiro para manter a ordem
+        const lineFeatures = geojson.features.filter(f => f.geometry && f.geometry.type === 'LineString');
+        if (lineFeatures.length > 0) {
+            const coords = lineFeatures[0].geometry.coordinates || [];
+            coords.forEach(coord => {
+                if (Array.isArray(coord) && coord.length >= 2) {
+                    const lon = parseFloat(coord[0]);
+                    const lat = parseFloat(coord[1]);
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        addVertexIfNew(lat, lon);
+                    }
+                }
+            });
+        }
+        
+        // Processa Polygon
+        geojson.features.forEach(feature => {
+            if (feature.geometry && feature.geometry.type === 'Polygon') {
+                const rings = feature.geometry.coordinates || [];
+                rings.forEach(ring => {
+                    ring.forEach(coord => {
+                        if (Array.isArray(coord) && coord.length >= 2) {
+                            const lon = parseFloat(coord[0]);
+                            const lat = parseFloat(coord[1]);
+                            if (!isNaN(lat) && !isNaN(lon)) {
+                                addVertexIfNew(lat, lon);
+                            }
+                        }
+                    });
+                });
+            }
+        });
+        
+        // Processa Points isolados
+        geojson.features.forEach(feature => {
+            if (feature.geometry && feature.geometry.type === 'Point') {
+                const coord = feature.geometry.coordinates || [];
+                if (Array.isArray(coord) && coord.length >= 2) {
+                    const lon = parseFloat(coord[0]);
+                    const lat = parseFloat(coord[1]);
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        addVertexIfNew(lat, lon);
+                    }
+                }
+            }
+        });
+        
+        // Cria marcadores numerados para cada vértice
+        allVertices.forEach(vertex => {
+            const marker = createNumberedMarker(vertex.lat, vertex.lon, vertex.number);
+            window.currentMarkers.push(marker);
+        });
+        
+        // Cria segmentos individuais entre vértices consecutivos
+        createSegmentPolylines(allVertices);
+        
+        // Salva vértices no formato esperado pela função gerarMatriz
+        window.kmlVertices = allVertices.map(v => ({
+            lat: v.lat,
+            lon: v.lon,
+            number: v.number,
+            sequencia: v.number
+        }));
+        
+        // Desenha features do GeoJSON no mapa
+        geojson.features.forEach(feature => {
+            if (!feature.geometry) return;
+            
+            if (feature.geometry.type === 'LineString') {
+                const coords = feature.geometry.coordinates || [];
+                const latlngs = coords
+                    .map(coord => [parseFloat(coord[1]), parseFloat(coord[0])])
+                    .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+                
+                if (latlngs.length > 0) {
+                    const polyline = L.polyline(latlngs, {
+                        color: '#3388ff',
+                        weight: 4,
+                        opacity: 0.8
+                    }).addTo(map);
+                    window.currentPolylines.push(polyline);
+                }
+            }
+            
+            if (feature.geometry.type === 'Polygon') {
+                const rings = feature.geometry.coordinates || [];
+                rings.forEach(ring => {
+                    const latlngs = ring
+                        .map(coord => [parseFloat(coord[1]), parseFloat(coord[0])])
+                        .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+                    
+                    if (latlngs.length > 0) {
+                        const polygonLayer = L.polygon(latlngs, {
+                            color: '#3388ff',
+                            fillColor: '#3388ff',
+                            fillOpacity: 0.3,
+                            weight: 2
+                        }).addTo(map);
+                        window.currentPolylines.push(polygonLayer);
+                    }
+                });
+            }
+        });
+        
+        // Habilita botões e popula select
+        if (window.currentMarkers.length > 0) {
+            btnInverterSentido.disabled = false;
+            if (btnAbrirTabela) {
+                btnAbrirTabela.disabled = false;
+            }
+            populateNaoIntercalarPostes(allVertices);
+        }
+        
+        if (bounds.length > 0) {
+            map.fitBounds(bounds, { padding: [50, 50] });
+            showMessage(successMessage, `✅ GeoJSON carregado no mapa! ${allVertices.length} vértices numerados e ${window.currentPolylines.length} linhas/polígonos exibidos.`);
+        } else {
+            showMessage(errorMessage, 'Nenhum elemento encontrado no GeoJSON.', true);
+        }
+    } catch (error) {
+        console.error('Erro ao processar GeoJSON:', error);
+        showMessage(errorMessage, 'Erro ao processar GeoJSON: ' + error.message, true);
+    }
+}
+
 // Adiciona evento ao botão Plotar Projeto
 btnPlotarProjeto.addEventListener('click', function() {
     console.log('Botão Plotar Projeto clicado');
@@ -1391,11 +1774,15 @@ btnPlotarProjeto.addEventListener('click', function() {
     const fileNameStr = file.name.toLowerCase();
     console.log('Arquivo selecionado:', file.name);
     
-    if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz')) {
-        console.log('Carregando KML no mapa...');
-        loadKMLOnMap(file);
+    if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz') || fileNameStr.endsWith('.html')) {
+        console.log('Carregando arquivo no mapa...');
+        if (fileNameStr.endsWith('.html')) {
+            loadGeoJSONOnMap(file);
+        } else {
+            loadKMLOnMap(file);
+        }
     } else {
-        showMessage(errorMessage, 'Este botão é apenas para arquivos KML/KMZ.', true);
+        showMessage(errorMessage, 'Este botão é apenas para arquivos KML/KMZ/HTML.', true);
     }
 });
 
@@ -1656,12 +2043,13 @@ async function gerarMatriz() {
                 }
             }
             
-            // Apenas faz download do KML (não plota no mapa automaticamente)
-            // O usuário deve importar manualmente o arquivo se quiser visualizar no mapa
             if (result.kml_content && result.kml_filename) {
                 try {
                     const kmlDecoded = atob(result.kml_content);
                     console.log(`KML decodificado: ${kmlDecoded.length} caracteres`);
+                    
+                    // Plota no mapa com estilo simplificado (modelo do HTML de referência)
+                    showGeneratedKmlOnMap(kmlDecoded);
                     
                     // Faz download do KML (sem atualizar o mapa)
                     setTimeout(() => {
