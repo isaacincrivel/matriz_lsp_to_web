@@ -38,6 +38,7 @@ function waitForLeaflet(callback, maxAttempts = 50) {
 
 // Referências aos elementos
 const fileInput = document.getElementById('fileInput');
+const csvImportInput = document.getElementById('csvImportInput');
 const btnImportarArquivo = document.getElementById('btnImportarArquivo');
 const btnGerarMatriz = document.getElementById('btnGerarMatriz');
 const btnPlotarProjeto = document.getElementById('btnPlotarProjeto');
@@ -59,9 +60,8 @@ fileInput.addEventListener('change', function(e) {
         
         fileName.textContent = `Arquivo selecionado: ${file.name}`;
         
-        // Se o arquivo for KML/HTML, desabilita botão CSV e habilita botão Gerar Matriz, habilita Plotar Projeto
+        // Se o arquivo for KML/HTML, habilita botão Gerar Matriz e Plotar Projeto
         if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz') || fileNameStr.endsWith('.html')) {
-            btnImportarArquivo.disabled = true;
             btnGerarMatriz.disabled = false;
             btnPlotarProjeto.disabled = false;
             
@@ -111,18 +111,15 @@ fileInput.addEventListener('change', function(e) {
                 });
             }
         } else {
-            // Se for CSV ou Excel, habilita botão CSV e desabilita botão Gerar Matriz, habilita Plotar Projeto
-            btnImportarArquivo.disabled = false;
+            // CSV/Excel no fileInput: usar Importar Matriz CSV para CSV; Plotar Projeto só para KML/HTML
             btnGerarMatriz.disabled = true;
-            btnPlotarProjeto.disabled = false;
+            btnPlotarProjeto.disabled = !window.arquivoCSVImportado;
         }
     } else {
         fileName.textContent = '';
-        btnImportarArquivo.disabled = true;
         btnGerarMatriz.disabled = true;
-        btnPlotarProjeto.disabled = false;
+        btnPlotarProjeto.disabled = !window.arquivoCSVImportado;
         
-        // Se não há arquivo, reativa modo manual se não houver vértices
         checkAndActivateManualMode();
     }
 });
@@ -249,115 +246,102 @@ function downloadKML(kmlContent, filename) {
     }
 }
 
-// Importar KML do arquivo
-btnImportarArquivo.addEventListener('click', async function() {
-    const file = fileInput.files[0];
-    if (!file) {
-        showMessage(errorMessage, 'Por favor, selecione um arquivo primeiro.', true);
-        btnImportarArquivo.disabled = true;
-        return;
-    }
-    
-    // Desabilita o botão durante o processamento
-    btnImportarArquivo.disabled = true;
-
-    try {
-        let dados = [];
-
-        if (file.name.endsWith('.csv')) {
-            // Processa CSV
-            if (typeof Papa === 'undefined') {
-                showMessage(errorMessage, 'Biblioteca PapaParse não carregada. Verifique os arquivos da aplicação.', true);
-                btnImportarArquivo.disabled = false;
-                return;
-            }
-            
-            Papa.parse(file, {
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    try {
-                        dados = results.data;
-                        if (dados.length === 0) {
-                            showMessage(errorMessage, 'Arquivo CSV vazio ou formato inválido.', true);
-                            // Reabilita o botão em caso de erro
-                            btnImportarArquivo.disabled = false;
-                            return;
-                        }
-                        const kmlContent = gerarKML(dados, file.name.replace('.csv', '.kml'));
-                        downloadKML(kmlContent, file.name.replace('.csv', '.kml'));
-                        showMessage(successMessage, `✅ KML gerado com sucesso! ${dados.length} pontos processados.`);
-                        // Desabilita o botão após gerar KML com sucesso (garantir que permaneça desabilitado)
-                        btnImportarArquivo.disabled = true;
-                        // Força desabilitar novamente após um pequeno delay para garantir
-                        setTimeout(function() {
-                            btnImportarArquivo.disabled = true;
-                            fileInput.value = ''; // Limpa o input para forçar nova seleção
-                        }, 500);
-                    } catch (e) {
-                        showMessage(errorMessage, 'Erro ao processar: ' + e.message, true);
-                        btnImportarArquivo.disabled = false;
-                    }
-                },
-                error: function(error) {
-                    showMessage(errorMessage, 'Erro ao processar CSV: ' + error.message, true);
-                    // Reabilita o botão em caso de erro
-                    btnImportarArquivo.disabled = false;
-                }
-            });
-        } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
-            // Processa Excel
-            if (typeof XLSX === 'undefined') {
-                showMessage(errorMessage, 'Biblioteca XLSX não carregada. Verifique os arquivos da aplicação.', true);
-                btnImportarArquivo.disabled = false;
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    dados = XLSX.utils.sheet_to_json(firstSheet);
-                    
-                    if (dados.length === 0) {
-                        showMessage(errorMessage, 'Arquivo Excel vazio ou formato inválido.', true);
-                        // Reabilita o botão em caso de erro
-                        btnImportarArquivo.disabled = false;
-                        return;
-                    }
-                    
-                    const kmlContent = gerarKML(dados, file.name.replace(/\.(xlsx|xls)$/, '.kml'));
-                    downloadKML(kmlContent, file.name.replace(/\.(xlsx|xls)$/, '.kml'));
-                    showMessage(successMessage, `✅ KML gerado com sucesso! ${dados.length} pontos processados.`);
-                    // Desabilita o botão após gerar KML com sucesso (garantir que permaneça desabilitado)
-                    btnImportarArquivo.disabled = true;
-                    // Força desabilitar novamente após um pequeno delay para garantir
-                    setTimeout(function() {
-                        btnImportarArquivo.disabled = true;
-                        fileInput.value = ''; // Limpa o input para forçar nova seleção
-                    }, 500);
-                        } catch (error) {
-                            showMessage(errorMessage, 'Erro ao processar Excel: ' + error.message, true);
-                            // Reabilita o botão em caso de erro
-                            btnImportarArquivo.disabled = false;
-                        }
-            };
-            reader.readAsArrayBuffer(file);
-        } else {
-            showMessage(errorMessage, 'Formato de arquivo não suportado. Use CSV ou Excel.', true);
-            // Reabilita o botão em caso de erro
-            btnImportarArquivo.disabled = false;
-        }
-    } catch (error) {
-        showMessage(errorMessage, 'Erro ao processar arquivo: ' + error.message, true);
-        // Reabilita o botão em caso de erro
-        btnImportarArquivo.disabled = false;
+// Importar Matriz CSV: ao clicar, abre seletor de arquivo
+btnImportarArquivo.addEventListener('click', function() {
+    if (csvImportInput) {
+        csvImportInput.value = '';
+        csvImportInput.click();
     }
 });
 
-// Event listeners removidos - funcionalidade de entrada manual removida
+// Processa CSV selecionado: apenas armazena, não desenha. Desenho ocorre ao clicar em Plotar Projeto.
+if (csvImportInput) {
+    csvImportInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.name.toLowerCase().endsWith('.csv')) {
+            showMessage(errorMessage, 'Selecione um arquivo CSV.', true);
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            const csvContent = (ev.target.result || '').replace(/^\uFEFF/, '');
+            window.arquivoCSVImportado = {
+                content: csvContent,
+                filename: file.name
+            };
+            if (fileName) fileName.textContent = 'CSV importado: ' + file.name + ' - Clique em Plotar Projeto';
+            showMessage(successMessage, 'CSV importado. Clique em Plotar Projeto para desenhar e baixar os arquivos.');
+            if (btnPlotarProjeto) btnPlotarProjeto.disabled = false;
+            if (csvImportInput) csvImportInput.value = '';
+        };
+        reader.onerror = function() {
+            showMessage(errorMessage, 'Erro ao ler o arquivo CSV.', true);
+            if (csvImportInput) csvImportInput.value = '';
+        };
+        reader.readAsText(file, 'UTF-8');
+    });
+}
+
+// Extrai vértices do CSV matriz (suporta formato resultado e formato transformado)
+function extrairVerticesDoCSV(dados) {
+    const vertices = [];
+    const seenSeq = new Map();
+    const first = dados[0];
+    if (!first) return vertices;
+    const keys = Object.keys(first);
+    const trimKey = k => String(k).replace(/^\uFEFF/, '').trim();
+    const latCol = keys.find(k => /^lat$/i.test(trimKey(k)) || /latitude/i.test(trimKey(k)));
+    const lonCol = keys.find(k => /^long$/i.test(trimKey(k)) || /^lon$/i.test(trimKey(k)) || /longitude/i.test(trimKey(k)));
+    const seqCol = keys.find(k => /sequencia|seq/i.test(trimKey(k)));
+    const modCol = keys.find(k => /modalidade/i.test(trimKey(k)));
+    if (!latCol || !lonCol) return vertices;
+    for (let i = 0; i < dados.length; i++) {
+        const row = dados[i];
+        let latVal = row[latCol];
+        let lonVal = row[lonCol];
+        if (latVal === undefined || latVal === null || (String(latVal).trim() === '') || lonVal === undefined || lonVal === null || (String(lonVal).trim() === '')) continue;
+        if (modCol && row[modCol] && String(row[modCol]).toLowerCase().trim() !== 'implantar') continue;
+        const lat = parseFloat(String(latVal).trim().replace(',', '.'));
+        const lon = parseFloat(String(lonVal).trim().replace(',', '.'));
+        if (isNaN(lat) || isNaN(lon)) continue;
+        let seq = i + 1;
+        if (seqCol && row[seqCol] !== undefined && row[seqCol] !== '') {
+            const parsed = parseInt(String(row[seqCol]).trim(), 10);
+            if (!isNaN(parsed)) seq = parsed;
+        }
+        if (seenSeq.has(seq)) continue;
+        seenSeq.set(seq, true);
+        vertices.push({ lat, lon, number: seq, sequencia: seq });
+    }
+    vertices.sort((a, b) => a.sequencia - b.sequencia);
+    return vertices;
+}
+
+// Plota vértices extraídos do CSV no mapa
+function plotarVerticesCSVNoMapa(vertices) {
+    if (!map || !mapInitialized) return;
+    resetMapState();
+    const allVertices = vertices.map(v => ({ lat: v.lat, lon: v.lon, number: v.number || v.sequencia }));
+    allVertices.forEach(v => {
+        const m = createNumberedMarker(v.lat, v.lon, v.number);
+        window.currentMarkers.push(m);
+    });
+    createSegmentPolylines(allVertices);
+    window.kmlVertices = vertices.map(v => ({ lat: v.lat, lon: v.lon, number: v.number, sequencia: v.number }));
+    if (allVertices.length >= 2) {
+        const latlngs = allVertices.map(v => [v.lat, v.lon]);
+        const poly = L.polyline(latlngs, { color: '#3388ff', weight: 4, opacity: 0.8 }).addTo(map);
+        window.currentPolylines.push(poly);
+    }
+    populateNaoIntercalarPostes(allVertices);
+    btnInverterSentido.disabled = false;
+    if (btnAbrirTabela) btnAbrirTabela.disabled = false;
+    if (btnGerarMatriz) btnGerarMatriz.disabled = false;
+    const bounds = allVertices.map(v => [v.lat, v.lon]);
+    if (bounds.length > 0) map.fitBounds(bounds, { padding: [50, 50] });
+}
+
 
 // Cria e adiciona controle de localização ao mapa
 function addLocationControl() {
@@ -1022,7 +1006,7 @@ function loadGeoJSONOnMap(htmlFile) {
     reader.readAsText(htmlFile);
 }
 
-// Converte KML em GeoJSON simples (Point, LineString, Polygon)
+// Converte KML em GeoJSON simples (Point, LineString, Polygon) - suporta namespace KML
 function buildGeoJsonFromKml(kmlText) {
     const parser = new DOMParser();
     const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -1031,65 +1015,83 @@ function buildGeoJsonFromKml(kmlText) {
         throw new Error('Erro ao fazer parse do KML');
     }
 
+    const KML_NS = 'http://www.opengis.net/kml/2.2';
     const features = [];
-    const placemarks = kmlDoc.querySelectorAll('Placemark');
+    const placemarks = kmlDoc.getElementsByTagNameNS
+        ? kmlDoc.getElementsByTagNameNS(KML_NS, 'Placemark')
+        : kmlDoc.getElementsByTagName('Placemark');
 
-    placemarks.forEach((placemark) => {
-        const nameEl = placemark.querySelector('name');
+    function findCoords(parent, geomTag, innerTag) {
+        const geom = parent.getElementsByTagNameNS ? parent.getElementsByTagNameNS(KML_NS, geomTag)[0] : parent.querySelector(geomTag);
+        if (!geom) return null;
+        const coordEl = geom.getElementsByTagNameNS ? geom.getElementsByTagNameNS(KML_NS, 'coordinates')[0] : geom.querySelector('coordinates');
+        return coordEl && coordEl.textContent ? coordEl.textContent.trim() : null;
+    }
+
+    function getDesc(placemark) {
+        const descEl = placemark.getElementsByTagNameNS ? placemark.getElementsByTagNameNS(KML_NS, 'description')[0] : placemark.querySelector('description');
+        return descEl && descEl.textContent ? descEl.textContent.trim() : '';
+    }
+
+    for (let i = 0; i < placemarks.length; i++) {
+        const placemark = placemarks[i];
+        const nameEl = placemark.getElementsByTagNameNS ? placemark.getElementsByTagNameNS(KML_NS, 'name')[0] : placemark.querySelector('name');
         const name = nameEl ? nameEl.textContent.trim() : '';
+        const description = getDesc(placemark);
 
-        const point = placemark.querySelector('Point coordinates');
-        if (point && point.textContent) {
-            const parts = point.textContent.trim().split(',');
+        const pointCoord = findCoords(placemark, 'Point', 'coordinates');
+        if (pointCoord) {
+            const parts = pointCoord.split(',');
             if (parts.length >= 2) {
                 const lon = parseFloat(parts[0]);
                 const lat = parseFloat(parts[1]);
                 if (!isNaN(lat) && !isNaN(lon)) {
                     features.push({
                         type: 'Feature',
-                        properties: { name, geomType: 'Point' },
+                        properties: { name, description, geomType: 'Point' },
                         geometry: { type: 'Point', coordinates: [lon, lat] }
                     });
                 }
             }
         }
 
-        const lineString = placemark.querySelector('LineString coordinates');
-        if (lineString && lineString.textContent) {
-            const coordText = lineString.textContent.trim();
-            const coords = coordText.split(/\s+/)
-                .map(coord => coord.split(','))
-                .filter(parts => parts.length >= 2)
-                .map(parts => [parseFloat(parts[0]), parseFloat(parts[1])])
-                .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
-
+        const lineCoord = findCoords(placemark, 'LineString', 'coordinates');
+        if (lineCoord) {
+            const coords = lineCoord.split(/\s+/)
+                .map(c => c.split(','))
+                .filter(p => p.length >= 2)
+                .map(p => [parseFloat(p[0]), parseFloat(p[1])])
+                .filter(c => !isNaN(c[0]) && !isNaN(c[1]));
             if (coords.length > 0) {
                 features.push({
                     type: 'Feature',
-                    properties: { name, geomType: 'LineString' },
+                    properties: { name, description, geomType: 'LineString' },
                     geometry: { type: 'LineString', coordinates: coords }
                 });
             }
         }
 
-        const polygon = placemark.querySelector('Polygon outerBoundaryIs LinearRing coordinates');
-        if (polygon && polygon.textContent) {
-            const coordText = polygon.textContent.trim();
-            const coords = coordText.split(/\s+/)
-                .map(coord => coord.split(','))
-                .filter(parts => parts.length >= 2)
-                .map(parts => [parseFloat(parts[0]), parseFloat(parts[1])])
-                .filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
-
-            if (coords.length > 0) {
-                features.push({
-                    type: 'Feature',
-                    properties: { name, geomType: 'Polygon' },
-                    geometry: { type: 'Polygon', coordinates: [coords] }
-                });
+        const polyGeom = placemark.getElementsByTagNameNS ? placemark.getElementsByTagNameNS(KML_NS, 'Polygon')[0] : placemark.querySelector('Polygon');
+        if (polyGeom) {
+            const ring = polyGeom.getElementsByTagNameNS ? polyGeom.getElementsByTagNameNS(KML_NS, 'LinearRing')[0] : polyGeom.querySelector('LinearRing');
+            const coordEl = ring ? (ring.getElementsByTagNameNS ? ring.getElementsByTagNameNS(KML_NS, 'coordinates')[0] : ring.querySelector('coordinates')) : null;
+            if (coordEl && coordEl.textContent) {
+                const coordText = coordEl.textContent.trim();
+                const coords = coordText.split(/\s+/)
+                    .map(c => c.split(','))
+                    .filter(p => p.length >= 2)
+                    .map(p => [parseFloat(p[0]), parseFloat(p[1])])
+                    .filter(c => !isNaN(c[0]) && !isNaN(c[1]));
+                if (coords.length > 0) {
+                    features.push({
+                        type: 'Feature',
+                        properties: { name, description, geomType: 'Polygon' },
+                        geometry: { type: 'Polygon', coordinates: [coords] }
+                    });
+                }
             }
         }
-    });
+    }
 
     return { type: 'FeatureCollection', features };
 }
@@ -1164,6 +1166,13 @@ function showGeneratedKmlOnMap(kmlText) {
         return total;
     }
 
+    function popupContentPoste(props) {
+        const desc = props?.description || '';
+        const name = props?.name || '';
+        if (desc && desc.length > 2) return desc;
+        return name || 'Poste';
+    }
+
     const pontos = L.geoJSON(geojson, {
         filter: f => f.geometry && f.geometry.type === 'Point',
         pointToLayer: (f, latlng) => L.marker(latlng, {
@@ -1171,13 +1180,14 @@ function showGeneratedKmlOnMap(kmlText) {
             icon: L.divIcon({ className: '', html: '', iconSize: [1, 1] })
         }),
         onEachFeature: (f, layer) => {
-            if (f.properties?.name) layer.bindPopup(f.properties.name);
+            const content = popupContentPoste(f.properties);
+            if (content) layer.bindPopup(content);
         }
     }).addTo(window.generatedLayerGroup);
 
     const linhas = L.geoJSON(geojson, {
         filter: f => f.geometry && f.geometry.type === 'LineString',
-        style: () => ({ weight: 3 }),
+        style: () => ({ color: '#3388ff', weight: 4, opacity: 0.9 }),
         onEachFeature: (f, layer) => {
             const coords = f.geometry?.coordinates || [];
             const latlngs = coords
@@ -1194,17 +1204,18 @@ function showGeneratedKmlOnMap(kmlText) {
 
     const poligonos = L.geoJSON(geojson, {
         filter: f => f.geometry && f.geometry.type === 'Polygon',
-        style: () => ({ weight: 2, fillOpacity: 0.2 }),
+        style: () => ({ color: '#e63946', fillColor: '#e63946', weight: 2, fillOpacity: 0.35 }),
         onEachFeature: (f, layer) => {
-            const label = getLabelForPolygonName(f.properties?.name || '');
-            if (label) layer.bindPopup(label);
+            const content = popupContentPoste(f.properties) || getLabelForPolygonName(f.properties?.name || '');
+            if (content) layer.bindPopup(content);
         }
     }).addTo(window.generatedLayerGroup);
 
     const group = L.featureGroup([pontos, linhas, poligonos]);
     if (group.getBounds().isValid()) {
-        map.fitBounds(group.getBounds().pad(0.1));
+        map.fitBounds(group.getBounds().pad(0.15));
     }
+    window.generatedLayerGroup.bringToFront();
 }
 
 // Função para criar marcador numerado
@@ -1396,6 +1407,10 @@ function populateNaoIntercalarPostes(vertices) {
 
 // Função para limpar o estado do mapa antes de carregar novo arquivo
 function resetMapState() {
+    // Remove camada do KML gerado (postes, cabos, bases)
+    if (window.generatedLayerGroup) {
+        window.generatedLayerGroup.clearLayers();
+    }
     // Remove marcadores e polylines existentes
     if (window.currentMarkers) {
         window.currentMarkers.forEach(marker => {
@@ -1763,28 +1778,151 @@ function parseAndDisplayGeoJSON(geojson) {
 }
 
 // Adiciona evento ao botão Plotar Projeto
-btnPlotarProjeto.addEventListener('click', function() {
+btnPlotarProjeto.addEventListener('click', async function() {
     console.log('Botão Plotar Projeto clicado');
+    
+    // Fluxo 1: CSV importado - desenha no mapa e baixa CSV, KML, DXF
+    if (window.arquivoCSVImportado && window.arquivoCSVImportado.content) {
+        plotarProjetoComCSV();
+        return;
+    }
+    
+    // Fluxo 2: KML/HTML no fileInput - carrega no mapa
     const file = fileInput.files[0];
     if (!file) {
-        showMessage(errorMessage, 'Por favor, selecione um arquivo primeiro.', true);
+        showMessage(errorMessage, 'Importe um CSV ou selecione um arquivo KML/HTML primeiro.', true);
         return;
     }
     
     const fileNameStr = file.name.toLowerCase();
-    console.log('Arquivo selecionado:', file.name);
-    
     if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz') || fileNameStr.endsWith('.html')) {
-        console.log('Carregando arquivo no mapa...');
         if (fileNameStr.endsWith('.html')) {
             loadGeoJSONOnMap(file);
         } else {
             loadKMLOnMap(file);
         }
     } else {
-        showMessage(errorMessage, 'Este botão é apenas para arquivos KML/KMZ/HTML.', true);
+        showMessage(errorMessage, 'Para Plotar Projeto: importe CSV ou selecione KML/KMZ/HTML.', true);
     }
 });
+
+// Desenha projeto no mapa e baixa CSV, KML, DXF a partir do CSV importado
+async function plotarProjetoComCSV() {
+    const { content: csvContent, filename: csvFilename } = window.arquivoCSVImportado;
+    if (!csvContent) return;
+    
+    const mapContainer = document.getElementById('line-map-container');
+    if (mapContainer) mapContainer.style.display = 'block';
+    
+    if (!mapInitialized || !map) {
+        waitForLeaflet(function() {
+            if (!mapInitialized) initMap();
+            setTimeout(() => plotarProjetoComCSV(), 300);
+        });
+        return;
+    }
+    
+    if (typeof Papa === 'undefined') {
+        showMessage(errorMessage, 'Biblioteca PapaParse não carregada.', true);
+        return;
+    }
+    
+    const firstLine = csvContent.split(/\r?\n/)[0] || '';
+    const delimiter = firstLine.indexOf(';') >= 0 ? ';' : ',';
+    
+    let dados;
+    try {
+        const result = Papa.parse(csvContent, { header: true, skipEmptyLines: true, delimiter });
+        dados = result.data;
+    } catch (err) {
+        showMessage(errorMessage, 'Erro ao processar CSV: ' + err.message, true);
+        return;
+    }
+    if (!dados || dados.length === 0) {
+        showMessage(errorMessage, 'Arquivo CSV vazio ou inválido.', true);
+        return;
+    }
+    
+    const vertices = extrairVerticesDoCSV(dados);
+    if (vertices.length === 0) {
+        showMessage(errorMessage, 'Não foi possível extrair vértices do CSV. Verifique as colunas lat, long.', true);
+        return;
+    }
+    
+    window.ultimoArquivoCSVImportado = csvFilename;
+    showMessage(successMessage, 'Processando... Aguarde.');
+    btnPlotarProjeto.disabled = true;
+    btnPlotarProjeto.textContent = 'Baixando...';
+    
+    try {
+        const trecho = csvFilename.replace(/\.csv$/i, '').replace(/\s+/g, '_');
+        const csvBase64 = btoa(unescape(encodeURIComponent(csvContent)));
+        
+        const isProduction = window.location.protocol.startsWith('http') &&
+            window.location.hostname !== 'localhost' &&
+            window.location.hostname !== '127.0.0.1';
+        let API_URL = isProduction ? `${window.location.origin}/api/plotar-projeto-csv/` : null;
+        
+        if (!isProduction) {
+            const PORTS = [8001, 8000, 8002, 8003, 8004];
+            for (const port of PORTS) {
+                try {
+                    const ctrl = new AbortController();
+                    const tid = setTimeout(() => ctrl.abort(), 5000);
+                    const r = await fetch(`http://localhost:${port}/api/test/`, { signal: ctrl.signal });
+                    clearTimeout(tid);
+                    if (r.ok) {
+                        API_URL = `http://localhost:${port}/api/plotar-projeto-csv/`;
+                        break;
+                    }
+                } catch (e) { continue; }
+            }
+        }
+        
+        if (!API_URL) {
+            showMessage(errorMessage, 'Servidor não encontrado. Execute: backend\\api\\start_server.bat', true);
+            return;
+        }
+        
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ csv_content: csvBase64, trecho })
+        });
+        
+        if (!response.ok) {
+            const err = await response.json().catch(() => ({ message: response.statusText }));
+            throw new Error(err.message || 'Erro no servidor');
+        }
+        
+        const result = await response.json();
+        
+        downloadFile(
+            new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8' }),
+            csvFilename,
+            'text/csv;charset=utf-8'
+        );
+        if (result.kml_content && result.kml_filename) {
+            const kmlDecoded = atob(result.kml_content);
+            const kmlBlob = new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' });
+            downloadFile(kmlBlob, result.kml_filename, 'application/vnd.google-earth.kml+xml');
+            showGeneratedKmlOnMap(kmlDecoded);
+        }
+        if (result.dxf_content && result.dxf_filename) {
+            const dxfBlob = new Blob([atob(result.dxf_content)], { type: 'application/dxf' });
+            downloadFile(dxfBlob, result.dxf_filename, 'application/dxf');
+        }
+        
+        showMessage(successMessage, 'Projeto desenhado e arquivos baixados (CSV, KML, DXF).');
+    } catch (err) {
+        showMessage(errorMessage, 'Erro: ' + (err.message || 'não foi possível baixar KML/DXF.'), true);
+    } finally {
+        if (btnPlotarProjeto) {
+            btnPlotarProjeto.disabled = false;
+            btnPlotarProjeto.textContent = 'Plotar Projeto';
+        }
+    }
+}
 
 // Adiciona evento ao botão Inverter Sentido
 if (btnInverterSentido) {
@@ -1850,16 +1988,17 @@ async function gerarMatriz() {
     
     // Verifica se há vértices carregados (KML ou manual)
     if (!window.kmlVertices || window.kmlVertices.length === 0) {
-        showMessage(errorMessage, 'Por favor, carregue um arquivo KML ou crie uma polilinha manualmente no mapa.', true);
+        showMessage(errorMessage, 'Por favor, carregue um KML, importe um CSV ou crie uma polilinha manualmente no mapa.', true);
         return;
     }
     
-    // Coleta vértices do KML (formato [[lat, lon, sequencia], ...])
+    // Coleta vértices (KML, CSV ou manual)
     const vertices = window.kmlVertices.map(v => [v.lat, v.lon, v.number || v.sequencia || v.number]);
     
     // Coleta trecho do arquivo KML (usa nome do arquivo ou padrão)
     const file = fileInput ? fileInput.files[0] : null;
-    const trecho = file ? file.name.replace(/\.[^/.]+$/, '') : 'T001';
+    const csvName = window.ultimoArquivoCSVImportado || '';
+    const trecho = file ? file.name.replace(/\.[^/.]+$/, '') : (csvName ? csvName.replace(/\.[^/.]+$/, '') : 'T001');
     
     // Coleta "Vão Frouxo" - converte "sim"/"não" para "SIM"/"NÃO"
     const vaoFrouxoElement = document.getElementById('vaoFrouxo');
@@ -2070,6 +2209,19 @@ async function gerarMatriz() {
                     showMessage(errorMessage, `Erro ao processar KML: ${e.message}`, true);
                 }
             }
+
+            // Faz download do DXF (arquivo CAD)
+            if (result.dxf_content && result.dxf_filename) {
+                try {
+                    const dxfDecoded = atob(result.dxf_content);
+                    const dxfBlob = new Blob([dxfDecoded], { type: 'application/dxf' });
+                    downloadFile(dxfBlob, result.dxf_filename, 'application/dxf');
+                    console.log(`✅ DXF baixado: ${result.dxf_filename}`);
+                } catch (e) {
+                    console.error('❌ Erro ao baixar DXF:', e);
+                    showMessage(errorMessage, `Erro ao baixar DXF: ${e.message}`, true);
+                }
+            }
             
         } else {
             throw new Error(result.message || 'Erro desconhecido ao gerar matriz');
@@ -2224,14 +2376,15 @@ function resetApplication() {
     manualVertices = [];
     tempPolyline = null;
     window.kmlVertices = [];
+    window.ultimoArquivoCSVImportado = '';
+    window.arquivoCSVImportado = null;
     
     // Desativa modo manual
     deactivateManualMode();
     
     // Limpa campos do formulário
-    if (fileInput) {
-        fileInput.value = '';
-    }
+    if (fileInput) fileInput.value = '';
+    if (csvImportInput) csvImportInput.value = '';
     
     if (fileName) {
         fileName.textContent = '';

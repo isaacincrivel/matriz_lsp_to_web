@@ -13,6 +13,7 @@ from backend.core.transformacao_csv import transformar_csv_para_uma_linha_por_ve
 from backend.abacos.abaco_mosaico import mtz_abaco, point_in_polygon, mosaico
 from backend.exportacao.exportacao import exportar_para_kml, salvar_csv
 from backend.exportacao.kml import criar_kml_quadrados_bissetriz
+from backend.exportacao.dxf import latlon_to_utm_with_zone
 from backend.elementos.colocar_encabecamento_rede import colocar_encabecamento_rede
 from backend.elementos.colocar_poste_estrutura import colocar_poste_estrutura
 from backend.elementos.marcar_vertices_angulo_deflexao import marcar_vertices_angulo_deflexao
@@ -156,7 +157,13 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
                 colunas_finais.append(coluna)
     else:
         colunas_finais = colunas_base.copy()
-    
+
+    # Colunas UTM sempre nas últimas posições
+    for col_utm in ("fuso", "utm_x", "utm_y"):
+        if col_utm in colunas_finais:
+            colunas_finais.remove(col_utm)
+        colunas_finais.append(col_utm)
+
     # cria a matriz de pontos com as colunas finais
     matriz = pd.DataFrame(columns=colunas_finais)
     
@@ -316,6 +323,15 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             print(f"{'='*80}\n")
             dados_estrutura = {}
         
+        # Converte lat/lon para UTM (fuso, easting, northing)
+        try:
+            zone, utm_x_val, utm_y_val = latlon_to_utm_with_zone(vertex[0], vertex[1])
+            fuso_str = str(zone)
+            utm_x_str = f"{utm_x_val:.2f}".replace(".", ",")
+            utm_y_str = f"{utm_y_val:.2f}".replace(".", ",")
+        except (ValueError, TypeError):
+            fuso_str = utm_x_str = utm_y_str = ""
+
         # Cria linha para "implantar" com todas as colunas necessárias
         new_row_implantar = {
             "trecho": trecho,
@@ -353,7 +369,10 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             "qdt_adic_6": dados_estrutura.get("qdt_adic_6", ""),
             "rotacao_poste": dados_estrutura.get("rotacao_poste", ""),
             "modulo": module_name,
-            "municipio": ""
+            "municipio": "",
+            "fuso": fuso_str,
+            "utm_x": utm_x_str,
+            "utm_y": utm_y_str
         }
         
         # Adiciona todas as colunas do CSV transformado para "implantar" (se existirem e vier do CSV)

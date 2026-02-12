@@ -32,45 +32,47 @@
             font-family: 'JetBrains Mono', monospace;
             background: #ffffff;
             min-height: 100vh;
-            padding: 20px;
+            padding: 8px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 12px;
         }
 
         h1 {
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 2px;
             text-align: center;
+            font-size: 1.1em;
         }
 
         .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
+            font-size: 0.75em;
         }
 
         .form-section {
-            margin-bottom: 30px;
-            padding: 20px;
+            margin-bottom: 8px;
+            padding: 10px;
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         .form-section h2 {
             color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-size: 0.95em;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 8px;
         }
 
         label {
@@ -85,10 +87,10 @@
         input[type="file"],
         select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 6px 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 12px;
             background: white;
             transition: border-color 0.3s;
         }
@@ -109,12 +111,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            border: 2px dashed #667eea;
-            border-radius: 8px;
+            padding: 8px;
+            border: 1px dashed #667eea;
+            border-radius: 6px;
             background: #f0f4ff;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 12px;
         }
 
         .file-upload-label:hover {
@@ -133,15 +136,15 @@
         .btn {
             background: #667eea;
             color: white;
-            padding: 15px 30px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
             transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            margin-top: 10px;
+            margin-top: 4px;
         }
 
         .btn:hover {
@@ -163,10 +166,10 @@
         /* Estilo para botão discreto (similar ao select) */
         #btnAbrirTabela {
             width: 100%;
-            padding: 10px;
+            padding: 6px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 12px;
             background: white;
             color: #333;
             cursor: pointer;
@@ -189,35 +192,37 @@
         .success-message {
             background: #4caf50;
             color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 12px;
             display: none;
         }
 
         .error-message {
             background: #f44336;
             color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 12px;
             display: none;
         }
 
         .file-name {
-            margin-top: 10px;
+            margin-top: 4px;
             color: #666;
-            font-size: 14px;
+            font-size: 11px;
         }
         .logo-container {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 4px;
         }
 
         .matriz-logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 4px;
             display: block;
             background: none;
             border: none;
@@ -230,28 +235,29 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 15px;
+            border-radius: 8px;
         }
 
         #line-map-container {
-            margin-top: 30px;
+            margin-top: 8px;
             width: 100%;
         }
 
         #line-map-container .caption {
             color: #333;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            margin-bottom: 4px;
+            font-size: 0.9em;
             font-weight: 600;
         }
 
         #line-map {
             width: 100%;
-            height: 500px;
-            border-radius: 10px;
+            height: min(400px, calc(100vh - 260px));
+            min-height: 220px;
+            border-radius: 8px;
             overflow: hidden;
-            border: 2px solid #ddd;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         /* Labels responsivos (mostra desktop ou mobile) */
@@ -295,31 +301,42 @@
         .grid-two-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 8px;
         }
 
         .form-field {
             width: 100%;
-            padding: 10px;
+            padding: 6px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             font-weight: 600;
             color: #333;
+            font-size: 11px;
         }
 
         .select-nao-intercalar {
             width: 100%;
-            padding: 10px;
+            padding: 4px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 14px;
-            min-height: 150px;
+            font-size: 11px;
+            min-height: 80px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .btn-row .btn {
+            flex: 1;
+            margin-top: 0;
         }
 
         /* Media Queries para Desktop - Expansão progressiva */
@@ -392,45 +409,43 @@
 
             /* Botões com área de toque adequada */
             .btn {
-                padding: 16px 20px;
-                font-size: 16px;
-                min-height: 44px;
+                padding: 10px 14px;
+                font-size: 13px;
             }
 
             /* Grid de 2 colunas vira 1 coluna no mobile */
             .grid-two-columns {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 8px;
             }
 
-            /* Mapa com altura reduzida */
+            /* Mapa com altura adequada */
             #line-map {
-                height: 350px;
+                height: min(300px, calc(100vh - 280px));
+                min-height: 200px;
             }
 
-            /* Select "Não Intercalar" com altura reduzida */
+            /* Select "Não Intercalar" compacto */
             .select-nao-intercalar {
-                min-height: 120px;
-                font-size: 16px;
+                min-height: 70px;
+                font-size: 12px;
             }
 
-            /* Ajustes de espaçamento */
             #line-map-container {
-                margin-top: 20px;
+                margin-top: 8px;
             }
 
             .form-group {
-                margin-bottom: 15px;
+                margin-bottom: 6px;
             }
 
             .file-upload-label {
-                padding: 15px;
+                padding: 10px;
             }
 
             #btnAbrirTabela {
-                font-size: 16px;
-                padding: 12px;
-                min-height: 44px;
+                font-size: 12px;
+                padding: 8px;
             }
 
             /* Mostra label mobile, esconde desktop */
@@ -466,16 +481,17 @@
             }
 
             .matriz-logo {
-                width: 70px;
-                height: 70px;
+                width: 40px;
+                height: 40px;
             }
 
             #line-map {
-                height: 300px;
+                height: min(250px, calc(100vh - 300px));
+                min-height: 180px;
             }
 
             .select-nao-intercalar {
-                min-height: 100px;
+                min-height: 60px;
             }
         }
 
@@ -513,18 +529,21 @@
                 </div>
                 <div class="file-name" id="fileName"></div>
             </div>
-            <button class="btn" id="btnImportarArquivo">Importar Matriz CSV</button>
-            <button class="btn" id="btnPlotarProjeto">Plotar Projeto</button>
+            <input type="file" id="csvImportInput" accept=".csv" style="display: none;">
+            <div class="btn-row">
+                <button class="btn" id="btnImportarArquivo">Importar Matriz CSV</button>
+                <button class="btn" id="btnPlotarProjeto">Plotar Projeto</button>
+            </div>
             
             <!-- Mapa Leaflet (exibido automaticamente) -->
-            <div id="line-map-container" style="margin-top: 30px; display: block;">
-                <h2 class="caption" style="color: #333; margin-bottom: 10px; font-size: 1.1em;">Mapa da linha</h2>
-                <div id="line-map" style="width: 100%; border-radius: 10px; overflow: hidden; border: 2px solid #ddd;"></div>
-                <button class="btn" id="btnFinalizarPolilinha" style="margin-top: 15px; width: 100%; display: none;">✅ Finalizar Polilinha</button>
-                <button class="btn" id="btnInverterSentido" style="margin-top: 15px; width: 100%;" disabled>🔄 Inverter Sentido</button>
+            <div id="line-map-container" style="margin-top: 8px; display: block;">
+                <h2 class="caption">Mapa da linha</h2>
+                <div id="line-map"></div>
+                <button class="btn" id="btnFinalizarPolilinha" style="margin-top: 6px; display: none;">✅ Finalizar Polilinha</button>
+                <button class="btn" id="btnInverterSentido" style="margin-top: 4px;" disabled>🔄 Inverter Sentido</button>
                 
                 <!-- Campos de Seleção -->
-                <div class="grid-two-columns" style="margin-top: 20px;">
+                <div class="grid-two-columns" style="margin-top: 8px;">
                     <!-- Número do Módulo -->
                     <div class="form-group">
                         <label for="numeroModulo" class="form-label">Número do Módulo:</label>
@@ -546,12 +565,12 @@
                 </div>
                 
                 <!-- Botão Abrir Tabela de Dados -->
-                <div style="margin-top: 10px;">
+                <div style="margin-top: 6px;">
                     <button id="btnAbrirTabela" disabled>📊 Consultar e definir Modulos</button>
                 </div>
                 
                 <!-- Select Poste da Derivação e Vão Frouxo -->
-                <div class="grid-two-columns" style="margin-top: 15px;">
+                <div class="grid-two-columns" style="margin-top: 6px;">
                     <!-- Poste da Derivação -->
                     <div class="form-group">
                         <label for="posteDerivacao" class="form-label">Poste da derivação:</label>
@@ -574,20 +593,20 @@
                 </div>
                 
                 <!-- Select Não Intercalar Postes -->
-                <div class="form-group" style="margin-top: 15px;">
+                <div class="form-group" style="margin-top: 6px;">
                     <label for="naoIntercalarPostes" class="form-label">
                         <span class="label-desktop">Não Intercalar Postes (Ctrl+Click para selecionar múltiplos):</span>
                         <span class="label-mobile">Não Intercalar Postes (Toque e segure para selecionar múltiplos):</span>
                     </label>
                     <select id="naoIntercalarPostes" class="select-nao-intercalar" 
-                            size="8"
+                            size="5"
                             multiple>
                         <option value="">Nenhum vértice carregado</option>
                     </select>
                 </div>
                 
                 <!-- Botão Gerar Matriz -->
-                <div style="margin-top: 15px;">
+                <div style="margin-top: 6px;">
                     <button class="btn" id="btnGerarMatriz" disabled>Gerar Matriz</button>
                 </div>
             </div>

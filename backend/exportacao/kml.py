@@ -673,18 +673,12 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         <name>Quadrado {i}</name>
         <description>
             <![CDATA[
-            <h3>Quadrado na Bissetriz</h3>
-            <p><strong>Vértice:</strong> {i}</p>
             <p><strong>Sequência:</strong> {sequencia}</p>
             <p><strong>Status do Poste:</strong> {status_poste.upper()}</p>
             <p><strong>Coordenadas:</strong> {pt_atual[0]:.9f}, {pt_atual[1]:.9f}</p>
-            <p><strong>Ângulo Anterior:</strong> {angulo_anterior:.2f}°</p>
-            <p><strong>Ângulo Posterior:</strong> {angulo_posterior:.2f}°</p>
-            <p><strong>Bissetriz:</strong> {bissetriz:.2f}°</p>
             <p><strong>Ângulo Final (Rotação):</strong> {angulo_final:.2f}°</p>
             <p><strong>Rotacao Poste:</strong> {rotacao_poste.upper()}</p>
             <p><strong>Base Concreto:</strong> {base_concreto}</p>
-            <p><strong>Dimensões:</strong> {largura}m x {altura}m</p>
 
             <hr>
             <h4>Informações do Poste:</h4>
@@ -772,7 +766,7 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
         <name>{texto_visivel}</name>
         <description>
             <![CDATA[
-            <h3>Informações do Vértice {i}</h3>
+            <h3>Informações do Poste</h3>
             <p><strong>Sequência:</strong> {sequencia}</p>
                          <p><strong>Poste:</strong> {tipo_poste_para_exibir if tipo_poste_para_exibir else 'N/A'}</p>
             <p><strong>Estrutura MT:</strong> {estrutura_mt}</p>

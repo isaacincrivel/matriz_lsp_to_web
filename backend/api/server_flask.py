@@ -17,6 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 from backend.core.matriz_csv_to_kml import gerar_matriz
 from backend.exportacao.exportacao import salvar_csv
 from backend.exportacao.kml import criar_kml_quadrados_bissetriz
+from backend.exportacao.dxf import criar_dxf_do_kml
 import pandas as pd
 
 app = Flask(__name__)
@@ -202,6 +203,13 @@ def gerar_matriz_api():
                 print(f"[API] Aviso: Não foi possível remover diretório temporário {temp_dir}: {e}")
                 pass
         
+        # Gera DXF a partir do KML gerado
+        dxf_filename = f"{trecho}_projeto.dxf"
+        dxf_ok, _, dxf_content = criar_dxf_do_kml(kml_content, dxf_filename)
+        dxf_base64 = ""
+        if dxf_ok and dxf_content:
+            dxf_base64 = base64.b64encode(dxf_content.encode('utf-8')).decode('utf-8')
+
         # Nomes dos arquivos
         csv_filename = f"{trecho}_matriz_resultado.csv"
         
@@ -214,7 +222,9 @@ def gerar_matriz_api():
             'csv_filename': csv_filename,
             'kml_content': kml_base64,
             'kml_filename': kml_filename,
-            'total_records': len(matriz)
+            'total_records': len(matriz),
+            'dxf_content': dxf_base64,
+            'dxf_filename': dxf_filename if dxf_base64 else ""
         })
         
         # CORS headers
@@ -279,6 +289,90 @@ def gerar_matriz_api():
         response.status_code = 500
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+
+
+@app.route('/api/plotar-projeto-csv/', methods=['POST', 'OPTIONS'])
+def plotar_projeto_csv_api():
+    """
+    Recebe CSV importado e retorna KML e DXF gerados (mesmo molde do gerar-matriz).
+    O CSV é praticamente o mesmo importado - o frontend usa o local para download.
+    """
+    if request.method == 'OPTIONS':
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return response
+
+    try:
+        data = request.get_json(silent=True)
+        if not data:
+            return jsonify({'success': False, 'message': 'JSON inválido ou vazio'}), 400
+
+        csv_base64 = data.get('csv_content')
+        trecho = data.get('trecho', 'T001')
+
+        if not csv_base64:
+            return jsonify({'success': False, 'message': 'csv_content é obrigatório'}), 400
+
+        csv_content = base64.b64decode(csv_base64).decode('utf-8-sig', errors='replace').lstrip('\ufeff')
+
+        try:
+            matriz = pd.read_csv(io.StringIO(csv_content), sep=';', decimal=',', encoding='utf-8-sig')
+        except Exception:
+            matriz = pd.read_csv(io.StringIO(csv_content), sep=',', decimal='.', encoding='utf-8-sig')
+
+        if matriz.empty:
+            return jsonify({'success': False, 'message': 'CSV vazio ou inválido'}), 400
+
+        import tempfile
+        import shutil
+
+        kml_filename = f"{trecho}_quadrados_bissetriz.kml"
+        dxf_filename = f"{trecho}_projeto.dxf"
+        temp_dir = tempfile.mkdtemp(prefix=f"matriz_plotar_{os.getpid()}_")
+        old_cwd = os.getcwd()
+
+        try:
+            os.chdir(temp_dir)
+            criar_kml_quadrados_bissetriz(matriz, kml_filename)
+            resultado_kml_path = os.path.join("resultados", kml_filename)
+            if not os.path.exists(resultado_kml_path):
+                raise Exception(f'Arquivo KML não foi gerado: {resultado_kml_path}')
+
+            with open(resultado_kml_path, 'r', encoding='utf-8') as f:
+                kml_content = f.read()
+
+            kml_base64 = base64.b64encode(kml_content.encode('utf-8')).decode('utf-8')
+            dxf_ok, _, dxf_content = criar_dxf_do_kml(kml_content, dxf_filename)
+            dxf_base64 = base64.b64encode(dxf_content.encode('utf-8')).decode('utf-8') if (dxf_ok and dxf_content) else ""
+        finally:
+            os.chdir(old_cwd)
+            try:
+                if os.path.exists(temp_dir):
+                    shutil.rmtree(temp_dir)
+            except Exception:
+                pass
+
+        response = jsonify({
+            'success': True,
+            'message': 'KML e DXF gerados com sucesso',
+            'kml_content': kml_base64,
+            'kml_filename': kml_filename,
+            'dxf_content': dxf_base64,
+            'dxf_filename': dxf_filename if dxf_base64 else ""
+        })
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+    except Exception as e:
+        import traceback
+        print(f"[API] Erro plotar-projeto-csv: {e}\n{traceback.format_exc()}")
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500
+
 
 # Rotas para servir frontend (devem vir DEPOIS das rotas da API)
 @app.route('/')
