@@ -158,11 +158,13 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     else:
         colunas_finais = colunas_base.copy()
 
-    # Colunas UTM sempre nas últimas posições
+    # Colunas UTM e azimute sempre nas últimas posições
     for col_utm in ("fuso", "utm_x", "utm_y"):
         if col_utm in colunas_finais:
             colunas_finais.remove(col_utm)
         colunas_finais.append(col_utm)
+    if "azimute" not in colunas_finais:
+        colunas_finais.append("azimute")
 
     # cria a matriz de pontos com as colunas finais
     matriz = pd.DataFrame(columns=colunas_finais)
@@ -332,6 +334,53 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         except (ValueError, TypeError):
             fuso_str = utm_x_str = utm_y_str = ""
 
+        # Calcula azimute = direção do lado de 5m do retângulo 5x3 (igual ao KML)
+        # Convenção AutoCAD: 0°=Leste, 90°=Norte, 180°=Oeste, 270°=Sul (sentido anti-horário)
+        # O lado de 5m fica em angulo_final ± 90; conversão: autocad = (90 - geografico) % 360
+        # angulo_final depende de rotacao_poste (mesma lógica do kml.py)
+        if len(new_vertices) == 1:
+            azimute_str = ""
+        else:
+            pt_atual = (vertex[0], vertex[1])
+            if i == 0:
+                pt_posterior = (new_vertices[i + 1][0], new_vertices[i + 1][1])
+                angulo_anterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1]) - 180
+                angulo_posterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1])
+            elif i == len(new_vertices) - 1:
+                pt_anterior = (new_vertices[i - 1][0], new_vertices[i - 1][1])
+                angulo_anterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1])
+                angulo_posterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1]) + 180
+            else:
+                pt_anterior = (new_vertices[i - 1][0], new_vertices[i - 1][1])
+                pt_posterior = (new_vertices[i + 1][0], new_vertices[i + 1][1])
+                angulo_anterior = angle(pt_anterior[0], pt_anterior[1], pt_atual[0], pt_atual[1])
+                angulo_posterior = angle(pt_atual[0], pt_atual[1], pt_posterior[0], pt_posterior[1])
+            diff_angulo = abs(angulo_posterior - angulo_anterior)
+            if diff_angulo > 180:
+                if angulo_posterior > angulo_anterior:
+                    angulo_anterior += 360
+                else:
+                    angulo_posterior += 360
+            bissetriz = (angulo_anterior + angulo_posterior) / 2
+            # Aplica rotacao_poste (igual ao kml.py)
+            rotacao_poste = dados_estrutura.get("rotacao_poste", "").lower().strip()
+            angulo_final = bissetriz
+            if rotacao_poste in ("tang", "tangente", "biss1", "bissetriz1", "bicetriz1"):
+                angulo_final = bissetriz
+            elif rotacao_poste in ("biss2", "bissetriz2", "bicetriz2"):
+                angulo_final = bissetriz + 90
+            elif rotacao_poste == "topo1":
+                angulo_final = angulo_anterior + 90
+            elif rotacao_poste == "topo2":
+                angulo_final = angulo_posterior + 90
+            while angulo_final < 0:
+                angulo_final += 360
+            while angulo_final >= 360:
+                angulo_final -= 360
+            az_geografico = (angulo_final + 90) % 360  # 0°=Norte, horário (geográfico)
+            az = (90 - az_geografico) % 360  # AutoCAD: 0°=Leste, anti-horário
+            azimute_str = f"{az:.2f}".replace(".", ",")
+
         # Cria linha para "implantar" com todas as colunas necessárias
         new_row_implantar = {
             "trecho": trecho,
@@ -372,7 +421,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             "municipio": "",
             "fuso": fuso_str,
             "utm_x": utm_x_str,
-            "utm_y": utm_y_str
+            "utm_y": utm_y_str,
+            "azimute": azimute_str
         }
         
         # Adiciona todas as colunas do CSV transformado para "implantar" (se existirem e vier do CSV)
@@ -395,8 +445,13 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             for col in colunas_finais:
                 if col not in new_row_implantar:
                     new_row_implantar[col] = ""
-        
-        matriz.loc[len(matriz)] = new_row_implantar
+
+        # Garante azimute (evita sobrescrita acidental)
+        new_row_implantar["azimute"] = azimute_str
+
+        idx = len(matriz)
+        matriz.loc[idx] = new_row_implantar
+        matriz.at[idx, "azimute"] = azimute_str
         
         # Cria linhas para "existente", "retirar" e "deslocar"
         status_extras = ["existente", "retirar", "deslocar"]
