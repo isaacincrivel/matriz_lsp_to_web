@@ -222,23 +222,28 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                         return ''
                     return str(valor).strip()
                 
-                # Busca estruturas MT - tenta diferentes variações de nomes de colunas
-                # O transformacao_csv cria colunas como estru_mt_nv1_ret, estru_mt_nv1_exist, estru_mt_nv1_desloc
-                estrutura_mt_exist = tratar_valor(row.get('estru_mt_nv1_exist', '')) or tratar_valor(row.get('estrutura_mt_exist', ''))
-                estrutura_mt_ret = tratar_valor(row.get('estru_mt_nv1_ret', '')) or tratar_valor(row.get('estrutura_mt_ret', ''))
-                estrutura_mt_desloc = tratar_valor(row.get('estru_mt_nv1_desloc', '')) or tratar_valor(row.get('estrutura_mt_desloc', ''))
+                # Busca estruturas MT - modelo novo EST_1A, fallback estru_mt_nv1
+                estrutura_mt_exist = tratar_valor(row.get('EST_1A_exist', '')) or tratar_valor(row.get('estru_mt_nv1_exist', '')) or tratar_valor(row.get('estrutura_mt_exist', ''))
+                estrutura_mt_ret = tratar_valor(row.get('EST_1A_ret', '')) or tratar_valor(row.get('estru_mt_nv1_ret', '')) or tratar_valor(row.get('estrutura_mt_ret', ''))
+                estrutura_mt_desloc = tratar_valor(row.get('EST_1A_desloc', '')) or tratar_valor(row.get('estru_mt_nv1_desloc', '')) or tratar_valor(row.get('estrutura_mt_desloc', ''))
                 estrutura_mt_nv2_exist = tratar_valor(row.get('estru_mt_nv2_exist', '')) or tratar_valor(row.get('estrutura_mt_nv2_exist', ''))
                 estrutura_mt_nv2_ret = tratar_valor(row.get('estru_mt_nv2_ret', '')) or tratar_valor(row.get('estrutura_mt_nv2_ret', ''))
                 estrutura_mt_nv2_desloc = tratar_valor(row.get('estru_mt_nv2_desloc', '')) or tratar_valor(row.get('estrutura_mt_nv2_desloc', ''))
                 estrutura_mt_nv3_exist = tratar_valor(row.get('estru_mt_nv3_exist', '')) or tratar_valor(row.get('estrutura_mt_nv3_exist', ''))
                 estrutura_mt_nv3_ret = tratar_valor(row.get('estru_mt_nv3_ret', '')) or tratar_valor(row.get('estrutura_mt_nv3_ret', ''))
                 estrutura_mt_nv3_desloc = tratar_valor(row.get('estru_mt_nv3_desloc', '')) or tratar_valor(row.get('estrutura_mt_nv3_desloc', ''))
-                estrutura_bt_exist = tratar_valor(row.get('est_bt_nv1_exist', '')) or tratar_valor(row.get('estrutura_bt_exist', '')) or tratar_valor(row.get('est_bt_exist', ''))
-                estrutura_bt_ret = tratar_valor(row.get('est_bt_nv1_ret', '')) or tratar_valor(row.get('estrutura_bt_ret', '')) or tratar_valor(row.get('est_bt_ret', ''))
-                estrutura_bt_desloc = tratar_valor(row.get('est_bt_nv1_desloc', '')) or tratar_valor(row.get('estrutura_bt_desloc', '')) or tratar_valor(row.get('est_bt_desloc', ''))
-                estrutura_bt_nv2_exist = tratar_valor(row.get('est_bt_nv2_exist', '')) or tratar_valor(row.get('estrutura_bt_nv2_exist', ''))
-                estrutura_bt_nv2_ret = tratar_valor(row.get('est_bt_nv2_ret', '')) or tratar_valor(row.get('estrutura_bt_nv2_ret', ''))
-                estrutura_bt_nv2_desloc = tratar_valor(row.get('est_bt_nv2_desloc', '')) or tratar_valor(row.get('estrutura_bt_nv2_desloc', ''))
+                estrutura_bt_exist = (tratar_valor(row.get('EST_BT1A_exist', '')) or tratar_valor(row.get('est_bt_nv1_exist', '')) or
+                                     tratar_valor(row.get('estrutura_bt_exist', '')) or tratar_valor(row.get('est_bt_exist', '')))
+                estrutura_bt_ret = (tratar_valor(row.get('EST_BT1A_ret', '')) or tratar_valor(row.get('est_bt_nv1_ret', '')) or
+                                    tratar_valor(row.get('estrutura_bt_ret', '')) or tratar_valor(row.get('est_bt_ret', '')))
+                estrutura_bt_desloc = (tratar_valor(row.get('EST_BT1A_desloc', '')) or tratar_valor(row.get('est_bt_nv1_desloc', '')) or
+                                       tratar_valor(row.get('estrutura_bt_desloc', '')) or tratar_valor(row.get('est_bt_desloc', '')))
+                estrutura_bt_nv2_exist = (tratar_valor(row.get('EST_BT2A_exist', '')) or tratar_valor(row.get('est_bt_nv2_exist', '')) or
+                                          tratar_valor(row.get('estrutura_bt_nv2_exist', '')))
+                estrutura_bt_nv2_ret = (tratar_valor(row.get('EST_BT2A_ret', '')) or tratar_valor(row.get('est_bt_nv2_ret', '')) or
+                                        tratar_valor(row.get('estrutura_bt_nv2_ret', '')))
+                estrutura_bt_nv2_desloc = (tratar_valor(row.get('EST_BT2A_desloc', '')) or tratar_valor(row.get('est_bt_nv2_desloc', '')) or
+                                           tratar_valor(row.get('estrutura_bt_nv2_desloc', '')))
                 
                 # Debug temporário para sequência 9
                 if sequencia_str == '9':
@@ -253,9 +258,9 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                 
                 # Busca também estruturas com sufixos usando nomes alternativos
                 # O transformacao_csv cria colunas como estru_mt_nv1_ret, então busca diretamente
-                estrutura_mt_ret_alt = tratar_valor(row.get('estru_mt_nv1_ret', ''))
-                estrutura_mt_exist_alt = tratar_valor(row.get('estru_mt_nv1_exist', ''))
-                estrutura_mt_desloc_alt = tratar_valor(row.get('estru_mt_nv1_desloc', ''))
+                estrutura_mt_ret_alt = tratar_valor(row.get('EST_1A_ret', '')) or tratar_valor(row.get('estru_mt_nv1_ret', ''))
+                estrutura_mt_exist_alt = tratar_valor(row.get('EST_1A_exist', '')) or tratar_valor(row.get('estru_mt_nv1_exist', ''))
+                estrutura_mt_desloc_alt = tratar_valor(row.get('EST_1A_desloc', '')) or tratar_valor(row.get('estru_mt_nv1_desloc', ''))
                 
                 # Usa a estrutura encontrada (pode ser de qualquer uma das buscas)
                 if not estrutura_mt_ret:
@@ -266,14 +271,14 @@ def criar_kml_quadrados_bissetriz(pontos_matriz, nome_arquivo="quadrados_bissetr
                     estrutura_mt_desloc = estrutura_mt_desloc_alt
                 
                 dados_pontos.append({
-                    'sequencia': sequencia_str,  # Usa o valor da coluna sequencia do CSV
+                    'sequencia': sequencia_str,
                     'numero_poste': row.get('num_poste', ''),
                     'tipo_poste': row.get('tipo_poste', ''),
-                    'estrutura_mt': row.get('estru_mt_nv1', ''),  # Nome correto da coluna
-                    'estrutura_mt_nv2': row.get('estru_mt_nv2', ''),
-                    'estrutura_mt_nv3': row.get('estru_mt_nv3', ''),
-                    'estrutura_bt': row.get('est_bt_nv1', ''),  # Nome correto da coluna
-                    'estrutura_bt_nv2': row.get('est_bt_nv2', ''),
+                    'estrutura_mt': row.get('EST_1A', row.get('estru_mt_nv1', '')),
+                    'estrutura_mt_nv2': row.get('EST_2A', row.get('estru_mt_nv2', '')),
+                    'estrutura_mt_nv3': row.get('EST_3A', row.get('estru_mt_nv3', '')),
+                    'estrutura_bt': row.get('EST_BT1A', row.get('EST_BT1', row.get('est_bt_nv1', ''))),
+                    'estrutura_bt_nv2': row.get('EST_BT2A', row.get('EST_BT2', row.get('est_bt_nv2', ''))),
                     'poste': row.get('tipo_poste', ''),  # Campo correto
                     'tipo_poste': row.get('tipo_poste', ''),
                     'base': row.get('base_reforcada', ''),  # Campo correto

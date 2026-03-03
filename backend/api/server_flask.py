@@ -17,7 +17,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 from backend.core.matriz_csv_to_kml import gerar_matriz
 from backend.exportacao.exportacao import salvar_csv
 from backend.exportacao.kml import criar_kml_quadrados_bissetriz
-from backend.exportacao.dxf import criar_dxf_do_kml
 import pandas as pd
 
 app = Flask(__name__)
@@ -48,6 +47,11 @@ else:
 
 # Configuração para servir frontend na raiz
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'frontend', 'desktop_app')
+
+# Cache de projetos HTML compartilhados (HTTPS necessário para GPS no celular)
+projeto_html_cache = {}
+import uuid
+import time
 
 @app.route('/api/test/', methods=['GET'])
 def test():
@@ -160,9 +164,9 @@ def gerar_matriz_api():
         # Gera CSV em memória
         csv_buffer = io.StringIO()
         # Usa ponto e vírgula como separador e vírgula como decimal (formato brasileiro)
-        matriz.to_csv(csv_buffer, sep=';', decimal=',', index=False, encoding='utf-8-sig')
+        matriz.to_csv(csv_buffer, sep=';', decimal=',', index=False, encoding='utf-8')
         csv_content = csv_buffer.getvalue()
-        csv_base64 = base64.b64encode(csv_content.encode('utf-8-sig')).decode('utf-8')
+        csv_base64 = base64.b64encode(csv_content.encode('utf-8')).decode('utf-8')
         
         # Gera KML - a função criar_kml_quadrados_bissetriz cria na pasta "resultados"
         # Vamos usar pasta temporária e depois limpar
@@ -203,13 +207,6 @@ def gerar_matriz_api():
                 print(f"[API] Aviso: Não foi possível remover diretório temporário {temp_dir}: {e}")
                 pass
         
-        # Gera DXF a partir do KML gerado
-        dxf_filename = f"{trecho}_projeto.dxf"
-        dxf_ok, _, dxf_content = criar_dxf_do_kml(kml_content, dxf_filename)
-        dxf_base64 = ""
-        if dxf_ok and dxf_content:
-            dxf_base64 = base64.b64encode(dxf_content.encode('utf-8')).decode('utf-8')
-
         # Nomes dos arquivos
         csv_filename = f"{trecho}_matriz_resultado.csv"
         
@@ -222,9 +219,7 @@ def gerar_matriz_api():
             'csv_filename': csv_filename,
             'kml_content': kml_base64,
             'kml_filename': kml_filename,
-            'total_records': len(matriz),
-            'dxf_content': dxf_base64,
-            'dxf_filename': dxf_filename if dxf_base64 else ""
+            'total_records': len(matriz)
         })
         
         # CORS headers
@@ -322,6 +317,9 @@ def plotar_projeto_csv_api():
         except Exception:
             matriz = pd.read_csv(io.StringIO(csv_content), sep=',', decimal='.', encoding='utf-8-sig')
 
+        # Remove BOM dos nomes das colunas (ex: "ï»¿sequencia" -> "sequencia")
+        matriz.columns = [str(c).lstrip('\ufeff').replace('ï»¿', '').strip() if isinstance(c, str) else c for c in matriz.columns]
+
         if matriz.empty:
             return jsonify({'success': False, 'message': 'CSV vazio ou inválido'}), 400
 
@@ -329,7 +327,6 @@ def plotar_projeto_csv_api():
         import shutil
 
         kml_filename = f"{trecho}_quadrados_bissetriz.kml"
-        dxf_filename = f"{trecho}_projeto.dxf"
         temp_dir = tempfile.mkdtemp(prefix=f"matriz_plotar_{os.getpid()}_")
         old_cwd = os.getcwd()
 
@@ -344,8 +341,6 @@ def plotar_projeto_csv_api():
                 kml_content = f.read()
 
             kml_base64 = base64.b64encode(kml_content.encode('utf-8')).decode('utf-8')
-            dxf_ok, _, dxf_content = criar_dxf_do_kml(kml_content, dxf_filename)
-            dxf_base64 = base64.b64encode(dxf_content.encode('utf-8')).decode('utf-8') if (dxf_ok and dxf_content) else ""
         finally:
             os.chdir(old_cwd)
             try:
@@ -356,11 +351,9 @@ def plotar_projeto_csv_api():
 
         response = jsonify({
             'success': True,
-            'message': 'KML e DXF gerados com sucesso',
+            'message': 'KML gerado com sucesso',
             'kml_content': kml_base64,
-            'kml_filename': kml_filename,
-            'dxf_content': dxf_base64,
-            'dxf_filename': dxf_filename if dxf_base64 else ""
+            'kml_filename': kml_filename
         })
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -372,6 +365,64 @@ def plotar_projeto_csv_api():
             'success': False,
             'message': str(e)
         }), 500
+
+
+@app.route('/api/compartilhar-projeto/', methods=['POST', 'OPTIONS'])
+def compartilhar_projeto_api():
+    """
+    Recebe HTML do projeto e retorna URL compartilhável (HTTPS).
+    Abrir via link permite GPS no celular (file:// bloqueia geolocalização).
+    """
+    if request.method == 'OPTIONS':
+        r = jsonify({})
+        r.headers.add('Access-Control-Allow-Origin', '*')
+        r.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        r.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return r
+    try:
+        data = request.get_json(silent=True)
+        if not data or not data.get('html_content'):
+            return jsonify({'success': False, 'message': 'html_content obrigatório'}), 400
+        html_b64 = data['html_content']
+        html_content = base64.b64decode(html_b64).decode('utf-8', errors='replace')
+        pid = str(uuid.uuid4())[:8]
+        projeto_html_cache[pid] = {'html': html_content, 'ts': time.time()}
+        for k in list(projeto_html_cache.keys()):
+            if time.time() - projeto_html_cache[k]['ts'] > 86400:
+                del projeto_html_cache[k]
+        origin = request.host_url.rstrip('/')
+        url = f"{origin}/p/{pid}"
+        return jsonify({'success': True, 'url': url, 'id': pid})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+
+@app.route('/p/<projeto_id>')
+def servir_projeto_compartilhado(projeto_id):
+    """Serve projeto HTML via HTTPS - permite GPS no celular ao compartilhar link."""
+    if projeto_id not in projeto_html_cache:
+        return '<html><body><h1>Link expirado ou inválido</h1><p>O link do projeto expirou. Gere um novo.</p></body></html>', 404
+    html = projeto_html_cache[projeto_id]['html']
+    return html, 200, {'Content-Type': 'text/html; charset=utf-8'}
+
+
+# Pasta para download do Sistema CAD (AutoLISP/VLX) - coloque sistema_cad.zip em static/downloads/
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DOWNLOADS_DIR = os.path.join(PROJECT_ROOT, 'static', 'downloads')
+SISTEMA_CAD_ZIP = os.path.join(DOWNLOADS_DIR, 'sistema_cad.zip')
+
+
+@app.route('/download/sistema-cad')
+def download_sistema_cad():
+    """Envia o arquivo ZIP do Sistema Matriz-CAD para download."""
+    if not os.path.exists(SISTEMA_CAD_ZIP) or not os.path.isfile(SISTEMA_CAD_ZIP):
+        return '<html><body><h1>Arquivo não disponível</h1><p>O Sistema CAD ainda não foi publicado. Tente novamente mais tarde.</p></body></html>', 404
+    return send_file(
+        SISTEMA_CAD_ZIP,
+        as_attachment=True,
+        download_name='sistema_cad.zip',
+        mimetype='application/zip'
+    )
 
 
 # Rotas para servir frontend (devem vir DEPOIS das rotas da API)

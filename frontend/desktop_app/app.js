@@ -228,6 +228,212 @@ function gerarKML(dados, nomeArquivo = 'pontos_matriz.kml') {
     return kml;
 }
 
+// Desabilitado por enquanto - implementação futura (manter função gerarProjetoHTML no código)
+const GERAR_HTML_PROJETO = false;
+
+/**
+ * Gera HTML standalone do projeto para envio por WhatsApp/celular.
+ * GeoJSON em script type="application/json" para evitar corrupção.
+ * Leaflet e mapa carregam após DOM pronto.
+ * @param {object} geojson - GeoJSON com features do projeto (Point, LineString, Polygon)
+ * @param {string} trecho - Nome/identificador do projeto
+ * @returns {string} HTML completo
+ */
+function gerarProjetoHTML(geojson, trecho) {
+    const dataHora = new Date().toLocaleString('pt-BR', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+    });
+    const geojsonStr = JSON.stringify(geojson).replace(/<\/(script)/gi, '<\\/$1');
+    const trechoEsc = (trecho || 'Projeto').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto ${trechoEsc} - Sistema Matriz</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; min-height: 100vh; display: flex; flex-direction: column; }
+        .carimbo { flex-shrink: 0; }
+        .carimbo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .carimbo-logo { font-weight: 700; font-size: 1.1em; }
+        .carimbo-projeto { font-size: 0.95em; opacity: 0.95; }
+        .carimbo-data { font-size: 0.85em; opacity: 0.9; }
+        #mapa { width: 100%; flex: 1; min-height: 300px; background: #e0e0e0; }
+        .leaflet-container { font-family: inherit; }
+        .gps-marker { background: transparent !important; border: none !important; }
+        .btn-gps, .btn-whatsapp {
+            background: rgba(255,255,255,0.3); color: white; border: 1px solid rgba(255,255,255,0.6);
+            padding: 6px 12px; border-radius: 6px; font-size: 0.85em; cursor: pointer;
+        }
+        .btn-gps:active, .btn-whatsapp:active { background: rgba(255,255,255,0.5); }
+        @media (min-width: 768px) { .btn-gps { display: none !important; } }
+        .banner-file { display: none; background: #e65100; color: white; padding: 10px 16px; text-align: center; font-size: 0.9em; }
+        .banner-file.ativa { display: block; }
+    </style>
+</head>
+<body>
+    <div class="banner-file" id="bannerFile">⚠️ GPS n\u00e3o funciona neste arquivo. Para localiza\u00e7\u00e3o no celular: pe\u00e7a o LINK (https://...) e abra no navegador. N\u00e3o envie o arquivo \u2014 envie o link pelo WhatsApp.</div>
+    <div class="carimbo">
+        <span class="carimbo-logo">[ Sistema Matriz ]</span>
+        <span class="carimbo-projeto">Projeto: ${trechoEsc}</span>
+        <span class="carimbo-data">${dataHora}</span>
+        <button class="btn-gps" id="btnGps" title="Mostrar minha localiza\u00e7\u00e3o no mapa">\u270d Minha localiza\u00e7\u00e3o</button>
+        <a class="btn-whatsapp" id="btnWhatsapp" href="#" title="Enviar link por WhatsApp" style="display:none;text-decoration:none;">\u2705 Enviar por WhatsApp</a>
+    </div>
+    <div id="mapa"></div>
+    <script type="application/json" id="geojson-data">${geojsonStr}</script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script>
+(function(){
+    var geojsonEl = document.getElementById('geojson-data');
+    var geojson = geojsonEl ? JSON.parse(geojsonEl.textContent || '{"type":"FeatureCollection","features":[]}') : { type: 'FeatureCollection', features: [] };
+    var features = geojson.features || [];
+    if (typeof L === 'undefined') {
+        document.getElementById('mapa').innerHTML = '<p style="padding:20px;color:#c00;">Leaflet não carregou. Verifique a conexão com a internet e abra novamente.</p>';
+        return;
+    }
+    var map = L.map('mapa').setView([-15.79, -47.88], 13);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '&copy; Esri', maxZoom: 19
+    }).addTo(map);
+    var posteLabelByIndex = {};
+    for (var i = 0; i < features.length; i++) {
+        var f = features[i];
+        if (f.geometry && f.geometry.type === 'Point' && f.properties && f.properties.name) {
+            var m = f.properties.name.match(/^\\s*(\\d+)\\s*\\|/);
+            if (m) posteLabelByIndex[parseInt(m[1], 10)] = f.properties.name;
+        }
+    }
+    function getLabel(name) {
+        if (!name) return '';
+        var q = name.match(/^Quadrado\\s+(\\d+)/i);
+        if (q) return posteLabelByIndex[parseInt(q[1], 10)] || name;
+        var b = name.match(/^Base Concreto\\s+(\\d+)/i);
+        if (b) return posteLabelByIndex[parseInt(b[1], 10)] || name;
+        return name;
+    }
+    function haversine(a, b) {
+        var R = 6371000, dLat = (b[0] - a[0]) * Math.PI / 180, dLon = (b[1] - a[1]) * Math.PI / 180;
+        var lat1 = a[0] * Math.PI / 180, lat2 = b[0] * Math.PI / 180;
+        var x = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        return 2 * R * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+    }
+    function lineLen(coords) {
+        var t = 0;
+        for (var i = 1; i < coords.length; i++) t += haversine(coords[i - 1], coords[i]);
+        return t;
+    }
+    var group = L.featureGroup();
+    for (var j = 0; j < features.length; j++) {
+        var feat = features[j];
+        if (!feat.geometry) continue;
+        if (feat.geometry.type === 'Point') {
+            var c = feat.geometry.coordinates;
+            var lat = parseFloat(c[1]), lon = parseFloat(c[0]);
+            if (isNaN(lat) || isNaN(lon)) continue;
+            var icon = L.divIcon({ className: '', html: '', iconSize: [1, 1] });
+            var popup = (feat.properties && feat.properties.description) || (feat.properties && feat.properties.name) || 'Poste';
+            L.marker([lat, lon], { icon: icon }).bindPopup(popup).addTo(group);
+        } else if (feat.geometry.type === 'LineString') {
+            var coords = (feat.geometry.coordinates || []).map(function(x) { return [parseFloat(x[1]), parseFloat(x[0])]; });
+            if (coords.length < 2) continue;
+            var ll = coords.map(function(x) { return [x[0], x[1]]; });
+            var total = lineLen(ll);
+            L.polyline(coords, { color: '#3388ff', weight: 4, opacity: 0.9 })
+                .bindPopup('Distância: ' + total.toFixed(1).replace('.', ',') + ' m').addTo(group);
+        } else if (feat.geometry.type === 'Polygon') {
+            var ring = (feat.geometry.coordinates[0] || []).map(function(x) { return [parseFloat(x[1]), parseFloat(x[0])]; });
+            if (ring.length < 3) continue;
+            var lbl = getLabel((feat.properties && feat.properties.name) || '');
+            L.polygon(ring, { color: '#e63946', fillColor: '#e63946', weight: 2, fillOpacity: 0.35 })
+                .bindPopup(lbl || 'Polígono').addTo(group);
+        }
+    }
+    group.addTo(map);
+    if (group.getBounds && group.getBounds().isValid && group.getBounds().isValid()) {
+        map.fitBounds(group.getBounds().pad(0.15));
+    }
+
+    var userMarker = null;
+    var userAccuracy = null;
+    var watchId = null;
+    var firstFix = true;
+    function updateLocation(pos) {
+        var lat = pos.coords.latitude;
+        var lon = pos.coords.longitude;
+        var acc = pos.coords.accuracy || 30;
+        if (userMarker) {
+            userMarker.setLatLng([lat, lon]);
+            if (userAccuracy) { userAccuracy.setLatLng([lat, lon]); userAccuracy.setRadius(acc); }
+        } else {
+            var blueIcon = L.divIcon({
+                className: 'gps-marker',
+                html: '<div style="width:24px;height:24px;background:#2196F3;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4);"></div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            });
+            userMarker = L.marker([lat, lon], { icon: blueIcon }).addTo(map).bindPopup('Voc\u00ea est\u00e1 aqui');
+            userAccuracy = L.circle([lat, lon], {
+                radius: acc, fillColor: '#2196F3', fillOpacity: 0.15, color: '#2196F3', weight: 1
+            }).addTo(map);
+        }
+        if (firstFix) {
+            firstFix = false;
+            map.setView([lat, lon], Math.max(map.getZoom(), 16));
+        }
+    }
+    function errLocation(e) {}
+    function startGps() {
+        if (!navigator.geolocation) return;
+        if (watchId !== null) return;
+        watchId = navigator.geolocation.watchPosition(updateLocation, errLocation, { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 });
+    }
+    function stopGps() {
+        if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+        firstFix = true;
+        if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
+        if (userAccuracy) { map.removeLayer(userAccuracy); userAccuracy = null; }
+    }
+    var btn = document.getElementById('btnGps');
+    if (btn) {
+        btn.onclick = function() {
+            if (watchId !== null) { stopGps(); this.textContent = '\u270d Minha localiza\u00e7\u00e3o'; return; }
+            if (location.protocol === 'file:') {
+                alert('GPS n\u00e3o funciona ao abrir o arquivo. Pe\u00e7a o link (https://...) - ao abrir o link, o GPS funciona.');
+                return;
+            }
+            firstFix = true;
+            this.textContent = 'Parar GPS';
+            startGps();
+        };
+    }
+    var bannerFile = document.getElementById('bannerFile');
+    if (bannerFile && location.protocol === 'file:') bannerFile.classList.add('ativa');
+    var btnWa = document.getElementById('btnWhatsapp');
+    if (btnWa && location.protocol === 'https:') {
+        btnWa.style.display = 'inline-block';
+        btnWa.href = 'https://wa.me/?text=' + encodeURIComponent(location.href);
+        btnWa.target = '_blank';
+    }
+})();
+    </script>
+</body>
+</html>`;
+}
+
 // Função para fazer download do KML
 function downloadKML(kmlContent, filename) {
     const blob = new Blob([kmlContent], { type: 'application/vnd.google-earth.kml+xml' });
@@ -295,13 +501,16 @@ function extrairVerticesDoCSV(dados) {
     const lonCol = keys.find(k => /^long$/i.test(trimKey(k)) || /^lon$/i.test(trimKey(k)) || /longitude/i.test(trimKey(k)));
     const seqCol = keys.find(k => /sequencia|seq/i.test(trimKey(k)));
     const modCol = keys.find(k => /modalidade/i.test(trimKey(k)));
+    const statusCol = keys.find(k => /^status$/i.test(trimKey(k)));
     if (!latCol || !lonCol) return vertices;
     for (let i = 0; i < dados.length; i++) {
         const row = dados[i];
         let latVal = row[latCol];
         let lonVal = row[lonCol];
         if (latVal === undefined || latVal === null || (String(latVal).trim() === '') || lonVal === undefined || lonVal === null || (String(lonVal).trim() === '')) continue;
+        const statusVal = statusCol ? String(row[statusCol] || '').toLowerCase().trim() : '';
         if (modCol && row[modCol] && String(row[modCol]).toLowerCase().trim() !== 'implantar') continue;
+        if (statusCol && statusVal && statusVal !== 'implantar') continue;
         const lat = parseFloat(String(latVal).trim().replace(',', '.'));
         const lon = parseFloat(String(lonVal).trim().replace(',', '.'));
         if (isNaN(lat) || isNaN(lon)) continue;
@@ -1215,7 +1424,6 @@ function showGeneratedKmlOnMap(kmlText) {
     if (group.getBounds().isValid()) {
         map.fitBounds(group.getBounds().pad(0.15));
     }
-    window.generatedLayerGroup.bringToFront();
 }
 
 // Função para criar marcador numerado
@@ -1223,9 +1431,9 @@ function createNumberedMarker(lat, lon, number) {
     const markerIcon = L.divIcon({
         className: 'numbered-marker',
         html: `<div class="marker-number-label">${number}</div>`,
-        iconSize: [30, 30],
-        iconAnchor: [15, 15],
-        popupAnchor: [0, -15]
+        iconSize: [15, 15],
+        iconAnchor: [8, 8],
+        popupAnchor: [0, -8]
     });
     
     const marker = L.marker([lat, lon], { icon: markerIcon }).addTo(map);
@@ -1243,9 +1451,9 @@ function updateMarkerNumber(marker, newNumber) {
     const markerIcon = L.divIcon({
         className: 'numbered-marker',
         html: `<div class="marker-number-label">${newNumber}</div>`,
-        iconSize: [30, 30],
-        iconAnchor: [15, 15],
-        popupAnchor: [0, -15]
+        iconSize: [15, 15],
+        iconAnchor: [8, 8],
+        popupAnchor: [0, -8]
     });
     marker.setIcon(markerIcon);
     const latlng = marker.getLatLng();
@@ -1464,6 +1672,23 @@ function resetMapState() {
     }
 }
 
+// Função auxiliar: obtém texto de coordenadas KML (suporta namespace - evita deslocamento)
+function getKmlCoordText(parent, geomTag, innerTag) {
+    const KML_NS = 'http://www.opengis.net/kml/2.2';
+    const geom = parent.getElementsByTagNameNS ? parent.getElementsByTagNameNS(KML_NS, geomTag)[0] : parent.querySelector(geomTag);
+    if (!geom) return null;
+    const coordEl = geom.getElementsByTagNameNS ? geom.getElementsByTagNameNS(KML_NS, innerTag)[0] : geom.querySelector(innerTag);
+    return coordEl && coordEl.textContent ? coordEl.textContent.trim() : null;
+}
+function getKmlPolygonCoordText(placemark) {
+    const KML_NS = 'http://www.opengis.net/kml/2.2';
+    const poly = placemark.getElementsByTagNameNS ? placemark.getElementsByTagNameNS(KML_NS, 'Polygon')[0] : placemark.querySelector('Polygon');
+    if (!poly) return null;
+    const ring = poly.getElementsByTagNameNS ? poly.getElementsByTagNameNS(KML_NS, 'LinearRing')[0] : poly.querySelector('LinearRing');
+    const coordEl = ring ? (ring.getElementsByTagNameNS ? ring.getElementsByTagNameNS(KML_NS, 'coordinates')[0] : ring.querySelector('coordinates')) : null;
+    return coordEl && coordEl.textContent ? coordEl.textContent.trim() : null;
+}
+
 // Função para parsear e exibir KML no mapa
 function parseAndDisplayKML(kmlText) {
     try {
@@ -1479,7 +1704,9 @@ function parseAndDisplayKML(kmlText) {
             throw new Error('Erro ao fazer parse do KML: ' + parseError.textContent);
         }
 
-        const placemarks = kmlDoc.querySelectorAll('Placemark');
+        const KML_NS = 'http://www.opengis.net/kml/2.2';
+        const placemarksRaw = kmlDoc.getElementsByTagNameNS ? kmlDoc.getElementsByTagNameNS(KML_NS, 'Placemark') : kmlDoc.querySelectorAll('Placemark');
+        const placemarks = Array.from(placemarksRaw);
         let bounds = [];
         let allVertices = []; // Array para armazenar todos os vértices na ordem
         let sequence = 1; // Começa em 1
@@ -1497,48 +1724,38 @@ function parseAndDisplayKML(kmlText) {
         }
 
         // Primeiro, processa LineString (prioridade para manter ordem)
+        // KML: longitude,latitude,altitude (lon,lat,alt)
         placemarks.forEach((placemark) => {
-            const lineString = placemark.querySelector('LineString coordinates');
-            if (lineString) {
-                const coordText = lineString.textContent.trim();
+            const coordText = getKmlCoordText(placemark, 'LineString', 'coordinates');
+            if (coordText) {
                 const coords = coordText.split(/\s+/).map(coord => {
                     const parts = coord.split(',');
                     return { lat: parseFloat(parts[1]), lon: parseFloat(parts[0]) };
                 }).filter(coord => !isNaN(coord.lat) && !isNaN(coord.lon));
-                
-                coords.forEach(coord => {
-                    addVertexIfNew(coord.lat, coord.lon);
-                });
+                coords.forEach(coord => addVertexIfNew(coord.lat, coord.lon));
             }
         });
 
         // Depois, processa Polygon
         placemarks.forEach((placemark) => {
-            const polygon = placemark.querySelector('Polygon outerBoundaryIs LinearRing coordinates');
-            if (polygon) {
-                const coordText = polygon.textContent.trim();
+            const coordText = getKmlPolygonCoordText(placemark);
+            if (coordText) {
                 const coords = coordText.split(/\s+/).map(coord => {
                     const parts = coord.split(',');
                     return { lat: parseFloat(parts[1]), lon: parseFloat(parts[0]) };
                 }).filter(coord => !isNaN(coord.lat) && !isNaN(coord.lon));
-                
-                coords.forEach(coord => {
-                    addVertexIfNew(coord.lat, coord.lon);
-                });
+                coords.forEach(coord => addVertexIfNew(coord.lat, coord.lon));
             }
         });
 
-        // Por último, processa Points isolados
+        // Por último, processa Points isolados (KML: lon,lat,alt)
         placemarks.forEach((placemark) => {
-            const point = placemark.querySelector('Point coordinates');
-            if (point) {
-                const coords = point.textContent.trim().split(',');
-                const lon = parseFloat(coords[0]);
-                const lat = parseFloat(coords[1]);
-                
-                if (!isNaN(lat) && !isNaN(lon)) {
-                    addVertexIfNew(lat, lon);
-                }
+            const coordText = getKmlCoordText(placemark, 'Point', 'coordinates');
+            if (coordText) {
+                const parts = coordText.split(',');
+                const lon = parseFloat(parts[0]);
+                const lat = parseFloat(parts[1]);
+                if (!isNaN(lat) && !isNaN(lon)) addVertexIfNew(lat, lon);
             }
         });
 
@@ -1572,14 +1789,12 @@ function parseAndDisplayKML(kmlText) {
 
         // Agora desenha as linhas e polígonos originais do KML
         placemarks.forEach((placemark) => {
-            // Processa LineString
-            const lineString = placemark.querySelector('LineString coordinates');
-            if (lineString) {
-                const coordText = lineString.textContent.trim();
+            const coordText = getKmlCoordText(placemark, 'LineString', 'coordinates');
+            if (coordText) {
                 const coords = coordText.split(/\s+/).map(coord => {
                     const parts = coord.split(',');
                     return [parseFloat(parts[1]), parseFloat(parts[0])];
-                }).filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+                }).filter(c => !isNaN(c[0]) && !isNaN(c[1]));
                 
                 if (coords.length > 0) {
                     const polyline = L.polyline(coords, {
@@ -1591,14 +1806,12 @@ function parseAndDisplayKML(kmlText) {
                 }
             }
 
-            // Processa Polygon
-            const polygon = placemark.querySelector('Polygon outerBoundaryIs LinearRing coordinates');
-            if (polygon) {
-                const coordText = polygon.textContent.trim();
-                const coords = coordText.split(/\s+/).map(coord => {
+            const polyCoordText = getKmlPolygonCoordText(placemark);
+            if (polyCoordText) {
+                const coords = polyCoordText.split(/\s+/).map(coord => {
                     const parts = coord.split(',');
                     return [parseFloat(parts[1]), parseFloat(parts[0])];
-                }).filter(coord => !isNaN(coord[0]) && !isNaN(coord[1]));
+                }).filter(c => !isNaN(c[0]) && !isNaN(c[1]));
                 
                 if (coords.length > 0) {
                     const polygonLayer = L.polygon(coords, {
@@ -1781,7 +1994,7 @@ function parseAndDisplayGeoJSON(geojson) {
 btnPlotarProjeto.addEventListener('click', async function() {
     console.log('Botão Plotar Projeto clicado');
     
-    // Fluxo 1: CSV importado - desenha no mapa e baixa CSV, KML, DXF
+    // Fluxo 1: CSV importado - desenha no mapa e baixa CSV, KML, HTML
     if (window.arquivoCSVImportado && window.arquivoCSVImportado.content) {
         plotarProjetoComCSV();
         return;
@@ -1806,7 +2019,7 @@ btnPlotarProjeto.addEventListener('click', async function() {
     }
 });
 
-// Desenha projeto no mapa e baixa CSV, KML, DXF a partir do CSV importado
+// Desenha projeto no mapa e baixa CSV, KML, HTML a partir do CSV importado
 async function plotarProjetoComCSV() {
     const { content: csvContent, filename: csvFilename } = window.arquivoCSVImportado;
     if (!csvContent) return;
@@ -1897,25 +2110,40 @@ async function plotarProjetoComCSV() {
         
         const result = await response.json();
         
-        downloadFile(
-            new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8' }),
-            csvFilename,
-            'text/csv;charset=utf-8'
-        );
-        if (result.kml_content && result.kml_filename) {
-            const kmlDecoded = atob(result.kml_content);
-            const kmlBlob = new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' });
-            downloadFile(kmlBlob, result.kml_filename, 'application/vnd.google-earth.kml+xml');
-            showGeneratedKmlOnMap(kmlDecoded);
+        const kmlDecoded = result.kml_content && result.kml_filename ? atob(result.kml_content) : null;
+        if (kmlDecoded) showGeneratedKmlOnMap(kmlDecoded);
+
+        downloadFile(new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8' }), csvFilename, 'text/csv;charset=utf-8');
+        if (kmlDecoded && result.kml_filename) {
+            setTimeout(function() {
+                downloadFile(new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' }), result.kml_filename, 'application/vnd.google-earth.kml+xml');
+            }, 350);
         }
-        if (result.dxf_content && result.dxf_filename) {
-            const dxfBlob = new Blob([atob(result.dxf_content)], { type: 'application/dxf' });
-            downloadFile(dxfBlob, result.dxf_filename, 'application/dxf');
+        if (GERAR_HTML_PROJETO && kmlDecoded && result.kml_filename) {
+            setTimeout(async function() {
+                try {
+                    const geojson = buildGeoJsonFromKml(kmlDecoded);
+                    const trechoNome = (result.kml_filename || '').replace('_quadrados_bissetriz.kml', '') || 'projeto';
+                    const htmlContent = gerarProjetoHTML(geojson, trechoNome);
+                    downloadFile(new Blob([htmlContent], { type: 'text/html;charset=utf-8' }), trechoNome + '_projeto.html', 'text/html;charset=utf-8');
+                    const shareUrl = await compartilharProjetoLink(htmlContent, API_URL);
+                    if (shareUrl && shareUrl.startsWith('https')) {
+                        try {
+                            await navigator.clipboard.writeText(shareUrl);
+                            showMessage(successMessage, 'Link copiado! Envie pelo WhatsApp - ao abrir o link, o GPS da bolinha azul funciona.');
+                        } catch (_) {
+                            showMessage(successMessage, 'Para GPS no celular, envie este link: ' + shareUrl);
+                        }
+                    }
+                } catch (e) {
+                    console.error('Erro ao gerar HTML:', e);
+                }
+            }, 700);
         }
-        
-        showMessage(successMessage, 'Projeto desenhado e arquivos baixados (CSV, KML, DXF).');
+
+        showMessage(successMessage, 'Projeto desenhado e arquivos baixados (CSV, KML).');
     } catch (err) {
-        showMessage(errorMessage, 'Erro: ' + (err.message || 'não foi possível baixar KML/DXF.'), true);
+        showMessage(errorMessage, 'Erro: ' + (err.message || 'não foi possível baixar KML.'), true);
     } finally {
         if (btnPlotarProjeto) {
             btnPlotarProjeto.disabled = false;
@@ -1947,6 +2175,31 @@ if (btnFinalizarPolilinha) {
         console.log('Botão Finalizar Polilinha clicado');
         finalizeManualPolyline();
     });
+}
+
+/**
+ * Gera link compartilhável do projeto (HTTPS). GPS funciona no celular ao abrir o link.
+ * @param {string} htmlContent - HTML do projeto
+ * @param {string} apiBaseUrl - URL base da API (ex: https://site.com/api/)
+ * @returns {Promise<string|null>} URL ou null
+ */
+async function compartilharProjetoLink(htmlContent, apiBaseUrl) {
+    if (!apiBaseUrl || !htmlContent) return null;
+    const shareUrl = apiBaseUrl.replace(/\/api\/[^/]+\/?$/, '/api/compartilhar-projeto/');
+    try {
+        const htmlB64 = btoa(unescape(encodeURIComponent(htmlContent)));
+        const r = await fetch(shareUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html_content: htmlB64 })
+        });
+        if (!r.ok) return null;
+        const data = await r.json();
+        if (data.success && data.url) return data.url;
+        return null;
+    } catch (e) {
+        return null;
+    }
 }
 
 // Função para fazer download de arquivo
@@ -2169,58 +2422,46 @@ async function gerarMatriz() {
             showMessage(successMessage, `✅ ${result.message || 'Matriz gerada com sucesso!'}`);
             
             // Faz download dos arquivos CSV e KML gerados pelo backend
+            const kmlDecoded = result.kml_content && result.kml_filename ? atob(result.kml_content) : null;
+            if (kmlDecoded) showGeneratedKmlOnMap(kmlDecoded);
+
             if (result.csv_content && result.csv_filename) {
-                console.log(`Iniciando download CSV: ${result.csv_filename}`);
                 try {
-                    const csvDecoded = atob(result.csv_content);
-                    const csvBlob = new Blob(['\uFEFF' + csvDecoded], { type: 'text/csv;charset=utf-8;' });
+                    const csvBlob = new Blob(['\uFEFF' + atob(result.csv_content)], { type: 'text/csv;charset=utf-8;' });
                     downloadFile(csvBlob, result.csv_filename, 'text/csv;charset=utf-8;');
-                    console.log(`✅ CSV baixado: ${result.csv_filename}`);
                 } catch (e) {
                     console.error('❌ Erro ao baixar CSV:', e);
-                    showMessage(errorMessage, `Erro ao baixar CSV: ${e.message}`, true);
                 }
             }
-            
-            if (result.kml_content && result.kml_filename) {
-                try {
-                    const kmlDecoded = atob(result.kml_content);
-                    console.log(`KML decodificado: ${kmlDecoded.length} caracteres`);
-                    
-                    // Plota no mapa com estilo simplificado (modelo do HTML de referência)
-                    showGeneratedKmlOnMap(kmlDecoded);
-                    
-                    // Faz download do KML (sem atualizar o mapa)
-                    setTimeout(() => {
-                        try {
-                            console.log(`Iniciando download KML: ${result.kml_filename}`);
-                            const kmlBlob = new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' });
-                            downloadFile(kmlBlob, result.kml_filename, 'application/vnd.google-earth.kml+xml');
-                            console.log(`✅ KML baixado: ${result.kml_filename}`);
-                            console.log(`ℹ️ Para visualizar no mapa, importe o arquivo manualmente`);
-                        } catch (e) {
-                            console.error('❌ Erro ao baixar KML:', e);
-                            showMessage(errorMessage, `Erro ao baixar KML: ${e.message}`, true);
+            if (kmlDecoded && result.kml_filename) {
+                setTimeout(function() {
+                    try {
+                        downloadFile(new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' }), result.kml_filename, 'application/vnd.google-earth.kml+xml');
+                    } catch (e) {
+                        console.error('❌ Erro ao baixar KML:', e);
+                    }
+                }, 350);
+            }
+            if (GERAR_HTML_PROJETO && kmlDecoded && result.kml_filename) {
+                setTimeout(async function() {
+                    try {
+                        const geojson = buildGeoJsonFromKml(kmlDecoded);
+                        const trechoNome = (result.kml_filename || '').replace('_quadrados_bissetriz.kml', '') || 'projeto';
+                        const htmlContent = gerarProjetoHTML(geojson, trechoNome);
+                        downloadFile(new Blob([htmlContent], { type: 'text/html;charset=utf-8' }), trechoNome + '_projeto.html', 'text/html;charset=utf-8');
+                        const shareUrl = await compartilharProjetoLink(htmlContent, API_URL);
+                        if (shareUrl && shareUrl.startsWith('https')) {
+                            try {
+                                await navigator.clipboard.writeText(shareUrl);
+                                showMessage(successMessage, 'Link copiado! Envie pelo WhatsApp - ao abrir o link, o GPS da bolinha azul funciona.');
+                            } catch (_) {
+                                showMessage(successMessage, 'Para GPS no celular, envie este link: ' + shareUrl);
+                            }
                         }
-                    }, 800);
-                    
-                } catch (e) {
-                    console.error('❌ Erro ao processar KML:', e);
-                    showMessage(errorMessage, `Erro ao processar KML: ${e.message}`, true);
-                }
-            }
-
-            // Faz download do DXF (arquivo CAD)
-            if (result.dxf_content && result.dxf_filename) {
-                try {
-                    const dxfDecoded = atob(result.dxf_content);
-                    const dxfBlob = new Blob([dxfDecoded], { type: 'application/dxf' });
-                    downloadFile(dxfBlob, result.dxf_filename, 'application/dxf');
-                    console.log(`✅ DXF baixado: ${result.dxf_filename}`);
-                } catch (e) {
-                    console.error('❌ Erro ao baixar DXF:', e);
-                    showMessage(errorMessage, `Erro ao baixar DXF: ${e.message}`, true);
-                }
+                    } catch (e) {
+                        console.error('❌ Erro ao baixar HTML:', e);
+                    }
+                }, 700);
             }
             
         } else {

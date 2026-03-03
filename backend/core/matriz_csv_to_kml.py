@@ -92,7 +92,7 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             matriz_teste_transformada = matriz_teste_transformada.loc[:, ~matriz_teste_transformada.columns.duplicated()]
         
         # Salva o CSV transformado para referência (atualiza o arquivo final)
-        matriz_teste_transformada.to_csv("matriz_teste_transformada_final.csv", sep=";", decimal=",", index=False)
+        matriz_teste_transformada.to_csv("matriz_teste_transformada_final.csv", sep=";", decimal=",", index=False, encoding='utf-8')
         
         # Usa o DataFrame transformado como base (já tem uma linha por vértice)
         matriz_teste_filtrada = matriz_teste_transformada.copy()
@@ -134,37 +134,52 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
     print(f"Sequências encontradas: {[v[2] for v in vertices]}")
     
     # Cria DataFrame com todas as colunas do CSV transformado + colunas adicionais necessárias
+    # Ordem conforme modelo MATRIZ_NOVA (CB e EST com A,B,C,D por fase)
     colunas_base = [
-        "sequencia", "status", "lat", "long", 
+        "sequencia", "deriva", "status",
+        "CB_1A", "CB_1B", "CB_1C", "CB_1D", "CB_2A", "CB_2B", "CB_2C", "CB_2D",
+        "CB_3A", "CB_3B", "CB_3C", "CB_3D", "CB_4A", "CB_4B", "CB_4C", "CB_4D",
+        "CB_5A", "CB_5B", "CB_5C", "CB_5D", "CB_6A", "CB_6B", "CB_6C", "CB_6D",
+        "CB_BT1A", "CB_BT1B", "CB_BT1C", "CB_BT1D", "CB_BT2A", "CB_BT2B", "CB_BT2C", "CB_BT2D",
+        "CB_BT3A", "CB_BT3B", "CB_BT3C", "CB_BT3D",
+        "lat", "long",
         "num_poste", "tipo_poste",
-        "estru_mt_nv1", "estru_mt_nv2", "estru_mt_nv3",
-        "est_bt_nv1", "est_bt_nv2",
+        "EST_1A", "EST_1B", "EST_1C", "EST_1D", "EST_2A", "EST_2B", "EST_2C", "EST_2D",
+        "EST_3A", "EST_3B", "EST_3C", "EST_3D", "EST_4A", "EST_4B", "EST_4C", "EST_4D",
+        "EST_5A", "EST_5B", "EST_5C", "EST_5D", "EST_6A", "EST_6B", "EST_6C", "EST_6D",
+        "EST_BT1A", "EST_BT1B", "EST_BT1C", "EST_BT1D", "EST_BT2A", "EST_BT2B", "EST_BT2C", "EST_BT2D",
+        "EST_BT3A", "EST_BT3B", "EST_BT3C", "EST_BT3D",
         "estai_ancora", "base_reforcada", "base_concreto",
-        "aterr_neutro", "chave", "trafo", "equipamento", "faixa", "cort_arvores_isol",
+        "aterr_neutro", "chave_fusivel", "chave_faca", "trafo",
+        "para_raios", "religador", "banco_regulador", "banco_capacitor", "banco_reator",
+        "faixa", "cort_arvores_isol", "cerca",
         "adiconal_1", "qdt_adic_1", "adiconal_2", "qdt_adic_2",
         "adiconal_3", "qdt_adic_3", "adiconal_4", "qdt_adic_4",
         "adiconal_5", "qdt_adic_5", "adiconal_6", "qdt_adic_6",
         "adiconal_7", "qdt_adic_7",
-        "rotacao_poste", "modulo", "municipio"
+        "rotacao_poste", "municipio"
     ]
     colunas_csv = list(matriz_teste_transformada.columns)  # Todas as colunas do CSV transformado
     
-    # Remove colunas duplicadas (só se vertices_kml não foi fornecido, pois nesse caso não há colunas extras)
+    # Colunas antigas removidas do modelo (não incluir ao mesclar)
+    colunas_deprecadas = {'trecho', 'modulo', 'equipamento', 'estru_mt_nv1', 'estru_mt_nv2', 'estru_mt_nv3', 'est_bt_nv1', 'est_bt_nv2', 'chave', 'num_post', 'CB_BT1', 'CB_BT2', 'CB_BT3', 'EST_BT1', 'EST_BT2', 'EST_BT3'}
     if vertices_kml is None:
         colunas_finais = colunas_base.copy()
         for coluna in colunas_csv:
-            if coluna not in colunas_base:
+            if coluna not in colunas_base and coluna not in colunas_deprecadas:
                 colunas_finais.append(coluna)
     else:
         colunas_finais = colunas_base.copy()
 
-    # Colunas UTM e azimute sempre nas últimas posições
+    # Colunas UTM, azimute e enc_tang sempre nas últimas posições
     for col_utm in ("fuso", "utm_x", "utm_y"):
         if col_utm in colunas_finais:
             colunas_finais.remove(col_utm)
         colunas_finais.append(col_utm)
     if "azimute" not in colunas_finais:
         colunas_finais.append("azimute")
+    if "enc_tang" not in colunas_finais:
+        colunas_finais.append("enc_tang")
 
     # cria a matriz de pontos com as colunas finais
     matriz = pd.DataFrame(columns=colunas_finais)
@@ -381,29 +396,108 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             az = (90 - az_geografico) % 360  # AutoCAD: 0°=Leste, anti-horário
             azimute_str = f"{az:.2f}".replace(".", ",")
 
-        # Cria linha para "implantar" com todas as colunas necessárias
+        # enc_tang: dados de encabeçamento e tangência (tang_ou_enc do ábaco: TAN/ENC)
+        enc_tang_val = dados_estrutura.get("tang_ou_enc", "") or dados_estrutura.get("enc_tang", "")
+        if status_vertice in ("SIM", "SIM_AUTOMATICO"):  # encabeçamento
+            enc_tang_val = enc_tang_val or "ENC"
+
+        # Cria linha para "implantar" conforme modelo MATRIZ_NOVA (CB e EST com A,B,C,D)
+        est_bt1a_val = dados_estrutura.get("est_bt_nv1", "") or dados_estrutura.get("estrutura_bt", "")
         new_row_implantar = {
-            "trecho": trecho,
             "sequencia": dados_estrutura.get("sequencia", sequencia_original),
+            "deriva": dados_estrutura.get("deriva", ""),
             "status": "implantar",
+            "CB_1A": module_name,  # cabo do módulo
+            "CB_1B": dados_estrutura.get("CB_1B", ""),
+            "CB_1C": dados_estrutura.get("CB_1C", ""),
+            "CB_1D": dados_estrutura.get("CB_1D", ""),
+            "CB_2A": dados_estrutura.get("CB_2A", ""),
+            "CB_2B": dados_estrutura.get("CB_2B", ""),
+            "CB_2C": dados_estrutura.get("CB_2C", ""),
+            "CB_2D": dados_estrutura.get("CB_2D", ""),
+            "CB_3A": dados_estrutura.get("CB_3A", ""),
+            "CB_3B": dados_estrutura.get("CB_3B", ""),
+            "CB_3C": dados_estrutura.get("CB_3C", ""),
+            "CB_3D": dados_estrutura.get("CB_3D", ""),
+            "CB_4A": dados_estrutura.get("CB_4A", ""),
+            "CB_4B": dados_estrutura.get("CB_4B", ""),
+            "CB_4C": dados_estrutura.get("CB_4C", ""),
+            "CB_4D": dados_estrutura.get("CB_4D", ""),
+            "CB_5A": dados_estrutura.get("CB_5A", ""),
+            "CB_5B": dados_estrutura.get("CB_5B", ""),
+            "CB_5C": dados_estrutura.get("CB_5C", ""),
+            "CB_5D": dados_estrutura.get("CB_5D", ""),
+            "CB_6A": dados_estrutura.get("CB_6A", ""),
+            "CB_6B": dados_estrutura.get("CB_6B", ""),
+            "CB_6C": dados_estrutura.get("CB_6C", ""),
+            "CB_6D": dados_estrutura.get("CB_6D", ""),
+            "CB_BT1A": dados_estrutura.get("CB_BT1A", "") or dados_estrutura.get("CB_BT1", ""),
+            "CB_BT1B": dados_estrutura.get("CB_BT1B", ""),
+            "CB_BT1C": dados_estrutura.get("CB_BT1C", ""),
+            "CB_BT1D": dados_estrutura.get("CB_BT1D", ""),
+            "CB_BT2A": dados_estrutura.get("CB_BT2A", "") or dados_estrutura.get("CB_BT2", ""),
+            "CB_BT2B": dados_estrutura.get("CB_BT2B", ""),
+            "CB_BT2C": dados_estrutura.get("CB_BT2C", ""),
+            "CB_BT2D": dados_estrutura.get("CB_BT2D", ""),
+            "CB_BT3A": dados_estrutura.get("CB_BT3A", "") or dados_estrutura.get("CB_BT3", ""),
+            "CB_BT3B": dados_estrutura.get("CB_BT3B", ""),
+            "CB_BT3C": dados_estrutura.get("CB_BT3C", ""),
+            "CB_BT3D": dados_estrutura.get("CB_BT3D", ""),
             "lat": f"{vertex[0]:.9f}".replace(".", ","),
-            "long": f"{vertex[1]:.9f}".replace(".", ","),            
-            "num_post": dados_estrutura.get("num_poste", num_poste_inicial if sequencia_original == 0 else ""),
+            "long": f"{vertex[1]:.9f}".replace(".", ","),
+            "num_poste": dados_estrutura.get("num_poste", num_poste_inicial if sequencia_original == 0 else ""),
             "tipo_poste": dados_estrutura.get("tipo_poste", ""),
-            "estru_mt_nv1": dados_estrutura.get("estru_mt_nv1", ""),
-            "estru_mt_nv2": dados_estrutura.get("estru_mt_nv2", ""),
-            "estru_mt_nv3": dados_estrutura.get("estru_mt_nv3", ""),
-            "est_bt_nv1": dados_estrutura.get("est_bt_nv1", ""),
-            "est_bt_nv2": dados_estrutura.get("est_bt_nv2", ""),
+            "EST_1A": dados_estrutura.get("estru_mt_nv1", ""),
+            "EST_1B": dados_estrutura.get("EST_1B", ""),
+            "EST_1C": dados_estrutura.get("EST_1C", ""),
+            "EST_1D": dados_estrutura.get("EST_1D", ""),
+            "EST_2A": dados_estrutura.get("estru_mt_nv2", ""),
+            "EST_2B": dados_estrutura.get("EST_2B", ""),
+            "EST_2C": dados_estrutura.get("EST_2C", ""),
+            "EST_2D": dados_estrutura.get("EST_2D", ""),
+            "EST_3A": dados_estrutura.get("estru_mt_nv3", ""),
+            "EST_3B": dados_estrutura.get("EST_3B", ""),
+            "EST_3C": dados_estrutura.get("EST_3C", ""),
+            "EST_3D": dados_estrutura.get("EST_3D", ""),
+            "EST_4A": dados_estrutura.get("EST_4A", ""),
+            "EST_4B": dados_estrutura.get("EST_4B", ""),
+            "EST_4C": dados_estrutura.get("EST_4C", ""),
+            "EST_4D": dados_estrutura.get("EST_4D", ""),
+            "EST_5A": dados_estrutura.get("EST_5A", ""),
+            "EST_5B": dados_estrutura.get("EST_5B", ""),
+            "EST_5C": dados_estrutura.get("EST_5C", ""),
+            "EST_5D": dados_estrutura.get("EST_5D", ""),
+            "EST_6A": dados_estrutura.get("EST_6A", ""),
+            "EST_6B": dados_estrutura.get("EST_6B", ""),
+            "EST_6C": dados_estrutura.get("EST_6C", ""),
+            "EST_6D": dados_estrutura.get("EST_6D", ""),
+            "EST_BT1A": est_bt1a_val,
+            "EST_BT1B": dados_estrutura.get("EST_BT1B", ""),
+            "EST_BT1C": dados_estrutura.get("EST_BT1C", ""),
+            "EST_BT1D": dados_estrutura.get("EST_BT1D", ""),
+            "EST_BT2A": dados_estrutura.get("est_bt_nv2", ""),
+            "EST_BT2B": dados_estrutura.get("EST_BT2B", ""),
+            "EST_BT2C": dados_estrutura.get("EST_BT2C", ""),
+            "EST_BT2D": dados_estrutura.get("EST_BT2D", ""),
+            "EST_BT3A": dados_estrutura.get("EST_BT3A", ""),
+            "EST_BT3B": dados_estrutura.get("EST_BT3B", ""),
+            "EST_BT3C": dados_estrutura.get("EST_BT3C", ""),
+            "EST_BT3D": dados_estrutura.get("EST_BT3D", ""),
             "estai_ancora": dados_estrutura.get("estai_ancora", ""),
             "base_reforcada": dados_estrutura.get("base_reforcada", ""),
             "base_concreto": dados_estrutura.get("base_concreto", ""),
             "aterr_neutro": dados_estrutura.get("aterr_neutro", ""),
-            "chave": dados_estrutura.get("chave", ""),
+            "chave_fusivel": dados_estrutura.get("chave_fusivel", "") or dados_estrutura.get("chave", ""),
+            "chave_faca": dados_estrutura.get("chave_faca", ""),
             "trafo": dados_estrutura.get("trafo", ""),
-            "equipamento": dados_estrutura.get("equipamento", ""),
+            "para_raios": dados_estrutura.get("para_raios", ""),
+            "religador": dados_estrutura.get("religador", ""),
+            "banco_regulador": dados_estrutura.get("banco_regulador", ""),
+            "banco_capacitor": dados_estrutura.get("banco_capacitor", ""),
+            "banco_reator": dados_estrutura.get("banco_reator", ""),
             "faixa": dados_estrutura.get("faixa", ""),
             "cort_arvores_isol": dados_estrutura.get("cort_arvores_isol", ""),
+            "cerca": dados_estrutura.get("cerca", ""),
             "adiconal_1": dados_estrutura.get("adiconal_1", ""),
             "qdt_adic_1": dados_estrutura.get("qdt_adic_1", ""),
             "adiconal_2": dados_estrutura.get("adiconal_2", ""),
@@ -416,13 +510,15 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
             "qdt_adic_5": dados_estrutura.get("qdt_adic_5", ""),
             "adiconal_6": dados_estrutura.get("adiconal_6", ""),
             "qdt_adic_6": dados_estrutura.get("qdt_adic_6", ""),
+            "adiconal_7": dados_estrutura.get("adiconal_7", ""),
+            "qdt_adic_7": dados_estrutura.get("qdt_adic_7", ""),
             "rotacao_poste": dados_estrutura.get("rotacao_poste", ""),
-            "modulo": module_name,
             "municipio": "",
             "fuso": fuso_str,
             "utm_x": utm_x_str,
             "utm_y": utm_y_str,
-            "azimute": azimute_str
+            "azimute": azimute_str,
+            "enc_tang": enc_tang_val
         }
         
         # Adiciona todas as colunas do CSV transformado para "implantar" (se existirem e vier do CSV)
@@ -458,8 +554,8 @@ def gerar_matriz(trecho, module_name, module_data, loose_gap, section_size, gap_
         
         for status_extra in status_extras:
             new_row = {
-                "trecho": trecho,
                 "sequencia": dados_estrutura.get("sequencia", sequencia_original),
+                "deriva": dados_estrutura.get("deriva", ""),
                 "status": status_extra
             }
             
