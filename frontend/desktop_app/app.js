@@ -2113,17 +2113,22 @@ async function plotarProjetoComCSV() {
         const kmlDecoded = result.kml_content && result.kml_filename ? atob(result.kml_content) : null;
         if (kmlDecoded) showGeneratedKmlOnMap(kmlDecoded);
 
-        downloadFile(new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8' }), csvFilename, 'text/csv;charset=utf-8');
+        // CSV: mesmo nome do arquivo importado; KML: mesmo nome
+        const nomeBaseCsv = trecho; // já é o nome sem extensão
+        const kmlFilenamePlotar = nomeBaseCsv + '.kml';
+        const csvFilenamePlotar = nomeBaseCsv + '.csv';
+
+        downloadFile(new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8' }), csvFilenamePlotar, 'text/csv;charset=utf-8');
         if (kmlDecoded && result.kml_filename) {
             setTimeout(function() {
-                downloadFile(new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' }), result.kml_filename, 'application/vnd.google-earth.kml+xml');
+                downloadFile(new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' }), kmlFilenamePlotar, 'application/vnd.google-earth.kml+xml');
             }, 350);
         }
         if (GERAR_HTML_PROJETO && kmlDecoded && result.kml_filename) {
             setTimeout(async function() {
                 try {
                     const geojson = buildGeoJsonFromKml(kmlDecoded);
-                    const trechoNome = (result.kml_filename || '').replace('_quadrados_bissetriz.kml', '') || 'projeto';
+                    const trechoNome = nomeBaseCsv || 'projeto';
                     const htmlContent = gerarProjetoHTML(geojson, trechoNome);
                     downloadFile(new Blob([htmlContent], { type: 'text/html;charset=utf-8' }), trechoNome + '_projeto.html', 'text/html;charset=utf-8');
                     const shareUrl = await compartilharProjetoLink(htmlContent, API_URL);
@@ -2202,6 +2207,36 @@ async function compartilharProjetoLink(htmlContent, apiBaseUrl) {
     }
 }
 
+/**
+ * Gera o nome base para download de CSV/KML conforme a origem dos dados.
+ * @param {string} origem - 'leaflet' | 'kml' | 'csv'
+ * @param {string} nomeBase - Nome do arquivo sem extensão (usado em kml e csv)
+ * @returns {{ csvFilename: string, kmlFilename: string }}
+ */
+function gerarNomeArquivoDownload(origem, nomeBase) {
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const min = String(now.getMinutes()).padStart(2, '0');
+    const dataHora = `${dd}${mm}${yyyy}_${hh}${min}`;
+
+    let base;
+    if (origem === 'leaflet') {
+        base = `Projeto_${dataHora}`;
+    } else if (origem === 'kml') {
+        base = `P_${nomeBase}_${dataHora}`;
+    } else {
+        // csv: mesmo nome do arquivo
+        base = nomeBase || `Projeto_${dataHora}`;
+    }
+    return {
+        csvFilename: base + '.csv',
+        kmlFilename: base + '.kml'
+    };
+}
+
 // Função para fazer download de arquivo
 function downloadFile(blob, filename, mimeType) {
     if (typeof saveAs !== 'undefined') {
@@ -2252,6 +2287,8 @@ async function gerarMatriz() {
     const file = fileInput ? fileInput.files[0] : null;
     const csvName = window.ultimoArquivoCSVImportado || '';
     const trecho = file ? file.name.replace(/\.[^/.]+$/, '') : (csvName ? csvName.replace(/\.[^/.]+$/, '') : 'T001');
+    const origemDownload = file ? 'kml' : (csvName ? 'csv' : 'leaflet');
+    const nomeBaseDownload = file ? file.name.replace(/\.[^/.]+$/, '') : (csvName ? csvName.replace(/\.[^/.]+$/, '') : '');
     
     // Coleta "Vão Frouxo" - converte "sim"/"não" para "SIM"/"NÃO"
     const vaoFrouxoElement = document.getElementById('vaoFrouxo');
@@ -2421,6 +2458,9 @@ async function gerarMatriz() {
         if (result.success) {
             showMessage(successMessage, `✅ ${result.message || 'Matriz gerada com sucesso!'}`);
             
+            // Nomes para download conforme origem (leaflet, kml, csv)
+            const nomesDownload = gerarNomeArquivoDownload(origemDownload, nomeBaseDownload);
+            
             // Faz download dos arquivos CSV e KML gerados pelo backend
             const kmlDecoded = result.kml_content && result.kml_filename ? atob(result.kml_content) : null;
             if (kmlDecoded) showGeneratedKmlOnMap(kmlDecoded);
@@ -2428,7 +2468,7 @@ async function gerarMatriz() {
             if (result.csv_content && result.csv_filename) {
                 try {
                     const csvBlob = new Blob(['\uFEFF' + atob(result.csv_content)], { type: 'text/csv;charset=utf-8;' });
-                    downloadFile(csvBlob, result.csv_filename, 'text/csv;charset=utf-8;');
+                    downloadFile(csvBlob, nomesDownload.csvFilename, 'text/csv;charset=utf-8;');
                 } catch (e) {
                     console.error('❌ Erro ao baixar CSV:', e);
                 }
@@ -2436,7 +2476,7 @@ async function gerarMatriz() {
             if (kmlDecoded && result.kml_filename) {
                 setTimeout(function() {
                     try {
-                        downloadFile(new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' }), result.kml_filename, 'application/vnd.google-earth.kml+xml');
+                        downloadFile(new Blob([kmlDecoded], { type: 'application/vnd.google-earth.kml+xml' }), nomesDownload.kmlFilename, 'application/vnd.google-earth.kml+xml');
                     } catch (e) {
                         console.error('❌ Erro ao baixar KML:', e);
                     }
@@ -2446,7 +2486,7 @@ async function gerarMatriz() {
                 setTimeout(async function() {
                     try {
                         const geojson = buildGeoJsonFromKml(kmlDecoded);
-                        const trechoNome = (result.kml_filename || '').replace('_quadrados_bissetriz.kml', '') || 'projeto';
+                        const trechoNome = nomesDownload.csvFilename.replace(/\.csv$/i, '') || 'projeto';
                         const htmlContent = gerarProjetoHTML(geojson, trechoNome);
                         downloadFile(new Blob([htmlContent], { type: 'text/html;charset=utf-8' }), trechoNome + '_projeto.html', 'text/html;charset=utf-8');
                         const shareUrl = await compartilharProjetoLink(htmlContent, API_URL);
