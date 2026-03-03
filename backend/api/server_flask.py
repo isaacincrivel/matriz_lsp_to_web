@@ -416,6 +416,11 @@ SISTEMA_CAD_ZIP = os.path.join(DOWNLOADS_DIR, 'sistema_cad.zip')
 def download_sistema_cad():
     """Envia o arquivo ZIP do Sistema Matriz-CAD para download."""
     if not os.path.exists(SISTEMA_CAD_ZIP) or not os.path.isfile(SISTEMA_CAD_ZIP):
+        print(f"[DOWNLOAD] Arquivo não encontrado: {SISTEMA_CAD_ZIP}")
+        print(f"[DOWNLOAD] PROJECT_ROOT: {PROJECT_ROOT}")
+        print(f"[DOWNLOAD] Existe pasta downloads? {os.path.exists(DOWNLOADS_DIR)}")
+        if os.path.exists(DOWNLOADS_DIR):
+            print(f"[DOWNLOAD] Conteúdo: {os.listdir(DOWNLOADS_DIR)}")
         return '<html><body><h1>Arquivo não disponível</h1><p>O Sistema CAD ainda não foi publicado. Tente novamente mais tarde.</p></body></html>', 404
     return send_file(
         SISTEMA_CAD_ZIP,
