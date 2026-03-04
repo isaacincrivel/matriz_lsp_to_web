@@ -35,7 +35,7 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, resultado_abaco=None, sequenc
 
 
 
-    # Dicionário base com valores padrão para todos os campos possíveis
+    # Dicionário base com valores padrão (modelo MATRIZ_NOVA)
     dados_base = {
         "sequencia": "",
         "num_poste": "",
@@ -45,15 +45,23 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, resultado_abaco=None, sequenc
         "estru_mt_nv3": "",
         "est_bt_nv1": "",
         "est_bt_nv2": "",
+        "estrutura_bt": "",
         "estai_ancora": "",
         "base_reforcada": "",
         "base_concreto": "",
         "aterr_neutro": "",
         "chave": "",
+        "chave_fusivel": "",
+        "chave_faca": "",
         "trafo": "",
-        "equipamento": "",
+        "para_raios": "",
+        "religador": "",
+        "banco_regulador": "",
+        "banco_capacitor": "",
+        "banco_reator": "",
         "faixa": "",
         "cort_arvores_isol": "",
+        "cerca": "",
         "adiconal_1": "",
         "qdt_adic_1": "",
         "adiconal_2": "",
@@ -67,7 +75,7 @@ def gravar_pontos_matriz(pontos_matriz, sequencia, resultado_abaco=None, sequenc
         "adiconal_6": "",
         "qdt_adic_6": "",
         "adiconal_7": "",
-        "qdt_adic_7": "",               
+        "qdt_adic_7": "",
         "rotacao_poste": "",
         "tang_ou_enc": ""
     }

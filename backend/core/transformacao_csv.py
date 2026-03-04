@@ -1,5 +1,12 @@
 import pandas as pd
 
+
+def _remover_bom_colunas(df):
+    """Remove BOM (U+FEFF) e 'ï»¿' dos nomes das colunas."""
+    df.columns = [str(c).lstrip('\ufeff').replace('\ufeff', '').replace('ï»¿', '').strip() if isinstance(c, str) else c for c in df.columns]
+    return df
+
+
 def transformar_csv_para_uma_linha_por_vertice(arquivo_csv):
     """
     Transforma um CSV com múltiplas linhas por vértice (diferentes status) 
@@ -11,8 +18,9 @@ def transformar_csv_para_uma_linha_por_vertice(arquivo_csv):
     Returns:
         pd.DataFrame: DataFrame transformado com uma linha por vértice
     """
-    # Carrega o CSV original
-    df_original = pd.read_csv(arquivo_csv, sep=";", decimal=",")
+    # Carrega o CSV original (utf-8-sig para lidar com BOM se presente)
+    df_original = pd.read_csv(arquivo_csv, sep=";", decimal=",", encoding='utf-8-sig')
+    df_original = _remover_bom_colunas(df_original)
     
     # Obtém vértices únicos
     vertices_unicos = df_original['sequencia'].unique()
@@ -22,11 +30,12 @@ def transformar_csv_para_uma_linha_por_vertice(arquivo_csv):
         # Filtra todas as linhas para este vértice
         linhas_vertice = df_original[df_original['sequencia'] == sequencia]
         
-        # Busca a linha "Implantar" como linha mestra
-        linha_implantar = linhas_vertice[linhas_vertice['status'] == 'Implantar']
+        # Busca a linha "implantar" como linha mestra (aceita Implantar ou implantar)
+        status_implantar = linhas_vertice['status'].astype(str).str.strip().str.lower()
+        linha_implantar = linhas_vertice[status_implantar == 'implantar']
         
         if linha_implantar.empty:
-            continue  # Pula vértices sem linha "Implantar"
+            continue  # Pula vértices sem linha "implantar"
         
         # Usa a linha "Implantar" como base
         linha_mestre = linha_implantar.iloc[0].copy()
@@ -35,16 +44,17 @@ def transformar_csv_para_uma_linha_por_vertice(arquivo_csv):
         if 'status' in linha_mestre.index:
             linha_mestre = linha_mestre.drop('status')
         
-        # Adiciona dados das outras camadas com sufixos
-        for status, sufixo in [('Existente', '_exist'), ('Retirar', '_ret'), ('deslocar', '_desloc')]:
-            linha_status = linhas_vertice[linhas_vertice['status'] == status]
+        # Adiciona dados das outras camadas com sufixos (aceita maiúscula ou minúscula)
+        for status_norm, sufixo in [('existente', '_exist'), ('retirar', '_ret'), ('deslocar', '_desloc')]:
+            status_match = linhas_vertice['status'].astype(str).str.strip().str.lower() == status_norm
+            linha_status = linhas_vertice[status_match]
             
             if not linha_status.empty:
                 linha_status = linha_status.iloc[0]
                 
                 # Adiciona cada coluna com o sufixo apropriado
                 for coluna in linha_status.index:
-                    if (coluna not in ['sequencia', 'status'] and 
+                    if (coluna not in ['sequencia', 'status', 'deriva'] and 
                         pd.notna(linha_status[coluna]) and 
                         str(linha_status[coluna]).strip() != ''):
                         
@@ -102,7 +112,7 @@ def salvar_csv_transformado(df_transformado, arquivo_saida):
         df_transformado (pd.DataFrame): DataFrame transformado
         arquivo_saida (str): Caminho para o arquivo de saída
     """
-    df_transformado.to_csv(arquivo_saida, sep=";", decimal=",", index=False)
+    df_transformado.to_csv(arquivo_saida, sep=";", decimal=",", index=False, encoding='utf-8')
     print(f"CSV transformado salvo em: {arquivo_saida}")
     print(f"Total de vértices: {len(df_transformado)}")
     print(f"Total de colunas: {len(df_transformado.columns)}")

@@ -130,6 +130,7 @@ def criar_dxf_do_kml(kml_content, nome_arquivo="projeto.dxf"):
         # Parse do KML
         root = ET.fromstring(kml_content)
 
+
         # Remove namespaces
         for elem in root.iter():
             if "}" in elem.tag:
