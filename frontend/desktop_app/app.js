@@ -60,10 +60,12 @@ fileInput.addEventListener('change', function(e) {
         
         fileName.textContent = `Arquivo selecionado: ${file.name}`;
         
-        // Se o arquivo for KML/HTML, habilita botão Gerar Matriz e Plotar Projeto
+        // Se o arquivo for KML/HTML, habilita botão Gerar Matriz e oculta Importar CSV / Plotar Projeto
         if (fileNameStr.endsWith('.kml') || fileNameStr.endsWith('.kmz') || fileNameStr.endsWith('.html')) {
             btnGerarMatriz.disabled = false;
             btnPlotarProjeto.disabled = false;
+            if (btnImportarArquivo) btnImportarArquivo.style.display = 'none';
+            if (btnPlotarProjeto) btnPlotarProjeto.style.display = 'none';
             
             // Mostra o container do mapa
             const mapContainer = document.getElementById('line-map-container');
@@ -111,15 +113,18 @@ fileInput.addEventListener('change', function(e) {
                 });
             }
         } else {
-            // CSV/Excel no fileInput: usar Importar Matriz CSV para CSV; Plotar Projeto só para KML/HTML
+            // CSV/Excel no fileInput: mostrar Importar CSV e Plotar Projeto
             btnGerarMatriz.disabled = true;
             btnPlotarProjeto.disabled = !window.arquivoCSVImportado;
+            if (btnImportarArquivo) btnImportarArquivo.style.display = '';
+            if (btnPlotarProjeto) btnPlotarProjeto.style.display = '';
         }
     } else {
         fileName.textContent = '';
         btnGerarMatriz.disabled = true;
         btnPlotarProjeto.disabled = !window.arquivoCSVImportado;
-        
+        if (btnImportarArquivo) btnImportarArquivo.style.display = '';
+        if (btnPlotarProjeto) btnPlotarProjeto.style.display = '';
         checkAndActivateManualMode();
     }
 });
@@ -2686,14 +2691,15 @@ function resetApplication() {
     // Reseta estado dos botões
     if (btnImportarArquivo) {
         btnImportarArquivo.disabled = false;
+        btnImportarArquivo.style.display = '';
+    }
+    if (btnPlotarProjeto) {
+        btnPlotarProjeto.style.display = '';
+        btnPlotarProjeto.disabled = true;
     }
     
     if (btnGerarMatriz) {
         btnGerarMatriz.disabled = true;
-    }
-    
-    if (btnPlotarProjeto) {
-        btnPlotarProjeto.disabled = true;
     }
     
     if (btnInverterSentido) {
