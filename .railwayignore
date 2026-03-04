@@ -36,7 +36,7 @@ resultados/
 
 # Outros diretórios
 data/
-frontend/desktop_app/
+# frontend/desktop_app/ - NÃO ignorar! O Flask serve a UI daqui
 frontend/standalone/
 backup/
 docs/
